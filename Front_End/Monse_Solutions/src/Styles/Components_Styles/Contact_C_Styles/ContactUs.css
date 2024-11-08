@@ -1,0 +1,126 @@
+.SeccionContactUs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.418);
+}
+
+.columnasFormContact {
+  background-color: #fff; /* Color blanco para el formulario */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(12, 11, 11, 0.1);
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.3s ease;
+}
+
+
+
+.contenedorFormEstiloUno,
+.contenedorFormEstiloDos {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.estiloLabelForm {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #111111; /* Color cálido para las etiquetas */
+  transition: color 0.3s ease;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #cc5b3d; /* Color cálido en el enfoque */
+  box-shadow: 0 0 5px rgba(204, 91, 61, 0.5);
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+.btnSendForm {
+  background-color: #cc5b3d; /* Botón en color cálido */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btnSendForm:hover {
+  background-color: #b04a30; /* Color más oscuro en hover */
+  transform: translateY(-2px);
+}
+
+.btnSendForm:active {
+  transform: translateY(0);
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .SeccionContactUs {
+    height: auto;
+    padding: 10px;
+  }
+
+  .columnasFormContact {
+    padding: 20px;
+  }
+}
+
+/*.TituloH1{
+  text-align: center;
+}
+.SeccionContactUs{
+  text-align: center;
+  border: 1px dashed rgb(56, 75, 28);
+  display: flex;
+  justify-content: center;
+}
+.estiloLabelForm{
+  color: black;
+}
+.columnasFormContact{
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding: 1rem;
+  align-content: center;
+  width: 50%;
+  height: 500px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.contenedorFormEstiloUno{
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  margin-bottom: 20px;
+
+}
+
+.contenedorFormEstiloDos{
+display: contents;
+}/*
+
+

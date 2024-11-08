@@ -1,0 +1,11 @@
+.BodyAdmin{
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+.sideBar{
+    border: 1px dashed green;
+}
+
+.seccions{
+    border: 1px dashed purple;
+}

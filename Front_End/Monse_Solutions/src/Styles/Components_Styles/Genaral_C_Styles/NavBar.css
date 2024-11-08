@@ -1,0 +1,86 @@
+
+* {
+    box-sizing: border-box;
+}
+.logoNavBar{
+    width: 250px;
+    height: 200px;
+}
+.bodyNavBar {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.ContenedorNav {
+    position: fixed; /* Mantiene la barra fija en la parte superior */
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40; /* Color oscuro */
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    height: 100px;
+    z-index: 1000; /* Asegura que la barra esté encima de otros elementos */
+}
+
+.ContenedorNav p {
+    margin: 0;
+    font-size: 19px;
+    color: #f8f9fa; /* Color claro para el texto */
+    font-weight: bold;
+}
+
+.SpanNav {
+    color: #6c757d; /* Color más suave */
+}
+
+.ItemsContent {
+    display: flex;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.itemLinkNav {
+    font-size: 1rem;
+    color: #f8f9fa; /* Color de texto claro */
+    text-decoration: none; /* Sin subrayado */
+    padding: 10px 15px; /* Espaciado en los botones */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Animación en fondo y transformación */
+}
+
+.itemLinkNav:hover {
+    background-color: #007bff; /* Color azul al pasar el mouse */
+    color: #ffffff; /* Color blanco para el texto en hover */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+}
+
+/* Estilos para celulares */
+@media (max-width: 768px) {
+    .ContenedorNav {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto; /* Ajusta la altura en telefonos */
+        position: relative;
+    }
+
+    .ItemsContent {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .itemLinkNav {
+        padding: 10px 0;
+        width: 100%; 
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
+}
+
+/* Añadir un espacio superior para evitar superposición con el navbar fijo */
+.bodyNavBar {
+    padding-top: 100px; /* Igual a la altura del navbar */
+}
+
+

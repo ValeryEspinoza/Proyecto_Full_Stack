@@ -1,0 +1,14 @@
+
+.contenedorCarrucel{
+background-color:#f0f2f5;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.carousel-image {
+    width: 70%; /* Cambia esto al tamaño deseado */
+    height: 500px; /* Mantiene la proporción de aspecto */
+    max-width: 100%; /* Asegura que la imagen no se expanda más allá del contenedor */
+ 
+    border-radius: 5px;
+
+  }

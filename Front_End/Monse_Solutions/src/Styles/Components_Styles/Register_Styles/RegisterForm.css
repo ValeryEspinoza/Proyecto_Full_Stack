@@ -1,0 +1,160 @@
+
+.bodyRegister {
+
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.form-container {
+    max-width: 400px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+input, .select-access {
+    width: 100%;
+    padding: 12px;
+  
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, .select-access:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+
+
+
+/*
+.ContenedorPricipal{
+    background-color:#191825;
+   color: white;
+   height: 600px;
+      
+}
+
+.InputContent{
+    position: relative;
+    left: 35%;
+    margin-bottom: 10px;
+    
+}
+
+.TituloContent{
+    padding: 1em;
+    margin-left: 43%;
+    margin-bottom: 3%;
+}
+
+.inputStyleUno{
+    width: 350px;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 20px;
+    border: 2px solid #f4f3f7;
+    background-color: transparent;
+    color: #f2f1f8;
+    outline: none;
+   }
+
+.LabelStyleUno {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #fafafc;
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.inputStyleUno:focus{
+    border: 2px solid #1cd6ce;
+}
+
+.inputStyleUno:focus~.LabelStyleUno,
+.inputStyleUno:valid~.LabelStyleUno{
+    top: 0;
+    font-size: 16px;
+    padding: 0 15px;
+    background-color: #191825;
+    color: #fff;
+}
+
+.inputStyleDos{
+    width: 350px;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 20px;
+    border: 2px solid #f4f3f7;
+    background-color: transparent;
+    color: #f2f1f8;
+    outline: none;
+   }
+.InputOptions{
+    position: absolute;
+    top: 50%;
+    left: 15px;
+   background-color: #191825;
+    color: white;
+    font-size: 19px;
+  
+}
+.btnAdd{
+    width: 200px;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid #f4f3f7;
+    background-color: black;
+    color: white;
+    outline: none;
+   margin-top: 2%;
+   margin-left: 43%;
+}
+
+.btnAdd:hover{
+    color: black;
+    background-color: white;
+    border: 3px solid #1cd6ce;
+
+}*/

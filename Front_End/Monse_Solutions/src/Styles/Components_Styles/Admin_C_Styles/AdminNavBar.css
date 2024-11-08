@@ -1,0 +1,47 @@
+.NavBarColumnas {
+    position: fixed; /* Fijo en la parte superior */
+    top: 0; /* Parte superior de la ventana */
+    width: 100%; /* Ancho completo */
+    background-color: #333; /* Color de fondo */
+    z-index: 1000; /* Para asegurarte de que esté por encima de otros elementos */
+}
+
+.nav-links {
+    display: flex; /* Usa flexbox para alinear elementos */
+    justify-content: space-around; /* Espaciado entre elementos */
+    list-style-type: none; /* Elimina los puntos de la lista */
+    margin: 0; /* Elimina margen */
+    padding: 10px 0; /* Padding superior e inferior */
+}
+
+.nav-links li {
+    flex: 1; /* Hace que cada ítem ocupe espacio igual */
+}
+
+.nav-links a {
+    text-decoration: none; /* Sin subrayado */
+    color: white; /* Color del texto */
+    padding: 15px; /* Padding interno */
+    display: block; /* Permite que el área clicable sea todo el bloque */
+    text-align: center; /* Centra el texto */
+}
+
+.nav-links a:hover {
+    background-color: #575757; /* Color de fondo al pasar el ratón */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+
+
+    .nav-links {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: center; /* Alinea al centro */
+       
+       
+    }
+   
+   
+}
+
+

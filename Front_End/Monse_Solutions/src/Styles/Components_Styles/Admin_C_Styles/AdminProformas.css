@@ -1,0 +1,114 @@
+.bodyCotizacion {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+.SeccionDos {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+.tituloContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo{
+    font-size: 2rem; /* Tamaño grande por defecto */
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+    font-weight: 600; /* Fuente semi-negrita */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: color 0.3s; /* Transición suave para el color */
+}
+
+.titulo:hover {
+    color: #007bff; /* Cambio de color al pasar el ratón */
+  }
+
+.ContenedorFormularioProformas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Datos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputProforma,
+.correo,
+.NombreCompleto,
+.FechaProforma,
+.telefono,
+.tipoCotizacion,
+.subTotal,
+.IVA,
+.Total {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.inputProforma:focus,
+.correo:focus,
+.NombreCompleto:focus,
+.FechaProforma:focus,
+.telefono:focus,
+.tipoCotizacion:focus,
+.subTotal:focus,
+.IVA:focus,
+.Total:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.Datos .tipoCotizacion {
+    height: 100px;
+}
+
+.datosProforma {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.DesgloseTotalCostos {
+    display: flex;
+    gap: 10px;
+}
+
+.btnCreateProforma {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btnCreateProforma:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .titulo {
+        font-size: 2rem;
+    }
+}

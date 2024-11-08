@@ -1,0 +1,149 @@
+.bodyLogin {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Degradado moderno */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  
+}
+
+.login-title {
+    text-align: center;
+    color: #333;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input-field:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+}
+
+.alert-message {
+    text-align: center;
+    color: #d9534f;
+}
+
+/*.ContenedorPricipal{
+    background-color:#191825;
+   color: white;
+   height: 600px;
+      
+}
+
+.InputContent{
+    position: relative;
+    left: 35%;
+    top: 10px;
+    
+}
+
+.inputStyleUno{
+    width: 350px;
+    height: 50px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid #f4f3f7;
+    background-color: transparent;
+    color: #f2f1f8;
+    outline: none;
+    
+}
+
+.LabelStyleUno {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #fafafc;
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.inputStyleUno:focus{
+    border: 2px solid #1cd6ce;
+}
+
+.inputStyleUno:focus~.LabelStyleUno,
+.inputStyleUno:valid~.LabelStyleUno{
+    top: 0;
+    font-size: 16px;
+    padding: 0 15px;
+    background-color: #191825;
+    color: #fff;
+}
+.SelectStyle{
+    width: 350px;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid #f4f3f7;
+    background-color: transparent;
+    color: #f2f1f8;
+    outline: none;
+   
+}
+
+.btnAdd{
+    width: 200px;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0px 15px;
+    border: 2px solid #f4f3f7;
+    background-color: black;
+    color: white;
+    outline: none;
+
+}
+
+.btnAdd:hover{
+    color: black;
+    background-color: white;
+    border: 3px solid #1cd6ce;
+
+}
+.TituloStyle{
+padding: 1em;
+margin-left: 37%;
+margin-bottom: 7%;
+}*/
+

@@ -1,0 +1,193 @@
+
+/*Imagen estilos*/
+.ImagenServices{
+    width:100px;
+    height: 90px;
+    border-radius: 5px;
+    text-align: center;
+ 
+}
+
+.itemImagen{
+
+    text-align: center;
+    border-right: 1px solid black; 
+}
+
+
+/*Contenedores estilos*/
+.botonesContenedor{
+    padding: 1em;
+    display: flex;
+    justify-content:space-around;
+ 
+}
+.itemServices{
+   
+    text-align: center;
+    margin-right: 5px;
+    font-size: 18px;
+    align-content: center;
+    border-right: 1px solid rgb(12, 3, 20);
+
+}
+
+/*Titulos estilos*/
+.encabezadoLista{
+    display: grid;
+    grid-template-columns:15% 20% 30% 20% 15% ;
+    list-style: none;
+    padding: 1em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    border-radius: 5px;
+    margin: 1em;
+    background-color: aliceblue;
+
+}
+
+.EncabezadoTitulo{
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    height: 50px;
+    margin-bottom: 30px;
+    padding: 1em;
+    text-align: center;
+    align-content: center;
+    background-color: rgba(139, 159, 179, 0.356);
+    color: rgb(10, 10, 10);
+    display: grid;
+    grid-template-columns:15% 20% 30% 20% 15% ;
+    list-style: none;
+    font-weight: bold;
+    font-size: 21px
+        
+}
+    .tituloServicios {
+        font-size: 2.5rem; /* Tamaño del texto */
+        color: #007BFF; /* Color del texto */
+        text-align: center; /* Alineación centrada */
+        transition: color 0.3s, transform 0.3s; /* Transición suave */
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+
+      }
+      
+      .tituloServicios:hover {
+        color: #06090c; /* Cambia el color al pasar el mouse */
+       
+      }
+    
+
+
+
+/*Botones estilos*/
+.btnEdit{
+height: 50px;
+width: 50px;
+border-radius: 50%;
+}
+
+.btnEdit:hover{
+    background-color: rgb(31, 222, 235);
+    height: 53px;
+      width: 53px;   
+}
+
+.btnDelete{
+     height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+ 
+}
+.btnDelete:hover{
+      background-color: rgb(31, 222, 235);
+      height: 53px;
+      width: 53px;
+    
+}
+
+/*...............Modal Editar Estilos...................*/
+.modalHeaderServicesData {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #007bff;
+    transition: background-color 0.3s ease;
+  }
+  
+
+  .modalHeaderServicesDataTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    text-transform: uppercase;
+    animation: fadeIn 0.5s ease;
+  }
+  
+ 
+.modalBodyServicesData{
+    border: 1px solid #e63946;
+    text-align: center;
+    align-content: center;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contenedorFormularioEdit {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    height: auto;
+    margin-bottom: 20px;
+    gap: 15px;
+    justify-items: center; /* Centra los elementos horizontalmente */
+}
+
+.ImagenServicesEdit {
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin: 1em;
+}
+
+/* Estilo para los inputs */
+.inputServiceData, .textareaServicesData {
+    width: 60%; /* Cambia el ancho al 60% */
+    max-width: 400px; /* Establece un ancho máximo si es necesario */
+    padding: 10px;
+    border: 1px solid #457b9d;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #1d3557;
+    outline: none;
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #2a9d8f;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #264653;
+}
+
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .modal-title {
+      font-size: 1.25rem;
+    }
+  }
