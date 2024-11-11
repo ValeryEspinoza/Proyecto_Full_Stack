@@ -1,86 +1,76 @@
-
-* {
-    box-sizing: border-box;
-}
-.logoNavBar{
-    width: 250px;
-    height: 200px;
-}
-.bodyNavBar {
-    margin: 0;
-    font-family: Arial, sans-serif;
+/* Estilos generales del navbar */
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #cecece;
+  color: #fff;
 }
 
-.ContenedorNav {
-    position: fixed; /* Mantiene la barra fija en la parte superior */
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #343a40; /* Color oscuro */
-    padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    height: 100px;
-    z-index: 1000; /* Asegura que la barra esté encima de otros elementos */
+/* Logo del navbar */
+.Navbar img {
+  height: 70px;
+  margin-left: 20px;
 }
 
-.ContenedorNav p {
-    margin: 0;
-    font-size: 19px;
-    color: #f8f9fa; /* Color claro para el texto */
-    font-weight: bold;
+/* Links del navbar */
+.navbar-links {
+  display: flex;
+  gap: 35px;
+  margin-left: auto; 
+  list-style: none;
+  padding: 0;
 }
 
-.SpanNav {
-    color: #6c757d; /* Color más suave */
+.navbar-links p {
+  margin: 0;
 }
 
-.ItemsContent {
-    display: flex;
-    gap: 20px; /* Espacio entre los elementos */
+
+
+.navbar-links .itemLinkNav {
+  color: #333333; 
+  list-style: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  font-size: 18px;
 }
 
-.itemLinkNav {
-    font-size: 1rem;
-    color: #f8f9fa; /* Color de texto claro */
-    text-decoration: none; /* Sin subrayado */
-    padding: 10px 15px; /* Espaciado en los botones */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s, transform 0.3s; /* Animación en fondo y transformación */
+
+.navbar-links .itemLinkNav:hover {
+  color: #ffffff; 
+  background-color: #000000;
+  padding: 5px; 
+  border-radius: 3px; 
 }
 
-.itemLinkNav:hover {
-    background-color: #007bff; /* Color azul al pasar el mouse */
-    color: #ffffff; /* Color blanco para el texto en hover */
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+
+
+.nav-btn {
+  background-color: #c4c1c1;
+  border: 1px solid #000000;
+  color: #000000;
+  padding: 5px 7px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Estilos para celulares */
-@media (max-width: 768px) {
-    .ContenedorNav {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto; /* Ajusta la altura en telefonos */
-        position: relative;
-    }
 
-    .ItemsContent {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .itemLinkNav {
-        padding: 10px 0;
-        width: 100%; 
-        text-align: left; /* Alinea el texto a la izquierda */
-    }
+.nav-btn:hover {
+  background-color: #000;
+  color: #ffffff;
 }
 
-/* Añadir un espacio superior para evitar superposición con el navbar fijo */
-.bodyNavBar {
-    padding-top: 100px; /* Igual a la altura del navbar */
+/* Media  Query */
+@media (max-width: 991px) {
+  .navbar-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 0;
+    text-align: center;
+  }
 }
-
 

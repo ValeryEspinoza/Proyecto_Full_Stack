@@ -7,7 +7,7 @@ function AdminProforma() {
     <div className="tituloContainer">
     <h1 className="titulo">Realización de Proformas</h1>
 </div>
-    class
+   
     <div className='ContenedorFormularioProformas'>  
         <div className='Datos clientes'>
         <h2>Datos del cliente</h2>

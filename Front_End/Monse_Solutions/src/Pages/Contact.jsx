@@ -7,6 +7,7 @@ import { ContactUs } from '../Components/Contact_Components/ContactUs'
 function Contact() {
   return (
     <div>
+      
       <NavBar />
       <ContactUs />
       <Footer />
