@@ -10,7 +10,7 @@ function AdminNavBar() {
       <div className='bodyNavBar'>
       <nav className="NavBarColumnas">
           <ul className="nav-links">
-              <li><Link to="/Register">Registrar Usuario</Link></li>
+              <li><Link to="/Register">Registrar Usuarios</Link></li>
               <li><Link to="/Formularios">Formularios</Link></li>
               <li><Link to="/Servicios">Servicios</Link></li>
               <li><Link to="/">Cerrar Secion</Link></li>
