@@ -1,0 +1,36 @@
+
+
+.Información {
+    text-align: center; 
+    margin: 50px 0; 
+    background-color: #d4d4d4;
+  }
+  
+  .TextoPrincipal{
+    font-size: 48px; 
+    font-weight: bold; 
+    margin-bottom: 10px;
+    color: #181717; 
+  }
+  
+  .Texto {
+    font-size: 20px;
+    font-weight: 300;
+    color: #272626;
+    margin-bottom: 20px; 
+  }
+  
+  .BotonContact {
+    background-color: #333; 
+    color: #fff; 
+    padding: 10px 20px;
+    border: none; 
+    border-radius: 5px; 
+    font-size: 18px;
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+  }
+  
+  .BotonContact:hover {
+    background-color: #555; 
+  }
