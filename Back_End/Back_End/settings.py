@@ -43,12 +43,25 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 ]
 
+# Configuración de Django REST Framework para usar JWT
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        
-    ),
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Requiere autenticación para acceder a las vistas
+    ],
 }
+
+
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Tiempo de expiración del token de acceso
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # Tiempo de expiración del token de actualización
+    'ROTATE_REFRESH_TOKENS': True,                    # Permite la rotación de tokens de actualización
+    'BLACKLIST_AFTER_ROTATION': True,                 # Marca tokens de actualización como inactivos después de su uso
+}
+
 
 
 MIDDLEWARE = [
