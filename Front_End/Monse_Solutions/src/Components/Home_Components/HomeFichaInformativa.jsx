@@ -5,47 +5,26 @@ import "../../Styles/Components_Styles/Home_C_Styles/HomeFichaInformativa.css"
 function HomeFichaInformativa() {
   return (
     <div className='bodyFicha'>
-    <div className='ContenedorPrincipal'>
-    <div className='ContenedorFicha'>
-      <div className='ContenedorDos'>
-        <img className='imgTrabajoExterior' src="src/Img/Components_Img/TrabajoExterior.jpeg" alt="TrabajoExterior" />
+      <br />
+      <div className='TextoBienvenida'>Welcome to <br /> Monse Solutions</div>
+
+      <div className='Texto'>
+      Here, we transform spaces into inspiring places. Our passion for remodeling <br />
+      translates into innovative solutions and high-quality finishes that adapt to your <br />
+                                    needs and style. <br /><br />
+
+      We understand that every project is unique, which is why our team of experts <br />
+       works closely with you to turn your ideas into reality. Whether you want to <br />
+       modernize your home, optimize a commercial space, or give your office a fresh <br />
+       look, we offer a personalized approach that ensures exceptional results. <br /><br />
+
+      Explore our creative solutions and discover how our finishes can add that special <br />
+       touch you’re looking for. At Monse Solutios your vision is our mission. <br /><br />
+
+
+      Let’s make your space extraordinary! <br /><br />
       </div>
-      <div className='ContenedorUno'>
-        <h2 className='tituloFicha'>Ficha Informativa</h2>
-        <p className='textoUno'>
-          Un texto es una composición de signos codificados en un sistema de escritura que forma
-          una unidad de sentido. También es una composición de caracteres imprimibles (con grafema)
-          generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona,
-          sí puede ser descifrado por su destinatario original. En otras palabras, un texto es un entramado
-          de signos con una intención comunicativa que adquiere sentido en determinado contexto.
-        </p>
-        <p className='textoDos'>
-          Un texto es una composición de signos codificados en un sistema de escritura que forma
-          una unidad de sentido.
-        </p>
-      </div>
-    </div>
   
-    <div className='ContenedorFicha'>
-      <div className='ContenedorDos'>
-        <img className='imgTrabajoExterior' src="src/Img/Components_Img/TrabajoMadera.jpeg" alt="" />
-      </div>
-      <div className='ContenedorUno'>
-        <h2 className='tituloFicha'>Ficha Informativa</h2>
-        <p className='textoUno'>
-          Un texto es una composición de signos codificados en un sistema de escritura que forma
-          una unidad de sentido. También es una composición de caracteres imprimibles (con grafema)
-          generados por un algoritmo de cifrado que, aunque no tienen sentido para cualquier persona,
-          sí puede ser descifrado por su destinatario original. En otras palabras, un texto es un entramado
-          de signos con una intención comunicativa que adquiere sentido en determinado contexto.
-        </p>
-        <p className='textoDos'>
-          Un texto es una composición de signos codificados en un sistema de escritura que forma
-          una unidad de sentido.
-        </p>
-      </div>
-    </div>
-  </div>
   </div>
   )
 }
