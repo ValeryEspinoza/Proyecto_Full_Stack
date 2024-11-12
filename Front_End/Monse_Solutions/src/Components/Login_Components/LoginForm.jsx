@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
+import iconEmail from "../../Img/Components_Img/icon3_email.png"
+import iconPassword from "../../Img/Components_Img/icon_password.png"
+
+
 function LoginForm() {
   //Hooks
   const [PassUser, SetPassUser]= useState("")
@@ -26,7 +30,7 @@ function LoginForm() {
   async function Login() {
     const Users = await GetUser() 
     
-    if ((Users.find(({Email}) => Email === EmailUser)) && (Users.find(({Password}) => Password === PassUser)) ) {
+    if ((Users.find(({email}) => email === EmailUser)) && (Users.find(({password}) => password === PassUser)) ) {
       localStorage.setItem("Autenticado", "true");
        
       Swal.fire({
@@ -51,30 +55,37 @@ function LoginForm() {
   }
 
   return (
-    <div className="bodyLogin">
+<div className="bodyLogin">
+<div className='divTitleLogin'>
+<h1 className="login-title">Access your account <br />at Monse Solutions</h1>
+</div><br />
+
     <div className="login-container">
-    <h1 className="login-title">Bienvenido a Login</h1>
-
-    <input 
-        className="input-field" 
-        value={EmailUser} 
-        onChange={GetEmail} 
-        type="text" 
-        placeholder="Correo electrónico" 
-    />
-    <input 
-        className="input-field" 
-        value={PassUser} 
-        onChange={GetPass} 
-        type="password" 
-        placeholder="Contraseña" 
-    />
-
-    <button onClick={Login} className="btn-login">Log In</button>
-    
-    <Link className='irAHome' to="/Home"><p>Ir a Home</p></Link>
+    <div className="input-container">
+        <img src={iconEmail} alt="Email Icon" className="input-icon" />
+        <input 
+            className="input-field" 
+            value={EmailUser} 
+            onChange={GetEmail} 
+            type="text" 
+            placeholder="Email" 
+        />
+    </div>
+<br />
+    <div className="input-container">
+        <img src={iconPassword} alt="Password Icon" className="input-icon" />
+        <input 
+            className="input-field" 
+            value={PassUser} 
+            onChange={GetPass} 
+            type="password" 
+            placeholder="Password" 
+        />
+    </div>
     <h2 className="alert-message">{MensajeAlerta}</h2>
 </div>
+<button onClick={Login} className="btn-login">Log In</button><br />
+<Link className='goToHome' to="/Home"><p>Go to Home</p></Link>
 </div>
   )
 }
