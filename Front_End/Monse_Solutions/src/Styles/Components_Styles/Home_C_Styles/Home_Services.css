@@ -1,31 +1,32 @@
 .services-container {
     padding: 20px;
     text-align: center;
-    background-color: #f9f9f9; /* Fondo claro */
+    background-color: #ffffff; 
   }
   
-  h2 {
+.Titulo_Sevices {
     font-size: 36px;
     margin-bottom: 5px;
   }
   
   .subheading {
     font-size: 18px;
-    color: #777;
+    color: #000000;
     margin-bottom: 20px;
   }
   
   .services-grid {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-  }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 8%;
+
+}
   
-  .service-card {
+.service-card {
     background-color: #fff;
-    padding: 15px;
+    padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(39, 39, 39, 0.5) 0px 22px 70px 4px;
     width: 250px;
     text-align: left;
   }
@@ -37,12 +38,12 @@
     margin-bottom: 15px;
   }
   
-  h3 {
+  .Nombre_Services {
     font-size: 20px;
     margin-bottom: 10px;
   }
   
-  p {
+  .Descripcion_Services {
     font-size: 14px;
-    color: #555;
+    color: #000000;
   }

@@ -33,7 +33,7 @@ export default function NavBar() {
               <Offcanvas.Body>
                 <Nav className="navbar-links">
                   <Link to="/Contact"><p className='itemLinkNav'>Contact</p></Link>
-                  <Link to="/Services"><p className='itemLinkNav'>Services</p></Link>
+                  <Link to="/Servicios"><p className='itemLinkNav'>Services</p></Link>
                   <Link to="/About"><p className='itemLinkNav'>About</p></Link>
                   <Link to="/"><p className='itemLinkNav'>Home</p></Link>
                   <Link to="/Register"><p className='itemLinkNav'><button className="nav-btn">Register</button></p></Link>
