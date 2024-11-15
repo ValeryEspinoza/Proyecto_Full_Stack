@@ -11,14 +11,18 @@ from .models import (
     vacant, candidate,
     events, languages,
     status, priorities,
-    category_services,
-    sub_categories_products,
-    products
+    category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
+    staff, services, projects, clients, sells, products_suppliers, staff_tasks, staff_events, projects_services,
+    staff_projects, languages_clients, reviews, proformas_invoices, candidates_vacants, proformas_invoices_services, 
+    proformas_invoices_staff, sells_details
     )
 
 
-     
-#Serializer de auth_user 
+
+
+
+
+#Serializers configuracion- Principales
 class UserSerializer(serializers.ModelSerializer):
     role=serializers.CharField(write_only=True)
     class Meta:
@@ -49,6 +53,12 @@ class UserSerializer(serializers.ModelSerializer):
                     
         return user
 
+
+
+
+
+
+#Serializers de modelos sin llaves foráneas
 
 class categoriesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -85,6 +95,14 @@ class eventsSerializer(serializers.ModelSerializer):
         model = events
         fields = '__all__'
         
+        
+
+class tasksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = tasks
+        fields = '__all__'
+
+        
 
 class languagesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -108,12 +126,145 @@ class category_servicesSerializer(serializers.ModelSerializer):
         model = category_services
         fields = '__all__'  
 
+
+class areasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = areas
+        fields = '__all__'  
+
+
+
+      
+        
+
+#Tablas que contienen foraneas *********
 class sub_categories_productsSerializer(serializers.ModelSerializer):
     class Meta:
         model = sub_categories_products
         fields = '__all__'  
-    
+        
+
 class productsSerializer(serializers.ModelSerializer):
     class Meta:
         model = products
         fields = '__all__'
+        
+      
+
+        
+class inventorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = inventory
+        fields = '__all__'               
+        
+class jobs_positionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = jobs_positions
+        fields = '__all__' 
+       
+class staffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = staff
+        fields = '__all__'
+
+class servicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = services
+        fields = '__all__'       
+        
+
+class projectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = projects
+        fields = '__all__'               
+                  
+               
+class clientsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = clients
+        fields = '__all__'               
+       
+       
+       
+class sellsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = sells
+        fields = '__all__'     
+        
+class reviewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = reviews
+        fields = '__all__'             
+           
+           
+class proformas_invoicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = proformas_invoices
+        fields = '__all__'             
+           
+       
+       
+        
+        
+        
+        
+#Tabla intermedias***********
+class products_suppliersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = products_suppliers
+        fields = '__all__'
+        
+
+class staff_tasksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = staff_tasks
+        fields = '__all__'
+        
+        
+class staff_eventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = staff_events
+        fields = '__all__'
+        
+         
+class projects_servicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = projects_services
+        fields = '__all__'               
+                  
+                
+                  
+class staff_projectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = staff_projects
+        fields = '__all__'           
+        
+class languages_clientsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = languages_clients
+        fields = '__all__'           
+        
+class candidates_vacantsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = candidates_vacants
+        fields = '__all__'           
+
+
+class proformas_invoices_servicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = proformas_invoices_services
+        fields = '__all__'           
+
+
+class proformas_invoices_staffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = proformas_invoices_staff
+        fields = '__all__'           
+        
+
+class sells_detailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = sells_details
+        fields = '__all__'           
+
+
