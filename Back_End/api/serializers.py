@@ -143,6 +143,18 @@ class sub_categories_productsSerializer(serializers.ModelSerializer):
         model = sub_categories_products
         fields = '__all__'  
         
+    def validate_category_name(self, value):
+            if not value:
+                raise serializers.ValidationError("El nombre de la categoría no puede estar vacío.")
+            if len(value) > 100:
+                raise serializers.ValidationError("El nombre de la categoría no puede exceder 100 caracteres.")
+
+
+    def validate_category_description(self, value):
+        if not value:
+            raise serializers.ValidationError("La descripción de la categoría no puede estar vacía.")
+        return value
+        
 
 class productsSerializer(serializers.ModelSerializer):
     class Meta:
