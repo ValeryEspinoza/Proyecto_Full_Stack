@@ -148,9 +148,9 @@ class inventory(models.Model):
     inventory_id = models.AutoField(primary_key=True)
     initial_stock = models.IntegerField(null=False)
     available_stock = models.IntegerField(null=False)
-    reserved_stock = models.IntegerField(null=False)
+    reserved_stock = models.PositiveIntegerField(default=0)
     damaged_stock = models.IntegerField(null=False)
-    entry_date = models.DateField(null=False)
+    entry_date = models.DateField(null=False, auto_now_add=True)
     product = models.ForeignKey(products, on_delete=models.CASCADE)
     
     def __str__(self):
