@@ -1,41 +1,71 @@
 import React from 'react'
 import "../../Styles/Components_Styles/AboutUs_C_Styles/AboutUsForm.css"
+import { Link } from 'react-router-dom';
+import mision from '../../Img/Components_Img/about_mision.png'
+import vision from '../../Img/Components_Img/about_vision.png'
+
 
 function AboutUsForm() {
   return (
     <div className="about-us-container">
 
-    <h1>About Us</h1>
+    <div className='divTitleAbout'>
+    <h1 className="about-title">About us</h1>
+    </div><br />
 
-    <section className="story-section">
-        <h2>Our Story</h2>
-        <p>Your About Us page is one of the first supporting pages you’ll likely design when building your website, regardless of the industry you’re in.</p>
-        <p>It may go by different labels—About, Story, Mission—but these types of pages serve the same key purpose: to be the page for a brand to say, “This is who we are.”</p>
-        <p>When a visitor wants to learn more about you or your business, the About page is what they’ll look for. Learn how to craft the perfect page for your business, with About Us page examples from successful brands to inspire you.</p>
-    </section>
+    <section className="intro-section">
+        <p className='parrafoAbout'>
+        Monse Solutions is a company specialized in finishes and renovations, 
+        dedicated to transforming spaces and enhancing the functionality and aesthetics 
+        of homes and offices. In a competitive market, Monse Solutions stands out for its 
+        commitment to quality, innovation, and customer service. With a team of experienced 
+        professionals, the company offers personalized solutions that adapt to the needs and 
+        preferences of each client, using high-end materials and modern techniques. 
+        Its comprehensive approach to renovation projects ensures that every detail is attended 
+        to, from the initial design to the final execution, making each project a unique and 
+        satisfying experience.
+        </p><br /><br />
+        <Link to="/Contact">
+        <button className="contactUs">Contact us</button>
+        </Link>
+      </section><br /><br />
 
-    <div className="main-container">
-        <div className="column-one">
-            <img className="image" src="src/Img/Components_Img/graphic-designers-meeting.jpg" alt="Design Meeting" />
-        </div>
-
-        <div className="column-two">
-            <div className="mission-vision">
-                <h2>Mission</h2>
-                <p>Talk about why your brand exists, what makes you different, and the challenges you solve – beyond the obvious solution you sell.</p>
-            </div>
-            <div className="mission-vision">
-                <h2>Vision</h2>
-                <p>This is key for attracting talent, as well as prospective buyers who align with your objectives and value goals.</p>
-            </div>
+<div class="sectionMV">
+    <div class="contentM">
+        <img className='imgMV' src={mision} alt="mision"/>
+        <div class="text-block">
+            <h2 className='titleMV'>Our mision</h2>
+            <p className='textMision'>To transform our clients' spaces into functional 
+                and aesthetically pleasing 
+                environments by providing personalized service that blends innovation, 
+                high-quality materials, and a dedicated team of professionals. 
+                At Monse Solutions, we are committed to managing every detail from 
+                concept to completion</p>
         </div>
     </div>
+</div> <br />
 
-    <section className="comment-section">
-        <h2>Comments</h2>
-        <textarea className="comment-box" placeholder="Leave a comment..."></textarea>
-        <button className="submit-comment">Submit</button>
-    </section>
+<div class="sectionMV">
+    <div class="contentV reverse">
+        <div class="text-block">
+            <h2 className='titleMV'>Our vision</h2>
+            <p className='textVision'>To be the leading company in the finishes and remodeling 
+                sector, recognized for transforming spaces with excellence, creativity, 
+                and a client-centered approach, setting new standards of quality and 
+                sustainability in project design and execution.</p>
+        </div>
+        <img className='imgMV' src={vision} alt="mision"/>
+    </div>
+</div><br /><br />
+
+<div className="divTextoFinal">
+    <p className="textoFinal">
+    We are committed to listening to your ideas, understanding your desires, 
+    and turning them into reality, ensuring a result that is not only aesthetic but 
+    also functional and durable.
+    </p>
+</div>
+
 
 </div>
   )

@@ -73,11 +73,12 @@ function RegisterClienteForm() {
         
 
   return (
-        <div className='bodyRegister'>
-    <div class="divTitleRegister">
+        <div className='bodyRegister'>           
+   <div class="divTitleRegister">
         <div class="title-content">
+        <h1 className="register">Register</h1>
         <img src={iconRegister} alt="Register Icon" className="iconRegister"/>
-            <h1 className="form-title">Register</h1>
+
         </div>
     </div>
         <div className="register-container">
@@ -117,7 +118,6 @@ function RegisterClienteForm() {
         <button onClick={Add} className="btn-Register">Register</button><br />
         <Link className='irALogin' to="/Login">Ir a Login</Link>
     </div>
-    
         </div>
   )
 }

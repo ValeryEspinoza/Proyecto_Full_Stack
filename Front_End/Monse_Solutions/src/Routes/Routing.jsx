@@ -7,7 +7,9 @@ import Home from '../Pages/Home'
 import Contact from '../Pages/Contact'
 import AboutUs from '../Pages/AboutUs'
 import Formularios from '../Pages/Formularios'
+import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
+import Blog from '../Pages/Blog'
 
 function Routing() {
   return (
@@ -19,9 +21,11 @@ function Routing() {
       <Route path="/Login" element={<Login />} />
       <Route path="/" element={<Home/>} />
       <Route path="/Contact" element={<Contact />} />
+      <Route path="/Servicios" element={<Servicios />} />
       <Route path="/About" element={<AboutUs />} />
       <Route path="/Formularios" element={<Formularios />} />
-      <Route path="/Servicios" element={<Servicios />} />
+      <Route path="/ServiciosAdmi" element={<ServiciosAdmi />} />
+      <Route path="/Blog" element={<Blog />} />
 
        
 

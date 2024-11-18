@@ -1,12 +1,12 @@
 import React from 'react'
-import AdminNavBar from '../Components/Admin_Components/AdminNavBar'
-import ServicesData from '../Components/Admin_Components/ServicesData'
+import NavBar from '../Components/General_Components/NavBar'
+import ServiciosComponent from '../Components/Servicios_Components/ServiciosComponent'
 
 function Servicios() {
   return (
     <div>
-      <AdminNavBar />
-      <ServicesData />
+      <NavBar />
+      <ServiciosComponent />
     </div>
   )
 }

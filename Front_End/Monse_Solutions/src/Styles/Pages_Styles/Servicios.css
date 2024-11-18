@@ -1,0 +1,62 @@
+.portada {
+    background-image: url(../../../src/Img/Components_Img/portada_servicios.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    color: #fff;
+    text-align: center;
+    margin: 0; 
+    padding: 0; 
+    border: none; 
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box; 
+    display: flex;
+    justify-content: center; /* Alinea horizontalmente */
+    align-items: center;     /* Alinea verticalmente */
+}
+
+.servicios-title{
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0;
+    color: #50C878;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.servicios-title:hover {
+    color: #2C8B58;
+    transform: scale(1.05); 
+}
+/* Bloques de color */
+.divCajasTexto {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: -80px; 
+    z-index: 1;
+    gap: 5px;
+}
+
+.cajaTexto{
+    background-color: #111111;
+    color: white;
+    padding: 20px ;
+    width: 34%; /* Ajusta según necesites */
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.titleCaja{
+    color: #50C878;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+.parrafoCaja{
+    font-size: 20px;
+    color: white;
+}
