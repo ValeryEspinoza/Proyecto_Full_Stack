@@ -1,12 +1,14 @@
 .bodyRegister {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background:#FFFAFA; 
-    height: 100vh;
+    background: #FFFAFA; 
+    min-height: 100vh; /* Cambiado a min-height */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 20px; /* Espacio adicional al final */
 }
 
 /* Contenedor del título */
@@ -14,18 +16,36 @@
     background-color: #1E1E1E; /* Color de fondo de la barra */
     width: 100%; /* Ancho completo */
     height: 300px;
-    padding: 20px 0; /* Espacio vertical dentro de la barra */
+    padding: 260px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
+    margin-top: 110px;
+}
+.register{
+    color: white;
+    font-size: 100px;
+}
+.title-content {
+    display: flex;
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    gap: 30px; /* Espacio entre el icono y el texto */
 }
 
 .iconRegister {
-    width: 40px; /* Ajusta el tamaño según lo necesites */
-    height: 40px;
-    margin-right: -100px;
+    width: auto;
+    height: 100px;
+    margin-right: 0; /* Elimina el margen negativo */
+}
+
+.irALogin{
+    font-weight:bold;
+    text-decoration: none;
+    margin-bottom: 3x;
+    color: #1E1E1E;
 }
 
 /* Contenedor del formulario que flota */
@@ -41,7 +61,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: -30px; 
+    margin-top: -160px; 
     z-index: 2; /* Se coloca encima de la barra */
     position: relative;
 }
@@ -86,12 +106,6 @@
 
 .btn-Register:hover {
     background-color: #1E1E1E;
-}
-.irALogin{
-    font-weight:bold;
-    text-decoration: none;
-    margin-bottom: 3x;
-    color: #1E1E1E;
 }
 
 .select-language {

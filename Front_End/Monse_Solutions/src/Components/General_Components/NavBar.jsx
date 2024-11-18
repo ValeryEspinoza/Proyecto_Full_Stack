@@ -32,12 +32,22 @@ export default function NavBar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="navbar-links">
+<<<<<<< HEAD
                   <Link to="/Contact"><p className='itemLinkNav'>Contact</p></Link>
                   <Link to="/Servicios"><p className='itemLinkNav'>Services</p></Link>
                   <Link to="/About"><p className='itemLinkNav'>About</p></Link>
                   <Link to="/"><p className='itemLinkNav'>Home</p></Link>
                   <Link to="/RegisterCliente"><p className='itemLinkNav'><button className="nav-btn">Register</button></p></Link>
                   <Link to="/Login"><p className='itemLinkNav'><button className="nav-btn">Login</button></p></Link>
+=======
+                  <Link className='itemLinkNav' to="/Contact">Contact</Link>
+                  <Link className='itemLinkNav' to="/Servicios">Services</Link>
+                  <Link className='itemLinkNav' to="/About">About</Link>
+                  <Link className='itemLinkNav' to="/">Home</Link>
+                  <Link className='itemLinkNav' to="/Blog">Blog</Link>
+                  <Link className='itemLinkNav' to="/RegisterCliente"><button className="nav-btn">Register</button></Link>
+                  <Link className='itemLinkNav' to="/Login"><button className="nav-btn">Login</button></Link>
+>>>>>>> d89479e1cec1975e7d86accbb623072d7f9e1666
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

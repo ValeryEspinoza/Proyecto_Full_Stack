@@ -39,3 +39,7 @@ grid-template-columns: repeat(4,2fr);
 footer .col-md-2 ul li a {
   font-size: 1.5rem; 
 }
+
+.Logo_Negro_Footer{
+  margin-left: -130%;
+}

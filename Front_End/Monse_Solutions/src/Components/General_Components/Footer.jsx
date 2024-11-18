@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../Styles/Components_Styles/Genaral_C_Styles/Footer.css'
+import Logo_Negro2 from '../../Img/Components_Img/Logo_Negrov.png';
 import { BsInstagram,  BsFacebook, BsTiktok } from 'react-icons/bs';
 
 function Footer() {
@@ -12,9 +13,9 @@ function Footer() {
                     {/* Sección de íconos */}
                     <div className="col-md-2 mb-4">
                         <ul className="list-unstyled">
-                            <li><a href="#" className="text-dark"><BsInstagram size={24} /></a></li>
-                            <li><a href="#" className="text-dark"><BsTiktok size={24} /></a></li>
-                            <li><a href="#" className="text-dark"><BsFacebook size={24} /></a></li>
+                            <li className="text-dark"><BsInstagram size={24} /></li>
+                            <li className="text-dark"><BsTiktok size={24} /></li>
+                            <li className="text-dark"><BsFacebook size={24} /></li>
                         </ul>
                     </div>
                     {/* Sección de Use cases */}
@@ -54,7 +55,15 @@ function Footer() {
                             <li><a href="#" className="text-dark text-decoration-none">Support</a></li>
                             <li><a href="#" className="text-dark text-decoration-none">Developers</a></li>
                             <li><a href="#" className="text-dark text-decoration-none">Resource library</a></li>
-                        </ul>
+                        </ul> <br />
+                        <div className='Logo_Negro_Footer' >
+                                 <img
+                                    src={Logo_Negro2}
+                                    alt="Logo"
+                                    width="auto"
+                                    height="80"
+                                   />
+                        </div>
                     </div>
                 </div>
             </div>

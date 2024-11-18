@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../Components/General_Components/NavBar'
 import Footer from '../Components/General_Components/Footer'
-import { ContactUs } from '../Components/Contact_Components/ContactUs'
+import ContactPage from '../Components/Contact_Components/ContactPage'
 
 
 function Contact() {
@@ -9,7 +9,7 @@ function Contact() {
     <div>
       
       <NavBar />
-      <ContactUs />
+      <ContactPage/>
       <Footer />
     </div>
   )
