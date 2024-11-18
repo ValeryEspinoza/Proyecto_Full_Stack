@@ -8,50 +8,64 @@ import iconRegister from "../../Img/Components_Img/icon_register.png";
 
 function RegisterClienteForm() {
   // Hooks
-  const [cedula, setCedula] = useState(""); // Campo para la cédula
-  const [Name, SetName] = useState("");
-  const [LastName, SetLastName] = useState("");
+  const [cedula, setCedula] = useState(""); 
+  const [FullName, SetFullName] = useState(""); 
   const [EmailUser, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
   const [Password2, SetPassword2] = useState("");
   const [Access, SetAccess] = useState("");
 
-  // Función para manejar el cambio en el input de la cédula
+  //Función para manejar el cambio en el input de la cédula
   const handleCedulaChange = async (e) => {
-    const cedulaInput = e.target.value;
-    setCedula(cedulaInput);
+        const cedulaInput = e.target.value;
+        setCedula(cedulaInput);
+      
+        // Si la cédula tiene una longitud válida, hacemos la llamada a la API
+        if (cedulaInput.length >= 9) {
 
-    // Si la cédula tiene una longitud válida, hacemos la llamada a la API
-    if (cedulaInput.length === 9) { // Asegúrate de que sea un número válido
-      try {
-        // Realiza la llamada a la API de Hacienda aquí
-        const response = await fetch(`https://api.hacienda.go.cr/v1/cliente/${cedulaInput}`);
-        const data = await response.json();
-
-        // Si la API responde con éxito, llenamos los campos de nombre y apellido
-        if (data.success) {
-          SetName(data.nombre);
-          SetLastName(data.apellido);
-        } else {
-          // Si la cédula no es válida o no existe, mostrar un error
-          Swal.fire({
-            title: "Cédula no encontrada",
-            text: "No se encontró un usuario con esa cédula.",
-            icon: "error",
-          });
+          try {
+            //Realiza la llamada a la API de Hacienda
+            const response = await fetch(`https://api.hacienda.go.cr/fe/ae?identificacion=${cedulaInput}`);
+      
+            //Revisamos si la respuesta fue exitosa (status 200)
+            if (!response.ok) {
+              throw new Error('Error en la respuesta de la API');
+            }
+      
+            const data = await response.json();
+            console.log("Respuesta completa de la API:", data);
+      
+            // Verificamos la respuesta completa en la consola
+            console.log("Respuesta de la API:", data);
+      
+            //Verificamos si el campo 'nombre' existe en la respuesta
+            if (data.nombre) {
+              const fullName = data.nombre; // Si el nombre está disponible
+              SetFullName(fullName);
+              console.log("Nombre completo actualizado:", fullName);
+            } else {
+              //Si no se encuentra un nombre, mostrar un mensaje de error
+              Swal.fire({
+                title: "Cédula no encontrada",
+                text: "No se encontró un usuario con esa cédula.",
+                icon: "error",
+              });
+            }
+            
+          } catch (error) {
+            // En caso de error, mostramos un mensaje con la razón del error
+            console.error("Error al obtener los datos del usuario:", error);
+            Swal.fire({
+              title: "Error de conexión",
+              text: `Hubo un problema al intentar obtener los datos: ${error.message}`,
+              icon: "error",
+            });
+          }
         }
-      } catch (error) {
-        console.error("Error al obtener los datos del usuario:", error);
-        Swal.fire({
-          title: "Error de conexión",
-          text: "Hubo un problema al intentar obtener los datos.",
-          icon: "error",
-        });
-      }
-    }
-  };
-
-  // Funciones para manejar los cambios en los demás campos de entrada
+      };
+      
+      
+  //Funciones para manejar los cambios en los demás campos de entrada
   function GetEmail(input) {
     SetEmail(input.target.value);
   }
@@ -74,15 +88,14 @@ function RegisterClienteForm() {
 
     if (
       !Users.find(({ Email }) => Email === EmailUser) &&
-      Name !== "" &&
-      LastName !== "" &&
+      FullName !== "" &&
       EmailUser !== "" &&
       Password !== "" &&
       Password2 !== "" &&
       Access !== "" &&
       Password === Password2
     ) {
-      SendUser(LastName, Name, EmailUser, Password, Access);
+      SendUser(FullName, EmailUser, Password, Access);
 
       Swal.fire({
         title: "Registro Exitoso!",
@@ -112,29 +125,21 @@ function RegisterClienteForm() {
             className='input-register'
             placeholder='Cédula'
             value={cedula}
-            onChange={handleCedulaChange} // Usamos la función para manejar la cédula
+            onChange={handleCedulaChange} 
           />
         </div>
 
         <div className="divInputRegister">
-          <input
-            className='input-register'
-            value={Name}
-            onChange={() => {}}
-            placeholder='Name'
-            disabled // Desactivamos el campo para que no se pueda modificar
-          />
+        <input
+        className='input-register disabled-input'
+        value={FullName}
+        onChange={() => {}}
+        placeholder='Full Name'
+        readOnly //Hacerlo solo de lectura
+        />
+
         </div>
 
-        <div className="divInputRegister">
-          <input
-            className='input-register'
-            value={LastName}
-            onChange={() => {}}
-            placeholder='Last Name'
-            disabled // Desactivamos el campo para que no se pueda modificar
-          />
-        </div>
 
         <div className="divInputRegister">
           <input
@@ -181,3 +186,4 @@ function RegisterClienteForm() {
 }
 
 export default RegisterClienteForm;
+

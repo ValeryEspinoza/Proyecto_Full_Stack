@@ -89,6 +89,7 @@
 .custom-footer-center p a {
   color: #50C878;
   text-decoration: none;
+  font-weight: bold;
 }
 
 /* Footer right */
