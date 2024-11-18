@@ -122,3 +122,61 @@
 .select-language:focus {
     border-color: #1E1E1E;
 }
+
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+
+    /* Ajustar el título */
+    .register {
+        font-size: 50px; /* Reducir el tamaño del texto del título */
+    }
+
+    .iconRegister {
+        height: 60px; /* Reducir el tamaño del icono */
+    }
+
+    /* Ajustar el contenedor del formulario */
+    .register-container {
+        width: 90%;
+        padding: 20px;
+        margin-top: 40px; /* Ajuste para que el formulario se vea bien */
+    }
+
+    /* Ajustes en los inputs */
+    .input-register {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .divInputRegister {
+        padding: 5px 15px;
+    }
+
+    /* Ajustar el botón */
+    .btn-Register {
+        width: 70%; /* Aumentar el tamaño del botón en móviles */
+        padding: 10px;
+        font-size: 16px; 
+    }
+
+    /* Ajustar el select de idiomas */
+    .select-language {
+        width: 90%; 
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Ajustar el link de ir al login */
+    .irALogin {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    /* Ajustar la barra de título */
+    .divTitleRegister {
+        height: 200px; 
+        padding: 100px 0;
+        margin-top: 250px;
+    }
+}

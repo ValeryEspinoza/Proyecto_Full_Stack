@@ -11,9 +11,12 @@ import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
 import Blog from '../Pages/Blog'
 
+import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
+
 function Routing() {
   return (
     <Router>
+    <ScrollToTop />
     <Routes>
       
       <Route path="/Register" element={<Register />} />
