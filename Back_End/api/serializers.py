@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.models import User, Group
-from .validations import validate_not_empty, validate_min_characters, validate_max_characters, validate_no_special_characters, sanitize_input, validate_date_format, validate_datetime_format, validate_email_caracters
+from .validations import validate_not_empty, validate_min_characters, validate_max_characters, validate_no_special_characters, sanitize_input, validate_date_format, validate_datetime_format, validate_email_caracters, validate_price, validate_Quiantity, validate_negative_values
 
 
 
@@ -332,6 +332,7 @@ class statusSerializer(serializers.ModelSerializer):
         validate_max_characters(value, 255)
         validate_no_special_characters(value)
         value= sanitize_input(value)
+        return value
         
         
 class prioritiesSerializer(serializers.ModelSerializer):
@@ -353,6 +354,7 @@ class prioritiesSerializer(serializers.ModelSerializer):
         validate_max_characters(value, 250)
         validate_no_special_characters(value)
         value= sanitize_input(value)
+        return value
         
         
         
@@ -375,6 +377,7 @@ class category_servicesSerializer(serializers.ModelSerializer):
         validate_max_characters(value, 250)
         validate_no_special_characters(value)
         value= sanitize_input(value)
+        return value
 
 
 class areasSerializer(serializers.ModelSerializer):
@@ -396,6 +399,7 @@ class areasSerializer(serializers.ModelSerializer):
         validate_max_characters(value, 250)
         validate_no_special_characters(value)
         value= sanitize_input(value)
+        return value
 
 
 
@@ -408,7 +412,7 @@ class sub_categories_productsSerializer(serializers.ModelSerializer):
         model = sub_categories_products
         fields = '__all__'  
         
-    def validate_name(self, values):
+    def validate_name(self, value):
         validate_not_empty(value)  # Verifica que no esté vacío
         validate_min_characters(value, 5)  # Verifica la longitud mínima
         validate_max_characters(value, 250)  # Verifica la longitud máxima
@@ -422,6 +426,13 @@ class sub_categories_productsSerializer(serializers.ModelSerializer):
         validate_max_characters(value, 250)
         validate_no_special_characters(value)
         value= sanitize_input(value)
+        return value
+        
+    def validate_price(self, value):
+        validate_not_empty(value)
+        validate_no_special_characters
+        return value
+        
 
 class productsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -442,6 +453,11 @@ class productsSerializer(serializers.ModelSerializer):
         validate_max_characters(value, 250)
         validate_no_special_characters(value)
         value= sanitize_input(value)
+        return value
+        
+    def validate_price(self, value):
+        validate_price(value, 2.00)
+        return value
         
 
       
@@ -450,52 +466,212 @@ class productsSerializer(serializers.ModelSerializer):
 class inventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = inventory
-        fields = '__all__'               
+        fields = '__all__' 
+       
+    def validate_initial_stock(self, value):
+        validate_Quiantity(value, 1)
+        return value
+    
+    def validate_available_stock(self, value):
+        validate_negative_values(value)
+        return value
+    def validate_reserved_stock(self, value):
+        validate_negative_values(value)
+        return value
+    
+    def validate_damaged_stock(self, value):
+        validate_negative_values(value)
+        return value
+
+
+
+    
         
 class jobs_positionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = jobs_positions
         fields = '__all__' 
+    
+    def validate_name(self, value):
+        validate_not_empty(value)  # Verifica que no esté vacío
+        validate_min_characters(value, 5)  # Verifica la longitud mínima
+        validate_max_characters(value, 250)  # Verifica la longitud máxima
+        validate_no_special_characters(value)  # Verifica que no haya caracteres especiales
+        value = sanitize_input(value)  # Llamamos a la función sanitize_input para limpiar el valor
+        return value
+
+    def validate_description(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 10)
+        validate_max_characters(value, 250)
+        validate_no_special_characters(value)
+        value= sanitize_input(value)
+        return value
        
 class staffSerializer(serializers.ModelSerializer):
     class Meta:
         model = staff
         fields = '__all__'
+    
+    def validate_name(self, value):
+        validate_not_empty(value)  # Verifica que no esté vacío
+        validate_min_characters(value, 5)  # Verifica la longitud mínima
+        validate_max_characters(value, 250)  # Verifica la longitud máxima
+        validate_no_special_characters(value)  # Verifica que no haya caracteres especiales
+        value = sanitize_input(value)  # Llamamos a la función sanitize_input para limpiar el valor
+        return value
+    def validate_email(self, value):
+        validate_email_caracters(value)
+        return value
+    def validate_phone(self, value):
+        validate_min_characters(value, 10)
+        return value
+    
 
 class servicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = services
-        fields = '__all__'       
+        fields = '__all__'    
+    
+    def validate_services(self, value):
+        validate_not_empty(value)
+        validate_max_characters(value, 255)
+        return value
+    
+    def validate_description(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 10)
+        validate_max_characters(value, 255)
+        validate_no_special_characters(value)
+        value= sanitize_input(value)
+        return value
         
 
 class projectsSerializer(serializers.ModelSerializer):
     class Meta:
         model = projects
-        fields = '__all__'               
+        fields = '__all__'    
+        
+    def validate_project_name(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 5)
+        validate_max_characters(value, 255)
+        validate_no_special_characters(value)
+        value = sanitize_input(value)
+        return value
+    
+    def validate_start_date(self, value):
+        validate_date_format(value)
+        return value
+    
+    def validate_end_date(self, value):
+        validate_date_format(value)
+        return value
+    
+    def validate_description(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 10)
+        validate_max_characters(value, 255)
+        validate_no_special_characters(value)
+        value = sanitize_input(value)
+        return value
+    
                   
                
 class clientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = clients
-        fields = '__all__'               
-       
+        fields = '__all__'   
+    
+    def  validate_name(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 5)
+        validate_max_characters(value, 50)
+        validate_no_special_characters(value)
+        value = sanitize_input(value)
+        return value
+    
+    def last_name(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 5)
+        validate_max_characters(value, 50)
+        validate_no_special_characters(value)
+        value = sanitize_input(value)
+        return value
+    def validate_email(self, value):
+        validate_email_caracters(value)
+        return value       
        
        
 class sellsSerializer(serializers.ModelSerializer):
     class Meta:
         model = sells
-        fields = '__all__'     
+        fields = '__all__'    
+        
+    def validate_quiantity(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 1)
+        validate_negative_values(value)
+        return value
+    def validate_total(self, value):
+        validate_not_empty(value)
+        validate_negative_values(value)
+        return value
         
 class reviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = reviews
-        fields = '__all__'             
+        fields = '__all__' 
+    
+    def validate_review(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 5)
+        validate_no_special_characters(value)
+        value= sanitize_input(value)
+        return value
+    
+    def validate_rating(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 1)
+        validate_max_characters(value, 5)
+        validate_max_characters(value)
+        return value
            
            
 class proformas_invoicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = proformas_invoices
-        fields = '__all__'             
+        fields = '__all__'         
+        
+    def validate_expiration_date(self, value):
+        validate_datetime_format(value)
+        return value
+    
+    def validate_total(self, value):
+        validate_not_empty(value)
+        validate_negative_values(value)
+        return value
+    def validate_description(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 10)
+        validate_max_characters(value, 255)
+        validate_no_special_characters(value)
+        value= sanitize_input(value)
+        return value
+    def validate_sub_total(self, value):
+        validate_not_empty(value)
+        validate_negative_values(value)
+        return value
+    def validate_unit_price(self, value):
+        validate_not_empty(value)
+        validate_negative_values(value)
+        return value
+    def validate_quantity(self, value):
+        validate_not_empty(value)
+        validate_min_characters(value, 1)
+        validate_negative_values(value)
+        return value
+    
            
        
        
@@ -560,6 +736,13 @@ class proformas_invoices_staffSerializer(serializers.ModelSerializer):
 class sells_detailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = sells_details
-        fields = '__all__'           
+        fields = '__all__'  
+        
+    def validate_comments(sefl, value):
+        validate_no_special_characters(value)
+        validate_min_characters(value, 10)
+        validate_not_empty(value)
+        value = sanitize_input(value)
+        return value
 
 
