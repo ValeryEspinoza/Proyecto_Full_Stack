@@ -13,14 +13,17 @@
 }
 
 .login-container {
-    max-width: 600px;
-    width: 100%;
-    padding: 50px;
+    max-width: 500px;
+    width: 80%;
+    padding: 40px;
     background-color: #EBE9E9;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    justify-content: center;
+    display: flex;         
+    flex-direction: column;
+    align-items: center;   
+    justify-content: center;  
 }
 
 .login-title {
@@ -29,24 +32,28 @@
 }
 
 .input-container {
-    display: flex;
-    align-items: center;
-    padding: 5px 0;
+    position: relative; /* Necesario para posicionar el icono dentro del input */
     margin: 10px 0;
+    width: 100%;
 }
 
 .input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 20px;
     height: auto;
-    margin-right: 20px;
+    pointer-events: none; /* Esto evita que el ícono bloquee el clic dentro del input */
 }
 
 .input-field {
     width: 100%;
-    padding: 10px 0;
-    border: none;
+    padding: 12px 12px 12px 40px; /* Ajusta el padding izquierdo para dar espacio al icono */
     font-size: 16px;
+    border: none;
     outline: none;
+    box-sizing: border-box;
     transition: border-color 0.3s;
 }
 
@@ -59,17 +66,20 @@
 }
 
 
+
+
 .btn-login {
-    width: 300px;
-    padding: 15px;
+    width: 50%;
+    padding: 8px;
     background-color:#50C878;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: -26px;
+    font-weight: bold;
 
 }
 
@@ -84,6 +94,7 @@
 .goToHome{
     font-weight:bold;
     text-decoration: none;
+    margin-bottom: 3x;
     color: #1E1E1E;
 }
 /*.ContenedorPricipal{
