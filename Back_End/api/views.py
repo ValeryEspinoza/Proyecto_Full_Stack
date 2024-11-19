@@ -1,8 +1,11 @@
 from rest_framework import generics
+from rest_framework.views import APIView
 from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  # Permisos para JWT
 from django.contrib.auth.models import User
 from django.db.models import F
+from rest_framework.response import Response
+from .serializers import ProductSalesSerializer
 from .models import (
     categories, suppliers, paymenth_methods, vacant, candidate, events, languages, status, priorities,
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
@@ -344,3 +347,11 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
+    
+    
+class ProductSalesView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Obtener todos los productos y calcular las unidades vendidas
+        products_data = products.objects.all()
+        serializer = ProductSalesSerializer(products_data, many=True)
+        return Response(serializer.data)    
