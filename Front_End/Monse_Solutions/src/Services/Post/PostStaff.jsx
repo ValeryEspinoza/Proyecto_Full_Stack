@@ -1,5 +1,5 @@
 //Send  product data to server 
-async function SendUser ( 
+async function SendStaff ( 
    
   {
     id,
@@ -10,8 +10,7 @@ async function SendUser (
     last_name,
     is_superuser,
     is_staff,
-    is_active,
-    role
+    is_active
 }
     ) 
     
@@ -29,8 +28,7 @@ async function SendUser (
           last_name,
           is_superuser,
           is_staff,
-          is_active,
-          role
+          is_active
         }
     
         const response = await fetch(`http://127.0.0.1:8000/api/register`, {
@@ -52,5 +50,5 @@ async function SendUser (
       }
     }
     
-        export default SendUser
+        export default SendStaff
   

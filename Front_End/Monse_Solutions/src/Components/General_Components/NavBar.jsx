@@ -40,10 +40,6 @@ export default function NavBar() {
                   <Link className='itemLinkNav' to="/Blog">Blog</Link>
                   <Link className='itemLinkNav' to="/RegisterCliente"><button className="nav-btn">Register</button></Link>
                   <Link className='itemLinkNav' to="/Login"><button className="nav-btn">Login</button></Link>
-<<<<<<< HEAD
-=======
-
->>>>>>> 523a1b9a286c76edc46f1a2a083099b3c84cb7b3
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

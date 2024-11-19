@@ -29,7 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
     role=serializers.CharField(write_only=True)
     class Meta:
         model = User
-        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name']
+        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active']
 
     def create(self, validated_data):
         # Extrae la contraseña del validated_data
@@ -744,5 +744,8 @@ class sells_detailsSerializer(serializers.ModelSerializer):
         validate_not_empty(value)
         value = sanitize_input(value)
         return value
+    
+    
+
 
 

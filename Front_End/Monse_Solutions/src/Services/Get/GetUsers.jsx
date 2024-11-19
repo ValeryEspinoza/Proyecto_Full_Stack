@@ -2,7 +2,7 @@
 async function GetUser() {
  
     try {
-        const response = await fetch(`http://localhost:3001/Users`);
+        const response = await fetch(`http://127.0.0.1:8000/api/register`);
         const data = await response.json();
         console.log(data);
         

@@ -6,10 +6,14 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
 
+
+console.log("Hola", GetUser);
+
 function RegisterClienteForm() {
   // Hooks
   const [cedula, setCedula] = useState(""); 
   const [FullName, SetFullName] = useState(""); 
+  const [UserName, SetUserName] = useState(""); 
   const [EmailUser, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
   const [Password2, SetPassword2] = useState("");
@@ -69,7 +73,9 @@ function RegisterClienteForm() {
   function GetEmail(input) {
     SetEmail(input.target.value);
   }
-
+  function GetUserName(input) {
+    SetUserName(input.target.value);
+  }
   function GetPassword(input) {
     SetPassword(input.target.value);
   }
@@ -85,11 +91,14 @@ function RegisterClienteForm() {
   // Función para agregar un nuevo usuario
   async function Add() {
     const Users = await GetUser();
+    console.log("Get Usuarios", Users);
+    
 
     if (
-      !Users.find(({ Email }) => Email === EmailUser) &&
+      !Users.find(({ Email }) => Email === EmailUser) && !Users.find(({ username }) => username === UserName) &&
       FullName !== "" &&
       EmailUser !== "" &&
+      UserName !== "" &&
       Password !== "" &&
       Password2 !== "" &&
       Access !== "" &&
@@ -147,6 +156,14 @@ function RegisterClienteForm() {
             value={EmailUser}
             onChange={GetEmail}
             placeholder='Email'
+          />
+        </div>
+        <div className="divInputRegister">
+          <input
+            className='input-register'
+            value={UserName}
+            onChange={GetUserName}
+            placeholder='UserName'
           />
         </div>
 

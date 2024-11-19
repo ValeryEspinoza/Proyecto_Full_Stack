@@ -46,7 +46,7 @@ class IsCliente(BasePermission):
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
     
     """def perform_create(self, serializer): #Esta validando el role
         user = serializer.save()
