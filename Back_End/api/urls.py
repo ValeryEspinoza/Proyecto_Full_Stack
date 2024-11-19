@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import ProductSalesView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -141,6 +142,9 @@ urlpatterns = [
          
     path('sells_details/', views.sells_detailsListCreate.as_view(),name='sells_details-list'),
     path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detai'), 
+    
+    path('product-sales/', ProductSalesView.as_view(), name='product-sales'), 
+
      
 
 ]
