@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
 
 function RegisterClienteForm() {
-  // Hooks
+  //Hooks
   const [cedula, setCedula] = useState(""); 
   const [FullName, SetFullName] = useState(""); 
   const [EmailUser, SetEmail] = useState("");
@@ -20,7 +20,7 @@ function RegisterClienteForm() {
         const cedulaInput = e.target.value;
         setCedula(cedulaInput);
       
-        // Si la cédula tiene una longitud válida, hacemos la llamada a la API
+        //Si la cédula tiene una longitud válida, hacemos la llamada a la API
         if (cedulaInput.length >= 9) {
 
           try {
@@ -35,7 +35,7 @@ function RegisterClienteForm() {
             const data = await response.json();
             console.log("Respuesta completa de la API:", data);
       
-            // Verificamos la respuesta completa en la consola
+            //Verificamos la respuesta completa en la consola
             console.log("Respuesta de la API:", data);
       
             //Verificamos si el campo 'nombre' existe en la respuesta
@@ -53,7 +53,7 @@ function RegisterClienteForm() {
             }
             
           } catch (error) {
-            // En caso de error, mostramos un mensaje con la razón del error
+            //En caso de error, mostramos un mensaje con la razón del error
             console.error("Error al obtener los datos del usuario:", error);
             Swal.fire({
               title: "Error de conexión",
@@ -82,7 +82,7 @@ function RegisterClienteForm() {
     SetAccess(input.target.value);
   }
 
-  // Función para agregar un nuevo usuario
+  //Función para agregar un nuevo usuario
   async function Add() {
     const Users = await GetUser();
 

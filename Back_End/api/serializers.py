@@ -21,9 +21,6 @@ from .models import (
 
 
 
-
-
-
 #Serializers configuracion- Principales
 class UserSerializer(serializers.ModelSerializer):
     role=serializers.CharField(write_only=True)
