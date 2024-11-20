@@ -87,15 +87,7 @@ function Blog() {
           </div>
         </div>
 
-        <div className="blog-post reverse">
-          <div className="image">
-            <img 
-              src={art4} 
-              alt="art4" 
-              onClick={() => openModal(art4)} //Abre el modal con la imagen
-              className="clickable-image"
-            />
-          </div>
+        <div className="blog-post">
           <div className="text">
             <h2 className='titleBlog'>Explore color ideas for your spaces</h2>
             <h3 className='descBlog'>Transform your home with the perfect palette</h3>
@@ -107,6 +99,14 @@ function Blog() {
             <Link to="/Contact">
               <button className="btnLeerMas">Read more...</button>
             </Link>
+          </div>
+          <div className="image">
+            <img 
+              src={art4} 
+              alt="art4" 
+              onClick={() => openModal(art4)} //Abre el modal con la imagen
+              className="clickable-image"
+            />
           </div>
         </div>
 

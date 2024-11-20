@@ -5,7 +5,12 @@ from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission
 from django.contrib.auth.models import User
 from django.db.models import F
 from rest_framework.response import Response
-from .serializers import ProductSalesSerializer
+
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
+
 from .models import (
     categories, suppliers, paymenth_methods, vacant, candidate, events, languages, status, priorities,
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
@@ -355,3 +360,5 @@ class ProductSalesView(APIView):
         products_data = products.objects.all()
         serializer = ProductSalesSerializer(products_data, many=True)
         return Response(serializer.data)    
+    
+    

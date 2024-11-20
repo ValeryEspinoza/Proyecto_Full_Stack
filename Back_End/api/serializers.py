@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import User, Group
 from .validations import validate_not_empty, validate_min_characters, validate_max_characters, validate_no_special_characters, sanitize_input, validate_date_format, validate_datetime_format, validate_email_caracters, validate_price, validate_Quiantity, validate_negative_values
 from django.db.models import Sum
+from rest_framework import generics
+
 
 
 from .models import (
@@ -16,7 +18,7 @@ from .models import (
     staff, services, projects, clients, sells, products_suppliers, staff_tasks, staff_events, projects_services,
     staff_projects, languages_clients, reviews, proformas_invoices, candidates_vacants, proformas_invoices_services, 
     proformas_invoices_staff, sells_details
-    )
+)
 
 
 
@@ -742,34 +744,5 @@ class sells_detailsSerializer(serializers.ModelSerializer):
         return value
 
 
-#CONSULTAS
-
-# Serializador de Detalles de Venta
-class sells_detailsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = sells_details
-        fields = ['sell_details_id', 'product', 'sell', 'quiantity'] 
-
-# Serializador de Venta
-class sellSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = sells
-        fields = ['sell_id', 'sell_date']  
-# Serializador de Producto
-class productsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = products
-        fields = ['product_id', 'name', 'description']  
-
-class ProductSalesSerializer(serializers.ModelSerializer):
-    total_sold = serializers.IntegerField(read_only=True)  
-    class Meta:
-        model = products
-        fields = ['product_id', 'name', 'description', 'total_sold']
     
-    def to_representation(self, instance):
-        # Se obtiene el total de unidades vendidas de cada producto
-        total_sold = sells_details.objects.filter(product=instance).aggregate(Sum('quiantity'))['quiantity__sum']
-        representation = super().to_representation(instance)
-        representation['total_sold'] = total_sold if total_sold else 0
-        return representation
+    
