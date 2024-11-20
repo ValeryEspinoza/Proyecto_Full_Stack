@@ -1,16 +1,11 @@
 from rest_framework import generics
-from rest_framework.views import APIView
+from rest_framework import viewsets
 from .serializers import UserSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  # Permisos para JWT
+from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  #Permisos para JWT
 from django.contrib.auth.models import User
 from django.db.models import F
 from rest_framework.response import Response
-
-from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-
-
+from .serializers import ProductSalesSerializer
 from .models import (
     categories, suppliers, paymenth_methods, vacant, candidate, events, languages, status, priorities,
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
@@ -27,7 +22,7 @@ from .serializers import (
     clientsSerializer, sellsSerializer, products_suppliersSerializer, staff_tasksSerializer, staff_eventsSerializer,
     projects_servicesSerializer, staff_projectsSerializer, languages_clientsSerializer,
     reviewsSerializer, proformas_invoicesSerializer, candidates_vacantsSerializer,
-    proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer
+    proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer,
 )
 
 
@@ -54,7 +49,7 @@ class IsCliente(BasePermission):
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
     
     """def perform_create(self, serializer): #Esta validando el role
         user = serializer.save()
@@ -80,6 +75,8 @@ class categoriesListCreate(generics.ListCreateAPIView):
     queryset = categories.objects.all()
     serializer_class = categoriesSerializer
     permission_classes = [IsAuthenticated, IsAdministrador] 
+    
+    
 class categoriesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = categories.objects.all()
     serializer_class = categoriesSerializer
@@ -195,6 +192,33 @@ class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
     
+    
+# Consulta Productos con stock disponible    
+"""class productos_stock_disponible(generics.ListAPIView):
+    queryset = products.objects.filter(stock__gt=0)
+    serializer_class = productsSerializer 
+    permission_classes = [IsAuthenticated, IsAdministrador]
+
+    def get_queryset(self):
+        # Filtrar productos con inventarios que tienen stock disponible
+       return products.objects.filter(inventory__available_stock__gt=0).distinct()
+
+"""
+ 
+#Consulta  productos por sub categorías  
+class Productos_Por_Sub_Categoria(generics.ListAPIView):
+    serializer_class = productsSerializer  
+    queryset = products.objects.all()
+    permission_classes = [IsAuthenticated, IsAdministrador]
+    
+    
+    def get_queryset(self):
+        id_SubCategoryE= self.kwargs['sub_categories_product_id']
+        productofiltrado = products.objects.filter(sub_categories_product_id=id_SubCategoryE).select_related('id_category')  
+        #categoriafiltrada = Categories.objects.filter(id_category = id_categoryE)
+        
+        return productofiltrado
+    
 class inventoryListCreate(generics.ListCreateAPIView):
     queryset = inventory.objects.all()
     serializer_class = inventorySerializer
@@ -250,6 +274,17 @@ class sellsListCreate(generics.ListCreateAPIView):
 class sellsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells.objects.all()
     serializer_class = sellsSerializer 
+
+#Consulta de vantas por clientes
+    
+class ventas_por_cliente(generics.ListAPIView):
+    serializer_class = sellsSerializer
+    permission_classes = [IsAuthenticated, IsAdministrador]
+
+    def get_queryset(self):
+        client_id = self.kwargs['client_id']
+        return sells.objects.filter(client_id=client_id)
+
     
 class reviewsListCreate(generics.ListCreateAPIView):
     queryset = reviews.objects.all()
@@ -360,5 +395,3 @@ class ProductSalesView(APIView):
         products_data = products.objects.all()
         serializer = ProductSalesSerializer(products_data, many=True)
         return Response(serializer.data)    
-    
-    

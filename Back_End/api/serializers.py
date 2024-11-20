@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.models import User, Group
 from .validations import validate_not_empty, validate_min_characters, validate_max_characters, validate_no_special_characters, sanitize_input, validate_date_format, validate_datetime_format, validate_email_caracters, validate_price, validate_Quiantity, validate_negative_values
+
 from django.db.models import Sum
 from rest_framework import generics
 
@@ -24,10 +25,10 @@ from .models import (
 
 #Serializers configuracion- Principales
 class UserSerializer(serializers.ModelSerializer):
-    role=serializers.CharField(write_only=True)
+    role=serializers.CharField(write_only=True) #esto es para que no se muestre en la respuesta
     class Meta:
         model = User
-        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name']
+        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active']
 
     def create(self, validated_data):
         # Extrae la contraseña del validated_data
@@ -742,6 +743,10 @@ class sells_detailsSerializer(serializers.ModelSerializer):
         validate_not_empty(value)
         value = sanitize_input(value)
         return value
+    
+    
+
+
 
 
     
