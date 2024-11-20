@@ -35,6 +35,8 @@ function Servicios() {
 
 
 <div className="services-container">
+<div className="services-grid">
+  
 {/*Trabajos en Acabados*/ }
  <div className="Finishing_Work">                           
     <h2>Finishing Work</h2>
@@ -75,6 +77,7 @@ function Servicios() {
                to metal surfaces, enhancing durability and appearance.</p>
          </div>
  </div>
+</div>
 </div>
 </div>
   )

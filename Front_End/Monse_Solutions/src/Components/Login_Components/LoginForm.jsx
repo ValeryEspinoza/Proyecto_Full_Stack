@@ -84,7 +84,7 @@ function LoginForm() {
     <br /><br />
     <h2 className="alert-message">{MensajeAlerta}</h2>
     <button onClick={Login} className="btn-login">Login</button><br />
-    <Link className='goToHome' to="/Home">Go to Home</Link>
+    <Link className='goToHome' to="/">Go to Home</Link>
 </div>
 </div>
   )

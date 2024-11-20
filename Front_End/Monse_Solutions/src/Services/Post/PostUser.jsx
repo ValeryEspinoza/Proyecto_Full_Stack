@@ -33,7 +33,7 @@ async function SendUser (
           role
         }
     
-        const response = await fetch(`http://127.0.0.1:8000/api/register`, {
+        const response = await fetch(`http://192.168.1.87:8000/api/register/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' 

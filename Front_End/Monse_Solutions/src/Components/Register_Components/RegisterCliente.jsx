@@ -5,9 +5,10 @@ import GetUser from '../../Services/Get/GetUsers';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
+import SendStaff from '../../Services/Post/PostStaff';
 
 
-console.log("Hola", GetUser);
+
 
 function RegisterClienteForm() {
   // Hooks
@@ -17,8 +18,25 @@ function RegisterClienteForm() {
   const [EmailUser, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
   const [Password2, SetPassword2] = useState("");
-  const [Access, SetAccess] = useState("");
+  const [Role, SetRole] = useState("");
+  const [IsSuperUser, SetIsSuperUser] = useState("");
+  const [Active, SetActive] = useState("")
+  const [IsStaff, SetIsStaff] = useState("")
+  const [FirstName, SetFirstName]= useState("")
+  const [SecondName, SetSecondName]= useState("")
+  const [FirstLastName, SetFirstLastName]= useState("")
+  const [SecondLastName, SetSecondLastName]= useState("")
 
+
+  
+
+  console.log("1", cedula);
+  console.log("2", FullName)
+  console.log("3", UserName)
+  console.log("4", EmailUser)
+  console.log("5", Password)
+  console.log("6", Password2)
+  
   //Función para manejar el cambio en el input de la cédula
   const handleCedulaChange = async (e) => {
         const cedulaInput = e.target.value;
@@ -47,6 +65,38 @@ function RegisterClienteForm() {
               const fullName = data.nombre; // Si el nombre está disponible
               SetFullName(fullName);
               console.log("Nombre completo actualizado:", fullName);
+
+        // Separar el nombre completo en partes
+        const partes = fullName.trim().split(' ');
+
+                  // Asignar las partes del nombre y apellidos
+                  let primerNombre = partes[0];
+                  let segundoNombre = '';
+                  let primerApellido = '';
+                  let segundoApellido = '';
+
+                  // Si hay más de un nombre
+                  if (partes.length > 1) {
+                    segundoNombre = partes[1];  // Segundo nombre si existe
+                  }
+
+                  // El último apellido es siempre el último valor
+                  if (partes.length > 2) {
+                    primerApellido = partes[partes.length - 2];  // El penúltimo es el primer apellido
+                    segundoApellido = partes[partes.length - 1]; // El último es el segundo apellido
+                  }
+
+                  // Establecer los valores en el estado (si es necesario)
+                  SetFirstName(primerNombre);
+                  SetSecondName(segundoNombre);
+                  SetFirstLastName(primerApellido);
+                  SetSecondLastName(segundoApellido);
+                 
+
+                  console.log("Primer Nombre:", FirstName);
+                  console.log("Segundo Nombre:", SecondName);
+                  console.log("Primer Apellido:", FirstLastName);
+                  console.log("Segundo Apellido:", SecondLastName);
             } else {
               //Si no se encuentra un nombre, mostrar un mensaje de error
               Swal.fire({
@@ -84,14 +134,18 @@ function RegisterClienteForm() {
     SetPassword2(input.target.value);
   }
 
-  function GetAccessValue(input) {
-    SetAccess(input.target.value);
-  }
+
 
   // Función para agregar un nuevo usuario
   async function Add() {
     const Users = await GetUser();
-    console.log("Get Usuarios", Users);
+    
+    const user = Users.find((user) => user.cedula === cedula);
+  
+    SetIsSuperUser(false)
+    SetActive(true)
+    SetRole("cliente")
+    SetIsStaff(false)
     
 
     if (
@@ -103,15 +157,25 @@ function RegisterClienteForm() {
       Password2 !== "" &&
       Access !== "" &&
       Password === Password2
-    ) {
-      SendUser(FullName, EmailUser, Password, Access);
+    ){
+      
+      SendUser( id,
+        Password,
+        UserName,
+        EmailUser,
+        first_name,
+        last_name,
+        IsSuperUser,
+        IsStaff,
+        Active,
+        Role);
 
       Swal.fire({
         title: "Registro Exitoso!",
         text: "Se ha registrado el usuario con éxito",
         icon: "success",
       });
-    } else {
+    }else{
       Swal.fire({
         title: "Registro Fallido",
         text: "Verifica lo siguiente: 1) Todos los espacios estén debidamente llenos. 2) Las contraseñas coincidan. 3) Correo electrónico debe ser válido",

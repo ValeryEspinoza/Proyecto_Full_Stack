@@ -64,3 +64,53 @@
 
 
 /* Estilos de servicios */
+
+.services-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff; 
+  }
+  
+.Titulo_Sevices {
+    font-size: 36px;
+    margin-bottom: 5px;
+  }
+  
+  .subheading{
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  .service_Finishing_Work {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 8%;
+
+}
+  
+.service-card {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: rgba(39, 39, 39, 0.5) 0px 22px 70px 4px;
+    width: 250px;
+    text-align: left;
+  }
+  
+  .service-image {
+    height: 150px;
+    background-color: #ddd; /* Color de fondo temporal */
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .Nombre_Services {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .Descripcion_Services {
+    font-size: 14px;
+    color: #000000;
+  }

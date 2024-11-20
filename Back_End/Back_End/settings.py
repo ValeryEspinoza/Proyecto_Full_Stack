@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dvn4_%k2zs-(#as$j+ml&zl=0@_l_wp_gdcv39##)_3_mn&jew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.87','localhost']
 
 
 # Application definition
