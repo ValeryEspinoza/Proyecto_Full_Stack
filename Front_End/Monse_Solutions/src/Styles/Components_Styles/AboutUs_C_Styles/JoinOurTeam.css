@@ -4,7 +4,6 @@
     background-position: center;
     height: 600px;
     color: #fff;
-    text-align: center;
     margin-top: -30px; 
     padding: 0; 
     border: none; 
@@ -32,14 +31,15 @@
     border: none; 
   }
   .textTeam {
-    text-align: left; /* Alinea el texto a la izquierda */
-    width: 700px; /* Ajusta el ancho según lo que necesites */
+    text-align: left; 
+    width: 700px; 
     margin: 0 auto; 
     margin-left: 80px;
     margin-top: 40px;
   }
   
   .join {
+    text-align: left;
     font-size: 350%; /* Ajusta el tamaño del título */
     font-weight: bold; /* Asegura que el texto sea llamativo */
     margin: 0;
@@ -103,7 +103,7 @@ width: 80%;
 
 @media (max-width: 768px) {
   .join-our-team-container {
-    flex-direction: column; /* Cambia el diseño a una columna para mejor visualización en pantallas pequeñas */
+    flex-direction: column; /*Cambia el diseño a una columna para mejor visualización en pantallas pequeñas */
     height: auto; /* Permite que la altura se ajuste al contenido */
     padding: 20px;
   }
