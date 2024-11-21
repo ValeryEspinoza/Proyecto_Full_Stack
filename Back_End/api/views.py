@@ -3,9 +3,9 @@ from rest_framework import viewsets
 from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  #Permisos para JWT
 from django.contrib.auth.models import User
-from django.db.models import Sum
-from .models import sells
-
+from django.db.models import F
+from rest_framework.response import Response
+from .serializers import ProductSalesSerializer
 from .models import (
     categories, suppliers, paymenth_methods, vacant, candidate, events, languages, status, priorities,
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
@@ -202,7 +202,6 @@ class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         # Filtrar productos con inventarios que tienen stock disponible
        return products.objects.filter(inventory__available_stock__gt=0).distinct()
-
 """
  
 #Consulta  productos por sub categorías  
@@ -388,36 +387,10 @@ class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
     
-
     
- 
-
-
-
- 
-"""class Products_SoldViewSet(viewsets.ViewSet):
-    def list(self, request):
-        # Agrupar las ventas por producto y sumar las cantidades
-        sold_products = sells_details.objects.values('product').annotate(total_quantity=Sum('sell__quantity'))
-
-        # Crear una lista para almacenar los resultados
-        products_sold = []
-        for item in sold_products:
-            product_id = item['product']
-            total_quantity = item['total_quantity']
-            product = products.objects.get(product_id=product_id)  # Obtener el producto por ID
-
-            # Serializar la información del producto vendido
-            product_data = {
-                    'product': {
-                    'product_id': product.product_id,
-                    'name': product.name,
-                },
-                'total_quantity': total_quantity,
-            }
-            products_sold.append(product_data)
-
-        # Retornar la respuesta con los productos vendidos
-        return Response(products_sold)
-        
- """
+class ProductSalesView(APIView):
+    def get(self, request, *args, **kwargs):
+        # Obtener todos los productos y calcular las unidades vendidas
+        products_data = products.objects.all()
+        serializer = ProductSalesSerializer(products_data, many=True)
+        return Response(serializer.data)    

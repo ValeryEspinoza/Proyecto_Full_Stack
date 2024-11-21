@@ -11,7 +11,7 @@ import SendStaff from '../../Services/Post/PostStaff';
 
 
 function RegisterClienteForm() {
-  // Hooks
+  //Hooks
   const [cedula, setCedula] = useState(""); 
   const [FullName, SetFullName] = useState(""); 
   const [UserName, SetUserName] = useState(""); 
@@ -56,7 +56,7 @@ function RegisterClienteForm() {
         const cedulaInput = e.target.value;
         setCedula(cedulaInput);
       
-        // Si la cédula tiene una longitud válida, hacemos la llamada a la API
+        //Si la cédula tiene una longitud válida, hacemos la llamada a la API
         if (cedulaInput.length >= 9) {
 
           try {
@@ -68,10 +68,12 @@ function RegisterClienteForm() {
               throw new Error('Error en la respuesta de la API');
             }
       
+
             const data = await response.json();    
             // Verificamos la respuesta completa en la consola
             console.log("Respuesta de la API Cedula:", data);
-      
+            //Si la respuesta es exitosa, obtenemos el nombre completo del usuario
+            
             //Verificamos si el campo 'nombre' existe en la respuesta
             if (data.nombre) {
               const fullName = data.nombre; // Si el nombre está disponible
@@ -119,7 +121,7 @@ function RegisterClienteForm() {
             }
             
           } catch (error) {
-            // En caso de error, mostramos un mensaje con la razón del error
+            //En caso de error, mostramos un mensaje con la razón del error
             console.error("Error al obtener los datos del usuario:", error);
             Swal.fire({
               title: "Error de conexión",
@@ -148,7 +150,7 @@ function RegisterClienteForm() {
 
 
 
-  // Función para agregar un nuevo usuario
+  //Función para agregar un nuevo usuario
   async function Add() {
 
     const Users = await GetUser();
