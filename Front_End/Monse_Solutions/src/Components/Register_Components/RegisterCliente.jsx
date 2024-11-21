@@ -18,24 +18,38 @@ function RegisterClienteForm() {
   const [EmailUser, SetEmail] = useState("");
   const [Password, SetPassword] = useState("");
   const [Password2, SetPassword2] = useState("");
-  const [Role, SetRole] = useState("");
-  const [IsSuperUser, SetIsSuperUser] = useState("");
-  const [Active, SetActive] = useState("")
-  const [IsStaff, SetIsStaff] = useState("")
-  const [FirstName, SetFirstName]= useState("")
-  const [SecondName, SetSecondName]= useState("")
-  const [FirstLastName, SetFirstLastName]= useState("")
-  const [SecondLastName, SetSecondLastName]= useState("")
+  const [Role, SetRole] = useState("cliente");
+  const [IsSuperUser, SetIsSuperUser] = useState(false);
+  const [Active, SetActive] = useState(true)
+  const [IsStaff, SetIsStaff] = useState(false)
+  const [Names, SetNames]= useState("")
+  const [LastNames, SetLastNames]= useState("")
+
 
 
   
 
-  console.log("1", cedula);
-  console.log("2", FullName)
-  console.log("3", UserName)
-  console.log("4", EmailUser)
-  console.log("5", Password)
-  console.log("6", Password2)
+  console.log("1---", cedula);
+  console.log("2---", FullName)
+  console.log("3---", UserName)
+  console.log("4---", EmailUser)
+  console.log("5---", Password)
+  console.log("6---", Password2)
+  console.log("7---", Role)
+  console.log("8---", IsSuperUser)
+  console.log("9---", Active)
+  console.log("10---", IsStaff)
+  
+
+
+
+
+  const concatenarTextos = (valor1, valor2) => {
+    // Usando template literal para concatenar las cadenas
+    const resultado = `${valor1} ${valor2}`;  // Concatenación con template literal
+    return resultado;
+  };
+
   
   //Función para manejar el cambio en el input de la cédula
   const handleCedulaChange = async (e) => {
@@ -54,11 +68,9 @@ function RegisterClienteForm() {
               throw new Error('Error en la respuesta de la API');
             }
       
-            const data = await response.json();
-            console.log("Respuesta completa de la API:", data);
-      
+            const data = await response.json();    
             // Verificamos la respuesta completa en la consola
-            console.log("Respuesta de la API:", data);
+            console.log("Respuesta de la API Cedula:", data);
       
             //Verificamos si el campo 'nombre' existe en la respuesta
             if (data.nombre) {
@@ -86,17 +98,17 @@ function RegisterClienteForm() {
                     segundoApellido = partes[partes.length - 1]; // El último es el segundo apellido
                   }
 
-                  // Establecer los valores en el estado (si es necesario)
-                  SetFirstName(primerNombre);
-                  SetSecondName(segundoNombre);
-                  SetFirstLastName(primerApellido);
-                  SetSecondLastName(segundoApellido);
-                 
+                  // Concatenar valores
+                  let Names = concatenarTextos(primerNombre, segundoNombre)
+                  let LastsNames= concatenarTextos(primerApellido, segundoApellido)
+                  // Actualizar el estado de las variables
+                  SetNames(Names);
+                  SetLastNames(LastsNames);
 
-                  console.log("Primer Nombre:", FirstName);
-                  console.log("Segundo Nombre:", SecondName);
-                  console.log("Primer Apellido:", FirstLastName);
-                  console.log("Segundo Apellido:", SecondLastName);
+                console.log("Nombre completo actualizado:", Names, LastsNames);
+
+
+               
             } else {
               //Si no se encuentra un nombre, mostrar un mensaje de error
               Swal.fire({
@@ -138,17 +150,18 @@ function RegisterClienteForm() {
 
   // Función para agregar un nuevo usuario
   async function Add() {
+
     const Users = await GetUser();
-    
-    const user = Users.find((user) => user.cedula === cedula);
-  
-    SetIsSuperUser(false)
-    SetActive(true)
-    SetRole("cliente")
-    SetIsStaff(false)
+    console.log("Users----", Users);  
+    //const user = Users.filter((user) => user.cedula === cedula);
+
     
 
-    if (
+
+    console.log("Nombres--:", Names);
+    console.log("Segundo Nombre--:", LastNames);
+
+    /*if (
       !Users.find(({ Email }) => Email === EmailUser) && !Users.find(({ username }) => username === UserName) &&
       FullName !== "" &&
       EmailUser !== "" &&
@@ -163,8 +176,8 @@ function RegisterClienteForm() {
         Password,
         UserName,
         EmailUser,
-        first_name,
-        last_name,
+        Names,
+        LastNames,
         IsSuperUser,
         IsStaff,
         Active,
@@ -181,7 +194,7 @@ function RegisterClienteForm() {
         text: "Verifica lo siguiente: 1) Todos los espacios estén debidamente llenos. 2) Las contraseñas coincidan. 3) Correo electrónico debe ser válido",
         icon: "error",
       });
-    }
+    }*/
   }
 
   return (

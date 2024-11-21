@@ -275,7 +275,7 @@ class sellsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells.objects.all()
     serializer_class = sellsSerializer 
 
-#Consulta de vantas por clientes
+#Consulta de ventas por clientes
     
 class ventas_por_cliente(generics.ListAPIView):
     serializer_class = sellsSerializer
