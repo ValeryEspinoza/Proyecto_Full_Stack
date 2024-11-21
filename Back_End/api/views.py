@@ -202,7 +202,6 @@ class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         # Filtrar productos con inventarios que tienen stock disponible
        return products.objects.filter(inventory__available_stock__gt=0).distinct()
-
 """
  
 #Consulta  productos por sub categorías  
