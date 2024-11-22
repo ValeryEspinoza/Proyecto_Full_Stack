@@ -15,13 +15,19 @@ function Footer() {
     <img src={Logo_Negro2} alt="Logo" className="custom-footer-logo" />
   </h3>
 
-  <div className="custom-footer-links">
+  <div className="custom-footer-links"> 
     <Link to="/" className="custom-pagesFooter">Home</Link>
-    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
+    <span className="separator"> | </span>
     <Link to="/Servicios" className="custom-pagesFooter">Services</Link>
+    <span className="separator"> | </span>
+    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
+    <span className="separator"> | </span>
     <Link to="/About" className="custom-pagesFooter">About us</Link>
+    <span className="separator"> | </span>
+    <Link to="/About" className="custom-pagesFooter">Store</Link>
+    <span className="separator"> | </span>
     <Link to="/Blog" className="custom-pagesFooter">Blog</Link>
-  </div>
+</div>
 
   <p className="custom-footer-company-name">Company Name © 2024</p>
 </div>

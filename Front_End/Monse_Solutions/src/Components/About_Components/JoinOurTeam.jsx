@@ -51,7 +51,7 @@ return (
 <div className="join-our-team-container">
 <div className="contentTeam">
     <div className='textTeam'>
-        <h1 className='join'>Join Monse Solutions</h1>
+        <h1 className='join'>Join Monse Solutions!</h1>
         <p className='parrafoJoin'>
             At Monse Solutions, we value innovation, quality and a passionate team.
             Share our vision of transforming spaces and creating unique experiences—join 
