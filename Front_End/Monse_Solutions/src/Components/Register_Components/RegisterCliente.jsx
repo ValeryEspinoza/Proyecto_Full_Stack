@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import "../../Styles/Components_Styles/Register_Styles/RegisterCliente.css";
-import SendUser from '../../Services/Post/PostUser';
 import GetUser from '../../Services/Get/GetUsers';
+import GetClients from '../../Services/Get/GetClients';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
-import SendStaff from '../../Services/Post/PostStaff';
+import SendClients from '../../Services/Post/PostClients';
+import SendClientLanguage from '../../Services/Post/ClientsLanguage';
+import SendUser from '../../Services/Post/PostUser';
 
 
 
 
-function RegisterClienteForm() {
-  //Hooks
+
+function RegisterClienteForm() { 
+  // Hooks
   const [cedula, setCedula] = useState(""); 
   const [FullName, SetFullName] = useState(""); 
   const [UserName, SetUserName] = useState(""); 
   const [EmailUser, SetEmail] = useState("");
+  const [PhoneNumber, SetPhoneNumber] = useState("")
   const [Password, SetPassword] = useState("");
   const [Password2, SetPassword2] = useState("");
+  const [Language, SetLanguage] = useState(1);
   const [Role, SetRole] = useState("cliente");
   const [IsSuperUser, SetIsSuperUser] = useState(false);
   const [Active, SetActive] = useState(true)
@@ -26,20 +31,6 @@ function RegisterClienteForm() {
   const [LastNames, SetLastNames]= useState("")
 
 
-
-  
-
-  console.log("1---", cedula);
-  console.log("2---", FullName)
-  console.log("3---", UserName)
-  console.log("4---", EmailUser)
-  console.log("5---", Password)
-  console.log("6---", Password2)
-  console.log("7---", Role)
-  console.log("8---", IsSuperUser)
-  console.log("9---", Active)
-  console.log("10---", IsStaff)
-  
 
 
 
@@ -56,7 +47,7 @@ function RegisterClienteForm() {
         const cedulaInput = e.target.value;
         setCedula(cedulaInput);
       
-        //Si la cédula tiene una longitud válida, hacemos la llamada a la API
+        // Si la cédula tiene una longitud válida, hacemos la llamada a la API
         if (cedulaInput.length >= 9) {
 
           try {
@@ -68,12 +59,10 @@ function RegisterClienteForm() {
               throw new Error('Error en la respuesta de la API');
             }
       
-
             const data = await response.json();    
             // Verificamos la respuesta completa en la consola
             console.log("Respuesta de la API Cedula:", data);
-            //Si la respuesta es exitosa, obtenemos el nombre completo del usuario
-            
+      
             //Verificamos si el campo 'nombre' existe en la respuesta
             if (data.nombre) {
               const fullName = data.nombre; // Si el nombre está disponible
@@ -121,7 +110,7 @@ function RegisterClienteForm() {
             }
             
           } catch (error) {
-            //En caso de error, mostramos un mensaje con la razón del error
+            // En caso de error, mostramos un mensaje con la razón del error
             console.error("Error al obtener los datos del usuario:", error);
             Swal.fire({
               title: "Error de conexión",
@@ -148,33 +137,79 @@ function RegisterClienteForm() {
     SetPassword2(input.target.value);
   }
 
+  function GetLanguage(input) {
+    SetLanguage(input.target.value);
+  }
 
+  function GetPhoneNumber(input) {
+    SetPhoneNumber(input.target.value);
+  }
 
-  //Función para agregar un nuevo usuario
-  async function Add() {
+  /*useEffect(() => {
+    async function fetchUserData() {
+        const userData = await GetUser();
+        console.log('User Data:', userData);
+    }
 
-    const Users = await GetUser();
-    console.log("Users----", Users);  
-    //const user = Users.filter((user) => user.cedula === cedula);
+    fetchUserData();
+}, []);*/
+
+  // Función para agregar un nuevo usuario
+ async function Add() {
 
     
+    const Users = await GetUser();
+    console.log("Users----", Users);  
+    //Buscar el ultimo usuario agregado y sumarle 1 para obtener el id del nuevo usuario
+    const lastUserId = Users[Users.length - 1].id;
+    const newUserId = lastUserId + 1;
+
+    
+ 
+    //Conocer el id del ultimo registro y sumarle 1 para generar el id del nuevo usuario
+    const Clients = await GetClients();
+    console.log("Clients", Clients);
+    const lastClientId = Clients[Clients.length - 1].client_id;
+    const NewClientID = lastClientId + 1;
 
 
-    console.log("Nombres--:", Names);
-    console.log("Segundo Nombre--:", LastNames);
 
-    /*if (
-      !Users.find(({ Email }) => Email === EmailUser) && !Users.find(({ username }) => username === UserName) &&
+
+
+    if (
+      !Users.find(({ email }) => email === EmailUser) && !Users.find(({ username }) => username === UserName) &&
       FullName !== "" &&
       EmailUser !== "" &&
       UserName !== "" &&
       Password !== "" &&
       Password2 !== "" &&
-      Access !== "" &&
       Password === Password2
     ){
       
-      SendUser( id,
+      console.log(
+        "Datos del usuario:",
+        "Nombres:" +Names,
+        "Apellidos:" +LastNames,
+        "Correo:" +EmailUser,
+        "Usuario:" +UserName,
+        "Contraseña"+ Password,
+        "Phone:" + PhoneNumber,
+        "Userid:"+ newUserId,
+        "Clientid:"+ NewClientID,
+        "Language:" + Language,
+        "Role:"+ Role,
+        "SuperUser:" + IsSuperUser,
+        "Active:" + Active,
+        "Staff:" + IsStaff
+        , cedula
+
+      );
+      console.log(cedula);
+      console.log(Language);
+      console.log(NewClientID)
+      
+
+      SendUser( 
         Password,
         UserName,
         EmailUser,
@@ -184,6 +219,16 @@ function RegisterClienteForm() {
         IsStaff,
         Active,
         Role);
+
+        SendClients(
+          cedula,
+          Names,
+          LastNames,
+          EmailUser,
+          PhoneNumber,
+          newUserId);
+
+        SendClientLanguage(Language, NewClientID)
 
       Swal.fire({
         title: "Registro Exitoso!",
@@ -195,10 +240,12 @@ function RegisterClienteForm() {
         title: "Registro Fallido",
         text: "Verifica lo siguiente: 1) Todos los espacios estén debidamente llenos. 2) Las contraseñas coincidan. 3) Correo electrónico debe ser válido",
         icon: "error",
-      });
-    }*/
-  }
+        });
+    }
+  
 
+
+ }
   return (
     <div className='bodyRegister'>
       <div className="divTitleRegister">
@@ -249,6 +296,15 @@ function RegisterClienteForm() {
         <div className="divInputRegister">
           <input
             className='input-register'
+            value={PhoneNumber}
+            onChange={GetPhoneNumber}
+            placeholder='Phone Number'
+          />
+        </div>
+
+        <div className="divInputRegister">
+          <input
+            className='input-register'
             value={Password}
             onChange={GetPassword}
             placeholder='Password'
@@ -266,11 +322,16 @@ function RegisterClienteForm() {
           />
         </div>
 
-        <select className="select-language">
-          <option value="" disabled selected>Choose a language</option>
-          <option>Español</option>
-          <option>English</option>
-          <option>Français</option>
+        <select 
+         className="select-language"
+         value={Language}
+         onChange={GetLanguage}
+         
+         >
+          <option value={0} disabled selected>Choose a language</option>
+          <option value={1}>English</option>
+          <option value={2}>Español</option>
+          <option value={3}>Français</option>
         </select>
 
         <br /><br />
@@ -282,4 +343,3 @@ function RegisterClienteForm() {
 }
 
 export default RegisterClienteForm;
-

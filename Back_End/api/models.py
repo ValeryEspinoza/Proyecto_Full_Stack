@@ -207,7 +207,7 @@ class clients (models.Model):
     last_name = models.CharField(max_length=50, null= False)
     email= models.EmailField(null=False)
     phone_number = models.CharField(max_length=15, null=False)
-    register_date = models.DateTimeField(auto_now_add=True, null=False)
+    register_date = models.DateTimeField(auto_now_add=True, null=False, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="client_profile")
     def __str__(self):
         return str(self.name)  

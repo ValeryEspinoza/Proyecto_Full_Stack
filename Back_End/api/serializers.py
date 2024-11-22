@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import User, Group
 from .validations import validate_not_empty, validate_min_characters, validate_max_characters, validate_no_special_characters, sanitize_input, validate_date_format, validate_datetime_format, validate_email_caracters, validate_price, validate_Quiantity, validate_negative_values
 
-from django.db.models import Sum
-from rest_framework import generics
-
 
 
 from .models import (
@@ -19,7 +16,10 @@ from .models import (
     staff, services, projects, clients, sells, products_suppliers, staff_tasks, staff_events, projects_services,
     staff_projects, languages_clients, reviews, proformas_invoices, candidates_vacants, proformas_invoices_services, 
     proformas_invoices_staff, sells_details
-)
+    )
+
+
+
 
 
 
@@ -737,17 +737,11 @@ class sells_detailsSerializer(serializers.ModelSerializer):
         model = sells_details
         fields = '__all__'  
         
-    def validate_comments(sefl, value):
+    def validate_comments(self, value):
         validate_no_special_characters(value)
         validate_min_characters(value, 10)
         validate_not_empty(value)
         value = sanitize_input(value)
         return value
-    
-    
-
-
-
-
     
     

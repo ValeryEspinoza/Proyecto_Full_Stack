@@ -1,37 +1,43 @@
 //Send  product data to server 
 async function SendClients ( 
-   
-  {
-    id,
-    password,
-    username,
-    email,
-    first_name,
-    last_name,
-    is_superuser,
-    is_staff,
-    is_active
-}
+
+  ID,
+  name,
+  last_name,
+  email,
+  phone_number,
+  register_date,
+  user
     ) 
+
     
     {
-  
+      console.log("PostClient",
+
+        ID,
+        name,
+        last_name,
+        email,
+        phone_number,
+        register_date,
+        user
+      );
   
       try { 
         const newUser ={
-                  
-          id,
-          password,
-          username,
-          email,
-          first_name,
+          ID,
+          name,
           last_name,
-          is_superuser,
-          is_staff,
-          is_active
+          email,
+          phone_number,
+          user
         }
+
+
+        console.log(newUser);
+        
     
-        const response = await fetch(`http://127.0.0.1:8000/api/register`, {
+        const response = await fetch(`http://192.168.1.87:8000/api/clients/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' 

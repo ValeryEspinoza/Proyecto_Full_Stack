@@ -10,6 +10,8 @@ import Formularios from '../Pages/Formularios'
 import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
 import Blog from '../Pages/Blog'
+import DashBoard from '../Pages/DashBoard'
+import EventosTareas from '../Pages/EventosTareas'
 
 import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 
@@ -29,6 +31,8 @@ function Routing() {
       <Route path="/Formularios" element={<Formularios />} />
       <Route path="/ServiciosAdmi" element={<ServiciosAdmi />} />
       <Route path="/Blog" element={<Blog />} />
+      <Route path="/DashBoard" element={<DashBoard />} />
+      <Route path="/EventosTareas" element={<EventosTareas />} />
 
        
 
