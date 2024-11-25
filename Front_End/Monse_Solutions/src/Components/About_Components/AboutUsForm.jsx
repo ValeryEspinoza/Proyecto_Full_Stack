@@ -15,15 +15,12 @@ function AboutUsForm() {
 
     <section className="intro-section">
         <p className='parrafoAbout'>
-        Monse Solutions is a company specialized in finishes and renovations, 
-        dedicated to transforming spaces and enhancing the functionality and aesthetics 
-        of homes and offices. In a competitive market, Monse Solutions stands out for its 
-        commitment to quality, innovation, and customer service. With a team of experienced 
-        professionals, the company offers personalized solutions that adapt to the needs and 
-        preferences of each client, using high-end materials and modern techniques. 
-        Its comprehensive approach to renovation projects ensures that every detail is attended 
-        to, from the initial design to the final execution, making each project a unique and 
-        satisfying experience.
+        Monse Solutions specializes in finishes and renovations, transforming spaces 
+        to enhance the functionality and aesthetics of homes and offices. 
+        Known for its quality, innovation, and customer service, the company 
+        offers tailored solutions with high-end materials and modern techniques. 
+        Its expert team ensures every detail is covered, from design to execution, 
+        creating unique and satisfying projects.
         </p><br /><br />
         <Link to="/Contact">
         <button className="contactUs">Contact us</button>
@@ -57,6 +54,7 @@ function AboutUsForm() {
         <img className='imgMV' src={vision} alt="mision"/>
     </div>
 </div><br /><br />
+
 
 <div className="divTextoFinal">
     <p className="textoFinal">

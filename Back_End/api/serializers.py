@@ -2,8 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.models import User, Group
 from .validations import validate_not_empty, validate_min_characters, validate_max_characters, validate_no_special_characters, sanitize_input, validate_date_format, validate_datetime_format, validate_email_caracters, validate_price, validate_Quiantity, validate_negative_values
-
-
+from django.db.models import Sum
 
 
 from .models import (
@@ -26,10 +25,10 @@ from .models import (
 
 #Serializers configuracion- Principales
 class UserSerializer(serializers.ModelSerializer):
-    role=serializers.CharField(write_only=True)
+    role=serializers.CharField(write_only=True) #esto es para que no se muestre en la respuesta
     class Meta:
         model = User
-        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name']
+        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active']
 
     def create(self, validated_data):
         # Extrae la contraseña del validated_data
@@ -738,7 +737,7 @@ class sells_detailsSerializer(serializers.ModelSerializer):
         model = sells_details
         fields = '__all__'  
         
-    def validate_comments(sefl, value):
+    def validate_comments(self, value):
         validate_no_special_characters(value)
         validate_min_characters(value, 10)
         validate_not_empty(value)
@@ -748,30 +747,32 @@ class sells_detailsSerializer(serializers.ModelSerializer):
 
 #CONSULTAS
 
-#Contar cuántas unidades de cada producto se han vendido.
-
+# Serializador de Detalles de Venta
 class sells_detailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = sells_details
-        fields = ['sell_details_id', 'product', 'sell']
-        
- 
+        fields = ['sell_details_id', 'product', 'sell', 'quiantity'] 
+
+# Serializador de Venta
 class sellSerializer(serializers.ModelSerializer):
     class Meta:
         model = sells
-        fields = ['sell_id', 'quantity']      
-        
-        
+        fields = ['sell_id', 'sell_date']  
+# Serializador de Producto
 class productsSerializer(serializers.ModelSerializer):
     class Meta:
         model = products
-        fields = ['product_id', 'name']          
+        fields = ['product_id', 'name', 'description']  
 
-class product_SoldSerializer(serializers.ModelSerializer):
-     sells_details = sells_detailsSerializer() 
-     sell = sellSerializer()     
-     products = productsSerializer()  # Cambiado a productsSerializer()
-             
-     class Meta:
-       model = sells  # Asegúrate de que este modelo es correcto
-       fields = ['product', 'sell', 'sells_details']  # Cambiado sell_detail a sells_details 
+class ProductSalesSerializer(serializers.ModelSerializer):
+    total_sold = serializers.IntegerField(read_only=True)  
+    class Meta:
+        model = products
+        fields = ['product_id', 'name', 'description', 'total_sold']
+    
+    def to_representation(self, instance):
+        # Se obtiene el total de unidades vendidas de cada producto
+        total_sold = sells_details.objects.filter(product=instance).aggregate(Sum('quiantity'))['quiantity__sum']
+        representation = super().to_representation(instance)
+        representation['total_sold'] = total_sold if total_sold else 0
+        return representation

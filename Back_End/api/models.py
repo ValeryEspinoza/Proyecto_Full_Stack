@@ -168,6 +168,7 @@ class jobs_positions(models.Model):
  
 class staff(models.Model):
     staff_id = models.AutoField(primary_key=True)
+    ID = models.CharField(max_length=50, null=False, blank=True)
     name = models.CharField(max_length=100, null=False)
     last_name = models.CharField(max_length=100, null=False)
     email = models.EmailField(null=False, unique=True, max_length=254)
@@ -201,11 +202,12 @@ class projects(models.Model):
     
 class clients (models.Model):
     client_id = models.AutoField(primary_key=True)
+    ID = models.CharField(max_length=50, null=False, blank=True)
     name = models.CharField(max_length=50, null=False)
     last_name = models.CharField(max_length=50, null= False)
     email= models.EmailField(null=False)
     phone_number = models.CharField(max_length=15, null=False)
-    register_date = models.DateTimeField(auto_now_add=True, null=False)
+    register_date = models.DateTimeField(auto_now_add=True, null=False, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="client_profile")
     def __str__(self):
         return str(self.name)  
@@ -222,6 +224,8 @@ class sells(models.Model):
     payment_method = models.ForeignKey(paymenth_methods, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.sell_date)  
+      
+    
     
 class reviews(models.Model):
     review_id = models.AutoField(primary_key=True)

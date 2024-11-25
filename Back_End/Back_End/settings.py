@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dvn4_%k2zs-(#as$j+ml&zl=0@_l_wp_gdcv39##)_3_mn&jew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.87','http://localhost:3000']
 
 
 # Application definition
@@ -74,10 +74,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 
-CORS_ALLOWED_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+'http://localhost:5173', 'http://192.168.1.87:5173' 
+]
 
 
 ROOT_URLCONF = 'Back_End.urls'

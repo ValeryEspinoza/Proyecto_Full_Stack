@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
-import iconEmail from "../../Img/Components_Img/icon2_email.png"
-import iconPassword from "../../Img/Components_Img/icon2_password.png"
+import iconEmail from "../../Img/Components_Img/icon3_email.png"
+import iconPassword from "../../Img/Components_Img/icon_password.png"
 
 
 function LoginForm() {
@@ -57,7 +57,7 @@ function LoginForm() {
   return (
 <div className="bodyLogin">
 <div className='divTitleLogin'>
-<h1 className="login-title">Access your account<br />at Monse Solutions</h1>
+<h1 className="login-title">Access your account <br />at Monse Solutions</h1>
 </div><br />
 
     <div className="login-container">
@@ -67,10 +67,11 @@ function LoginForm() {
             className="input-field" 
             value={EmailUser} 
             onChange={GetEmail} 
+            type="text" 
             placeholder="Email" 
         />
     </div>
-    <br />
+<br />
     <div className="input-container">
         <img src={iconPassword} alt="Password Icon" className="input-icon" />
         <input 
@@ -81,11 +82,10 @@ function LoginForm() {
             placeholder="Password" 
         />
     </div>
-    <br /><br />
     <h2 className="alert-message">{MensajeAlerta}</h2>
-    <button onClick={Login} className="btn-login">Login</button><br />
-    <Link className='goToHome' to="/Home">Go to Home</Link>
 </div>
+<button onClick={Login} className="btn-login">Log In</button><br />
+<Link className='goToHome' to="/Home"><p>Go to Home</p></Link>
 </div>
   )
 }

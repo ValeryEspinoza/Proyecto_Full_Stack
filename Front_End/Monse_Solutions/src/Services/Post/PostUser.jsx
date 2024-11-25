@@ -1,25 +1,35 @@
 //Send  product data to server 
 async function SendUser ( 
-   
-      LastName, 
-      Name,
-      Email,
-      Password,
-      Access
-    ) {
-  
+
+    password,
+    username,
+    email,
+    first_name,
+    last_name,
+    is_superuser,
+    is_staff,
+    is_active,
+    role) {
   
       try { 
         const newUser ={
-            
-            LastName, 
-            Name,
-            Email,
-            Password,
-            Access
+                  
+
+          password,
+          username,
+          email,
+          first_name,
+          last_name,
+          is_superuser,
+          is_staff,
+          is_active,
+          role
         }
+
+        
+        
     
-        const response = await fetch(`http://localhost:3001/Users`, {
+        const response = await fetch(`http://192.168.1.87:8000/api/register/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' 
@@ -28,9 +38,11 @@ async function SendUser (
         body: JSON.stringify(newUser) 
         
     });
-    console.log("Solicitud Aplicada");
+
     
     const datos = await response.json();
+    console.log(datos);
+    
     return datos
      
       } catch (error) {
