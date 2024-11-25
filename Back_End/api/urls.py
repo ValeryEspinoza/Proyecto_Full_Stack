@@ -3,7 +3,6 @@ from . import views
 
 from .views import ventas_por_cliente
 
-from .views import ProductSalesView, ProductSearchView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -151,11 +150,6 @@ urlpatterns = [
     
     path('ventas_por_cliente/<int:client_id>/', ventas_por_cliente.as_view(), name='ventas-por-cliente'),
      
-    #CONSULTAS Y VISTAS
-    path('product-sales/', ProductSalesView.as_view(), name='product-sales'), 
-
-    #Search de tienda online
-    path('search/', ProductSearchView.as_view(), name='product-search'), 
 
 ]
 
