@@ -20,9 +20,9 @@ function Footer() {
     <span className="separator"> | </span>
     <Link to="/Servicios" className="custom-pagesFooter">Services</Link>
     <span className="separator"> | </span>
-    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
-    <span className="separator"> | </span>
     <Link to="/About" className="custom-pagesFooter">About us</Link>
+    <span className="separator"> | </span>
+    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
     <span className="separator"> | </span>
     <Link to="/About" className="custom-pagesFooter">Store</Link>
     <span className="separator"> | </span>

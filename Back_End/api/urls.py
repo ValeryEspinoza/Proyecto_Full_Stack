@@ -144,6 +144,7 @@ urlpatterns = [
     path('proformas_invoices_staff/<int:pk>/', views.proformas_invoices_staffDetail.as_view(), name='proformas_invoices_staff-detail'), 
          
     path('sells_details/', views.sells_detailsListCreate.as_view(),name='sells_details-list'),
+
     path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detail'), 
 
     #path('productos_stock/', productos_stock_disponible.as_view(), name='productos_stock-details-detail'),

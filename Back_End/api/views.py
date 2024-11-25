@@ -393,14 +393,9 @@ class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
     
-
-    
- 
-
-
-
  
 """class Products_SoldViewSet(viewsets.ViewSet):
+>>>>>>> 93005d205dfff9ddd68d23e9bfc207055380e1fb
     def list(self, request):
         # Agrupar las ventas por producto y sumar las cantidades
         sold_products = sells_details.objects.values('product').annotate(total_quantity=Sum('sell__quantity'))
@@ -423,6 +418,8 @@ class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
             products_sold.append(product_data)
 
         # Retornar la respuesta con los productos vendidos
+
         return Response(products_sold)
         
  """
+
