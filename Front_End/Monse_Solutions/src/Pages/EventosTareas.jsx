@@ -1,10 +1,10 @@
 import React from 'react'
+import '../Styles/Components_Styles/Admin_C_Styles/EventosYTareas.css'
+import EventosYTareasForm from '../Components/Admin_Components/EventosYTareasForm'
 
 function EventosTareas() {
   return (
-    <div>
-      <h1>Eventos y Tareas</h1>
-    </div>
+  <EventosYTareasForm />
   )
 }
 

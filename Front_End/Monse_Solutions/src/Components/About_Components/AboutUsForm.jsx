@@ -30,10 +30,10 @@ function AboutUsForm() {
         </Link>
       </section><br /><br />
 
-<div class="sectionMV">
-    <div class="contentM">
+<div className="sectionMV">
+    <div className="contentM">
         <img className='imgMV' src={mision} alt="mision"/>
-        <div class="text-block">
+        <div className="text-block">
             <h2 className='titleMV'>Our mision</h2>
             <p className='textMision'>To transform our clients' spaces into functional 
                 and aesthetically pleasing 
@@ -45,9 +45,9 @@ function AboutUsForm() {
     </div>
 </div> <br />
 
-<div class="sectionMV">
-    <div class="contentV reverse">
-        <div class="text-block">
+<div className="sectionMV">
+    <div className="contentV reverse">
+        <div className="text-block">
             <h2 className='titleMV'>Our vision</h2>
             <p className='textVision'>To be the leading company in the finishes and remodeling 
                 sector, recognized for transforming spaces with excellence, creativity, 
