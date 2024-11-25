@@ -1,8 +1,9 @@
 from rest_framework import generics
-from rest_framework.views import APIView
+from rest_framework import viewsets
 from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  # Permisos para JWT
 from django.contrib.auth.models import User
+from .serializers import product_SoldSerializer
 from django.db.models import F
 from rest_framework.response import Response
 from .serializers import ProductSalesSerializer
@@ -349,9 +350,27 @@ class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = sells_detailsSerializer
     
     
-class ProductSalesView(APIView):
-    def get(self, request, *args, **kwargs):
-        # Obtener todos los productos y calcular las unidades vendidas
-        products_data = products.objects.all()
-        serializer = ProductSalesSerializer(products_data, many=True)
-        return Response(serializer.data)    
+class ProductSoldViewSet(viewsets.ViewSet):
+    def list(self, request):
+        # Agrupar las ventas por producto y sumar las cantidades
+        sold_products = sells_details.objects.values('product').annotate(total_quantity=Sum('sell__quantity'))
+
+        # Crear una lista para almacenar los resultados
+        products_sold = []
+        for item in sold_products:
+            product_id = item['product']
+            total_quantity = item['total_quantity']
+            product = products.objects.get(product_id=product_id)  # Obtener el producto por ID
+
+            # Serializar la información del producto vendido
+            product_data = {
+                    'product': {
+                    'product_id': product.product_id,
+                    'name': product.name,
+                },
+                'total_quantity': total_quantity,
+            }
+            products_sold.append(product_data)
+
+        # Retornar la respuesta con los productos vendidos
+        return Response(products_sold)

@@ -143,7 +143,7 @@ urlpatterns = [
     path('sells_details/', views.sells_detailsListCreate.as_view(),name='sells_details-list'),
     path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detai'), 
     
-    path('product-sales/', ProductSalesView.as_view(), name='product-sales'), 
+    path('product_sales/', ProductSalesView.as_view(), name='product-sales'), 
 
      
 
