@@ -42,7 +42,7 @@
 }
 
 .cajaTexto{
-    background-color: #111111;
+    background-color: #000000;
     color: white;
     padding: 20px ;
     width: 34%; /* Ajusta según necesites */
@@ -65,52 +65,44 @@
 
 /* Estilos de servicios */
 
-.services-container {
-    padding: 20px;
-    text-align: center;
-    background-color: #ffffff; 
-  }
-  
-.Titulo_Sevices {
-    font-size: 36px;
-    margin-bottom: 5px;
-  }
-  
-  .subheading{
-    font-size: 18px;
-    color: #000000;
-    margin-bottom: 20px;
-  }
-  
-  .service_Finishing_Work {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-left: 8%;
+.servicios {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+
+
+.servicios_contenedor {
+  display: grid;
+  grid-template-columns: repeat(3, 0.3fr);
+  gap: 40px;
 
 }
-  
-.service-card {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: rgba(39, 39, 39, 0.5) 0px 22px 70px 4px;
-    width: 250px;
-    text-align: left;
-  }
-  
-  .service-image {
-    height: 150px;
-    background-color: #ddd; /* Color de fondo temporal */
-    border-radius: 4px;
-    margin-bottom: 15px;
-  }
-  
-  .Nombre_Services {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .Descripcion_Services {
-    font-size: 14px;
-    color: #000000;
-  }
+
+.servicio{
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  text-align: center;
+  padding: 8px;
+  margin-left: 30%;
+}
+
+.servicio_imagen {
+  width: 100%;
+  height: 50%;
+  border-radius: 8px 8px 0 0;
+}
+
+.servicio_titulo {
+  font-size: 1.2rem;
+  color: #000000;
+  margin: 10px 0;
+}
+
+.servicio_texto {
+  font-size: 0.9rem;
+  color: #000000;
+  line-height: 1.5;
+}

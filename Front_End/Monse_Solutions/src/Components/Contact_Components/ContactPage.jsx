@@ -1,6 +1,5 @@
 import React from 'react';
 import ContactForm from '../../Components/Contact_Components/ContactForm'; // Si es una exportación por defecto
-
 import "../../Styles/Components_Styles/Contact_C_Styles/ContactPage.css"; // Importa los estilos
 
 const ContactPage = () => {

@@ -8,7 +8,7 @@ function Connect_with_us() {
       <br /><br /><br /><br />
       <h1 className='TextoPrincipal'>Connect Whith Us</h1>
       <h4 className='Texto'> And unlock a personalized journey to the perfect solution for you!</h4> 
-      <Link to="/Contact"><p className='itemLinkNav'><button className='BotonContact'>Contact</button></p></Link> 
+      <Link to="/Contact"><button className='BotonContactenos' >Contact</button></Link> 
 
       <br /><br /><br /><br />
     </div>
