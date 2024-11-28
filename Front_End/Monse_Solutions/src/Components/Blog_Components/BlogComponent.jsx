@@ -39,7 +39,8 @@ function Blog() {
             Keeping your home in good condition not only enhances 
             its appearance but also prevents...
           </p>
-          <a href="#" className="cardBlogLink">Leer más...</a>
+          <Link to="/article/10-basic-maintenance-tips" className="cardBlogLink">Leer más...
+          </Link>
         </div>
 
         <div className="cardBlog">
@@ -49,7 +50,8 @@ function Blog() {
             Creating a seasonal garden is a wonderful way to enjoy fresh blooms, 
             vibrant colors...
           </p>
-          <a href="#" className="cardBlogLink">Leer más...</a>
+          <Link to="/ArticleGarden" className="cardBlogLink">Leer más...
+          </Link>
         </div>
       </div><br /><br /><br /><br />
 

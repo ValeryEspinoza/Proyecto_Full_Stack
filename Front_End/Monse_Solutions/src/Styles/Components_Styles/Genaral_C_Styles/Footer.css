@@ -68,7 +68,6 @@
 }
 
 .custom-footer-center i {
-  background-color: #33383b;
   color: #ffffff;
   font-size: 25px;
   width: 38px;
@@ -99,6 +98,7 @@
   color: #50C878;
   text-decoration: none;
   font-weight: bold;
+  margin-left:30px;
 }
 
 /* Footer right */
@@ -131,7 +131,6 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
-  background-color: #33383b;
   border-radius: 2px;
   font-size: 20px;
   color: #ffffff;
