@@ -5,8 +5,10 @@ import EventsForm from '../Components/Admin_Components/EventsForm'
 import  TasksForms from '../Components/Admin_Components/TasksForms'
 
 
+
 function EventosTareas() {
   return (
+
     
     <div className='contenedoresPaginas'>
       <SideBar />
@@ -19,6 +21,7 @@ function EventosTareas() {
 
       
       </div>
+
     </div>
   )
 }

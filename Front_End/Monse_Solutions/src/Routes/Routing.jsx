@@ -24,6 +24,7 @@ import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
 
 
+
 function Routing() {
   return (
     <Router>
@@ -52,8 +53,8 @@ function Routing() {
 
 
       <Route path="/Blog" element={<Blog />} />
-      <Route path="/article/10-basic-maintenance-tips" element={<Article10Tips />} />
-      <Route path="/articleGarden" element={<ArticleGarden />} />
+      <Route path="/Article10Tips" element={<Article10Tips />} />
+      <Route path="/ArticleGarden" element={<ArticleGarden />} />
 
 
 
