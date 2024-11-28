@@ -6,8 +6,16 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Logo_Negro from '../../Img/Components_Img/Logo_blanco.png';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
+import '../../config/i18n'
 
 export default function NavBar() {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Cambia el idioma dinámicamente
+  };
+
   return (
     <>
       {['lg'].map((expand) => (
@@ -22,12 +30,15 @@ export default function NavBar() {
               />
             </div>
             <div className="buttons-section">
+            <button  className="nav-btnLogin" onClick={() => changeLanguage('en')}>English</button>
+            <button  className="nav-btnLogin" onClick={() => changeLanguage('es')}>Español</button>
               <Link className="itemLinkNav" to="/RegisterCliente">
-                <button className="nav-btnRegister">Register</button>
+                <button className="nav-btnRegister"> {t('Boton_Register')}</button>
               </Link>
               <Link className="itemLinkNav" to="/Login">
-                <button className="nav-btnLogin">Login</button>
+                <button className="nav-btnLogin">{t('Boton_Login')}</button>
               </Link>
+
             </div>
           </Container>
           <Container fluid className="bottom-navbar">
@@ -44,12 +55,12 @@ export default function NavBar() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="navbar-links">
-                  <Link className="itemLinkNav" to="/">Home</Link>
-                  <Link className="itemLinkNav" to="/Servicios">Services</Link>
-                  <Link className="itemLinkNav" to="/About">About us</Link>
-                  <Link className="itemLinkNav" to="/Contact">Contact</Link>
-                  <Link className="itemLinkNav" to="/Store">Store</Link>
-                  <Link className="itemLinkNav" to="/Blog">Blog</Link>
+                  <Link className="itemLinkNav" to="/">{t('Home')}</Link>
+                  <Link className="itemLinkNav" to="/Servicios">{t('Services')}</Link>
+                  <Link className="itemLinkNav" to="/About">{t('About us')} </Link>
+                  <Link className="itemLinkNav" to="/Contact"> {t('Contact')}</Link>
+                  <Link className="itemLinkNav" to="/Store">{t('Store')}</Link>
+                  <Link className="itemLinkNav" to="/Blog">{t('Blog')}</Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

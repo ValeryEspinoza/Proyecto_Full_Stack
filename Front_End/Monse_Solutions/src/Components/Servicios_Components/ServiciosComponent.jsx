@@ -7,7 +7,7 @@ import Imagen_Metal from '../../Img/Components_Img/metal.jpg'
 import Imagen_Estructura_Metalica from '../../Img/Components_Img/Estructuras_metálicas.jpg'
 import Imagen_Acabados_metalicas from '../../Img/Components_Img/Acabados_metalicos.jpg'
 import Imagen_Remodelaciones from '../../Img/Components_Img/remodelacion.jpg'
-import Imagen_Reestructuracion from '../../Img/Components_Img/Reestructuración.webp'
+import Imagen_Reestructuracion from '../../Img/Components_Img/Reestructuracion.webp'
 import Imagen_Albañileria from '../../Img/Components_Img/Albañileria.jpg'
 import Imagen_Mantenimiento from '../../Img/Components_Img/Mantenimiento.jpg'
 
@@ -21,15 +21,15 @@ function Servicios() {
       <h1 className="servicios-title">Our services</h1>
     </div>
 
-    <div class="divCajasTexto">
-       <div class="cajaTexto">
+    <div className="divCajasTexto">
+       <div className="cajaTexto">
         <h3 className='titleCaja'>Experience</h3>
         <p className='parrafoCaja'>We have an expert team ready to 
           provide quality solutions to every client.</p>
     </div>
 
-    <div class="cajaTexto">
-        <h3 className='titleCaja'>Calidad Superior</h3>
+    <div className="cajaTexto">
+        <h3 className='titleCaja'>Top quality</h3>
         <p className='parrafoCaja'>We guarantee the highest quality 
           standards in materials and finishes.</p>
     </div>
@@ -38,115 +38,72 @@ function Servicios() {
 
   {/* SERVICIOS  */ }
   
+<div> </div>
 
 
-<div className="services-container">
-<div className="services-grid">
-  
-{/*Trabajos en Acabados*/ }
-
-
- <div className="Finishing_Work">                           
-    <h2>Finishing Work</h2>
-
-   {/* Acabados en madera  */ }
-
-         <div >
-            <img src={Imagen_Servicio_Madera} alt="IMG" width="220"  height="150" />
-            <h3>Wood finishes</h3>
-            <p>Wood finishes protect and enhance furniture and other wooden surfaces, 
-              guaranteeing durability, aesthetics and resistance.</p>
-         </div>
-
-
-    {/* Acabados en yeso (gypsum)  */ }
-
-        <div>
-        <img src={Imagen_Gypsum} alt="IMG" width="220"  height="150" />
-            <h3>Gypsum finishes</h3>
-            <p>Gypsum finishes offer smooth and durable surfaces for interiors and 
-              exteriors,improving aesthetics and protection.</p>
+ <div className="servicios_contenedor">
+        <div className="servicio">
+          <img src={Imagen_Servicio_Madera} alt="Wood finishes" className='servicio_imagen' />
+          <h3 className='servicio_titulo' >Wood finishes</h3>
+          <p className='servicio_texto' >Wood finishes protect and enhance furniture and other wooden surfaces, guaranteeing durability, aesthetics, and resistance.</p>
         </div>
 
-    {/* Aplicaciones de estuco  */ }   
+        <div className="servicio">
+          <img src={Imagen_Gypsum} alt="Gypsum finishes" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>Gypsum finishes</h3>
+          <p className='servicio_texto'>Gypsum finishes offer smooth and durable surfaces for interiors and exteriors, improving aesthetics and protection.</p>
+        </div>
 
-          <div>
-          <img src={Imagen_Estuco} alt="IMG" width="220"  height="150" />
-            <h3>Stucco applications</h3>
-            <p>Stucco applications are durable coatings for exterior walls,
-               offering weather resistance and aesthetic appeal.</p>
-          </div>
+        <div className="servicio">
+          <img src={Imagen_Estuco} alt="Stucco applications"  className='servicio_imagen' />
+          <h3 className='servicio_titulo' >Stucco applications</h3>
+          <p className='servicio_texto' >Stucco applications are durable coatings for exterior walls, offering weather resistance and aesthetic appeal.</p>
+        </div>
 
-    {/* Acabados en metal */ }   
-          <div>
-            <img src={Imagen_Metal} alt="IMG" width="220"  height="150" />
-            <h3>Metal finishes</h3>
-            <p>Metal finishes are protective and decorative coatings applied
-               to metal surfaces, enhancing durability and appearance.</p>
-         </div>
+        <div className="servicio">
+          <img src={Imagen_Metal} alt="Metal finishes" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>Metal finishes</h3>
+          <p className='servicio_texto' >Metal finishes are protective and decorative coatings applied to metal surfaces, enhancing durability and appearance.</p>
+        </div>
 
+        <div className="servicio">
+          <img src={Imagen_Estructura_Metalica} alt="Metal structures" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>Metal structures</h3>
+          <p className='servicio_texto' >Treatments and coatings to improve the aesthetics and durability of the metal.</p>
+        </div>
 
-{/*structuras y Metalurgia*/ } 
+        <div className="servicio">
+          <img src={Imagen_Acabados_metalicas} alt="Metal finishes" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>Metal finishes</h3>
+          <p className='servicio_texto' >Treatments and coatings to improve the aesthetics and durability of the metal.</p>
+        </div>
 
-    <div>
-      <h2>Structures and Metalurgy</h2>
+        <div className="servicio">
+          <img src={Imagen_Remodelaciones} alt="Renovations" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>Renovations</h3>
+          <p className='servicio_texto'>We transform and renew your home with personalized solutions, improving functionality and aesthetics.</p>
+        </div>
 
-      <div>
-           <img src={Imagen_Estructura_Metalica} alt="IMG" width="220"  height="150" />
-            <h3>Metal finishes</h3>
-            <p>Treatments and coatings to improve the aesthetics and durability of the metal.</p>
-      </div>
-      
-      <div>
-           <img src={Imagen_Acabados_metalicas} alt="IMG" width="220"  height="150" />
-            <h3>Metal finishes</h3>
-            <p>Treatments and coatings to improve the aesthetics and durability of the metal.</p>
-      </div>
-      
-{/*Remodelaciones y Obras*/ } 
-  <div>
-    <h2>Remodeling and Works</h2>
+        <div className="servicio">
+          <img src={Imagen_Reestructuracion} alt="Restructuring of spaces" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>Restructuring of spaces</h3>
+          <p className='servicio_texto'>Optimize and renew your spaces with our remodeling and quality finishing services.</p>
+        </div>
 
-       <div>
-           <img src={Imagen_Remodelaciones} alt="IMG" width="220"  height="150" />
-            <h3>Renovations</h3>
-            <p>We transform and renew your home with personalized solutions, improving functionality and aesthetics.</p>
-      </div>
+        <div className="servicio">
+          <img src={Imagen_Albañileria} alt="General masonry" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>General masonry</h3>
+          <p className='servicio_texto' >We offer general masonry, carrying out construction and remodeling work with quality and precision.</p>
+        </div>
 
-      <div>
-           <img src={Imagen_Reestructuracion} alt="IMG" width="220"  height="150" />
-            <h3>Restructuring of spaces</h3>
-            <p>Optimiza y renueva tus espacios con nuestros servicios de remodelación y acabados de calidad. </p>
-      </div> 
-
-      
-      <div>
-           <img src={Imagen_Albañileria} alt="IMG" width="220"  height="150" />
-            <h3>General masonry</h3>
-            <p>We offer general masonry, carrying out construction and remodeling work with quality and precision. </p>
-      </div>    
-
-
-{/*  Mantenimiento Preventivo y Correctivo */ }   
-
-<div>
-  <h2>Maintenance Preventive and Corrective</h2>
-
-       <div>
-           <img src={Imagen_Mantenimiento} alt="IMG" width="220"  height="150" />
-            <h3>general maintenance</h3>
-            <p>We offer general maintenance to keep your spaces in optimal conditions. </p>
-       </div>
-</div>
-
-  </div>
-
-
-    </div>   
- </div>
-</div>
-</div>
-</div>
+        <div className="servicio">
+          <img src={Imagen_Mantenimiento} alt="General maintenance" className='servicio_imagen' />
+          <h3 className='servicio_titulo'>General maintenance</h3>
+          <p className='servicio_texto'>We offer general maintenance to keep your spaces in optimal condition.</p>
+        </div>
+   </div>
+   <br /><br />
+    </div>
   )
 }
 
