@@ -184,13 +184,16 @@ class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
  
+ 
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
+    permission_classes = [AllowAny]
 
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
+    permission_classes = [AllowAny]
     
     
 # Consulta Productos con stock disponible    
@@ -209,15 +212,17 @@ class productsDetail(generics.RetrieveUpdateDestroyAPIView):
 class Productos_Por_Sub_Categoria(generics.ListAPIView):
     serializer_class = productsSerializer  
     queryset = products.objects.all()
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
     
     
-    def get_queryset(self):
-        id_SubCategoryE= self.kwargs['sub_categories_product_id']
-        productofiltrado = products.objects.filter(sub_categories_product_id=id_SubCategoryE).select_related('id_category')  
+    #def get_queryset(self):
+       # id_SubCategoryE= self.kwargs['sub_categories_product_id']
+        #productofiltrado = products.objects.filter(sub_categories_product_id=id_SubCategoryE).select_related('id_category')  
         #categoriafiltrada = Categories.objects.filter(id_category = id_categoryE)
         
-        return productofiltrado
+        #return productofiltrado
+    
+    
     
 class inventoryListCreate(generics.ListCreateAPIView):
     queryset = inventory.objects.all()
@@ -397,32 +402,3 @@ class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = sells_detailsSerializer
     
  
-"""class Products_SoldViewSet(viewsets.ViewSet):
->>>>>>> 93005d205dfff9ddd68d23e9bfc207055380e1fb
-    def list(self, request):
-        # Agrupar las ventas por producto y sumar las cantidades
-        sold_products = sells_details.objects.values('product').annotate(total_quantity=Sum('sell__quantity'))
-
-        # Crear una lista para almacenar los resultados
-        products_sold = []
-        for item in sold_products:
-            product_id = item['product']
-            total_quantity = item['total_quantity']
-            product = products.objects.get(product_id=product_id)  # Obtener el producto por ID
-
-            # Serializar la información del producto vendido
-            product_data = {
-                    'product': {
-                    'product_id': product.product_id,
-                    'name': product.name,
-                },
-                'total_quantity': total_quantity,
-            }
-            products_sold.append(product_data)
-
-        # Retornar la respuesta con los productos vendidos
-
-        return Response(products_sold)
-        
- """
-
