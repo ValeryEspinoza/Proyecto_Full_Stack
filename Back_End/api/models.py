@@ -139,6 +139,9 @@ class products (models.Model):
     description = models.TextField(null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     creation_date = models.DateTimeField(null=False, auto_now_add=True)
+    imagen_url = models.CharField(blank=True, max_length=2200) 
+    sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)
+    
     sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)   
     def __str__(self):
         return str(self.name)
@@ -179,7 +182,8 @@ class services(models.Model):
     service_id = models.AutoField(primary_key=True)
     service = models.CharField(max_length=255, null=False)
     description = models.TextField(null=False)
-    category = models.ForeignKey(category_services, on_delete=models.CASCADE)
+    imagen_url = models.TextField(max_length=2000)  
+    category= models.ForeignKey(category_services, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.service)
     

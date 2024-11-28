@@ -255,16 +255,18 @@ class staffDetail(generics.RetrieveUpdateDestroyAPIView):
 class servicesListCreate(generics.ListCreateAPIView):
     queryset = services.objects.all()
     serializer_class = servicesSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
+
 class servicesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = services.objects.all()
-    serializer_class = servicesSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    serializer_class = servicesSerializer 
+    permission_classes = [AllowAny]
     
 class projectsListCreate(generics.ListCreateAPIView):
     queryset = projects.objects.all()
     serializer_class = projectsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    
+
 class projectsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = projects.objects.all()
     serializer_class = projectsSerializer

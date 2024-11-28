@@ -7,7 +7,7 @@ import Imagen_Metal from '../../Img/Components_Img/metal.jpg'
 import Imagen_Estructura_Metalica from '../../Img/Components_Img/Estructuras_metálicas.jpg'
 import Imagen_Acabados_metalicas from '../../Img/Components_Img/Acabados_metalicos.jpg'
 import Imagen_Remodelaciones from '../../Img/Components_Img/remodelacion.jpg'
-import Imagen_Reestructuracion from '../../Img/Components_Img/Reestructuración.webp'
+import Imagen_Reestructuracion from '../../Img/Components_Img/Reestructuracion.webp'
 import Imagen_Albañileria from '../../Img/Components_Img/Albañileria.jpg'
 import Imagen_Mantenimiento from '../../Img/Components_Img/Mantenimiento.jpg'
 

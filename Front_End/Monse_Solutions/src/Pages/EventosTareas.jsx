@@ -1,10 +1,25 @@
 import React from 'react'
-import '../Styles/Components_Styles/Admin_C_Styles/EventosYTareas.css'
-import EventosYTareasForm from '../Components/Admin_Components/EventosYTareasForm'
+import SideBar from '../Components/Admin_Components/SideBar'
+import '../Styles/Pages_Styles/EventosTareas.css'
+import EventsForm from '../Components/Admin_Components/EventsForm'
+import  TasksForms from '../Components/Admin_Components/TasksForms'
+
 
 function EventosTareas() {
   return (
-  <EventosYTareasForm />
+    
+    <div className='contenedoresPaginas'>
+      <SideBar />
+      <div>
+        <h1>Eventos</h1>
+        <EventsForm />
+        <hr />
+        <h1>Tareas</h1>
+        <TasksForms />
+
+      
+      </div>
+    </div>
   )
 }
 
