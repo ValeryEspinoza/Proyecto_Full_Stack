@@ -1,0 +1,113 @@
+/* Contenedor principal */
+.service-form-container {
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título del formulario */
+  .service-form-title {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Estilo general del formulario */
+  .service-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Cada grupo de campos */
+  .service-form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Etiquetas */
+  .service-form-label {
+    width: 180px;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
+  /* Entradas de texto */
+  .service-form-input,
+  .service-form-select,
+  .service-form-textarea {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Área de texto */
+  .service-form-textarea {
+    resize: vertical;
+  }
+  
+  /* Botón de envío */
+  .service-form-button {
+    width: 150px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  
+  .service-form-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsividad para dispositivos pequeños */
+  @media (max-width: 768px) {
+    .service-form-container {
+      width: 90%; /* Reduce el ancho */
+      padding: 15px;
+    }
+  
+    .service-form-label {
+      width: 100%; /* Las etiquetas ocupan toda la línea */
+      margin-bottom: 5px; /* Añade espacio entre etiqueta y entrada */
+    }
+  
+    .service-form-group {
+      flex-direction: column; /* Apila los elementos en columna */
+      align-items: flex-start;
+    }
+  
+    .service-form-input,
+    .service-form-select,
+    .service-form-textarea {
+      width: 100%; /* Las entradas ocupan todo el ancho */
+    }
+  
+    .service-form-button {
+      width: 100%; /* Botón ocupa todo el ancho */
+    }
+  }
+  
+  /* Responsividad para dispositivos muy pequeños */
+  @media (max-width: 480px) {
+    .service-form-title {
+      font-size: 1.5em; /* Reduce el tamaño del título */
+    }
+  
+    .service-form-container {
+      padding: 10px; /* Reduce el padding general */
+    }
+  
+    .service-form-button {
+      font-size: 16px; /* Ajusta el tamaño del texto del botón */
+      padding: 8px;
+    }
+  }

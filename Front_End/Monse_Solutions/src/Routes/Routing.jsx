@@ -10,10 +10,22 @@ import Formularios from '../Pages/Formularios'
 import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
 import Blog from '../Pages/Blog'
+<<<<<<< HEAD
+=======
 import DashBoard from '../Pages/DashBoard'
-import EventosTareas from '../Pages/EventosTareas'
-
+import Tasks from '../Pages/Tasks'
+import Events from '../Pages/Events'
+import Calendar from '../Pages/Calendar'
+import Products from '../Pages/Products'
+import Users from '../Pages/Users'
 import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
+import Settings from '../Pages/Settings'
+import Documentation from '../Pages/Documentation'
+import EventosTareas from '../Pages/EventosTareas'
+import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
+import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+>>>>>>> a8cfae2bf322726e7de68ed97d84914233847910
+
 
 function Routing() {
   return (
@@ -30,11 +42,21 @@ function Routing() {
       <Route path="/About" element={<AboutUs />} />
       <Route path="/Formularios" element={<Formularios />} />
       <Route path="/ServiciosAdmi" element={<ServiciosAdmi />} />
-      <Route path="/Blog" element={<Blog />} />
       <Route path="/DashBoard" element={<DashBoard />} />
+      <Route path='/Tasks' element={<Tasks />} />
+      <Route path="/Events" element={<Events />} />
+      <Route path="/Calendar" element={<Calendar />} />
+      <Route path="/Products" element={<Products />} />
+      <Route path="/Users" element={<Users />} />
+      <Route path="/Settings" element={<Settings />} />
+      <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
 
-       
+
+
+      <Route path="/Blog" element={<Blog />} />
+
+
 
     </Routes>
    </Router>

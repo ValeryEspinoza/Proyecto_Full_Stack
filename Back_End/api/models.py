@@ -139,8 +139,10 @@ class products (models.Model):
     description = models.TextField(null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     creation_date = models.DateTimeField(null=False, auto_now_add=True)
+    imagen_url = models.CharField(blank=True, max_length=2200) 
     sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)
     
+    sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)   
     def __str__(self):
         return str(self.name)
 
@@ -152,7 +154,6 @@ class inventory(models.Model):
     damaged_stock = models.IntegerField(null=False)
     entry_date = models.DateField(null=False, auto_now_add=True)
     product = models.ForeignKey(products, on_delete=models.CASCADE)
-    
     def __str__(self):
         return str(self.available_stock)
 
@@ -160,9 +161,7 @@ class jobs_positions(models.Model):
     position_id = models.AutoField(primary_key=True)
     position_name = models.CharField(max_length=255,  null=False)
     position_description = models.TextField(null=False)
-    area = models.ForeignKey(areas, on_delete=models.CASCADE)
-
-  
+    area = models.ForeignKey(areas, on_delete=models.CASCADE) 
     def __str__(self):
         return str(self.position_name)
  
@@ -183,7 +182,8 @@ class services(models.Model):
     service_id = models.AutoField(primary_key=True)
     service = models.CharField(max_length=255, null=False)
     description = models.TextField(null=False)
-    category = models.ForeignKey(category_services, on_delete=models.CASCADE)
+    imagen_url = models.TextField(max_length=2000)  
+    category= models.ForeignKey(category_services, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.service)
     
@@ -334,6 +334,11 @@ class sells_details (models.Model):
     sell = models.ForeignKey(sells, on_delete=models.CASCADE)
     product = models.ForeignKey(products, on_delete=models.CASCADE)
     
-    
+#Tabla Poliforma   
+class calendar (models.Model):
+    calendar_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, null=False)
+    date = models.DateField(null=False)
+    description = models.TextField(max_length=200, null=False, blank=True)
 
 

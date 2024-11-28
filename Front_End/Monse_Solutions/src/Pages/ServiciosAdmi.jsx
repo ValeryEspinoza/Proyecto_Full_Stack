@@ -1,12 +1,18 @@
 import React from 'react'
-import AdminNavBar from '../Components/Admin_Components/AdminNavBar'
-import ServicesData from '../Components/Admin_Components/ServicesData'
+
+import SideBar from '../Components/Admin_Components/SideBar'
+import ServicesForm from '../Components/Admin_Components/ServicesForm'
+import '../Styles/Pages_Styles/ServiciosAdmi.css'
+
 
 function ServiciosAdmi() {
   return (
-    <div>
-      <AdminNavBar />
-      <ServicesData />
+    <div className='contenedoresPaginas'>
+      <SideBar />
+      <div>
+          <ServicesForm />
+      </div>
+    
     </div>
   )
 }

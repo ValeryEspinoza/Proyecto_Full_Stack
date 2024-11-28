@@ -15,9 +15,28 @@
     margin-bottom: 2em;
 }
 
+/* Aumentar el tamaño del icono solo para "Eventos y Tareas" */
+.event-task-item .fa {
+    font-size: 2em;  /* Esto aumentará el tamaño del icono */
+}
+
+
+
+.PerfilUser{
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #fde8e8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
 
 /* Mantener el estilo para los otros elementos de la lista */
-.main-menu li > a {
+.elementLiTE {
     position: relative;
     display: table;
     border-collapse: collapse;
@@ -31,7 +50,7 @@
 }
 
 /* Estilo del texto */
-.main-menu .nav-text {
+.nav-text {
     position: relative;
     display: table-cell;
     vertical-align: middle;
@@ -40,8 +59,8 @@
 }
 
 /* Enlaces activos o en hover */
-.main-menu li:hover > a,
-nav.main-menu li.active > a {
+.elementLiTE:hover 
+.elementLiTE.active{
     color: #fff;
     background-color: #000000;
 }
@@ -51,7 +70,7 @@ nav.main-menu li.active > a {
     width: 250px;  /* Sidebar expandido */
 }
 
-.main-menu > ul {
+.listContentElementsSide {
     margin: 7px 0;
 }
 
@@ -61,6 +80,7 @@ nav.main-menu li.active > a {
 .fa-2x {
     font-size: 2em;
 }
+
 
 .fa {
     position: relative;
@@ -98,7 +118,7 @@ nav.main-menu.expanded {
 }
 
 /* Expansión del sidebar */
-.main-menu > ul {
+.listContentElementsSide {
     margin: 7px 0;
 }
 
@@ -145,7 +165,7 @@ nav.main-menu.expanded {
 }
 
 /* Menú de salida */
-.main-menu > ul.logout {
+.logout {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -161,10 +181,7 @@ nav.main-menu.expanded {
     overflow: visible;
 }
 
-/* Enlaces sin subrayado */
-a:hover, a:focus {
-    text-decoration: none;
-}
+
 
 /* Estilo para la navegación */
 nav {
@@ -217,3 +234,4 @@ nav.main-menu li.active > a,
          local('TitilliumWeb-Light'),
          url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
+

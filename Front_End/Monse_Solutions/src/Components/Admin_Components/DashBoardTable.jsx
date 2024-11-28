@@ -4,7 +4,7 @@ import '../../Styles/Components_Styles/Admin_C_Styles/DashBoardTable.css'
 function DashBoardTable() {
   return (
 
-<div>
+<div className='bodyDashBoard'>
 
 <section className="dashboard-hero-tabs">
   <h1>DashBoard</h1>

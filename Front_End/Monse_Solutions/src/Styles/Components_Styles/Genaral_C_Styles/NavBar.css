@@ -6,6 +6,11 @@
   color: #fff;
   margin: 0; /* Elimina cualquier margen externo */
   padding: 0; /* Elimina cualquier padding externo */
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  left: 0;
+  width: 100%; /* Se asegura de que ocupe todo el ancho */
+  z-index: 100; /* Se coloca por encima de otros elementos */
 }
 
 /* Ajustes específicos para la parte superior */
@@ -91,17 +96,54 @@
   background-color: #000;
   color: #ffffff;
 }
+
 /* Media Query para dispositivos móviles */
-@media (max-width: 991px) {
-  .navbar-links {
-    flex-direction: column;
-    gap: 15px;
-    margin-left: 0;
-    text-align: center;
+@media (max-width: 768px) {
+  /* Fondo y texto del Offcanvas */
+  .Navbar .offcanvas {
+    background-color: #1E1E1E; /* Fondo oscuro */
+    color: #ffffff !important;
+    z-index: 1050;
   }
-  .buttons-section {
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+
+  /* Links dentro del Offcanvas */
+  .offcanvas .navbar-links .itemLinkNav {
+    color: #000000 !important; /* Forzar color blanco */
+    font-size: 18px; /* Ajustar tamaño del texto */
+    display: block; /* Asegurar que estén en su propia línea */
+    text-align: start; /* Centrar el texto */
+    margin-left: 10%;
+    padding: 1px; /* Espaciado interno */
+    text-decoration: none; /* Sin subrayado */
+  }
+
+  /* Hover en los enlaces */
+.offcanvas .navbar-links .itemLinkNav:hover {
+  color: #1E1E1E; /* Texto oscuro */
+  background-color: #50C878; /* Fondo verde */
+  transform: scale(1.05); /* Zoom sutil */
+  }
+
+  /* Estilo para el botón de cierre del Offcanvas */
+  .Navbar .offcanvas .offcanvas-header .btn-close {
+    filter: invert(1); /* Asegura que el ícono de cierre sea visible */
+  }
+
+  /* Ajuste para el título del Offcanvas */
+  .Navbar .offcanvas .offcanvas-title {
+    color: #ffffff !important; /* Título blanco */
+    font-size: 18px;
+    text-align: center; /* Centrar el título */
+  }
+
+  /* Botones de Register y Login */
+  .nav-btnRegister, .nav-btnLogin {
+    width: 100%; /* Ocupan el 100% del contenedor */
+    max-width: 300px; /* Limitar ancho máximo */
+    font-size: 14px; /* Tamaño ajustado para móviles */
+    margin: 10px auto; /* Espaciado y centrado */
+    padding: 10px; /* Espaciado interno */
   }
 }
+
+

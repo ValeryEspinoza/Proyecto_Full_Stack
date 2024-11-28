@@ -1,10 +1,5 @@
 {
   "dependencies": {
-    "email": "^0.2.6",
-    "formik": "^2.4.6",
-    "js": "^0.1.0",
-    "sweetalert2": "^11.14.5",
-    "typeface-titillium-web": "^1.1.13",
-    "yup": "^1.4.0"
+    "sweetalert2": "^11.14.5"
   }
 }
