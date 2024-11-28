@@ -337,7 +337,7 @@ class statusSerializer(serializers.ModelSerializer):
 class prioritiesSerializer(serializers.ModelSerializer):
     class Meta:
         model = priorities
-        fields = '__all__'  
+        fields ='__all__'  
         
     def validate_name(self, values):
         validate_not_empty(value)  # Verifica que no esté vacío
@@ -530,8 +530,23 @@ class staffSerializer(serializers.ModelSerializer):
 class servicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = services
-        fields = '__all__'    
+        fields = ['service', 'description', 'category', 'imagen_url']    
     
+    def crear_servicio(request):
+        if request.method == 'POST':
+            service = request.POST.get('service')
+            description = request.POST.get('description')
+            imagen_url = request.POST.get('imagen_url')  # Asegúrate de que esto sea una URL válida
+            category = request.POST.get('category')
+
+            nuevo_servicio = service(
+                service=service,
+                description=description,
+                imagen_url=imagen_url,
+                category=category
+            )
+            nuevo_servicio.save()  # Guarda el objeto en la base de datos
+            
     def validate_services(self, value):
         validate_not_empty(value)
         validate_max_characters(value, 255)
