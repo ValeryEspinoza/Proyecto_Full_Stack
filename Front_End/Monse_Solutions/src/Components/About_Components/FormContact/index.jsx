@@ -14,8 +14,7 @@ function FormContact() {
             .max(50, "El nombre no debe exceder los 50 caracteres")
             .required("El nombre es obligatorio"),
         email: Yup.string()
-            .email("Correo electrónico no válido")
-            .required("El correo electrónico es obligatorio"),
+            .email("Correo electrónico no válido"),
         phone: Yup.string()
             .matches(/^[0-9]{8}$/, "El número debe tener 8 dígitos")
             .required("El teléfono es obligatorio"),
@@ -31,21 +30,43 @@ function FormContact() {
         message: "",
     };
 
-    const handleSubmit = (values, { resetForm }) => {
+    const handleSubmit = (values, { resetForm, setErrors, setStatus }) => {
+        // Verifica si hay errores de validación (esto lo maneja Formik y Yup)
+        const errors = {};  // Esto ya no es necesario, lo maneja Formik
+        const errorMessages = [];  // Aquí guardaremos todos los errores
+
+        // Recolecta los errores de Formik
+        Object.keys(values).forEach(field => {
+            if (!values[field]) {
+                errorMessages.push(`${field} es obligatorio`);  // Agrega un error si el campo está vacío
+            }
+        });
+
+        // Si existen errores, muestra la alerta
+        if (errorMessages.length > 0) {
+            Swal.fire({
+                title: "Error",
+                text: errorMessages.join("\n"),  // Muestra todos los errores
+                icon: "error",
+            });
+            return;
+        }
+
+        // Enviar correo si no hay errores
         emailjs.sendForm('service_9of4zxx', 'template_vw6uh2k', formRef.current, 'ymYtdvW4jhBm2ACDK')
             .then(
                 () => {
                     Swal.fire({
-                        title: "Request sent!",
-                        text: "We will review your request. Feel free to contact us with any questions",
+                        title: "¡Solicitud enviada!",
+                        text: "Revisaremos tu solicitud. No dudes en contactarnos si tienes alguna pregunta.",
                         icon: "success"
                     });
-                    resetForm(); //Limpia el formulario
+                    resetForm(); // Limpia el formulario
                 },
                 (error) => {
                     Swal.fire({
-                        title: "There was an error!",
-                        text: "Try again",
+                        title: "¡Hubo un error!",
+                        text: "Inténtalo de nuevo.",
                         icon: "error"
                     });
                     console.error(error);
@@ -60,18 +81,14 @@ function FormContact() {
             onSubmit={handleSubmit}
         >
             {() => (
-                <Form ref={formRef} className="join-form"> {/* Asocia el ref aquí */}
+                <Form ref={formRef} className="join-form">
                     <Field type="text" id="name" name="name" placeholder="Your name" className="inputFormTeam" />
-                    <ErrorMessage name="name" component="div" className="error" style={{ color: "red" }} />
                     <br />
                     <Field type="email" id="email" name="email" className="inputFormTeam" placeholder="Your email" />
-                    <ErrorMessage name="email" component="div" className="error" />
                     <br />
                     <Field type="text" id="phone" name="phone" className="inputFormTeam" placeholder="Your phone" />
-                    <ErrorMessage name="phone" component="div" className="error" />
                     <br />
                     <Field as="textarea" id="message" name="message" className="textAreaForm" placeholder="Your message" />
-                    <ErrorMessage name="message" component="div" className="error" />
                     <br />
                     <button className="btnJoinTeam" type="submit">Send</button>
                 </Form>
@@ -81,3 +98,4 @@ function FormContact() {
 }
 
 export default FormContact;
+
