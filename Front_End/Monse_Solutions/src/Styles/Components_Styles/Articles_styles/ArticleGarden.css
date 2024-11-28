@@ -53,7 +53,9 @@
 }
 
 .garden-content {
-  margin: 20px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .garden-section-title {
@@ -107,8 +109,27 @@
 .tips-list li:last-child {
   margin-bottom: 0;
 }
-
-
+.garden-extra {
+  background-color: #50C878;
+  color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.garden-extra:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+.garden-extra-tip-title{
+  font-size: 2em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.garden-extra-tip-text{
+  font-size: 1.2em;
+}
 @media (max-width: 768px) {
   .garden-tips-list {
       grid-template-columns: 1fr;

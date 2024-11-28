@@ -15,6 +15,12 @@ const ArticleGarden = () => {
         <p className="garden-desc">
           Creating a seasonal garden is a wonderful way to enjoy fresh blooms, vibrant colors, and homegrown produce year-round. Follow these steps to plan and maintain your perfect seasonal garden, no matter the weather.
         </p>
+                {/* Botón CTA - Comprar kit */}
+                <div className="cta-container">
+        <Link to="/store" className="cta-button">
+         Buy home maintenance kit
+        </Link>
+        </div>
       </section><br />
 
       {/* Lista de pasos */}
@@ -70,6 +76,12 @@ const ArticleGarden = () => {
         <p className="garden-extra-tip-text">
           Rotate crops annually to prevent soil depletion and reduce pests. For example, follow leafy greens with root vegetables, then legumes. For more gardening tips and tools, explore our blog at Monse Solutions. Let’s bring your garden to life!
         </p>
+        {/* Botón CTA - Comprar kit */}
+        <div className="cta-container">
+        <Link to="/store" className="cta-button2">
+         Buy home maintenance kit
+        </Link>
+        </div>
       </section>
     </div>
   );
