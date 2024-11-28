@@ -1,187 +1,137 @@
 .bodyLogin {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background:#FFFAFA; 
+    background: #FFFAFA; 
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-.divTitleLogin {
-    padding-top: 10px;
 }
 
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.divTitleLogin {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-title{
+    font-weight: bold;
+    font-size: 300%;
+}
 .login-container {
-    max-width: 500px;
-    width: 80%;
+    max-width: 600px;
+    width: 100%;
     padding: 40px;
     background-color: #EBE9E9;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    display: flex;         
+    display: flex;
     flex-direction: column;
-    align-items: center;   
-    justify-content: center;  
-}
-
-.login-title {
-    font-size: 50px;
-    font-weight: bold;
+    align-items: center;
+    gap: 20px;
 }
 
 .input-container {
-    position: relative; /* Necesario para posicionar el icono dentro del input */
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
 }
 
 .input-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
+    width: 25px;
     height: auto;
-    pointer-events: none; /* Esto evita que el ícono bloquee el clic dentro del input */
+    margin-right: 3%;
 }
 
 .input-field {
     width: 100%;
-    padding: 12px 12px 12px 40px; /* Ajusta el padding izquierdo para dar espacio al icono */
-    font-size: 16px;
+    max-width: 450px;
+    padding: 10px;
     border: none;
+    font-size: 16px;
     outline: none;
-    box-sizing: border-box;
+    border-radius: 5px;
     transition: border-color 0.3s;
-}
-
-.input-field:focus {
-    border-bottom: 1px solid #1E1E1E;
 }
 
 .input-field::placeholder {
     color: #aaa;
 }
 
-
-
-
 .btn-login {
     width: 50%;
-    padding: 8px;
-    background-color:#50C878;
+    max-width: 300px;
+    padding: 10px;
+    background-color: #50C878;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: -26px;
-    font-weight: bold;
-
 }
 
 .btn-login:hover {
     background-color: #1E1E1E;
 }
 
-.alert-message {
-    text-align: center;
-    color: #d9534f;
-}
-.goToHome{
-    font-weight:bold;
+.goToHome {
+    font-weight: bold;
     text-decoration: none;
-    margin-bottom: 3x;
     color: #1E1E1E;
-}
-/*.ContenedorPricipal{
-    background-color:#191825;
-   color: white;
-   height: 600px;
-      
+    margin-bottom: -5%;
 }
 
-.InputContent{
-    position: relative;
-    left: 35%;
-    top: 10px;
-    
+/*MEDIA QUERIE*/
+@media (max-width: 768px) {
+    .bodyLogin {
+        padding: 20px;
+        height: auto; /* Ajusta el alto si es necesario para scroll en pantallas pequeñas */
+    }
+
+    .login-wrapper {
+        gap: 15px; /* Reduce el espacio entre elementos para pantallas pequeñas */
+    }
+
+    .divTitleLogin {
+        margin-bottom: 15px;
+    }
+
+    .login-title {
+        font-size: 200%; /* Ajusta el tamaño del título */
+    }
+
+    .login-container {
+        max-width: 100%; /* Asegura que el contenedor ocupe el ancho disponible */
+        padding: 40px; /* Reduce el padding para pantallas más pequeñas */
+    }
+
+    .input-field {
+        font-size: 14px; /* Reduce ligeramente el tamaño del texto */
+        padding: 8px; /* Ajusta el espacio interno */
+    }
+
+    .btn-login {
+        width: 100%; /* Asegura que el botón ocupe el ancho del contenedor */
+        padding: 12px; /* Ajusta el espacio interno del botón */
+        font-size: 14px; /* Reduce ligeramente el tamaño del texto */
+    }
+
+    .input-icon {
+        width: 20px; /* Reduce el tamaño del ícono */
+    }
+
+    .goToHome {
+        font-size: 14px; /* Ajusta el tamaño del texto */
+    }
 }
 
-.inputStyleUno{
-    width: 350px;
-    height: 50px;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid #f4f3f7;
-    background-color: transparent;
-    color: #f2f1f8;
-    outline: none;
-    
-}
-
-.LabelStyleUno {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #fafafc;
-    font-size: 19px;
-    pointer-events: none;
-    transition: .3s;
-}
-
-.inputStyleUno:focus{
-    border: 2px solid #1cd6ce;
-}
-
-.inputStyleUno:focus~.LabelStyleUno,
-.inputStyleUno:valid~.LabelStyleUno{
-    top: 0;
-    font-size: 16px;
-    padding: 0 15px;
-    background-color: #191825;
-    color: #fff;
-}
-.SelectStyle{
-    width: 350px;
-    height: 45px;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid #f4f3f7;
-    background-color: transparent;
-    color: #f2f1f8;
-    outline: none;
-   
-}
-
-.btnAdd{
-    width: 200px;
-    height: 45px;
-    border-radius: 6px;
-    font-size: 18px;
-    padding: 0px 15px;
-    border: 2px solid #f4f3f7;
-    background-color: black;
-    color: white;
-    outline: none;
-
-}
-
-.btnAdd:hover{
-    color: black;
-    background-color: white;
-    border: 3px solid #1cd6ce;
-
-}
-.TituloStyle{
-padding: 1em;
-margin-left: 37%;
-margin-bottom: 7%;
-}*/
 

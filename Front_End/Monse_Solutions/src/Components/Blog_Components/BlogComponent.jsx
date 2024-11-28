@@ -39,7 +39,8 @@ function Blog() {
             Keeping your home in good condition not only enhances 
             its appearance but also prevents...
           </p>
-          <a href="#" className="cardBlogLink">Leer más...</a>
+          <Link to="/article/10-basic-maintenance-tips" className="cardBlogLink">Leer más...
+          </Link>
         </div>
 
         <div className="cardBlog">
@@ -49,7 +50,8 @@ function Blog() {
             Creating a seasonal garden is a wonderful way to enjoy fresh blooms, 
             vibrant colors...
           </p>
-          <a href="#" className="cardBlogLink">Leer más...</a>
+          <Link to="/ArticleGarden" className="cardBlogLink">Leer más...
+          </Link>
         </div>
       </div><br /><br /><br /><br />
 
@@ -87,15 +89,7 @@ function Blog() {
           </div>
         </div>
 
-        <div className="blog-post reverse">
-          <div className="image">
-            <img 
-              src={art4} 
-              alt="art4" 
-              onClick={() => openModal(art4)} //Abre el modal con la imagen
-              className="clickable-image"
-            />
-          </div>
+        <div className="blog-post">
           <div className="text">
             <h2 className='titleBlog'>Explore color ideas for your spaces</h2>
             <h3 className='descBlog'>Transform your home with the perfect palette</h3>
@@ -107,6 +101,14 @@ function Blog() {
             <Link to="/Contact">
               <button className="btnLeerMas">Read more...</button>
             </Link>
+          </div>
+          <div className="image">
+            <img 
+              src={art4} 
+              alt="art4" 
+              onClick={() => openModal(art4)} //Abre el modal con la imagen
+              className="clickable-image"
+            />
           </div>
         </div>
 

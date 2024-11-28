@@ -1,14 +1,9 @@
 from rest_framework import generics
+from rest_framework import viewsets
 from .serializers import UserSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  # Permisos para JWT
+from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  #Permisos para JWT
 from django.contrib.auth.models import User
 from django.db.models import F
-from django.http import JsonResponse
-from django.views import View
-from django.contrib.auth import authenticate  # Ensure you have this import
-from .utils import generate_token  # Import your token generation function
-
-
 from .models import (
     categories, suppliers, paymenth_methods, vacant, candidate, events, languages, status, priorities,
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
@@ -25,7 +20,7 @@ from .serializers import (
     clientsSerializer, sellsSerializer, products_suppliersSerializer, staff_tasksSerializer, staff_eventsSerializer,
     projects_servicesSerializer, staff_projectsSerializer, languages_clientsSerializer,
     reviewsSerializer, proformas_invoicesSerializer, candidates_vacantsSerializer,
-    proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer
+    proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer,
 )
 
 # views.py
@@ -77,7 +72,7 @@ class IsCliente(BasePermission):
 class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
     
     """def perform_create(self, serializer): #Esta validando el role
         user = serializer.save()
@@ -89,7 +84,7 @@ class UserListCreate(generics.ListCreateAPIView):
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
 
 
 
@@ -103,6 +98,8 @@ class categoriesListCreate(generics.ListCreateAPIView):
     queryset = categories.objects.all()
     serializer_class = categoriesSerializer
     permission_classes = [IsAuthenticated, IsAdministrador] 
+    
+    
 class categoriesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = categories.objects.all()
     serializer_class = categoriesSerializer
@@ -227,8 +224,7 @@ class productsListCreate(generics.ListCreateAPIView):
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [AllowAny]
-
+    
 class inventoryListCreate(generics.ListCreateAPIView):
     queryset = inventory.objects.all()
     serializer_class = inventorySerializer
@@ -277,11 +273,10 @@ class projectsDetail(generics.RetrieveUpdateDestroyAPIView):
 class clientsListCreate(generics.ListCreateAPIView):
     queryset = clients.objects.all()
     serializer_class = clientsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+
 class clientsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = clients.objects.all()
-    serializer_class = clientsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    serializer_class = clientsSerializer 
     
 class sellsListCreate(generics.ListCreateAPIView):
     queryset = sells.objects.all()
@@ -289,9 +284,8 @@ class sellsListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsAdministrador]
 class sellsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells.objects.all()
-    serializer_class = sellsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
-        
+    serializer_class = sellsSerializer 
+    
 class reviewsListCreate(generics.ListCreateAPIView):
     queryset = reviews.objects.all()
     serializer_class = reviewsSerializer
@@ -365,16 +359,15 @@ class staff_projectsDetail(generics.RetrieveUpdateDestroyAPIView):
 class languages_clientsListCreate(generics.ListCreateAPIView):
     queryset = languages_clients.objects.all()
     serializer_class = languages_clientsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+
 class languages_clientsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = languages_clients.objects.all()
     serializer_class = languages_clientsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
     
 class candidates_vacantsListCreate(generics.ListCreateAPIView):
     queryset = candidates_vacants.objects.all()
     serializer_class = candidates_vacantsSerializer
-    permission_classes =[IsAuthenticated, IsColaborador]
+
 class candidates_vacantsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = candidates_vacants.objects.all()
     serializer_class = candidates_vacantsSerializer
@@ -405,4 +398,3 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]

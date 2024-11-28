@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../Components/General_Components/NavBar'
 import Footer from '../Components/General_Components/Footer'
 import AboutUsForm from '../Components/About_Components/AboutUsForm'
+import JoinOurTeam from '../Components/About_Components/JoinOurTeam'
 
 
 function AboutUs() {
@@ -9,6 +10,7 @@ function AboutUs() {
     <div>
       <NavBar />
       <AboutUsForm />
+      <JoinOurTeam />
       <Footer />
     </div>
   )

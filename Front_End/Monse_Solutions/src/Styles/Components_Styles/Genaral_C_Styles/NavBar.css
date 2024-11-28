@@ -1,78 +1,149 @@
-/* Estilos generales del navbar */
+/* Estilo general del navbar para eliminar márgenes y padding */
 .Navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: #cecece;
+  color: #fff;
+  margin: 0; /* Elimina cualquier margen externo */
+  padding: 0; /* Elimina cualquier padding externo */
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  left: 0;
+  width: 100%; /* Se asegura de que ocupe todo el ancho */
+  z-index: 100; /* Se coloca por encima de otros elementos */
+}
+
+/* Ajustes específicos para la parte superior */
+.top-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #cecece;
-  color: #fff;
-  justify-content: center;
+  background-color: #1E1E1E;/* Fondo oscuro para la parte superior */
+  padding: 25px 20px;
+  margin: 0; /* Elimina márgenes */
 }
 
-/* Logo del navbar */
-.Navbar img {
+.logo-section img {
   height: 70px;
-  margin-left: 20px;
 }
 
-/* Links del navbar */
+.buttons-section {
+  display: flex;
+  gap: 10px;
+}
+
+/* Ajustes específicos para la parte inferior */
+.bottom-navbar {
+  background-color: #50C878; /* Fondo claro para la parte inferior */
+  padding: 15px 20px;
+  margin: 0; /* Elimina márgenes */
+}
+
+/* Contenedor de los links del navbar */
 .navbar-links {
   display: flex;
   gap: 35px;
-  margin-left: auto; 
+  justify-content: center; /* Centra los elementos dentro del contenedor */
   list-style: none;
   padding: 0;
-}
-
-.navbar-links p {
   margin: 0;
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
 }
-
 
 
 .itemLinkNav {
-  color: #333333; 
-  list-style: none;
+  color: #ffffff; 
   font-weight: bold;
   transition: color 0.3s ease;
   font-size: 18px;
   text-decoration: none;
 }
 
-
 .itemLinkNav:hover {
   color: #ffffff; 
-  background-color: #000000;
+  background-color: #1E1E1E;
   padding: 5px; 
   border-radius: 3px; 
 }
 
-
-
-.nav-btn {
+.nav-btnRegister {
   background-color: #c4c1c1;
-  border: 1px solid #000000;
   color: #000000;
-  padding: 5px 7px;
+  padding: 5px 10px;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-
-.nav-btn:hover {
+.nav-btnRegister:hover {
   background-color: #000;
   color: #ffffff;
 }
 
-/* Media  Query */
-@media (max-width: 991px) {
-  .navbar-links {
-    flex-direction: column;
-    gap: 15px;
-    margin-left: 0;
-    text-align: center;
+.nav-btnLogin{
+  background-color: #c4c1c1;
+  color: #000000;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-btnLogin:hover {
+  background-color: #000;
+  color: #ffffff;
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+  /* Fondo y texto del Offcanvas */
+  .Navbar .offcanvas {
+    background-color: #1E1E1E; /* Fondo oscuro */
+    color: #ffffff !important;
+    z-index: 1050;
+  }
+
+  /* Links dentro del Offcanvas */
+  .offcanvas .navbar-links .itemLinkNav {
+    color: #000000 !important; /* Forzar color blanco */
+    font-size: 18px; /* Ajustar tamaño del texto */
+    display: block; /* Asegurar que estén en su propia línea */
+    text-align: start; /* Centrar el texto */
+    margin-left: 10%;
+    padding: 1px; /* Espaciado interno */
+    text-decoration: none; /* Sin subrayado */
+  }
+
+  /* Hover en los enlaces */
+.offcanvas .navbar-links .itemLinkNav:hover {
+  color: #1E1E1E; /* Texto oscuro */
+  background-color: #50C878; /* Fondo verde */
+  transform: scale(1.05); /* Zoom sutil */
+  }
+
+  /* Estilo para el botón de cierre del Offcanvas */
+  .Navbar .offcanvas .offcanvas-header .btn-close {
+    filter: invert(1); /* Asegura que el ícono de cierre sea visible */
+  }
+
+  /* Ajuste para el título del Offcanvas */
+  .Navbar .offcanvas .offcanvas-title {
+    color: #ffffff !important; /* Título blanco */
+    font-size: 18px;
+    text-align: center; /* Centrar el título */
+  }
+
+  /* Botones de Register y Login */
+  .nav-btnRegister, .nav-btnLogin {
+    width: 100%; /* Ocupan el 100% del contenedor */
+    max-width: 300px; /* Limitar ancho máximo */
+    font-size: 14px; /* Tamaño ajustado para móviles */
+    margin: 10px auto; /* Espaciado y centrado */
+    padding: 10px; /* Espaciado interno */
   }
 }
+
 

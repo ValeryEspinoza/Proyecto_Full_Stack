@@ -15,13 +15,19 @@ function Footer() {
     <img src={Logo_Negro2} alt="Logo" className="custom-footer-logo" />
   </h3>
 
-  <div className="custom-footer-links">
+  <div className="custom-footer-links"> 
     <Link to="/" className="custom-pagesFooter">Home</Link>
-    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
+    <span className="separator"> | </span>
     <Link to="/Servicios" className="custom-pagesFooter">Services</Link>
+    <span className="separator"> | </span>
     <Link to="/About" className="custom-pagesFooter">About us</Link>
+    <span className="separator"> | </span>
+    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
+    <span className="separator"> | </span>
+    <Link to="/About" className="custom-pagesFooter">Store</Link>
+    <span className="separator"> | </span>
     <Link to="/Blog" className="custom-pagesFooter">Blog</Link>
-  </div>
+</div>
 
   <p className="custom-footer-company-name">Company Name © 2024</p>
 </div>
@@ -39,7 +45,6 @@ function Footer() {
   </div>
 
   <div>
-    <i className="fa fa-envelope"></i>
     <p><a href="monsesolutions@gmail.com">monsesolutions@gmail.com</a></p>
   </div>
 
@@ -54,16 +59,17 @@ function Footer() {
   </p>
 
   <div className="custom-footer-icons">
-    <a className='custom-rrss' href="https://www.instagram.com/andres_monsesolutions/" target="_blank" rel="noopener noreferrer">
-      <i className="fa fa-instagram"><BsInstagram size={24} /></i>
-    </a>
-    <a className='custom-rrss' href="https://www.facebook.com/profile.php?id=100039796124979" target="_blank" rel="noopener noreferrer">
-      <i className="fa fa-facebook"><BsFacebook size={24} /></i>
-    </a>
-    <a className='custom-rrss' href="#">
-      <i className="fa fa-tiktok"><BsTiktok size={24} /></i>
-    </a>
-  </div>
+  <a className='custom-rrss' href="https://www.instagram.com/andres_monsesolutions/" target="_blank" rel="noopener noreferrer">
+    <BsInstagram size={24} />
+  </a>
+  <a className='custom-rrss' href="https://www.facebook.com/profile.php?id=100039796124979" target="_blank" rel="noopener noreferrer">
+    <BsFacebook size={24} />
+  </a>
+  <a className='custom-rrss' href="#">
+    <BsTiktok size={24} />
+  </a>
+</div>
+
 
 </div>
 

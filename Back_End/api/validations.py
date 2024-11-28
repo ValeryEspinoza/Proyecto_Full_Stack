@@ -78,3 +78,45 @@ def sanitize_input(value): #    Elimina las etiquetas HTML y escapa los caracter
     sanitized_value = escape(stripped_value)
     
     return sanitized_value
+
+
+def validate_price(value, min_price, decimal_places):
+    # Validar que el precio no esté vacío
+    if not value:  # Si el valor solo contiene espacios vacíos
+        raise serializers.ValidationError("Este campo no puede estar vacío ni contener solo espacios.")
+    
+    # Validar que el precio no contenga caracteres especiales    
+    if value <= 0 or value < min_price:
+        raise serializers.ValidationError(
+            f"El precio no puede ser menor que {min_price}, ni igual a 0, ni negativo."
+        )
+        
+    decimal_pattern = r'^\d+(\.\d{1,' + str(decimal_places) + '})?$'
+
+    # Validar que el valor tenga el formato correcto de decimales
+    value_str = str(value)
+    if not re.match(decimal_pattern, value_str):
+        raise serializers.ValidationError(f"El precio debe tener como máximo {decimal_places} decimales.")        
+
+        
+        
+def validate_Quiantity(value, min_quiantity):
+    # Validar que el precio no esté vacío
+    if not value:  # Si el valor solo contiene espacios vacíos
+        raise serializers.ValidationError("Este campo no puede estar vacío.")
+    # Validar que el precio no contenga caracteres especiales
+    
+    
+    if value < 0 or value < min_quiantity:
+        raise serializers.ValidationError(
+            f"La cantidad no puede ser menor que {min_quiantity}, ni negativo."
+        )
+        
+def validate_negative_values(value):
+    # Validar que el precio no esté vacío
+
+    
+    if value < 0 :
+        raise serializers.ValidationError(
+            f"La cantidad no puede ser menor menor a cero"
+        )

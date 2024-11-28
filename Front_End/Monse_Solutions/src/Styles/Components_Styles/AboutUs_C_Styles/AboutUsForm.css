@@ -6,7 +6,7 @@
     font-family: Arial, sans-serif;
 }
 .divTitleAbout{
-    padding-top: 10px;
+    padding-top: 20px;
 }
 .intro-section{
     align-self: center;
@@ -14,7 +14,7 @@
     text-align: center;
 }
 .about-title {
-    font-size: 50px;
+    font-size: 80px;
     font-weight: bold;
 }
 .parrafoAbout {
@@ -41,6 +41,9 @@
     margin-top: -26px;
     font-weight: bold;
 }
+.contactUs:hover{
+  background-color: #1E1E1E;
+}
 
 .sectionMV {
     display: flex;
@@ -52,7 +55,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: #333; /* Color de la placa */
+    background-color: #333; 
     padding: 40px;
     width: 80%;
     border-radius: 8px;

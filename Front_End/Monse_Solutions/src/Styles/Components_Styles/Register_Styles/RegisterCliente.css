@@ -4,19 +4,22 @@
     background: #FFFAFA; 
     min-height: 100vh; /* Cambiado a min-height */
     width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding-bottom: 20px; /* Espacio adicional al final */
+    margin-top: 10%;
 }
 
 /* Contenedor del título */
 .divTitleRegister {
-    background-color: #1E1E1E; /* Color de fondo de la barra */
+    background-image: url(../../../Img/Components_Img/portada_register.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     width: 100%; /* Ancho completo */
     height: 300px;
-    padding: 260px 0;
+    padding: 215px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +36,7 @@
     align-items: center; /* Centra el contenido verticalmente */
     justify-content: center; /* Centra el contenido horizontalmente */
     gap: 30px; /* Espacio entre el icono y el texto */
+    margin-top: -10%;
 }
 
 .iconRegister {
@@ -90,6 +94,18 @@
     color: #aaa;
 }
 
+/* Estilo para el campo deshabilitado pero manteniendo el diseño */
+.disabled-input {
+    background-color: #fff; /* Fondo blanco o el color que desees */
+    border: 1px solid #ccc; /* El borde de los campos normales */
+    color: #333; /* Color del texto */
+  }
+  
+  .disabled-input:disabled {
+    opacity: 1; /* Se asegura que el campo no se vea atenuado */
+    cursor: not-allowed; /* Cursor para indicar que el campo está deshabilitado */
+  }
+  
 .btn-Register{
     width: 50%;
     padding: 8px;
@@ -131,7 +147,9 @@
     .register {
         font-size: 50px; /* Reducir el tamaño del texto del título */
     }
-
+    .title-content{
+        margin-top: 10%;
+    }
     .iconRegister {
         height: 60px; /* Reducir el tamaño del icono */
     }
@@ -177,6 +195,6 @@
     .divTitleRegister {
         height: 200px; 
         padding: 100px 0;
-        margin-top: 250px;
+        margin-top: 200px;
     }
 }

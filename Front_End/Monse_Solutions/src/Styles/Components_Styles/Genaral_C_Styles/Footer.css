@@ -44,8 +44,17 @@
   font-weight: 400;
   text-decoration: none;
   color: inherit;
+  margin-right: 2px
 }
 
+.custom-footer-distributed .separator {
+  color: #fff;
+  margin-right: 2px; /* Espacio alrededor del separador */
+}
+
+.custom-footer-distributed .custom-footer-links a:hover {
+  color: #50C878; /* Puedes personalizar el color cuando el usuario pase el cursor */
+}
 .custom-footer-company-name {
   color: #a0a0a0;
   font-size: 14px;
@@ -59,7 +68,6 @@
 }
 
 .custom-footer-center i {
-  background-color: #33383b;
   color: #ffffff;
   font-size: 25px;
   width: 38px;
@@ -89,6 +97,8 @@
 .custom-footer-center p a {
   color: #50C878;
   text-decoration: none;
+  font-weight: bold;
+  margin-left:30px;
 }
 
 /* Footer right */
@@ -121,7 +131,6 @@
   width: 35px;
   height: 35px;
   cursor: pointer;
-  background-color: #33383b;
   border-radius: 2px;
   font-size: 20px;
   color: #ffffff;

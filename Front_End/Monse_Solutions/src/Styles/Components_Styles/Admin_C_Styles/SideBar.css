@@ -1,0 +1,236 @@
+/* Ajustar tamaño de la imagen para que sea similar al tamaño del ícono */
+.nav-img {
+
+    position: relative;
+    display: table-cell;
+    width: 40px;
+    height: 38px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 9px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/* Aumentar el tamaño del icono solo para "Eventos y Tareas" */
+.event-task-item .fa {
+    font-size: 2em;  /* Esto aumentará el tamaño del icono */
+}
+
+
+
+.PerfilUser{
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #fde8e8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+/* Mantener el estilo para los otros elementos de la lista */
+.elementLiTE {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #999;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+/* Estilo del texto */
+.nav-text {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    width: 190px;  /* Ancho del texto cuando se expande */
+    font-family: 'Titillium Web', sans-serif;
+}
+
+/* Enlaces activos o en hover */
+.elementLiTE:hover 
+.elementLiTE.active{
+    color: #fff;
+    background-color: #000000;
+}
+
+/* Cuando el sidebar esté expandido */
+.main-menu {
+    width: 250px;  /* Sidebar expandido */
+}
+
+.listContentElementsSide {
+    margin: 7px 0;
+}
+
+
+
+/* Estilo para los íconos con tamaño 2x */
+.fa-2x {
+    font-size: 2em;
+}
+
+
+.fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Menú principal */
+.main-menu:hover,
+nav.main-menu.expanded {
+    width: 250px;
+    overflow: visible;
+}
+
+.main-menu {
+    background: #212121;
+    border-right: 1px solid #e5e5e5;
+    position: fixed;  /* Fijo en la pantalla */
+    top: 0;           /* Pegado a la parte superior */
+    left: 0;          /* Pegado al borde izquierdo */
+    bottom: 0;        /* Ocupa toda la altura de la pantalla */
+    width: 60px;      /* Ancho inicial del sidebar */
+    overflow: hidden;
+    -webkit-transition: width 0.05s linear; /* Transición de ancho */
+    transition: width 0.05s linear; /* Transición de ancho */
+    -webkit-transform: translateZ(0) scale(1, 1); /* Prefijo Webkit */
+    transform: translateZ(0) scale(1, 1); /* Estándar */
+    z-index: 1000;    /* Asegura que esté por encima del contenido */
+}
+
+/* Expansión del sidebar */
+.listContentElementsSide {
+    margin: 7px 0;
+}
+
+.main-menu li {
+    position: relative;
+    display: block;
+    width: 250px;  /* Ancho del sidebar expandido */
+}
+
+/* Estilo para los enlaces dentro del sidebar */
+.main-menu li > a {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #999;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    -webkit-transform: translateZ(0) scale(1, 1); /* Prefijo Webkit */
+    transform: translateZ(0) scale(1, 1); /* Estándar */
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+/* Estilo para los íconos en el sidebar */
+.main-menu .nav-icon {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+/* Estilo para el texto en el sidebar */
+.main-menu .nav-text {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    width: 190px;  /* Ancho del texto cuando se expande */
+    font-family: 'Titillium Web', sans-serif;
+}
+
+/* Menú de salida */
+.logout {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+/* Estilo para la scrollable */
+.no-touch .scrollable.hover {
+    overflow-y: hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+    overflow-y: auto;
+    overflow: visible;
+}
+
+
+
+/* Estilo para la navegación */
+nav {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+nav ul, nav li {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para cuando un elemento es hover o activo */
+.main-menu li:hover > a,
+nav.main-menu li.active > a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus,
+.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+.dashboard-page nav.dashboard-menu ul li.active a {
+    color: #fff;
+    background-color: #000000;
+}
+
+/* Área principal */
+.area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+    margin-left: 60px; /* Desplaza el contenido a la derecha del sidebar */
+}
+
+
+
+
+
+/* Definición de la fuente Titillium Web */
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'),
+         local('TitilliumWeb-Light'),
+         url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}

@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+from .views import ventas_por_cliente
+
+
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -67,6 +70,7 @@ urlpatterns = [
     path('areas/', views.areasListCreate.as_view(), name='areas-list'),
     path('areas/<int:pk>/', views.areasDetail.as_view(), name='areas-detail'),
 
+
 #Tablas con relaciones foraneas**************
     #Sub_Categories_products
     path('sub_categories_products/', views.sub_categories_productsListCreate.as_view(), name='sub_categories_products-list'),
@@ -74,11 +78,11 @@ urlpatterns = [
 
    #Products
     path('products/', views.productsListCreate.as_view(),name='products-list'),
-    path('products/<int:pk>/', views.productsDetail.as_view(), name='products-detai'),
+    path('products/<int:pk>/', views.productsDetail.as_view(), name='products-detail'),
     
    #inventory
     path('inventory/', views.inventoryListCreate.as_view(),name='inventory-list'),
-    path('inventory/<int:pk>/', views.inventoryDetail.as_view(), name='inventory-detai'),
+    path('inventory/<int:pk>/', views.inventoryDetail.as_view(), name='inventory-detail'),
     
     #jobs_positions
     path('jobs_positions/', views.jobs_positionsListCreate.as_view(), name='jobs_positions-list'),
@@ -87,60 +91,65 @@ urlpatterns = [
 
     #staff
     path('staff/', views.staffListCreate.as_view(),name='staff-list'),
-    path('staff/<int:pk>/', views.staffDetail.as_view(), name='staff-detai'),
+    path('staff/<int:pk>/', views.staffDetail.as_view(), name='staff-detail'),
 
 
     path('services/', views.servicesListCreate.as_view(),name='services-list'),
-    path('services/<int:pk>/', views.servicesDetail.as_view(), name='services-detai'), 
+    path('services/<int:pk>/', views.servicesDetail.as_view(), name='services-detail'), 
     
     path('projects/', views.projectsListCreate.as_view(),name='projects-list'),
-    path('projects/<int:pk>/', views.projectsDetail.as_view(), name='projects-detai'),   
+    path('projects/<int:pk>/', views.projectsDetail.as_view(), name='projects-detail'),   
     
     path('clients/', views.clientsListCreate.as_view(),name='clients-list'),
-    path('clients/<int:pk>/', views.clientsDetail.as_view(), name='clients-detai'), 
+    path('clients/<int:pk>/', views.clientsDetail.as_view(), name='clients-detail'), 
     
     path('sells/', views.sellsListCreate.as_view(),name='sells-list'),
-    path('sells/<int:pk>/', views.sellsDetail.as_view(), name='sells-detai'), 
+    path('sells/<int:pk>/', views.sellsDetail.as_view(), name='sells-detail'), 
     
     path('reviews/', views.reviewsListCreate.as_view(),name='reviews-list'),
-    path('reviews/<int:pk>/', views.reviewsDetail.as_view(), name='reviews-detai'), 
+    path('reviews/<int:pk>/', views.reviewsDetail.as_view(), name='reviews-detail'), 
 
     path('proformas_invoices/', views.proformas_invoicesListCreate.as_view(),name='proformas_invoices-list'),
-    path('proformas_invoices/<int:pk>/', views.proformas_invoicesDetail.as_view(), name='proformas_invoices-detai'), 
+    path('proformas_invoices/<int:pk>/', views.proformas_invoicesDetail.as_view(), name='proformas_invoices-detail'), 
      
 
      
 # URL de tablas intermedias**********************
     path('products_suppliers/', views.products_suppliersListCreate.as_view(),name='products_suppliers-list'),
-    path('products_suppliers/<int:pk>/', views.products_suppliersDetail.as_view(), name='products_suppliers-detai'),
+    path('products_suppliers/<int:pk>/', views.products_suppliersDetail.as_view(), name='products_suppliers-detail'),
  
     path('staff_tasks/', views.staff_tasksListCreate.as_view(),name='staff_tasks-list'),
-    path('staff_tasks/<int:pk>/', views.staff_tasksDetail.as_view(), name='staff_tasks-detai'),
+    path('staff_tasks/<int:pk>/', views.staff_tasksDetail.as_view(), name='staff_tasks-detail'),
 
     path('staff_events/', views.staff_eventsListCreate.as_view(),name='staff_events-list'),
-    path('staff_events/<int:pk>/', views.staff_eventsDetail.as_view(), name='staff_events-detai'), 
+    path('staff_events/<int:pk>/', views.staff_eventsDetail.as_view(), name='staff_events-detail'), 
        
 
     path('projects_services/', views.projects_servicesListCreate.as_view(),name='projects_services-list'),
-    path('projects_services/<int:pk>/', views.projects_servicesDetail.as_view(), name='projects_services-detai'), 
+    path('projects_services/<int:pk>/', views.projects_servicesDetail.as_view(), name='projects_services-detail'), 
  
     path('staff_projects/', views.staff_projectsListCreate.as_view(),name='staff_projects-list'),
-    path('staff_projects/<int:pk>/', views.staff_projectsDetail.as_view(), name='staff_projects-detai'), 
+    path('staff_projects/<int:pk>/', views.staff_projectsDetail.as_view(), name='staff_projects-detail'), 
        
     path('languages_clients/', views.languages_clientsListCreate.as_view(),name='languages_clients-list'),
-    path('languages_clients/<int:pk>/', views.languages_clientsDetail.as_view(), name='languages_clients-detai'), 
+    path('languages_clients/<int:pk>/', views.languages_clientsDetail.as_view(), name='languages_clients-detail'), 
      
     path('candidates_vacants/', views.candidates_vacantsListCreate.as_view(),name='candidates_vacants-list'),
-    path('candidates_vacants/<int:pk>/', views.candidates_vacantsDetail.as_view(), name='candidates_vacants-detai'), 
+    path('candidates_vacants/<int:pk>/', views.candidates_vacantsDetail.as_view(), name='candidates_vacants-detail'), 
          
     path('proformas_invoices_services/', views.proformas_invoices_servicesListCreate.as_view(),name='proformas_invoices_services-list'),
-    path('proformas_invoices_services/<int:pk>/', views.proformas_invoices_servicesDetail.as_view(), name='proformas_invoices_services-detai'), 
+    path('proformas_invoices_services/<int:pk>/', views.proformas_invoices_servicesDetail.as_view(), name='proformas_invoices_services-detail'), 
          
     path('proformas_invoices_staff/', views.proformas_invoices_staffListCreate.as_view(),name='proformas_invoices_staff-list'),
-    path('proformas_invoices_staff/<int:pk>/', views.proformas_invoices_staffDetail.as_view(), name='proformas_invoices_staff-detai'), 
+    path('proformas_invoices_staff/<int:pk>/', views.proformas_invoices_staffDetail.as_view(), name='proformas_invoices_staff-detail'), 
          
     path('sells_details/', views.sells_detailsListCreate.as_view(),name='sells_details-list'),
-    path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detai'), 
+
+    path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detail'), 
+
+    #path('productos_stock/', productos_stock_disponible.as_view(), name='productos_stock-details-detail'),
+    
+    path('ventas_por_cliente/<int:client_id>/', ventas_por_cliente.as_view(), name='ventas-por-cliente'),
      
 
 ]

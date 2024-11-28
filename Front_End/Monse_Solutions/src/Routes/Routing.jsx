@@ -10,7 +10,6 @@ import Formularios from '../Pages/Formularios'
 import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
 import Blog from '../Pages/Blog'
-import VirtualStore from '../Pages/VirtualStore'
 
 import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 
@@ -29,8 +28,10 @@ function Routing() {
       <Route path="/About" element={<AboutUs />} />
       <Route path="/Formularios" element={<Formularios />} />
       <Route path="/ServiciosAdmi" element={<ServiciosAdmi />} />
+      <Route path="/DashBoard" element={<DashBoard />} />
+      <Route path="/EventosTareas" element={<EventosTareas />} />
+
       <Route path="/Blog" element={<Blog />} />
-      <Route path="/Virtualstore" element={<VirtualStore />} />
 
        
 
