@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../Styles/Components_Styles/Home_C_Styles/Reviews.css';
+import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
+import '../../config/i18n'
 
 // Puedes importar las imágenes o usar rutas relativas a la carpeta de imágenes
 import Usuario1 from '../../Img/Components_Img/persona1.jpg';
@@ -9,6 +11,11 @@ import Usuario4 from '../../Img/Components_Img/persona4.webp';
 import Usuario5 from '../../Img/Components_Img/persona5.jpeg';
 
 const ReviewCard = ({ title, body, reviewer, date, rating, image }) => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Cambia el idioma dinámicamente
+  };
   return (
     <div className="review-card">
       <div className="review-rating">
@@ -34,8 +41,8 @@ const ReviewCard = ({ title, body, reviewer, date, rating, image }) => {
 const Reviews = () => {
   const sampleReviews = [
     {
-      title: 'Excellent work and attention to detail',
-      body: 'We hired this company to remodel our kitchen, and the result was amazing. The finishes are high quality, and the team was very professional throughout the process.',
+      title: "Excellent work and attention to detail",
+      body: "We hired this company to remodel our kitchen, and the result was amazing. The finishes are high quality, and the team was very professional throughout the process.",
       reviewer: 'Carlos Martinez',
       date: '2024-10-15',
       rating: 5,

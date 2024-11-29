@@ -10,8 +10,7 @@ import Formularios from '../Pages/Formularios'
 import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
 import Blog from '../Pages/Blog'
-<<<<<<< HEAD
-=======
+
 import DashBoard from '../Pages/DashBoard'
 import Tasks from '../Pages/Tasks'
 import Events from '../Pages/Events'
@@ -24,8 +23,6 @@ import Documentation from '../Pages/Documentation'
 import EventosTareas from '../Pages/EventosTareas'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
->>>>>>> a8cfae2bf322726e7de68ed97d84914233847910
-
 
 function Routing() {
   return (
