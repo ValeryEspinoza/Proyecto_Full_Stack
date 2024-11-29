@@ -10,7 +10,7 @@
 }
 
 .garden-header {
-  background-image: url(../../../Img/Components_Img/portada_arti1.png);
+  background-image: url(../../../Img/Components_Img/portada_garden.png);
   background-size: cover;
   background-position: center;
   height: 300px;
@@ -35,7 +35,7 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
-  color: #50C878;
+  color: #ffffff;
 }
 
 .garden-intro {
@@ -53,7 +53,10 @@
 }
 
 .garden-content {
-  margin: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: justify;
 }
 
 .garden-section-title {
@@ -63,20 +66,15 @@
   text-align: center;
   font-weight: bold;
 }
-
-/* Lista principal dividida en columnas */
-/* Lista principal organizada en dos columnas */
-.tips-list {
-  display: grid; /* Cambiamos a grid */
-  grid-template-columns: 1fr 1fr; /* Dividimos en 2 columnas iguales */
-  gap: 20px; /* Espacio entre columnas */
+/* Lista numerada principal */
+.tips-listGarden {
   padding: 0;
   margin: 20px 0;
   list-style: none; /* Eliminamos las viñetas por defecto */
 }
 
 /* Estilo para los elementos principales de la lista */
-.tips-list > li {
+.tips-listGarden > li {
   position: relative;
   padding-left: 20px;
   counter-increment: step-counter; /* Numeración automática */
@@ -84,7 +82,7 @@
 }
 
 /* Numeración de pasos principales */
-.tips-list > li::before {
+.tips-listGarden > li::before {
   content: counter(step-counter) ". "; /* Agrega la numeración */
   font-weight: bold;
   color: #50C878;
@@ -92,14 +90,14 @@
   left: 0;
 }
 
-/* Sublistas */
-.tips-list ul {
+/* Sublistas con viñetas */
+.tips-listGarden ul {
   margin-top: 10px; /* Espaciado superior */
   padding-left: 20px; /* Indentación de sublistas */
   list-style-type: disc; /* Viñetas simples */
 }
 
-.tips-list ul li {
+.tips-listGarden ul li {
   margin-bottom: 5px;
 }
 
@@ -109,6 +107,28 @@
 }
 
 
+
+.garden-extra {
+  background-color: #50C878;
+  color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.garden-extra:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+.garden-extra-tip-title{
+  font-size: 2em;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.garden-extra-tip-text{
+  font-size: 1.2em;
+}
 @media (max-width: 768px) {
   .garden-tips-list {
       grid-template-columns: 1fr;

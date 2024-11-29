@@ -215,15 +215,46 @@ class sub_categories_productsListCreate(generics.ListCreateAPIView):
 class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+ 
  
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes =[AllowAny]
+    permission_classes = [AllowAny]
+
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
+    permission_classes = [AllowAny]
+    
+    
+# Consulta Productos con stock disponible    
+"""class productos_stock_disponible(generics.ListAPIView):
+    queryset = products.objects.filter(stock__gt=0)
+    serializer_class = productsSerializer 
+    permission_classes = [IsAuthenticated, IsAdministrador]
+
+    def get_queryset(self):
+        # Filtrar productos con inventarios que tienen stock disponible
+       return products.objects.filter(inventory__available_stock__gt=0).distinct()
+
+"""
+ 
+#Consulta  productos por sub categorías  
+class Productos_Por_Sub_Categoria(generics.ListAPIView):
+    serializer_class = productsSerializer  
+    queryset = products.objects.all()
+    permission_classes = [AllowAny]
+    
+    
+    #def get_queryset(self):
+       # id_SubCategoryE= self.kwargs['sub_categories_product_id']
+        #productofiltrado = products.objects.filter(sub_categories_product_id=id_SubCategoryE).select_related('id_category')  
+        #categoriafiltrada = Categories.objects.filter(id_category = id_categoryE)
+        
+        #return productofiltrado
+    
+    
     
 class inventoryListCreate(generics.ListCreateAPIView):
     queryset = inventory.objects.all()
@@ -400,3 +431,5 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
+    
+ 
