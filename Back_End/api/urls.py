@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
 
-from .views import ventas_por_cliente
 
 
 from rest_framework_simplejwt.views import (
@@ -149,7 +148,7 @@ urlpatterns = [
 
     #path('productos_stock/', productos_stock_disponible.as_view(), name='productos_stock-details-detail'),
     
-    path('ventas_por_cliente/<int:client_id>/', ventas_por_cliente.as_view(), name='ventas-por-cliente'),
+  
      
 
 ]

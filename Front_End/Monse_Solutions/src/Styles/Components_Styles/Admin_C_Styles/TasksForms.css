@@ -1,125 +1,92 @@
 /* Contenedor principal del formulario */
-.event-form-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    max-width: 800px;
-    margin: auto;
-    gap: 16px;
-  }
-  
-  /* Estilo de cada grupo */
-  .event-form-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 45%; /* Dos columnas en pantallas grandes */
-    min-width: 220px;
-  }
-  
-  /* Etiquetas */
-  .event-label {
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  /* Inputs */
-  .event-input {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  .event-input:focus {
-    border-color: #007bff;
-  }
-  
-  /* Botón de envío */
-  .event-submit-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .event-submit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Responsividad */
-  @media (max-width: 768px) {
-    .event-form-group {
-      flex: 1 1 100%; /* Una columna en pantallas pequeñas */
-    }
-  }
+.task-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: auto;
+  gap: 16px;
+}
 
-  /* Responsividad para pantallas pequeñas */
+/* Estilo de cada grupo */
+.task-form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 45%; /* Dos columnas en pantallas grandes */
+  min-width: 220px;
+}
+
+/* Etiquetas */
+.task-label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs */
+.task-input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.task-input:focus {
+  border-color: #007bff;
+}
+
+/* Botón de envío */
+.task-submit-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.task-submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Agrega esto en tu archivo CSS */
+.alert {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.alert.success {
+  background-color: #28a745;
+  color: white;
+}
+
+.alert.error {
+  background-color: #dc3545;
+  color: white;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+/* Responsividad */
 @media (max-width: 768px) {
-    /* Cambiar el ancho del sidebar en pantallas pequeñas */
-    .main-menu {
-      width: 50px; /* Más estrecho para pantallas pequeñas */
-    }
-  
-    /* Ocultar el texto cuando el sidebar esté comprimido */
-    .main-menu .nav-text {
-      display: none; /* Ocultar texto en ítems */
-    }
-  
-    /* Ajustar el tamaño de los íconos para pantallas pequeñas */
-    .main-menu .nav-icon {
-      font-size: 16px; /* Reducir tamaño del ícono */
-      width: 40px; /* Ajustar el ancho */
-    }
-  
-    /* Asegurar que los elementos del sidebar se mantengan visibles */
-    .main-menu li {
-      width: 50px; /* Ajustar el ancho del contenedor */
-    }
-  
-    /* Ajustar los márgenes en los elementos de la lista */
-    .listContentElementsSide {
-      margin: 5px 0;
-    }
-  
-    /* Cambiar el área principal para compensar el ancho reducido del sidebar */
-    .area {
-      margin-left: 50px;
-    }
+  .task-form-group {
+      flex: 1 1 100%; /* Una columna en pantallas pequeñas */
   }
-  
-  /* Responsividad para pantallas muy pequeñas (teléfonos móviles) */
-  @media (max-width: 480px) {
-    /* Ajustar el ancho aún más en pantallas móviles */
-    .main-menu {
-      width: 40px; /* Sidebar más estrecho */
-    }
-  
-    .main-menu .nav-icon {
-      font-size: 14px; /* Reducir tamaño del ícono aún más */
-      width: 36px; /* Ajustar el ancho */
-    }
-  
-    /* Reducir espacio entre elementos */
-    .listContentElementsSide {
-      margin: 3px 0;
-    }
-  
-    /* Asegurar que el contenido principal sea visible */
-    .area {
-      margin-left: 40px;
-    }
-  }
+}

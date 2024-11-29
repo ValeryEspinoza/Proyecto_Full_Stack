@@ -22,6 +22,7 @@ import Documentation from '../Pages/Documentation'
 import EventosTareas from '../Pages/EventosTareas'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+import ServicesData from '../Components/Admin_Components/ServicesData'
 
 
 
@@ -49,6 +50,7 @@ function Routing() {
       <Route path="/Settings" element={<Settings />} />
       <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
+      <Route path="/ServicesData" element={<ServicesData />} />
 
 
 

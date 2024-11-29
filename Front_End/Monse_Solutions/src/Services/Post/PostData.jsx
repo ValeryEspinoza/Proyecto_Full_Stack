@@ -11,7 +11,8 @@ const postData = async (EndPoint, data) => {
         },
         body: JSON.stringify(data),  // Convierte el objeto a JSON
       });
-  
+      console.log(data);
+      
       console.log('Estado de la respuesta:', response.status);
   
       // Si la respuesta no es exitosa, lanza un error con detalles

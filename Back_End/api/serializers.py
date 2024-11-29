@@ -57,6 +57,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 
+
 #Serializers de modelos sin llaves foráneas
 
 class categoriesSerializer(serializers.ModelSerializer):
@@ -227,7 +228,7 @@ class candidateSerializer(serializers.ModelSerializer):
 class tasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
-        fields = '__all__'
+        fields = ['tittle','description', 'expire_date', 'complete']
         
     def validate_tittle(self, value):
         validate_not_empty(value)
@@ -268,7 +269,7 @@ class tasksSerializer(serializers.ModelSerializer):
 class eventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = events
-        fields = '__all__'
+        fields = ['tittle', 'description', 'starting_date', 'ending_date', 'place']
         
     def validate_tittle(self, value):
         validate_not_empty(value)
