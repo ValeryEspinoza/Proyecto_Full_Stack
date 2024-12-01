@@ -23,38 +23,12 @@ from .serializers import (
     proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer,
 )
 
-# views.py
 
-"""
-class LoginView(View):
-    def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        
-        user = authenticate(request, username=username, password=password)  # Authenticate user
-        
-        if user is not None:
-            refresh = RefreshToken.for_user(user)
-            response = JsonResponse({"message": "Login successful"})
-            response.set_cookie(
-                key='superUser',
-                value=str(refresh.access_token),
-                httponly=True,
-                secure=True,
-                samesite='Strict',
-                max_age=3600,
-            )
-            return response
-        return Response({"error": "Invalid credentials"}, status=401)
-    
-class ProtectedView(APIView):
-    permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        return Response({"message": "You are authenticated"})
 
 """
 #Configuraciones*******************************************************
+
 ## Esto modelo permite establecer roles de usuarios
 class IsColaborador(BasePermission):
     def has_permission(self, request, view):
@@ -143,20 +117,21 @@ class candidateDetail(generics.RetrieveUpdateDestroyAPIView):
 class eventsListCreate(generics.ListCreateAPIView):
     queryset = events.objects.all()
     serializer_class = eventsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
 class eventsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = events.objects.all()
     serializer_class = eventsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
     
 class tasksListCreate(generics.ListCreateAPIView):
     queryset = tasks.objects.all()
     serializer_class = tasksSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
+    
 class tasksDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = tasks.objects.all()
     serializer_class = tasksSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
 
 class languagesListCreate(generics.ListCreateAPIView):
     queryset = languages.objects.all()
@@ -215,15 +190,46 @@ class sub_categories_productsListCreate(generics.ListCreateAPIView):
 class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+ 
  
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes =[AllowAny]
+    permission_classes = [AllowAny]
+
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
+    permission_classes = [AllowAny]
+    
+    
+# Consulta Productos con stock disponible    
+"""class productos_stock_disponible(generics.ListAPIView):
+    queryset = products.objects.filter(stock__gt=0)
+    serializer_class = productsSerializer 
+    permission_classes = [IsAuthenticated, IsAdministrador]
+
+    def get_queryset(self):
+        # Filtrar productos con inventarios que tienen stock disponible
+       return products.objects.filter(inventory__available_stock__gt=0).distinct()
+
+"""
+ 
+#Consulta  productos por sub categorías  
+class Productos_Por_Sub_Categoria(generics.ListAPIView):
+    serializer_class = productsSerializer  
+    queryset = products.objects.all()
+    permission_classes = [AllowAny]
+    
+    
+    #def get_queryset(self):
+       # id_SubCategoryE= self.kwargs['sub_categories_product_id']
+        #productofiltrado = products.objects.filter(sub_categories_product_id=id_SubCategoryE).select_related('id_category')  
+        #categoriafiltrada = Categories.objects.filter(id_category = id_categoryE)
+        
+        #return productofiltrado
+    
+    
     
 class inventoryListCreate(generics.ListCreateAPIView):
     queryset = inventory.objects.all()
@@ -400,3 +406,40 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
+    
+ 
+""" Vista para reestablecer la contraseña
+from django.http import JsonResponse
+from .utils import reset_user_password
+from rest_framework.parsers import JSONParser
+
+@csrf_exempt
+def reset_password(request, user_id):
+
+    Vista para restablecer la contraseña de un usuario.
+
+    if request.method == 'POST':
+        # Aquí procesamos la solicitud y usamos la función modular para restablecer la contraseña
+        try:
+            data = JSONParser().parse(request)
+            new_password = data.get('new_password')
+
+            if not new_password:
+                return JsonResponse({'error': 'La contraseña es requerida'}, status=400)
+            
+            # Usamos la función modular
+            response = reset_user_password(user_id, new_password)
+
+            # Si la respuesta contiene un mensaje de éxito, devolvemos éxito
+            if 'message' in response:
+                return JsonResponse(response, status=200)
+
+            # Si contiene un error, lo devolvemos
+            return JsonResponse(response, status=404)
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
+    
+"""

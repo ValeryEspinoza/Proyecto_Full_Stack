@@ -133,19 +133,18 @@ class sub_categories_products (models.Model):
     def __str__(self):
         return str(self.name)
   
-class products (models.Model):
+class products(models.Model):
     product_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255,  null=False)
+    name = models.CharField(max_length=255, null=False)
     description = models.TextField(null=False)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)  # Permitir null en la base de datos
     creation_date = models.DateTimeField(null=False, auto_now_add=True)
-    imagen_url = models.CharField(blank=True, max_length=2200) 
+    imagen_url = models.TextField(blank=True, max_length=2200)
     sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)
     
     sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)   
     def __str__(self):
         return str(self.name)
-
 class inventory(models.Model):
     inventory_id = models.AutoField(primary_key=True)
     initial_stock = models.IntegerField(null=False)

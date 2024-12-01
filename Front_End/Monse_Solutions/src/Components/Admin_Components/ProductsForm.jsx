@@ -1,51 +1,126 @@
-import React from 'react'
-import { useState } from 'react';
-import '../../Styles/Components_Styles/Admin_C_Styles/ProductsForm.css'
+import React, { useState } from 'react';
+import '../../Styles/Components_Styles/Admin_C_Styles/ProductsForm.css';
+import Amazon from '../../Services/Post/Amazon';
+import postData from '../../Services/Post/PostData';
+
+const ConvertirNombreImagen = (nombreArchivo) => {
+  const generarCadenaAleatoria = (longitudMinima = 20) => {
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const longitud = Math.floor(Math.random() * (30 - longitudMinima + 1)) + longitudMinima;
+    return Array.from({ length: longitud }, () =>
+      caracteres.charAt(Math.floor(Math.random() * caracteres.length))
+    ).join('');
+  };
+
+  const extension = nombreArchivo.trim().split('.').pop();
+  const nombreAleatorio = generarCadenaAleatoria(20);
+  return `${nombreAleatorio}.${extension}`;
+};
 
 function ProductsForm() {
   const [formData, setFormData] = useState({
-    name_product: "",
+    name: "",
     description: "",
     price: "",
-    creation_date: "",
-    sub_categories_product_id: "",
+    sub_categories_product: "",
     imagen_url: "",
   });
+  const [imageFile, setImageFile] = useState(null);
+  const [errors, setErrors] = useState({});
+  const [isUploading, setIsUploading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, files } = e.target;
+
+    if (files && files[0]) {
+      setImageFile(files[0]); // Guardar archivo para subir
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
+
+    // Limpiar el error si el usuario empieza a corregir
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
   };
 
-  const handleSubmit = (e) => {
+  
+
+  // Validar formulario
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = "El nombre es obligatorio.";
+    } else if (formData.name.trim().length < 10) {
+      newErrors.name = "El nombre debe tener al menos 10 caracteres.";
+    }
+  
+    if (!formData.description.trim()) newErrors.description = "La descripción es obligatoria.";
+    if (!formData.price || formData.price <= 0) newErrors.price = "El precio debe ser mayor a 0.";
+    if (!formData.sub_categories_product.trim())
+      newErrors.sub_categories_product = "La subcategoría es obligatoria.";
+    if (!imageFile) newErrors.imagen_url = "Debe seleccionar una imagen.";
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Retorna true si no hay errores
+  };
+
+  // Manejar el envío del formulario
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
-    // Aquí puedes agregar la lógica para enviar los datos al backend.
+
+    if (!validateForm()) {
+      console.error("Formulario inválido.");
+      return;
+    }
+
+    setIsUploading(true);
+
+    try {
+      // Subir imagen a Amazon S3
+      const nuevoNombre = ConvertirNombreImagen(imageFile.name);
+      const nuevoArchivo = new File([imageFile], nuevoNombre, { type: imageFile.type });
+      const imagenUrl = await Amazon(nuevoArchivo);
+
+      // Enviar formulario con la URL de la imagen
+      const formDataConImagen = { ...formData, imagen_url: imagenUrl };
+      await postData('api/products/', formDataConImagen);
+      console.log("Formulario enviado:", formDataConImagen);
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error al enviar el formulario:", error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
-<div className="product-form-container">
+    <div className="product-form-container">
       <h2 className="product-form-title">Formulario de Producto</h2>
       <form className="product-form" onSubmit={handleSubmit}>
+        
         <div className="product-form-group">
-          <label htmlFor="name_product" className="product-form-label">
-            Nombre del Producto:
-          </label>
-          <input
-            type="text"
-            id="name_product"
-            name="name_product"
-            className="product-form-input"
-            value={formData.name_product}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <label htmlFor="name" className="product-form-label">Nombre del Producto:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          className="product-form-input"
+          value={formData.name}
+          onChange={handleChange}
+        />
+        {errors.name && <p className="error-message">{errors.name}</p>}
+      </div>
 
         <div className="product-form-group">
-          <label htmlFor="description" className="product-form-label">
-            Descripción:
-          </label>
+          <label htmlFor="description" className="product-form-label">Descripción:</label>
           <textarea
             id="description"
             name="description"
@@ -53,14 +128,12 @@ function ProductsForm() {
             value={formData.description}
             onChange={handleChange}
             rows="4"
-            required
-          ></textarea>
+          />
+          {errors.description && <p className="error-message">{errors.description}</p>}
         </div>
 
         <div className="product-form-group">
-          <label htmlFor="price" className="product-form-label">
-            Precio:
-          </label>
+          <label htmlFor="price" className="product-form-label">Precio:</label>
           <input
             type="number"
             id="price"
@@ -68,65 +141,48 @@ function ProductsForm() {
             className="product-form-input"
             value={formData.price}
             onChange={handleChange}
-            required
           />
+          {errors.price && <p className="error-message">{errors.price}</p>}
         </div>
 
         <div className="product-form-group">
-          <label htmlFor="creation_date" className="product-form-label">
-            Fecha de Creación:
-          </label>
+          <label htmlFor="sub_categories_product" className="product-form-label">Subcategoría:</label>
           <input
             type="text"
-            id="creation_date"
-            name="creation_date"
+            id="sub_categories_product"
+            name="sub_categories_product"
             className="product-form-input"
-            value={new Date().toLocaleString()} // Genera la fecha y hora actual
-            readOnly // Campo de solo lectura
-          />
-        </div>
-        
-        <div className="product-form-group">
-          <label htmlFor="sub_categories_product_id" className="product-form-label">
-            Subcategoría:
-          </label>
-          <select
-            id="sub_categories_product_id"
-            name="sub_categories_product_id"
-            className="product-form-select"
-            value={formData.sub_categories_product_id}
+            value={formData.sub_categories_product}
             onChange={handleChange}
-            required
-          >
-            <option value="">Seleccione una subcategoría</option>
-            <option value="1">Subcategoría 1</option>
-            <option value="2">Subcategoría 2</option>
-            <option value="3">Subcategoría 3</option>
-          </select>
+          />
+          {errors.sub_categories_product && <p className="error-message">{errors.sub_categories_product}</p>}
         </div>
 
         <div className="product-form-group">
-          <label htmlFor="imagen_url" className="product-form-label">
-            URL de la Imagen:
-          </label>
+          <label htmlFor="imagen_url" className="product-form-label">Imagen del Producto:</label>
           <input
-            type="File"
+            type="file"
             id="imagen_url"
             name="imagen_url"
+            accept="image/*"
             className="product-form-input"
-            value={formData.imagen_url}
             onChange={handleChange}
-            required
           />
+          {errors.imagen_url && <p className="error-message">{errors.imagen_url}</p>}
         </div>
 
-        <button type="submit" className="product-form-button">
-          Enviar
+        {isUploading && <p>Subiendo imagen...</p>}
+
+        <button
+          type="submit"
+          className="product-form-button"
+          disabled={isUploading || isSubmitted}
+        >
+          {isUploading ? "Subiendo..." : isSubmitted ? "Enviado" : "Enviar"}
         </button>
       </form>
     </div>
   );
-  
 }
 
-export default ProductsForm
+export default ProductsForm;

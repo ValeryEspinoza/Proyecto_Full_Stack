@@ -101,7 +101,7 @@ async function SendServices(
     console.error('Error en la solicitud:', error);
     throw error; 
   }
-};
+}
 
 export default { SendServices }; // Asegúrate de que esta línea sea
 

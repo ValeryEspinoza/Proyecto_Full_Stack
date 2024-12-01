@@ -5,6 +5,7 @@ from django.conf import settings
 from rest_framework.authentication import CSRFCheck
 from rest_framework import exceptions
 
+
 # Secret key and algorithm for signing tokens
 SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = "HS256"

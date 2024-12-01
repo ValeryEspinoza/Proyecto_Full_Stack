@@ -57,6 +57,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 
+
 #Serializers de modelos sin llaves foráneas
 
 class categoriesSerializer(serializers.ModelSerializer):
@@ -227,7 +228,7 @@ class candidateSerializer(serializers.ModelSerializer):
 class tasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
-        fields = '__all__'
+        fields = ['tittle','description', 'expire_date', 'complete']
         
     def validate_tittle(self, value):
         validate_not_empty(value)
@@ -268,7 +269,7 @@ class tasksSerializer(serializers.ModelSerializer):
 class eventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = events
-        fields = '__all__'
+        fields = ['tittle', 'description', 'starting_date', 'ending_date', 'place']
         
     def validate_tittle(self, value):
         validate_not_empty(value)
@@ -436,9 +437,9 @@ class sub_categories_productsSerializer(serializers.ModelSerializer):
 class productsSerializer(serializers.ModelSerializer):
     class Meta:
         model = products
-        fields = '__all__'
+        fields = ['product_id', 'name', 'description', 'price', 'creation_date', 'sub_categories_product', 'imagen_url']
 
-    def validate_name(self, values):
+    def validate_name(self, value):
         validate_not_empty(value)  # Verifica que no esté vacío
         validate_min_characters(value, 5)  # Verifica la longitud mínima
         validate_max_characters(value, 250)  # Verifica la longitud máxima
@@ -453,11 +454,7 @@ class productsSerializer(serializers.ModelSerializer):
         validate_no_special_characters(value)
         value= sanitize_input(value)
         return value
-        
-    def validate_price(self, value):
-        validate_price(value, 2.00)
-        return value
-        
+
 
       
 
@@ -774,10 +771,10 @@ class sellSerializer(serializers.ModelSerializer):
         model = sells
         fields = ['sell_id', 'sell_date']  
 # Serializador de Producto
-class productsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = products
-        fields = ['product_id', 'name', 'description']  
+#class productsSerializer(serializers.ModelSerializer):
+    #class Meta:
+        #model = products
+        #fields = ['product_id', 'name', 'description']  
 
 class ProductSalesSerializer(serializers.ModelSerializer):
     total_sold = serializers.IntegerField(read_only=True)  

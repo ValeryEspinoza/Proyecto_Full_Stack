@@ -24,7 +24,11 @@ import EventosTareas from '../Pages/EventosTareas'
 import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+<<<<<<< HEAD
 import ArticlePreventive from '../Pages/Articulos_pages/ArticlePreventive'
+=======
+import ServicesData from '../Components/Admin_Components/ServicesData'
+>>>>>>> 20ef066cceaaf4372325e9b6403406a5ef5c2318
 
 import ProfileClient from '../Pages/ProfileClient'
 
@@ -53,6 +57,7 @@ function Routing() {
       <Route path="/Settings" element={<Settings />} />
       <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
+      <Route path="/ServicesData" element={<ServicesData />} />
 
 
 

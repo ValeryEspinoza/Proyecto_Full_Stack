@@ -5,6 +5,7 @@
   .reviews-grid {
     display: flex;
     gap: 20px;
+    margin-left: 4%;
   }
   
   .review-card {

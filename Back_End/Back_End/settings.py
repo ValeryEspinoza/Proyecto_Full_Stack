@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+
+
 # Configuración de Django REST Framework para usar JWT
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -52,10 +54,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # Requiere autenticación para acceder a las vistas
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        
-    ]
-  
+    'DEFAULT_AUTHENTICATION_CLASSES': []
+
 }
 
 
@@ -205,5 +205,6 @@ SIMPLE_JWT = {
   'AUTH_COOKIE_PATH': '/',        # The path of the auth cookie.
   'AUTH_COOKIE_SAMESITE': 'Lax',  # Whether to set the flag restricting cookie leaks on cross-site requests. This can be 'Lax', 'Strict', or None to disable the flag.
 }
+
 
 
