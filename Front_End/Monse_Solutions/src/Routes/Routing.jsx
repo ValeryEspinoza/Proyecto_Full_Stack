@@ -9,7 +9,6 @@ import AboutUs from '../Pages/AboutUs'
 import Formularios from '../Pages/Formularios'
 import ServiciosAdmi from '../Pages/ServiciosAdmi'
 import Servicios from '../Pages/Servicios'
-import Blog from '../Pages/Blog'
 import DashBoard from '../Pages/DashBoard'
 import Tasks from '../Pages/Tasks'
 import Events from '../Pages/Events'
@@ -20,9 +19,14 @@ import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 import Settings from '../Pages/Settings'
 import Documentation from '../Pages/Documentation'
 import EventosTareas from '../Pages/EventosTareas'
+
+//Imports Blog y articulos
+import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+import ArticlePreventive from '../Pages/Articulos_pages/ArticlePreventive'
 
+import ProfileClient from '../Pages/ProfileClient'
 
 
 function Routing() {
@@ -55,9 +59,9 @@ function Routing() {
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Article10Tips" element={<Article10Tips />} />
       <Route path="/ArticleGarden" element={<ArticleGarden />} />
-
-
-
+      <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
+      <Route path="/ProfileClient" element={<ProfileClient />} />
+      
     </Routes>
    </Router>
   )

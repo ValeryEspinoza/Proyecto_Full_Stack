@@ -9,7 +9,7 @@ import art4 from '../../Img/Components_Img/art_4.png';
 import art5 from '../../Img/Components_Img/art_5.png';
 
 function Blog() {
-  // Estado para controlar el modal y la imagen seleccionada
+  //Estado para controlar el modal y la imagen seleccionada
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImageSrc, setModalImageSrc] = useState("");
 
@@ -75,7 +75,7 @@ function Blog() {
               functional. In this article, we share practical tips for effectively caring 
               for your home, ensuring it’s always in top condition...
             </p>
-            <Link to="/Contact">
+            <Link to="/ArticlePreventive">
               <button className="btnLeerMas">Read more...</button>
             </Link>
           </div>

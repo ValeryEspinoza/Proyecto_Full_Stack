@@ -25,7 +25,7 @@ from .serializers import (
 
 # views.py
 
-
+"""
 class LoginView(View):
     def post(self, request):
         username = request.data.get('username')
@@ -53,7 +53,7 @@ class ProtectedView(APIView):
     def get(self, request):
         return Response({"message": "You are authenticated"})
 
-
+"""
 #Configuraciones*******************************************************
 ## Esto modelo permite establecer roles de usuarios
 class IsColaborador(BasePermission):

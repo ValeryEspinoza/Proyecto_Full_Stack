@@ -6,7 +6,6 @@
   color: #fff;
   margin: 0; /* Elimina cualquier margen externo */
   padding: 0; /* Elimina cualquier padding externo */
-  font-family: Arial, Helvetica, sans-serif;
   top: 0;
   left: 0;
   width: 100%; /* Se asegura de que ocupe todo el ancho */
@@ -30,6 +29,7 @@
 .buttons-section {
   display: flex;
   gap: 10px;
+  justify-content: center; /* Centra los botones horizontalmente */
 }
 
 /* Ajustes específicos para la parte inferior */
@@ -97,6 +97,42 @@
   color: #ffffff;
 }
 
+.nav-btnEnglish, .nav-btnEspañol {
+  display: inline-block;
+  width: 42px; /* Tamaño de los botones */
+  height: 42px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-btnEnglish {
+  background-image: url('../../../Img/Components_Img/idioma_En.png');
+}
+
+.nav-btnEspañol {
+  background-image: url('../../../Img/Components_Img/idioma_Es.png');
+}
+
+.nav-btnEnglish:hover, .nav-btnEspañol:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btnEnglish:active, .nav-btnEspañol:active {
+  transform: scale(0.95);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btnEnglish:focus, .nav-btnEspañol:focus {
+  outline: none;
+}
+
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
   /* Fondo y texto del Offcanvas */
@@ -118,10 +154,10 @@
   }
 
   /* Hover en los enlaces */
-.offcanvas .navbar-links .itemLinkNav:hover {
-  color: #1E1E1E; /* Texto oscuro */
-  background-color: #50C878; /* Fondo verde */
-  transform: scale(1.05); /* Zoom sutil */
+  .offcanvas .navbar-links .itemLinkNav:hover {
+    color: #1E1E1E; /* Texto oscuro */
+    background-color: #50C878; /* Fondo verde */
+    transform: scale(1.05); /* Zoom sutil */
   }
 
   /* Estilo para el botón de cierre del Offcanvas */
@@ -136,14 +172,39 @@
     text-align: center; /* Centrar el título */
   }
 
-  /* Botones de Register y Login */
-  .nav-btnRegister, .nav-btnLogin {
-    width: 100%; /* Ocupan el 100% del contenedor */
-    max-width: 300px; /* Limitar ancho máximo */
-    font-size: 14px; /* Tamaño ajustado para móviles */
-    margin: 10px auto; /* Espaciado y centrado */
-    padding: 10px; /* Espaciado interno */
+  /* Logo */
+  .logo-section {
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
   }
+
+  .logo-section img {
+    height: 50px; /* Tamaño reducido */
+    max-width: 100%; /* Ajuste al ancho disponible */
+    margin-bottom: 20px;
+  }
+
+  .buttons-section {
+    display: flex; /* Asegúrate de que sea flex */
+    flex-direction: row; /* Asegúrate de que estén en fila */
+    gap: 15px; /* Espaciado horizontal entre los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Centra los botones verticalmente */
+   margin-left: 25px;
+    height: 60px; /* Define una altura fija o suficiente para centrar */
+  }
+
+  .nav-btnEnglish, .nav-btnEspañol {
+    width: 36px; /* Tamaño reducido para móviles */
+    height: 36px;
+    margin: 0; /* Elimina márgenes extra */
+    display: flex; /* Asegúrate de que los botones sean flex */
+    justify-content: center; /* Centra el contenido dentro del botón */
+    align-items: center; /* Centra el contenido dentro del botón */
+  }
+
 }
+
 
 

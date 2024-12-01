@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders'
+    'corsheaders',
 ]
 
 # Configuración de Django REST Framework para usar JWT
@@ -53,7 +53,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',  # Requiere autenticación para acceder a las vistas
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-      'cookieapp.authenticate.CustomAuthentication']
+        
+    ]
   
 }
 

@@ -85,7 +85,7 @@ function LoginForm() {
 
       <button onClick={Login} className="btn-login">Log In</button>
 
-      <Link className='goToHome' to="/Home">
+      <Link className='goToHome' to="/">
         <p>Go to Home</p>
       </Link>
     </div>
