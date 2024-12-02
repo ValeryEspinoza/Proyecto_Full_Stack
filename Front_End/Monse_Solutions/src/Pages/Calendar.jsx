@@ -6,7 +6,6 @@ import CalendarForm from '../Components/Admin_Components/CalendarForm'
 function Calendar() {
   return (
     <div>
-      <h1>Calendar</h1>
       <SideBar />
       <CalendarForm />
     </div>

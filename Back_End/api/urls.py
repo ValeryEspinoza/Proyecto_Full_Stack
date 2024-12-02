@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 
-
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -147,8 +146,6 @@ urlpatterns = [
     path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detail'), 
 
     #path('productos_stock/', productos_stock_disponible.as_view(), name='productos_stock-details-detail'),
-    
-  
      
 
 ]

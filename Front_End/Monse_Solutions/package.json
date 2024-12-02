@@ -24,6 +24,8 @@
     "i18next": "^24.0.2",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.6",
+    "react-calendar": "^5.1.0",
+    "react-datepicker": "^7.5.0",
     "react-dom": "^18.3.1",
     "react-google-multi-lang": "^1.0.7",
     "react-i18next": "^15.1.2",

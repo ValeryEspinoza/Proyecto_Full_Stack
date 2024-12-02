@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-
 ]
 
 
@@ -55,9 +54,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # Requiere autenticación para acceder a las vistas
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-      ]
-  
+    'DEFAULT_AUTHENTICATION_CLASSES': []
+
 }
 
 

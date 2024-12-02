@@ -1,14 +1,35 @@
-
-.contenedorCarrucel{
-background-color:#f0f2f5;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+.contenedorVideoPortada {
+  position: relative;
+  width: 100%;
+  height: 75vh; /* La altura es el 100% de la ventana */
+  overflow: hidden;
 }
 
-.carousel-image {
-    width: 70%; /* Cambia esto al tamaño deseado */
-    height: 500px; /* Mantiene la proporción de aspecto */
-    max-width: 100%; /* Asegura que la imagen no se expanda más allá del contenedor */
- 
-    border-radius: 5px;
+.video-portada {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* El video cubre todo el contenedor */
+}
 
-  }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(31, 31, 31, 0.3)); /* Degradado negro a blanco con opacidad */
+  pointer-events: none; /* Evita que el mouse interactúe con el overlay */
+}
+
+.textoOverlay {
+  position: absolute;
+  top: 50%; /* Centrado verticalmente */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Centrado perfecto */
+  color: white;
+  font-size: 4.2rem; /* Tamaño del texto */
+  text-align: center;
+  z-index: 2; /* Asegura que el texto esté por encima del overlay */
+  font-weight: bold;
+  max-width: 550px;
+}

@@ -1,0 +1,43 @@
+.divProfileClient {
+    display: flex;                /* Establece el contenedor como flex */
+    flex-direction: column;       /* Alinea los elementos en columna */
+    align-items: center;          /* Centra los elementos horizontalmente */
+    justify-content: center;      /* Centra los elementos verticalmente */
+    text-align: center;           /* Alinea el texto al centro */
+    margin-top: 50px;             /* Elimina cualquier margen superior adicional */
+}
+
+.titleShedule {
+    font-size: 50px;
+    font-weight: bold;
+    color: #333;                  /* Ajusta el color si es necesario */
+    margin-bottom: 20px;          /* Añade un pequeño espacio debajo del título */
+}
+.textShedule{
+max-width: 50%;
+}
+.divProfileClient p {
+    font-size: 18px;
+    color: #555;                  /* Ajusta el color del texto */
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .divProfileClient {
+        margin-top: 30px;                /* Ajusta el margen superior */
+    }
+
+    .titleShedule {
+        font-size: 30px;                 /* Disminuye el tamaño de fuente para pantallas pequeñas */
+        margin-bottom: 15px;             /* Reduce el espacio debajo del título */
+    }
+
+    .textShedule {
+        max-width: 80%;                  /* Aumenta el ancho máximo para adaptarse mejor a pantallas pequeñas */
+    }
+
+    .divProfileClient p {
+        font-size: 16px;                 /* Ajusta el tamaño de la fuente para mejorar la legibilidad en móviles */
+    }
+}

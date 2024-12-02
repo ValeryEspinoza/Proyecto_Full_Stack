@@ -20,7 +20,6 @@ function Home() {
       <HomeFichaInformativa />
       <Connect_with_us />
       <Home_Services />
-      <Reviews />
       <Footer />
     </>
   );

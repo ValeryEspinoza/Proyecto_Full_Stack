@@ -14,7 +14,6 @@ function HomeFichaInformativa() {
   return (
     <div className='bodyFicha'>
       <br />
-      <div className='TextoBienvenida'>{t('textoBienvenida')}</div>
       <div className='Texto'>
 
       <p>{t('Texto1')}</p>
