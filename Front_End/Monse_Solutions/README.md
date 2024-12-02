@@ -17,3 +17,5 @@ npm i --save @fortawesome/fontawesome-svg-core
 npm install sweetalert2
 npm install @emailjs/browser      
 npm install react-bootstrap bootstrap 
+
+npm install react-calendar

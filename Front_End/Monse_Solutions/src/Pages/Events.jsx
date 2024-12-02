@@ -6,7 +6,14 @@ function Events() {
   return (
     <div className='contenedorPaginas'>
     <SideBar />
-    <EventsForm />
+
+    <div>  
+      
+      <h1>Crear Evento</h1>
+        <EventsForm />
+      </div>
+
+
     </div>
   )
 }

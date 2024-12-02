@@ -6,7 +6,7 @@ import AdminNavBar from '../Components/Admin_Components/AdminNavBar'
 function Register() {
   return (
     <div className='ContenedorP'>
-      <AdminNavBar />
+    <AdminNavBar />
     <RegisterForm />
     </div>
   )

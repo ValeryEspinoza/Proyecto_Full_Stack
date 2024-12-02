@@ -30,15 +30,14 @@ export default function NavBar() {
               />
             </div>
             <div className="buttons-section">
-            <button  className="nav-btnLogin" onClick={() => changeLanguage('en')}>English</button>
-            <button  className="nav-btnLogin" onClick={() => changeLanguage('es')}>Español</button>
               <Link className="itemLinkNav" to="/RegisterCliente">
                 <button className="nav-btnRegister"> {t('Boton_Register')}</button>
               </Link>
               <Link className="itemLinkNav" to="/Login">
                 <button className="nav-btnLogin">{t('Boton_Login')}</button>
               </Link>
-
+              <button  className="nav-btnEnglish" onClick={() => changeLanguage('en')}></button>
+              <button  className="nav-btnEspañol" onClick={() => changeLanguage('es')}></button>
             </div>
           </Container>
           <Container fluid className="bottom-navbar">

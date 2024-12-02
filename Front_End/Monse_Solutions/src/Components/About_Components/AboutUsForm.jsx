@@ -54,8 +54,6 @@ function AboutUsForm() {
         <img className='imgMV' src={vision} alt="mision"/>
     </div>
 </div><br /><br />
-
-
 <div className="divTextoFinal">
     <p className="textoFinal">
     We are committed to listening to your ideas, understanding your desires, 

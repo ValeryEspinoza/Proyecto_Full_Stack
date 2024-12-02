@@ -6,6 +6,9 @@ from django.utils.html import escape, strip_tags
 
 #GENERALS FUNTIONS*********************************************
 
+
+
+
 def validate_not_empty(value):# Función de validación general para espacios vacíos
     if not value.strip():  # Si el valor solo contiene espacios vacíos
         raise serializers.ValidationError("Este campo no puede estar vacío ni contener solo espacios.")

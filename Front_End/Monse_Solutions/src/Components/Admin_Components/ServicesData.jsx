@@ -50,7 +50,7 @@ function ServicesData() {
 
     async function ObtenerServiciosData() {
 
-    const servicesData = await GetServices()
+    const servicesData = await GetData("api/services/")
 
    
     SetDatosServicios(servicesData)

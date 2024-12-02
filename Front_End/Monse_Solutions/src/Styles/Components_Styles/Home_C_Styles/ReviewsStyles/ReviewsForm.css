@@ -1,0 +1,91 @@
+.star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .star.filled {
+    color: gold;
+  }
+  .star:hover {
+    color: orange;
+  }
+  .color-bannerReview{
+    background-color:#1E1E1E;
+    color: white; /* Color del texto */
+    text-align: center;
+    padding: 20px;
+    font-size: 1.3em;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+  }
+  .formReview {
+    margin-top: -46px; /* Ajusta según el tamaño de la plasta */
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .textareaReview {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .rating {
+    display: flex;
+    gap: 5px;
+  }
+  
+  
+.btnReview {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.btnReview:hover {
+    background-color: #45a049;
+  }
+
+
+
+  @media (max-width: 768px) {
+    .star {
+      font-size: 1.5rem; /* Ajusta el tamaño de las estrellas */
+    }
+    
+    .color-bannerReview {
+      font-size: 1.1em; /* Ajusta el tamaño del texto del banner */
+      padding: 15px; /* Ajusta el espacio en el banner */
+      height: auto; /* Permite que el banner se ajuste mejor en pantallas pequeñas */
+    margin-top: -70px;
+    }
+  
+    .formReview {
+      margin-top: -10; /* Ajusta el margen superior */
+      padding: 15px; /* Ajusta el padding para dispositivos móviles */
+    }
+  
+    .textareaReview {
+      padding: 8px; /* Reduce el padding del textarea para que sea más adecuado */
+      font-size: 1rem; /* Ajusta el tamaño del texto */
+    }
+  
+    .rating {
+      gap: 3px; /* Reduce el espacio entre las estrellas */
+    }
+  
+    .btnReview {
+      width: 100%; /* Asegura que el botón ocupe todo el ancho */
+      padding: 12px; /* Aumenta el tamaño del botón */
+      font-size: 1.1rem; /* Ajusta el tamaño de la fuente */
+    }
+  }
+  

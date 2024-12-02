@@ -101,6 +101,7 @@
 }
 .article-content {
   margin: 20px 0;
+  text-align: justify;
 }
 
 .section-title {
@@ -203,8 +204,73 @@
   font-size: 1.2em;
 }
 
-@media (max-width: 768px) {
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  .article-container {
+    padding: 10px; /* Reducir el padding en pantallas pequeñas */
+  }
+
+  .article-header {
+    height: 200px; /* Reducir la altura del header en pantallas pequeñas */
+  }
+
+  .article-title {
+    font-size: 2em; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+  }
+
+  .article-intro {
+    padding: 20px; /* Reducir el padding del intro */
+  }
+
+  .article-desc {
+    font-size: 1em; /* Ajustar el tamaño del texto */
+  }
+
+  .cta-button, .cta-button2 {
+    font-size: 1em; /* Reducir el tamaño de los botones */
+    padding: 10px 15px; /* Reducir el padding */
+  }
+
+  .article-content {
+    margin: 10px 30px;
+  }
+
+  .section-title {
+    font-size: 2em; /* Reducir el tamaño de los títulos de sección */
+  }
+
+  /* Convertir los tips a una sola columna */
   .tips-list {
-      grid-template-columns: 1fr;
+    display: block; /* Cambiar de grid a bloque para una sola columna */
+    padding: 0;
+    list-style: none; /* Eliminamos el estilo predeterminado de la lista */
+    counter-reset: list-counter; /* Inicializa un contador */
+  }
+
+  .tips-list li {
+    margin-bottom: 20px; /* Espaciado entre los elementos de la lista */
+    position: relative;
+    padding-left: 2.5em; /* Espacio para el número personalizado */
+    counter-increment: list-counter; /* Incrementa el contador */
+  }
+
+  .tips-list li::before {
+    content: counter(list-counter) ". "; /* Genera el número */
+    font-weight: bold; /* Números en negrita */
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .article-extra {
+    padding: 20px; /* Reducir el padding del extra */
+  }
+
+  .extra-tip-title {
+    font-size: 1.5em; /* Reducir el tamaño del título del extra */
+  }
+
+  .extra-tip-text {
+    font-size: 1em; /* Ajustar el tamaño del texto */
   }
 }

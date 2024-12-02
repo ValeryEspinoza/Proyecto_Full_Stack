@@ -1,4 +1,11 @@
-import '../../Styles/Components_Styles/Admin_C_Styles/CalendarForm.css'
+console.log('CalendarForm component rendered');
+console.log('Current month:', currentMonth);
+console.log('Current year:', currentYear);
+console.log('Total boxes:', totalBoxes);
+console.log('Days array:', daysArray);
+console.log('Calendar data:', calendarData);
+console.log('Active box:', activeBox);
+console.log('Clicked box:', clickedBox);import '../../Styles/Components_Styles/Admin_C_Styles/CalendarForm.css'
 import React, { useState } from "react";
 
 function CalendarForm() {

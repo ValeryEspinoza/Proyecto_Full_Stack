@@ -59,3 +59,9 @@ Descripción: Esta función realiza una limpieza del valor proporcionado por el 
 Prevención de ataques: La sanitización ayuda a limpiar los valores antes de que se utilicen en la aplicación, asegurando que el contenido no pueda ser interpretado de manera que permita la ejecución de código malicioso o afecte la seguridad de la base de datos.
 
 
+
+PARA CALENDARIO: 
+npm install react-datepicker
+
+Servicios y productos formularios:
+

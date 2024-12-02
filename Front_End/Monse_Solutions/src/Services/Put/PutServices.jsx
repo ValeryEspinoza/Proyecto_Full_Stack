@@ -1,9 +1,9 @@
-async function EditServices(dato,id) {
+async function EditServices(endpoint, dato,id) {
    
     try { 
      
   
-      const respuesta = await fetch(`http://localhost:3001/Services/${id}`, {
+      const respuesta = await fetch(`http://192.168.1.87:8000/${endpoint}/${id}`, {
       method: 'PUT', 
       headers: {
           'Content-Type': 'application/json' 

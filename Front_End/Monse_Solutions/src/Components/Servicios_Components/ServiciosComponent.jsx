@@ -14,6 +14,18 @@ import Imagen_Mantenimiento from '../../Img/Components_Img/Mantenimiento.jpg'
 
 
 function Servicios() {
+  const [Services, setServices] = useState([]);
+
+  useEffect(() => {
+      const fetchServices = async () => {
+        const Datos = await GetServices();
+       
+        
+        setServices(Datos);
+   
+      };
+      fetchServices();
+    }, [])
   return (
   <div>
 
