@@ -527,7 +527,7 @@ class staffSerializer(serializers.ModelSerializer):
 class servicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = services
-        fields = ['service', 'description', 'category', 'imagen_url']    
+        fields = ['service_id', 'service', 'description', 'category', 'imagen_url']    
     
     def crear_servicio(request):
         if request.method == 'POST':

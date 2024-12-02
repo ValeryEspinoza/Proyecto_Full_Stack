@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SideBar from '../Components/Admin_Components/SideBar'
-import ServicesForm from '../Components/Admin_Components/ServicesForm'
+import ServicesTable from '../Components/Admin_Components/ServiceAdmiData'
 import '../Styles/Pages_Styles/ServiciosAdmi.css'
 
 
@@ -10,7 +10,7 @@ function ServiciosAdmi() {
     <div className='contenedoresPaginas'>
       <SideBar />
       <div>
-          <ServicesForm />
+          <ServicesTable />
       </div>
     
     </div>

@@ -2,7 +2,7 @@
 async function GetServices() {
  
     try {
-        const response = await fetch(`http://localhost:3001/Services`);
+        const response = await fetch(`http://192.168.1.87:8000/api/services`);
         const data = await response.json();
         console.log(data);
         

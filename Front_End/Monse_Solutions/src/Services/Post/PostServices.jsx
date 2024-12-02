@@ -79,7 +79,7 @@ async function SendServices(
   };
 
   try {
-    const response = await fetch('http://192.168.1.87:8000/api/services/', {
+    const response = await fetch('http://192.168.88.223:8000/api/services/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
