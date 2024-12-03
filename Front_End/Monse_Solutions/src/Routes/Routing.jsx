@@ -19,6 +19,7 @@ import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 import Settings from '../Pages/Settings'
 import Documentation from '../Pages/Documentation'
 import EventosTareas from '../Pages/EventosTareas'
+import VirtualStore from '../Pages/VirtualStore'
 
 //Imports Blog y articulos
 import Blog from '../Pages/Blog'
@@ -57,6 +58,7 @@ function Routing() {
       <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
       <Route path="/ServicesData" element={<ServicesData />} />
+      <Route path="/VirtualStore" element={<VirtualStore />} />
 
 
 
