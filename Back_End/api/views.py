@@ -26,7 +26,7 @@ from .serializers import (
 
 
 
-"""
+
 #Configuraciones*******************************************************
 
 ## Esto modelo permite establecer roles de usuarios

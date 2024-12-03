@@ -25,9 +25,15 @@ import VirtualStore from '../Pages/VirtualStore'
 import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+
+
+
+import ServicesTable from '../Components/Admin_Components/ServiceAdmiData'
+
 import ArticlePreventive from '../Pages/Articulos_pages/ArticlePreventive'
 
 import ServicesData from '../Components/Admin_Components/ServicesData'
+
 
 
 import ProfileClient from '../Pages/ProfileClient'
@@ -62,12 +68,19 @@ function Routing() {
 
 
 
+
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Article10Tips" element={<Article10Tips />} />
       <Route path="/ArticleGarden" element={<ArticleGarden />} />
+
+      <Route path="/ServicesTable" element={<ServicesTable />} />
+
+
+
       <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ProfileClient" element={<ProfileClient />} />
       
+
     </Routes>
    </Router>
   )
