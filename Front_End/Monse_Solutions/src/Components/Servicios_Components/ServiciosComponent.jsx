@@ -10,6 +10,7 @@ import Imagen_Remodelaciones from '../../Img/Components_Img/remodelacion.jpg'
 import Imagen_Reestructuracion from '../../Img/Components_Img/Reestructuracion.webp'
 import Imagen_Albañileria from '../../Img/Components_Img/Albañileria.jpg'
 import Imagen_Mantenimiento from '../../Img/Components_Img/Mantenimiento.jpg'
+import { useState, useEffect } from 'react'
 
 
 

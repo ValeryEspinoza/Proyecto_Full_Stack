@@ -62,6 +62,6 @@ Prevención de ataques: La sanitización ayuda a limpiar los valores antes de qu
 
 PARA CALENDARIO: 
 npm install react-datepicker
-
+npm install react-calendar   
 Servicios y productos formularios:
 

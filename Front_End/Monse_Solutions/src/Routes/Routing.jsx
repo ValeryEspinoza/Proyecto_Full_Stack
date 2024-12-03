@@ -25,6 +25,7 @@ import VirtualStore from '../Pages/VirtualStore'
 import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+import ArticleColor from '../Pages/Articulos_pages/ArticleColor'
 
 
 
@@ -72,12 +73,11 @@ function Routing() {
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Article10Tips" element={<Article10Tips />} />
       <Route path="/ArticleGarden" element={<ArticleGarden />} />
+      <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
+      <Route path="/ArticleColor" element={<ArticleColor />} />
 
       <Route path="/ServicesTable" element={<ServicesTable />} />
 
-
-
-      <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ProfileClient" element={<ProfileClient />} />
       
 
