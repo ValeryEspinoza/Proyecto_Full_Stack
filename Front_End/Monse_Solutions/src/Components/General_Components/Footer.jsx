@@ -29,7 +29,7 @@ function Footer() {
     <Link to="/Blog" className="custom-pagesFooter">Blog</Link>
 </div>
 
-  <p className="custom-footer-company-name">Company Name © 2024</p>
+  <p className="custom-footer-company-name">Monse Solutions © 2024</p>
 </div>
 
 <div className="custom-footer-center">

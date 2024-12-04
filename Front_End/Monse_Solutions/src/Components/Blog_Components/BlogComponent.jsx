@@ -98,7 +98,7 @@ function Blog() {
               at your disposal is color. The right palette can completely transform the atmosphere 
               of a room, making it feel larger, cozier, or even more energized..
             </p>
-            <Link to="/Contact">
+            <Link to="/ArticleColor">
               <button className="btnLeerMas">Read more...</button>
             </Link>
           </div>
