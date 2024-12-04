@@ -3,8 +3,8 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // Importa las traducciones para inglés y español
-import enTranslation from '../../public/locales/en/welcome.json';
-import esTranslation from '../../public/locales/es/bienvenida.json'; 
+import enTranslation from '../locales/en/welcome.json';
+import esTranslation from '../locales/es/bienvenida.json'; 
 
 
 i18n

@@ -24,7 +24,7 @@ import EventosTareas from '../Pages/EventosTareas'
 import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
-
+import VirtualStore from '../Pages/VirtualStore'
 
 
 import ServicesTable from '../Components/Admin_Components/ServiceAdmiData'
@@ -62,6 +62,7 @@ function Routing() {
       <Route path="/Settings" element={<Settings />} />
       <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
+    <Route path="/Store" element={<VirtualStore />} />
 
 
 
