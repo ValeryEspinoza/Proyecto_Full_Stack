@@ -8,6 +8,9 @@ import ActionProvider from "../ChatBot_Components/ActionProvider";
 
 import "../../Styles/Components_Styles/ChatBot_Styles/ChatBot.css";
 
+import ChatIcon from '../../Img/Components_Img/chat_bot.png'
+import CloseIcon from '../../Img/Components_Img/icon_cerrar2.png'
+
 function ChatbotComponent() {
     const [showChatbot, setShowChatbot] = useState(false);
     const [messages, setMessages] = useState([]); //Estado para almacenar mensajes
@@ -29,21 +32,29 @@ function ChatbotComponent() {
                 className="chatbot-toggle-button"
                 onClick={() => setShowChatbot(true)}
             >
-                Chat
+                <img 
+            src={ChatIcon} 
+            alt="Chatbot Toggle" 
+            className="chatbot-icon" 
+            />
             </button>
 
             {showChatbot && (
                 <div className="chatbot-container" ref={chatbotContainerRef}>
                     <div className="chatbot-header">
                         <button className="close-button" onClick={() => setShowChatbot(false)}>
-                            X
+                        <img 
+                                src={CloseIcon} 
+                                alt="Cerrar chatbot" 
+                                className="close-icon" 
+                            />
                         </button>
                     </div>
                     <Chatbot
                         config={Config}
                         messageParser={MessageParser}
                         actionProvider={ActionProvider}
-                        onNewMessage={handleNewMessage} // Llama a la función al recibir un nuevo mensaje
+                        onNewMessage={handleNewMessage} //Llama a la función al recibir un nuevo mensaje
                     />
                 </div>
             )}

@@ -2,9 +2,10 @@ import React from "react";
 
 const PreguntasPredefinidas = (props) => {
     const preguntas = [
-        { text: "¿Qué servicios ofrecen?", handler: props.actionProvider.handlePreguntaServicios },
-        { text: "¿Cómo puedo solicitar una cotización?", handler: props.actionProvider.handlePreguntaCotizacion },
-        { text: "¿Dónde prestan servicios?", handler: props.actionProvider.handlePreguntaCobertura },
+        { text: "1. What services do you offer?", handler: props.actionProvider.handlePreguntaServicios },
+        { text: "2. How can I request a quote?", handler: props.actionProvider.handlePreguntaCotizacion },
+        { text: "3. Where do you provide services?", handler: props.actionProvider.handlePreguntaCobertura },
+        { text: "4. What are the payment methods?", handler: props.actionProvider.handlePreguntaPagos },
     ];
 
     return (

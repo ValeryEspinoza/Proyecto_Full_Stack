@@ -17,6 +17,10 @@ class MessageParser {
       if (lowerCaseMessage.includes("cobertura")) {
         this.actionProvider.handleCobertura();
       }
+
+      if (lowerCaseMessage.includes("pagos")) {
+        this.actionProvider.handlePreguntaPagos();
+      }
     };
   }
   
