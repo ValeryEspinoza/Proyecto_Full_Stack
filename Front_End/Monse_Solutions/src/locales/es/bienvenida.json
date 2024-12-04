@@ -10,10 +10,113 @@
     "Store": "Tienda",
     "Blog": "Blog",
 
-
-
-
     "Texto1": "Aquí transformamos espacios en lugares inspiradores. Nuestra pasión por la remodelación se traduce en soluciones innovadoras y acabados de alta calidad que se adaptan a tus necesidades y estilo. Entendemos que cada proyecto es único, por eso nuestro equipo de expertos trabaja estrechamente con usted para convertir sus ideas en realidad. Ya sea que desee modernizar su hogar, optimizar un espacio comercial o darle un aspecto renovado a su oficina, ofrecemos un enfoque personalizado que garantiza resultados excepcionales. Explora nuestras soluciones creativas y descubre cómo nuestros acabados pueden añadir ese toque especial que buscas. En Monse Solutios tu visión es nuestra misión. ¡Hagamos que tu espacio sea extraordinario!",
-     "textoBienvenida": "¡Bienvenido a Monse Solutions!"
+    "textoBienvenida": "Bienvenido a Monse Solutions",
+
+    "TextoPrincipal": "Conéctate con nosotros",
+
+    "Texto": "¡Y desbloquea un viaje personalizado hacia la solución perfecta para ti!",
+
+    "BotonContactenos": "Contacto",
+
+    "Titulo_Services": "Algunos de nuestros servicios",
+
+    "Nombre_Services": "Detalles en madera",
+
+    "Descripcion_Services": "Ofrecemos remodelación y acabados en madera, creando espacios únicos con pisos, revestimientos y muebles a medida, siempre con calidad y precisión.",
+
+    "Nombre_Services_Pintura": "Pintura Decorativa",
+
+    "Descripcion_Services_pintura": "Nos especializamos en Pintura Decorativa, mejorando los espacios con acabados únicos y efectos artísticos adaptados a tu estilo.",
+
+    "Nombre_Services_exterior": "Diseño de Exterior y Paisajismo",
+
+    "Descripcion_Services_exterior": "Ofrecemos servicios de diseño exterior y paisajismo, transformando los espacios al aire libre con diseños personalizados y jardinería.",
+
+    "title1": "Excelente trabajo y atención al detalle",
+    "body1": "Contratamos a esta empresa para remodelar nuestra cocina, y el resultado fue impresionante. Los acabados son de alta calidad y el equipo fue muy profesional durante todo el proceso.",
+
+    "texto_footer": "Acerca de la empresa",
+
+    "about-title": "Acerca de",
+
+    "parrafoAbout": "Monse Solutions se especializa en acabados y reformas, transformando espacios para mejorar la funcionalidad y estética de hogares y oficinas. Conocida por su calidad, innovación y servicio al cliente, la empresa ofrece soluciones a medida con materiales de alta gama y técnicas modernas. Su equipo de expertos garantiza que se cubra cada detalle, desde el diseño hasta la ejecución, creando proyectos únicos y satisfactorios.",
+
+    "contactUs": "Contáctenos",
+
+    "titleM": "Nuestra misión",
+
+    "textMision": "Transformar los espacios de nuestros clientes en ambientes funcionales y estéticamente agradables brindando un servicio personalizado que combine innovación, materiales de alta calidad y un equipo dedicado de profesionales. En Monse Solutions, estamos comprometidos a gestionar cada detalle desde el concepto hasta la finalización.",
+
+    "titleV": "Nuestra visión",
+
+    "textVision": "Ser la empresa líder en acabados y remodelaciones. sector, reconocido por transformar espacios con excelencia, creatividad, y un enfoque centrado en el cliente, estableciendo nuevos estándares de calidad y sostenibilidad en el diseño y ejecución de proyectos.",
+
+    "textoFinal":"Estamos comprometidos a escuchar sus ideas, comprender sus deseos, y convertirlos en realidad, asegurando un resultado no sólo estético sino También funcional y duradero.",
+
+    "join": "¡Únete a Soluciones Monse!",
+
+    "parrafoJoin": "En Monse Solutions valoramos la innovación, la calidad y un equipo apasionado. Comparta nuestra visión de transformar espacios y crear experiencias únicas: únase a Nosotros y marcamos la diferencia!",
+
+    "btnJoinTeam": "Enviar",
+
+    "tituloContact": "¡Ponte en contacto con nosotros!",
+
+    "textoContact": "¡Nos encantaría saber de usted! Si tiene preguntas, necesita una cotización o desea discutir las ideas de su proyecto, no dude en comunicarse con cualquiera de los siguientes canales.",
+
+    "infoTituloContact": "Así es como puedes contactar con nosotros:",
+
+    "Phone": "Teléfono",
+     
+    "Email": "Correo electrónico",
+
+    "Website": "Sitio web",
+
+    "Address": "Dirección",
+
+    "textMap":"¡Visítanos en Nuestra Ubicación!",
+
+    "contact_text": "Si lo prefiere, puede comunicarse con nuestro formulario de contacto fácil de completar. Simplemente proporcione sus datos y mensaje, y nuestro equipo se comunicará con usted lo antes posible.",
+
+    "blog-title": "El blog de soluciones de Monse",
+
+    "cardBlogTitle1": "10 consejos básicos de mantenimiento para tu hogar",
+
+    "cardBlogTitle": "Aprenda a planificar un jardín de temporada",
+
+    "cardBlogDescription1": "Mantener tu hogar en buenas condiciones no sólo mejora su apariencia sino que también previene...",
+
+    "cardBlogLink": "Leer más...",
+
+    "cardBlogDescription": "Crear un jardín de temporada es una manera maravillosa de disfrutar de flores frescas, colores vibrantes...",
+
+    "textoIntroBlog": "Desde consejos prácticos hasta análisis de tendencias de la industria, nuestro blog es un recurso diseñado para inspirarlo. ¡Únase a nosotros en este viaje hacia la innovación y descubra cómo nuestras soluciones pueden marcar la diferencia!",
+
+    "titleBlog1": "Mantenimiento preventivo del hogar.",
+
+    "descBlog1": "Una guía esencial para proteger su inversión",
+
+    "textBlog1": " El mantenimiento preventivo en el hogar no sólo ayuda a prolongar la vida útil de los componentes de su hogar, sino que también previene gastos inesperados y mantiene su espacio seguro y funcional. En este artículo, compartimos consejos prácticos para cuidar eficazmente su hogar, asegurando que esté siempre en óptimas condiciones...",
+
+    "titleBlog2": "Explora ideas de colores para tus espacios.",
+
+    "descBlog2": "Transforma tu hogar con la paleta perfecta",
+
+    "textBlog2": "Cuando se trata de diseño y decoración del hogar, una de las herramientas más poderosas que tienes a tu disposición es el color. La paleta adecuada puede transformar completamente la atmósfera. de una habitación, haciéndola sentir más grande, más acogedora o incluso más llena de energía.",
+
+    "titleBlog3": "Descubre cómo transformar armarios pequeños",
+
+    "descBlog3": "Maximiza el almacenamiento y el estilo en cada centímetro",
+
+    "textBlog3": "Un armario pequeño no tiene por qué resultar estrecho o desorganizado. Con un poco de creatividad y el enfoque correcto, incluso los espacios más compactos pueden transformarse en áreas de almacenamiento funcionales, organizadas y elegantes..."
+
+
+
+
+
+
+
+
+
+
 }
-  

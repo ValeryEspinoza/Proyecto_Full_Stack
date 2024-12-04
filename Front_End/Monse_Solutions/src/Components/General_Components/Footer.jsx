@@ -4,9 +4,16 @@ import '../../Styles/Components_Styles/Genaral_C_Styles/Footer.css'
 import Logo_Negro2 from '../../Img/Components_Img/Logo_blanco.png';
 import { BsInstagram,  BsFacebook, BsTiktok } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
+import '../../config/i18n'
 
 
 function Footer() {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Cambia el idioma dinámicamente
+  };
     return (
 <footer className="custom-footer-distributed">
 
@@ -16,17 +23,17 @@ function Footer() {
   </h3>
 
   <div className="custom-footer-links"> 
-    <Link to="/" className="custom-pagesFooter">Home</Link>
+    <Link to="/" className="custom-pagesFooter">{t('Home')}</Link>
     <span className="separator"> | </span>
-    <Link to="/Servicios" className="custom-pagesFooter">Services</Link>
+    <Link to="/Servicios" className="custom-pagesFooter">{t('Services')}</Link>
     <span className="separator"> | </span>
-    <Link to="/About" className="custom-pagesFooter">About us</Link>
+    <Link to="/About" className="custom-pagesFooter">{t('About')}</Link>
     <span className="separator"> | </span>
-    <Link to="/Contact" className="custom-pagesFooter">Contact</Link>
+    <Link to="/Contact" className="custom-pagesFooter">{t('Contact')}</Link>
     <span className="separator"> | </span>
-    <Link to="/About" className="custom-pagesFooter">Store</Link>
+    <Link to="/About" className="custom-pagesFooter">{t('Store')}</Link>
     <span className="separator"> | </span>
-    <Link to="/Blog" className="custom-pagesFooter">Blog</Link>
+    <Link to="/Blog" className="custom-pagesFooter">{t('Blog')}</Link>
 </div>
 
   <p className="custom-footer-company-name">Company Name © 2024</p>
@@ -53,7 +60,7 @@ function Footer() {
 <div className="custom-footer-right">
 
   <p className="custom-footer-company-about">
-    <span>About the company</span>
+    <span>{t('texto_footer')}</span>
     Monse Solutions es una empresa especializada en acabados y remodelaciones, 
     dedicada a transformar espacios y mejorar la funcionalidad y estética de hogares y oficinas. 
   </p>
