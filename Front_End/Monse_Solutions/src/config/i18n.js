@@ -4,7 +4,8 @@ import { initReactI18next } from 'react-i18next';
 
 // Importa las traducciones para inglés y español
 import enTranslation from '../locales/en/welcome.json';
-import esTranslation from '../locales/es/bienvenida.json';
+import esTranslation from '../locales/es/bienvenida.json'; 
+
 
 // Configura i18next
 i18n

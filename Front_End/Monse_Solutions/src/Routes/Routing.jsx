@@ -64,8 +64,9 @@ function Routing() {
       <Route path="/Settings" element={<Settings />} />
       <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
+      <Route path="/Store" element={<VirtualStore />} />
       <Route path="/ServicesData" element={<ServicesData />} />
-      <Route path="/VirtualStore" element={<VirtualStore />} />
+
 
 
 
