@@ -6,21 +6,28 @@ class ActionProvider {
 
     handlePreguntaServicios = () => {
         const message = this.createChatbotMessage(
-            "Ofrecemos remodelaciones, acabados y transformaciones de espacios residenciales y comerciales."
+            "R/1. We offer remodeling, finishing, and transformations of residential and commercial spaces."
         );
         this.updateChatbotState(message);
     };
 
     handlePreguntaCotizacion = () => {
         const message = this.createChatbotMessage(
-            "Puedes solicitar una cotización personalizada en nuestra página de contacto."
+            "R/2. You can request a personalized quote on our contact page."
         );
         this.updateChatbotState(message);
     };
 
     handlePreguntaCobertura = () => {
         const message = this.createChatbotMessage(
-            "Prestamos servicios en las principales ciudades del país."
+            "R/3. We provide our services throughout the Nosara area and its surroundings."
+        );
+        this.updateChatbotState(message);
+    };
+
+    handlePreguntaPagos = () => {
+        const message = this.createChatbotMessage(
+            "R/4. We have 3 payment methods: bank transfer, SINPE móvil, and PayPal. "
         );
         this.updateChatbotState(message);
     };
