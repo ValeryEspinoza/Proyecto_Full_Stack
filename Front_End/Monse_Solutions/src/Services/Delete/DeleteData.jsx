@@ -1,6 +1,6 @@
 async function DeleteData(EndPoint, id) {
     try {
-        const response = await fetch(`http://192.168.88.223:8000/${EndPoint}${id}/`, {
+        const response = await fetch(`http://192.168.1.87:8000/${EndPoint}${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

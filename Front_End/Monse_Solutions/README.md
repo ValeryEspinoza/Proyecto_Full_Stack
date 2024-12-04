@@ -19,3 +19,7 @@ npm install @emailjs/browser
 npm install react-bootstrap bootstrap 
 
 npm install react-calendar
+
+
+CHATBOT
+npm install react-chatbot-kit

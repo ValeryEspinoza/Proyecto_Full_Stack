@@ -1,7 +1,7 @@
 
 async function DeleteServices(id) {
     try {
-        const response = await fetch(`http://localhost:3001/Services/${id}`, {
+        const response = await fetch(`http://192.168.1.87/api/Services/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

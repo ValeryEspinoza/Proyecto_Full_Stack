@@ -40,7 +40,7 @@ function SideBar() {
                 </Link>
               </li>
               <li className="elementLiTE">
-                <Link to="ServiciosAdmi">
+                <Link to="/ServiciosAdmi">
                   <i className="fa fa-archive fa-2x"></i>
                   <span className="nav-text">Servicios</span>
                 </Link>

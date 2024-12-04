@@ -1,6 +1,7 @@
 import '../../Styles/Components_Styles/Admin_C_Styles/CalendarForm.css'
 import React, { useState } from "react";
 
+
 function CalendarForm() {
   // Estado del calendario
   const [calendarData, setCalendarData] = useState({
@@ -32,7 +33,6 @@ function CalendarForm() {
     const totalDaysInMonth = lastDate.getDate(); // Número total de días en el mes
     return { firstDayOfWeek, totalDaysInMonth };
   };
-
   const { firstDayOfWeek, totalDaysInMonth } = getMonthDetails(currentMonth, currentYear);
 
   // Función para manejar el clic en un cuadro
@@ -85,10 +85,8 @@ function CalendarForm() {
             onClick={() => handleBoxClick(index)} // Hacer clic para ampliar
           >
             {day && <span>{day}</span>} {/* Mostrar el número del día si existe */}
-
             {/* Mostrar el contenido de la nota si existe */}
             {calendarData[index] && <div className="note-content">{calendarData[index]}</div>}
-
             {activeBox === index && (
               <div className="form-overlay" onClick={handleCloseClick}> {/* Se coloca el manejador aquí para evitar que el clic cierre al hacer clic dentro */}
                 <button className="close-btn" onClick={(e) => { e.stopPropagation(); handleCloseClick(e); }}>X</button> {/* Botón para cerrar */}

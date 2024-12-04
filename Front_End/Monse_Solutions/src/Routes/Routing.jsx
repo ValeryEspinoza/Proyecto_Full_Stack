@@ -19,11 +19,13 @@ import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 import Settings from '../Pages/Settings'
 import Documentation from '../Pages/Documentation'
 import EventosTareas from '../Pages/EventosTareas'
+import VirtualStore from '../Pages/VirtualStore'
 
 //Imports Blog y articulos
 import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
+import ArticleColor from '../Pages/Articulos_pages/ArticleColor'
 
 
 
@@ -62,6 +64,9 @@ function Routing() {
       <Route path="/Settings" element={<Settings />} />
       <Route path="/Documentation" element={<Documentation />} />
       <Route path="/EventosTareas" element={<EventosTareas />} />
+      <Route path="/Store" element={<VirtualStore />} />
+      <Route path="/ServicesData" element={<ServicesData />} />
+
 
 
 
@@ -69,12 +74,11 @@ function Routing() {
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Article10Tips" element={<Article10Tips />} />
       <Route path="/ArticleGarden" element={<ArticleGarden />} />
+      <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
+      <Route path="/ArticleColor" element={<ArticleColor />} />
 
       <Route path="/ServicesTable" element={<ServicesTable />} />
 
-
-
-      <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ProfileClient" element={<ProfileClient />} />
       
 

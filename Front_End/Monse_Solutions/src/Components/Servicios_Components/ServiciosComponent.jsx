@@ -11,6 +11,7 @@ import Imagen_Reestructuracion from '../../Img/Components_Img/Reestructuracion.w
 import Imagen_Albañileria from '../../Img/Components_Img/Albañileria.jpg'
 import Imagen_Mantenimiento from '../../Img/Components_Img/Mantenimiento.jpg'
 import { useState, useEffect } from 'react'
+import GetServices from '../../Services/Get/GetServices'
 
 
 
