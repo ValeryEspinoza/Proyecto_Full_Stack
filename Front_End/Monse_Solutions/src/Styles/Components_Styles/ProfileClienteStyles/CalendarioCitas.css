@@ -1,0 +1,133 @@
+.calendarioCitas-container {
+    max-width: 800px; /* Ajusta el contenedor principal para que sea más pequeño */
+    margin: 20px auto; /* Centra el contenedor en la página */
+    padding: 10px;
+  }
+  
+  .calendarioCitas-title {
+    font-size: 2em;
+    text-align: center;
+    color: #50C878; /* Estilo con el color de tu proyecto */
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Redimensionar el calendario */
+  .fc {
+    max-width: 80%; /* Hace que el calendario ocupe solo el 80% del contenedor */
+    margin: 0 auto; /* Centra el calendario */
+    font-size: 0.9em; /* Disminuye el tamaño de la fuente */
+  }
+  
+  /* Ajustar el tamaño de los días y los eventos en el calendario */
+  .fc-daygrid-day-number {
+    font-size: 1.2em; /* Reduce el tamaño de los números de los días */
+  }
+  
+  .fc-daygrid-event {
+    font-size: 0.8em; /* Ajusta el tamaño de los eventos */
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1.6em; /* Cambia el tamaño del título del calendario */
+    color: #50C878;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Estilo de la lista de horas disponibles */
+  .calendarioCitas-availableTimesTitle {
+    font-size: 1.2em;
+    margin: 20px 0;
+    color: #333;
+  }
+  
+  .calendarioCitas-times {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .calendarioCitas-times li {
+    font-size: 1em;
+    background-color: #F1F1F1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .calendarioCitas-times li:hover {
+    background-color: #50C878;
+    color: white;
+  }
+  
+  .calendarioCitas-emailPrompt {
+    font-size: 1.5em;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .calendarioCitas-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .calendarioCitas-input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  .calendarioCitas-button {
+    background-color: #50C878;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .calendarioCitas-button:hover {
+    background-color: #3e8e41;
+  }
+  
+  .calendarioCitas-confirmationTitle {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .calendarioCitas-button {
+    background-color: #50C878;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .calendarioCitas-button:hover {
+    background-color: #3e8e41;
+    transform: scale(1.05);
+  }
+  
+  .available-day {
+    background-color: #50C878; /* Color de fondo para los días con disponibilidad */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .available-day:hover {
+    background-color: #3e8e41; /* Color al pasar el mouse sobre un día disponible */
+  }
+  

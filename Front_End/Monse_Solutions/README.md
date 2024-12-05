@@ -19,6 +19,8 @@ npm install @emailjs/browser
 npm install react-bootstrap bootstrap 
 
 npm install react-calendar
+npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/interaction emailjs-com
+npm install react-toastify
 
 
 CHATBOT
