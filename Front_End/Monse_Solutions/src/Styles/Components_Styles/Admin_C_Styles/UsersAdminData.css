@@ -2,8 +2,12 @@
     margin: 20px;
     padding: 10px;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     overflow-x: auto;
+}
+
+.form_Register{
+    margin-top: 10%;
 }
 
 .users-table {
