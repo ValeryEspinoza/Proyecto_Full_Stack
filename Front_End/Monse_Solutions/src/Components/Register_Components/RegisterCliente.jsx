@@ -8,6 +8,8 @@ import iconRegister from "../../Img/Components_Img/icon_register.png";
 import SendClients from '../../Services/Post/PostClients';
 import SendClientLanguage from '../../Services/Post/ClientsLanguage';
 import SendUser from '../../Services/Post/PostUser';
+import GetData from '../../Services/Get/GetData';
+import PostData from '../../Services/Post/PostData';
 
 
 
@@ -155,26 +157,21 @@ function RegisterClienteForm() {
 }, []);*/
 
   // Función para agregar un nuevo usuario
- async function Add() {
-
+  async function Add() {
     
-    const Users = await GetUser();
-    console.log("Users----", Users);  
+    const Users = await GetData('api/register');
+
+
+  
     //Buscar el ultimo usuario agregado y sumarle 1 para obtener el id del nuevo usuario
     const lastUserId = Users[Users.length - 1].id;
     const newUserId = lastUserId + 1;
 
-    
- 
     //Conocer el id del ultimo registro y sumarle 1 para generar el id del nuevo usuario
-    const Clients = await GetClients();
+    const Clients = await GetData('api/clients/');
     console.log("Clients", Clients);
     const lastClientId = Clients[Clients.length - 1].client_id;
     const NewClientID = lastClientId + 1;
-
-
-
-
 
     if (
       !Users.find(({ email }) => email === EmailUser) && !Users.find(({ username }) => username === UserName) &&
@@ -208,19 +205,25 @@ function RegisterClienteForm() {
       console.log(Language);
       console.log(NewClientID)
       
+//Convertir a un objeto y pasarlo a PostData('api/register')
 
-      SendUser( 
-        Password,
-        UserName,
-        EmailUser,
-        Names,
-        LastNames,
-        IsSuperUser,
-        IsStaff,
-        Active,
-        Role);
+const postUser = { 
+        Password: Password,
+        UserName: UserName,
+        EmailUser: EmailUser,
+        Names: Names,
+        LastNames: LastNames,
+        IsSuperUser: IsSuperUser,
+        IsStaff: IsStaff,
+        Active: Active,
+        Role:Role
+      };
 
-        SendClients(
+const postUsers = () => {
+  PostData('api/register/', postUser)
+}
+
+        /*SendClients(
           cedula,
           Names,
           LastNames,
@@ -228,7 +231,7 @@ function RegisterClienteForm() {
           PhoneNumber,
           newUserId);
 
-        SendClientLanguage(Language, NewClientID)
+        SendClientLanguage(Language, NewClientID)*/
 
       Swal.fire({
         title: "Registro Exitoso!",
@@ -242,10 +245,8 @@ function RegisterClienteForm() {
         icon: "error",
         });
     }
-  
+  }
 
-
- }
   return (
     <div className='bodyRegister'>
       <div className="divTitleRegister">

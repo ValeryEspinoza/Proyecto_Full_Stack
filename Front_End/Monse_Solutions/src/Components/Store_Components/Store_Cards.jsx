@@ -2,89 +2,21 @@ import React, { useEffect, useState } from 'react'
 import '../../Styles/Components_Styles/VirtualStore_Styles/VirtualStoreCards.css'
 import Imagen_Carrito from '../../Img/Components_Img/carrito_verde.png'
 
-function VirtualStore_Cards_Components() {
-    const [nombre, setNombre] = useState('');
-    const [precio, setPrecio] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [categoria, setCategoria] = useState('');
-    const [cantidad, setCantidad] = useState('');
-    const [base64, setBase64] = useState('');
-    const [productos, setProductos] = useState([]);
-    const [editable, setEditable] = useState('');
-  
-    const formProduct = {
-      name: nombre,
-      price: precio,
-      description: descripcion,
-      category: categoria,
-      imageUrl: base64,
-      Quantity: cantidad,
-    };
-  
-    useEffect(() => {
-      getUsuario();
-    }, [productos]);
-  
-    const handleFileChange = (event) => {
-      const file = event.target.files[0];
-      convertToBase64(file);
-    };
-  
-    const convertToBase64 = (file) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setBase64(reader.result);
-      };
-    };
-  
-    const getUsuario = async () => {
-      const dataProductos = await GetCatalogo();
-      setProductos(dataProductos);
-    };
-  
-    const cargar = () => {
-      PostCatalogo(formProduct);
-      console.log(formProduct + ' esto es lo que llega a la función');
-    };
-  
-    const Eliminar = (id) => {
-      DeleteCatalogo(id);
-    };
-  const Editar = (id, nombre, precio, cantidad, categoria, descripcion, image) => {
-  
-      setNombre(nombre)
-      setPrecio(precio)
-      setDescripcion(descripcion)
-      setCategoria(categoria)
-      setBase64(image)
-      setCantidad(cantidad)
-  
-    setEditable(id)
-    console.log(id);
-  
-  }
-  const GuardarCambio = (id) => {
-  
-  
-    const formProduct = {
-      name: nombre,
-      price: precio,
-      description: descripcion,
-      category: categoria,
-      imageUrl: base64,
-      Quantity: cantidad,
-    };
-  
-  
-    const updateFormProduct = {
-  formProduct
-    };
-  
-    UpdateCatalogo(id, updateFormProduct);
-    getUsuario();
-    setEditable(0); // Reset editable state to 0
+function Store() {
+//Hooks
+const [storeData, setStoreData] = useState([]);
+const [storeProducts, setStoreProducts] = useState([]);
+
+
+useEffect (() => {
+  async function getStoreProducts() {
+    const products = await fetch('api/products/')
+
+    setStoreProducts(products)
   };
+    getStoreProducts();
+}, []);
+
 
   return (
 <div>
@@ -164,4 +96,4 @@ function VirtualStore_Cards_Components() {
   )
 }
 
-export default VirtualStore_Cards_Components
+export default Store

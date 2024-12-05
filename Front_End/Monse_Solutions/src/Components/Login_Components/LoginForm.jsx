@@ -30,12 +30,21 @@ function LoginForm() {
   async function Login() {
     const Users = await GetUser() 
     
+    console.log('No funciono en nada');
+    
+
     if ((Users.find(({email}) => email === EmailUser)) && (Users.find(({password}) => password === PassUser)) ) {
+
+      const token = jwt.sign({}, 'clave secreta', { expiresIn: '1h' });
+      
+      localStorage.setItem("Token", token);      
       localStorage.setItem("Autenticado", "true");
-       
+      console.log(token);
+
+
       Swal.fire({
         title: "Ingreso Exitoso!",
-        text: "Se ha registrado el usuario con exito",
+        text: "Se ha iniciado de sesión con exito",
         icon: "success"
         });
 
@@ -47,7 +56,7 @@ function LoginForm() {
     }else{
       
       Swal.fire({
-        title: "Registro Exitoso!",
+        title: "Inicio de sesión fallido!",
         text: "Contraseña o correo no son válidos",
         icon: "error"
         });
