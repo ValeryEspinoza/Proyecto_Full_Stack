@@ -59,6 +59,9 @@ export default function NavBar() {
                   <Link className="itemLinkNav" to="/About">{t('About us')} </Link>
                   <Link className="itemLinkNav" to="/Contact"> {t('Contact')}</Link>
                   <Link className="itemLinkNav" to="/Store"> {t('Store')}</Link>
+                  <Link className="itemLinkNav" to="/About">{t('About')}</Link>
+                  <Link className="itemLinkNav" to="/Contact">{t('Contact')}</Link>
+                  <Link className="itemLinkNav" to="/Store">{t('Store')}</Link>
                   <Link className="itemLinkNav" to="/Blog">{t('Blog')}</Link>
                 </Nav>
               </Offcanvas.Body>

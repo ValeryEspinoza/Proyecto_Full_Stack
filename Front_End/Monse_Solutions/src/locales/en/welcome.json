@@ -1,24 +1,121 @@
 {
     "Boton_Register": "Register",
     "Boton_Login": "Login",
-    "Home": "Home",
-    "Services": "Services",
-    "About": "About",
+    "Home": "Home", 
+    "Services": "Services", 
+    "About": "About Us",
     "Contact": "Contact",
     "Store": "Store",
     "Blog": "Blog",
     "Texto1": "Here, we transform spaces into inspiring places. Our passion for remodeling translates into innovative solutions and high-quality finishes that adapt to your needs and style. We understand that every project is unique, which is why our team of experts works closely with you to turn your ideas into reality. Whether you want to modernize your home, optimize a commercial space, or give your office a fresh look, we offer a personalized approach that ensures exceptional results. Explore our creative solutions and discover how our finishes can add that special touch you’re looking for. At Monse Solutios your vision is our mission. Let’s make your space extraordinary!",
-    "textoBienvenida": "Welcome to Monse Solutions",
+    "textoBienvenida": "Welcome to Monse Solutions",  
+
+
     "TextoPrincipal": "Connect With Us",
+
+
     "Texto": "And unlock a personalized journey to the perfect solution for you!",
+
+
     "BotonContactenos": "Contact",
+
     "Titulo_Services": "Some of our services",
+
     "Nombre_Services": "Wood Details",
+
     "Descripcion_Services": "We offer remodeling and wood finishes, creating unique spaces with custom floors, coverings, and furniture, always with quality and precision.",
+
     "Nombre_Services_Pintura": "Decorative Painting",
+
     "Descripcion_Services_pintura": "We specialize in Decorative Painting, enhancing spaces with unique finishes and artistic effects tailored to your style.",
+
     "Nombre_Services_exterior": "Exterior Design and Landscaping",
-    "Descripcion_Services_exterior": "We offer exterior design and landscaping services, transforming outdoor spaces with custom designs and landscaping."
+
+    "Descripcion_Services_exterior": "We offer exterior design and landscaping services, transforming outdoor spaces with custom designs and landscaping.",
+
+    "texto_footer": "About the company",
+
+    "about-title": "About us",
+
+    "parrafoAbout": "Monse Solutions specializes in finishes and renovations, transforming spaces to enhance the functionality and aesthetics of homes and offices. Known for its quality, innovation, and customer service, the company offers tailored solutions with high-end materials and modern techniques. Its expert team ensures every detail is covered, from design to execution, creating unique and satisfying projects.",
+
+    "contactUs": "Contact Us",
+
+    "titleM": "Our mision",
+
+    "textMision": "To transform our clients' spaces into functional and aesthetically pleasing environments by providing personalized service that blends innovation, high-quality materials, and a dedicated team of professionals. At Monse Solutions, we are committed to managing every detail from concept to completion",
+
+    "titleV": "Our Vision",
+
+    "textVision": "To be the leading company in the finishes and remodeling sector, recognized for transforming spaces with excellence, creativity, and a client-centered approach, setting new standards of quality and sustainability in project design and execution.",
+
+    "textoFinal": "We are committed to listening to your ideas, understanding your desires, and turning them into reality, ensuring a result that is not only aesthetic but also functional and durable.",
+
+    "join": "Join Monse Solutions!",
+
+
+    "parrafoJoin": "At Monse Solutions, we value innovation, quality and a passionate team.Share our vision of transforming spaces and creating unique experiences—join us and make a difference!",
+
+    "btnJoinTeam": "Send",
+
+    "tituloContact": "Get in Touch with Us!",
+
+    "textoContact": "We'd love to hear from you! Whether you have questions, need a quote, or want to discuss your project ideas, feel free to reach out through any of the following channels.",
+
+    "infoTituloContact": "Here's how you can reach us:",
+    
+    "Phone": "Phone",
+
+    "Email": "Email",
+
+    "Website": "Website",
+
+    "Address": "Address",
+
+    "textMap": "Visit Us at Our Location!",
+
+    "contact_text": " If you prefer, you can reach out using our easy-to-fill contact form Just provide your details and message, and our team will get back to you as soon as possible.",
+
+    "blog-title": "The Monse Solutions Blog",
+
+    "cardBlogTitle1": "10 basic maintenance tips for your home",
+
+    "cardBlogTitle": "Learn how to plan a seasonal garden",
+
+    "cardBlogDescription1": "Keeping your home in good condition not only enhances its appearance but also prevents...",
+
+    "cardBlogLink": "Read More...",
+
+    "cardBlogDescription": "Creating a seasonal garden is a wonderful way to enjoy fresh blooms, vibrant colors...",
+
+    "textoIntroBlog": "¡From practical tips to industry trend analysis, our blog is a resource designed to inspire you. Join us on this journey toward innovation and discover how our solutions can make a difference!",
+
+    "titleBlog1": "Preventive home maintenance",
+
+    "descBlog1":"An essential guide to protect your investment",
+
+    "textBlog1": " Preventive maintenance in the home not only helps extend the life of your home’s components, but it also prevents unexpected expenses and keeps your space safe and functional. In this article, we share practical tips for effectively caring for your home, ensuring it’s always in top condition...",
+
+    "titleBlog2":  "Explore color ideas for your spaces",
+
+    "descBlog2": "Transform your home with the perfect palette",
+
+    "textBlog2": "When it comes to home design and decor, one of the most powerful tools you have at your disposal is color. The right palette can completely transform the atmosphere of a room, making it feel larger, cozier, or even more energized..",
+
+    "titleBlog3": "Discover how to transform small closets",
+
+    "descBlog3": "Maximize storage and style in every inch",
+
+    "textBlog3": "A small closet doesn’t have to feel cramped or disorganized. With a little creativity and the right approach, even the most compact spaces can be transformed into functional, organized, and stylish storage areas..."
+
+
+
+
+
+
+
+
 }
+    
 
   

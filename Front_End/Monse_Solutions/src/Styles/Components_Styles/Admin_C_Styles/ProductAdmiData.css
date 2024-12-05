@@ -1,6 +1,4 @@
-/* styles.css */
-
-.services-table-container {
+.products-container {
     margin: 20px;
     padding: 10px;
     border-radius: 8px;
@@ -8,22 +6,23 @@
     overflow-x: auto;
   }
   
-  .services-table {
+  .products-table {
     width: 100%;
     border-collapse: collapse;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     table-layout: fixed;
   }
-
-  .services-search-input {
+  
+  .products-search-input {
     padding: 8px 12px;
     width: 250px;
     font-size: 14px;
     border-radius: 4px;
     border: 1px solid #ddd;
   }
-  .services-btn {
+  
+  .products-btn {
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
@@ -33,15 +32,15 @@
     border-radius: 4px;
   }
   
-  .services-btn.services-add-btn {
+  .products-btn.products-add-btn {
     background-color: #f9fcf9;
   }
   
-  .services-btn.services-add-btn:hover {
+  .products-btn.products-add-btn:hover {
     background-color: #45a049;
   }
   
-  .services-form {
+  .products-form {
     margin-top: 20px;
     background-color: white;
     padding: 20px;
@@ -49,45 +48,46 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .services-form h3 {
+  .products-form h3 {
     margin-bottom: 20px;
   }
-  .services-th,
-  .services-td {
+  
+  .products-th,
+  .products-td {
     padding: 6px 12px;
     text-align: center;
     border: 1px solid #ddd;
     word-wrap: break-word;
   }
   
-  .services-th {
+  .products-th {
     background-color: #4CAF50;
     color: white;
     font-weight: bold;
   }
   
-  .services-tr:nth-child(even) {
+  .products-tr:nth-child(even) {
     background-color: #f2f2f2;
   }
   
-  .services-tr:hover {
+  .products-tr:hover {
     background-color: #ddd;
   }
   
-  .services-img {
+  .products-img {
     border-radius: 50%;
     width: 40px;
     height: 40px;
   }
   
-  .services-btn-container {
+  .products-btn-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .services-btn {
+  .products-btn {
     padding: 6px;
     cursor: pointer;
     font-size: 16px;
@@ -97,15 +97,15 @@
     transition: background-color 0.3s ease;
   }
   
-  .services-more-btn {
+  .products-more-btn {
     background-color: transparent;
   }
   
-  .services-more-btn:hover {
+  .products-more-btn:hover {
     color: #4CAF50;
   }
   
-  .services-dropdown {
+  .products-dropdown {
     display: none;
     position: absolute;
     right: 0;
@@ -114,7 +114,7 @@
     z-index: 10;
   }
   
-  .services-dropdown-btn {
+  .products-dropdown-btn {
     padding: 6px 12px;
     cursor: pointer;
     font-size: 14px;
@@ -124,28 +124,28 @@
     transition: background-color 0.3s ease;
   }
   
-  .services-edit-btn {
+  .products-edit-btn {
     color: #4CAF50;
   }
   
-  .services-edit-btn:hover {
+  .products-edit-btn:hover {
     background-color: #f0f0f0;
   }
   
-  .services-delete-btn {
+  .products-delete-btn {
     color: #f44336;
   }
   
-  .services-delete-btn:hover {
+  .products-delete-btn:hover {
     background-color: #f0f0f0;
   }
   
   /* Para que el menú de tres puntos se muestre correctamente en pantallas grandes */
-  .services-btn-container:hover .services-dropdown {
+  .products-btn-container:hover .products-dropdown {
     display: block;
   }
-
-  .services-header {
+  
+  .products-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -155,108 +155,39 @@
   }
   
   /* Clase personalizada para el logo */
-  .services-logo {
-    width: 100px;  /* Ajusta el tamaño del logo */
-    height: auto;  /* Mantiene la proporción del logo */
+  .products-logo {
+    width: 100px; /* Ajusta el tamaño del logo */
+    height: auto; /* Mantiene la proporción del logo */
     margin-right: 20px;
-    object-fit: contain;  /* Asegura que el logo se ajuste sin distorsionarse */
+    object-fit: contain; /* Asegura que el logo se ajuste sin distorsionarse */
   }
   
   /* Estilo para el nombre de la empresa y el título */
-  .services-company-name {
+  .products-company-name {
     font-size: 24px;
     font-weight: bold;
     color: #333;
   }
   
-  .services-title {
+  .products-title {
     font-size: 20px;
     font-weight: 600;
     color: #555;
-
   }
-
-  /* Estilos personalizados para el modal */
-.custom-modal {
-  max-width: auto;  /* Tamaño máximo del modal */
-  margin:  auto;  /* Centrando el modal en la pantalla */
-
-}
-
-.custom-modal-header {
-  background-color: #f8f9fa; /* Fondo claro para el encabezado */
-  border-bottom: 1px solid #ddd; /* Línea de separación */
-}
-
-.custom-modal-body {
-  padding: 20px;
-  background-color: #ffffff; /* Fondo blanco para el cuerpo */
-}
-
-.custom-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.custom-file-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.custom-btn-cancel {
-  background-color: #f44336;  /* Rojo para el botón de cancelar */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.custom-btn-save {
-  background-color: #4CAF50;  /* Verde para el botón de guardar */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.custom-btn-cancel:hover {
-  background-color: #d32f2f;  /* Efecto hover para cancelar */
-}
-
-.custom-btn-save:hover {
-  background-color: #388e3c;  /* Efecto hover para guardar */
-}
-.fade modal-backdrop show{
-  display: none;
-}
-
-
+  
   /* Vista responsiva - transformar tabla en fichas solo para pantallas pequeñas */
   @media (max-width: 768px) {
-    .services-table {
+    .products-table {
       display: none; /* Ocultar la tabla tradicional en pantallas pequeñas */
     }
   
-    .services-cards {
+    .products-cards {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
   
-    .services-card {
+    .products-card {
       background-color: white;
       padding: 15px;
       border-radius: 8px;
@@ -264,7 +195,7 @@
       margin-bottom: 15px;
     }
   
-    .services-card-img {
+    .products-card-img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -272,24 +203,24 @@
       margin: 0 auto 10px;
     }
   
-    .services-card-content {
+    .products-card-content {
       font-size: 14px;
     }
   
-    .services-card-actions {
+    .products-card-actions {
       margin-top: 10px;
       display: flex;
       gap: 10px;
       justify-content: center;
     }
   
-    .services-card-separator {
+    .products-card-separator {
       margin-top: 15px;
       border: 0;
       border-top: 1px solid #ddd;
     }
   
-    .services-btn {
+    .products-btn {
       font-size: 14px;
       padding: 8px 12px;
     }
@@ -297,28 +228,28 @@
   
   /* En pantallas de tamaño mediano (768px y más), muestra solo la tabla */
   @media (min-width: 768px) {
-    .services-cards {
+    .products-cards {
       display: none; /* Ocultar las fichas en pantallas grandes */
     }
   
-    .services-table {
+    .products-table {
       display: table; /* Mostrar la tabla solo en pantallas grandes */
     }
   }
   
   /* En pantallas extra pequeñas, ajustamos el tamaño de los botones y la imagen */
   @media (max-width: 480px) {
-    .services-btn {
+    .products-btn {
       font-size: 12px; /* Reducir aún más el tamaño en pantallas pequeñas */
       padding: 6px 10px;
     }
   
-    .services-card-img {
+    .products-card-img {
       width: 60px;
       height: 60px;
     }
   
-    .services-card-content {
+    .products-card-content {
       font-size: 12px;
     }
   }

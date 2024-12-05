@@ -1,5 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+//Importes de Páginas
 import Register from '../Pages/Register'
 import RegisterCliente from '../Pages/RegisterCliente'
 import Login from '../Pages/Login'
@@ -15,29 +17,31 @@ import Events from '../Pages/Events'
 import Calendar from '../Pages/Calendar'
 import Products from '../Pages/Products'
 import Users from '../Pages/Users'
-import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 import Settings from '../Pages/Settings'
 import Documentation from '../Pages/Documentation'
 import EventosTareas from '../Pages/EventosTareas'
 import VirtualStore from '../Pages/VirtualStore'
+import ProfileClient from '../Pages/ProfileClient'
 
+
+import ScrollToTop from '../Components/ScrollToTop_Components/ScrollToTop';
 //Imports Blog y articulos
 import Blog from '../Pages/Blog'
 import Article10Tips from '../Pages/Articulos_pages/Article10Tips'
 import ArticleGarden from '../Pages/Articulos_pages/ArticleGarden'
 import ArticleColor from '../Pages/Articulos_pages/ArticleColor'
-
-
-
 import ServicesTable from '../Components/Admin_Components/ServiceAdmiData'
 
 import ArticlePreventive from '../Pages/Articulos_pages/ArticlePreventive'
 
+//Importe de componentes
 import ServicesData from '../Components/Admin_Components/ServicesData'
+import ProductsTable from '../Components/Admin_Components/ProductsAdminData'
+import UsersTable from '../Components/Admin_Components/UsersAdmiData'
 
 
 
-import ProfileClient from '../Pages/ProfileClient'
+
 
 
 function Routing() {
@@ -77,7 +81,10 @@ function Routing() {
       <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ArticleColor" element={<ArticleColor />} />
 
+
       <Route path="/ServicesTable" element={<ServicesTable />} />
+      <Route path="/ProductsTable" element={<ProductsTable />} />
+      <Route path="/UsersTable" element={<UsersTable />} />
 
       <Route path="/ProfileClient" element={<ProfileClient />} />
       

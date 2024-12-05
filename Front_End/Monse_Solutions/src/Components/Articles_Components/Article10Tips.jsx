@@ -1,13 +1,20 @@
 import React from "react";
 import '../../Styles/Components_Styles/Articles_styles/Article10Tips.css';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
+import '../../config/i18n'
 
 const Article1 = () => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Cambia el idioma dinámicamente
+  };
   return (
     <div className="article-container">
       {/* Portada del artículo */}
       <header className="article-header">
-        <h1 className="article-title">10 Basic Maintenance tips<br />for your home</h1>
+        <h1 className="article-title">{t('cardBlogTitle1')}<br />for your home</h1>
       </header>
 
       {/* Introducción */}

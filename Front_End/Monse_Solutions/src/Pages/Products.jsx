@@ -1,13 +1,16 @@
 import React from 'react'
 import '../Styles/Pages_Styles/Products.css'
 import SideBar from '../Components/Admin_Components/SideBar'
-import ProductsForm from '../Components/Admin_Components/ProductsForm'
+import ProductsTable from '../Components/Admin_Components/ProductsAdminData'
 
 function Products() {
   return (
-    <div>
+    <div className='contenedoresPaginas'>
        <SideBar />
-       <ProductsForm />
+       <div>
+        <ProductsTable />
+       </div>
+       
     </div>
   )
 }

@@ -15,12 +15,16 @@ function CalendarForm() {
   });
   const [activeBox, setActiveBox] = useState(null); // Cuadro que se amplía
   const [clickedBox, setClickedBox] = useState(null); // Cuadro que fue clickeado
+
   // Nombres de los días de la semana
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
   // Estado para el mes y año actuales
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth()); // Mes actual
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth()); // Mes actual 
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear()); // Año actual
+
   const totalBoxes = 35; // Total de casillas (5 filas x 7 días)
+
   // Función para obtener el primer día del mes y el número total de días
   const getMonthDetails = (month, year) => {
     const firstDay = new Date(year, month, 1); // Primer día del mes
@@ -30,39 +34,48 @@ function CalendarForm() {
     return { firstDayOfWeek, totalDaysInMonth };
   };
   const { firstDayOfWeek, totalDaysInMonth } = getMonthDetails(currentMonth, currentYear);
+
   // Función para manejar el clic en un cuadro
   const handleBoxClick = (index) => {
     setActiveBox(index); // Establece el cuadro activo para ampliarlo
     setClickedBox(index); // Establece el cuadro clickeado para aplicar la clase adicional
     console.log('Box clicked, current month:', currentMonth); // Ver el estado cuando se hace clic
   };
+
   // Función para cerrar el cuadro ampliado
   const handleCloseClick = (e) => {
     e.stopPropagation(); // Previene que el clic dentro del cuadro activo cierre la ventana
     setActiveBox(null); // Cierra la ampliación
     setClickedBox(null); // Resetea el cuadro clickeado
   };
+
   // Función para generar el calendario con los días del mes
   const generateCalendar = () => {
     const daysArray = Array(totalBoxes).fill(null); // Inicializamos un arreglo de 35 casillas
     console.log('Initial days array:', daysArray); // Ver el array inicial
+
     for (let i = 0; i < totalDaysInMonth; i++) {
       console.log(`Placing day ${i + 1} at index ${firstDayOfWeek + i}`); // Ver dónde se coloca cada día
       daysArray[firstDayOfWeek + i] = i + 1; // Colocamos los números de los días en las casillas
     }
+
     console.log('Final days array:', daysArray); // Ver el array final
     return daysArray;
   };
+
   const daysArray = generateCalendar(); // Llamamos a la función para generar el calendario
+
   return (
     <div className="calendar-container">
       <h1 className="title">Mes: {`${currentMonth + 1}/${currentYear}`}</h1>
+
       {/* Mostrar los nombres de los días de la semana */}
       <div className="days-header">
         {days.map((day) => (
           <div key={day} className="day">{day}</div>
         ))}
       </div>
+
       {/* Mostrar las casillas del calendario */}
       <div className="calendar-grid">
         {daysArray.map((day, index) => (
@@ -91,6 +104,5 @@ function CalendarForm() {
   );
 }
 
-export default CalendarForm
-
+export default CalendarForm;
 
