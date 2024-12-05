@@ -65,7 +65,7 @@ function ServicesData() {
   DeleteServices(id)
   }
 
-/////Carga de datos al Modal
+/////Carga de datos al Modal editar
   function  cargarDatos(DatosServicios,id) {
     const registroFiltrado= DatosServicios.filter(e=> e.id === id)
     console.log(registroFiltrado);

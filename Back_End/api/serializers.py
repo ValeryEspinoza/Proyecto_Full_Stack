@@ -28,7 +28,7 @@ class UserSerializer(serializers.ModelSerializer):
     role=serializers.CharField(write_only=True) #esto es para que no se muestre en la respuesta
     class Meta:
         model = User
-        fields = ['id', 'role', 'password', 'username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active']
+        fields = ['id',  'role', 'password', 'username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active', 'date_joined', 'last_login', 'groups']
 
     def create(self, validated_data):
         # Extrae la contraseña del validated_data

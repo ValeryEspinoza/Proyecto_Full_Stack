@@ -3,6 +3,8 @@ import "../../Styles/Components_Styles/Blog_Styles/Blog.css";
 import { Link } from 'react-router-dom';
 import mision from '../../Img/Components_Img/about_mision.png';
 import vision from '../../Img/Components_Img/about_vision.png';
+import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
+import '../../config/i18n'
 
 import art3 from '../../Img/Components_Img/art_3.png';
 import art4 from '../../Img/Components_Img/art_4.png';
@@ -24,60 +26,49 @@ function Blog() {
     setIsModalOpen(false);
   };
 
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang); // Cambia el idioma dinámicamente
+  };
+
   return (
     <div className="blog-container">
 
       <div className='portadaBlog'>
-        <h1 className="blog-title">The Monse Solutions Blog</h1>
+        <h1 className="blog-title">{t('blog-title')}</h1>
       </div>
       
       <div className="divCardsBlog">
         <div className="cardBlog">
           <div className="imgCardBlog1"></div>
-          <h3 className="cardBlogTitle">10 basic maintenance tips<br />for your home</h3>
-          <p className="cardBlogDescription">
-            Keeping your home in good condition not only enhances 
-            its appearance but also prevents...
-          </p>
-          <Link to="/Article10Tips" className="cardBlogLink">Leer más...
-          </Link>
+          <h3 className="cardBlogTitle">{t('cardBlogTitle1')}</h3>
+          <p className="cardBlogDescription">{t('cardBlogDescription1')}</p>
+          <Link to="/Article10Tips" className="cardBlogLink">{t('cardBlogLink')}</Link>
         </div>
 
         <div className="cardBlog">
           <div className="imgCardBlog2"></div>
-          <h3 className="cardBlogTitle">Learn how to plan<br />a seasonal garden</h3>
-          <p className="cardBlogDescription">
-            Creating a seasonal garden is a wonderful way to enjoy fresh blooms, 
-            vibrant colors...
-          </p>
-          <Link to="/ArticleGarden" className="cardBlogLink">Leer más...
-          </Link>
+          <h3 className="cardBlogTitle">{t('cardBlogTitle')}</h3>
+          <p className="cardBlogDescription">{t('cardBlogDescription')}</p>
+          <Link to="/ArticleGarden" className="cardBlogLink">{t('cardBlogLink')}</Link>
         </div>
       </div><br /><br /><br /><br />
 
       <div className="divTextoIntroBlog">
-        <p className="textoIntroBlog">
-          ¡From practical tips to industry trend analysis, our blog is a resource designed 
-          to inspire you. Join us on this journey toward innovation and discover how our 
-          solutions can make a difference!
-        </p>
+        <p className="textoIntroBlog"> {t('textoIntroBlog')}</p>
       </div><br /><br />
 
       <div className='contenedorArt'>
         
         <div className="blog-post">
           <div className="text">
-            <h2 className='titleBlog'>Preventive home maintenance</h2>
-            <h3 className='descBlog'>An essential guide to protect your investment</h3>
-            <p className='textBlog'>
-              Preventive maintenance in the home not only helps extend the life of your home’s 
-              components, but it also prevents unexpected expenses and keeps your space safe and 
-              functional. In this article, we share practical tips for effectively caring 
-              for your home, ensuring it’s always in top condition...
-            </p>
+            <h2 className='titleBlog'>{t('titleBlog1')}</h2>
+            <h3 className='descBlog'>{t('descBlog1')}</h3>
+            <p className='textBlog'>{t('textBlog1')}</p>
             <Link to="/ArticlePreventive">
-              <button className="btnLeerMas">Read more...</button>
-            </Link>
+              <button className="btnLeerMas">{t('cardBlogLink')}</button></Link>
           </div>
           <div className="image">
             <img 
@@ -91,15 +82,12 @@ function Blog() {
 
         <div className="blog-post">
           <div className="text">
-            <h2 className='titleBlog'>Explore color ideas for your spaces</h2>
-            <h3 className='descBlog'>Transform your home with the perfect palette</h3>
+            <h2 className='titleBlog'>{t('titleBlog2')}</h2>
+            <h3 className='descBlog'>{t('descBlog2')}</h3>
             <p className='textBlog'>
-              When it comes to home design and decor, one of the most powerful tools you have 
-              at your disposal is color. The right palette can completely transform the atmosphere 
-              of a room, making it feel larger, cozier, or even more energized..
-            </p>
-            <Link to="/ArticleColor">
-              <button className="btnLeerMas">Read more...</button>
+            {t('textBlog2')}</p>
+            <Link to="/Contact">
+              <button className="btnLeerMas">{t('cardBlogLink')}</button>
             </Link>
           </div>
           <div className="image">
@@ -114,15 +102,11 @@ function Blog() {
 
         <div className="blog-post">
           <div className="text">
-            <h2 className='titleBlog'>Discover how to transform small closets</h2>
-            <h3 className='descBlog'>Maximize storage and style in every inch</h3>
-            <p className='textBlog'>
-              A small closet doesn’t have to feel cramped or disorganized. With a little creativity 
-              and the right approach, even the most compact spaces can be transformed into functional, 
-              organized, and stylish storage areas...
-            </p>
+            <h2 className='titleBlog'>{t('titleBlog3')}</h2>
+            <h3 className='descBlog'>{t('descBlog3')}</h3>
+            <p className='textBlog'> {t('textBlog3')} </p>
             <Link to="/Contact">
-              <button className="btnLeerMas">Read more...</button>
+              <button className="btnLeerMas">{t('cardBlogLink')}</button>
             </Link>
           </div>
           <div className="image">
