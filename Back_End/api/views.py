@@ -4,6 +4,10 @@ from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny, BasePermission  #Permisos para JWT
 from django.contrib.auth.models import User
 from django.db.models import F
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+
 from .models import (
     categories, suppliers, paymenth_methods, vacant, candidate, events, languages, status, priorities,
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
@@ -54,7 +58,25 @@ class UserListCreate(generics.ListCreateAPIView):
             user.is_staff = True
             user.is_superuser = True
             user.save()"""
-    
+            
+    def login_user(request):
+        if request.method == 'POST':
+            password = request.POST['password']
+            email = request.POST['email']
+            
+            # Intentar autenticar al usuario
+            user = authenticate(request, email=email, password=password )
+            
+            if user is not None:
+                # Si la autenticación es exitosa, iniciar la sesión
+                login(request, user)
+                return redirect('Dashboard')  # Redirigir al usuario a la página de inicio (o la página que prefieras)
+            else:
+                # Si las credenciales son incorrectas, mostrar un mensaje de error
+                return render(request, 'login.html', {'error': 'Credenciales incorrectas'})
+
+        return render(request, 'login.html')
+        
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
