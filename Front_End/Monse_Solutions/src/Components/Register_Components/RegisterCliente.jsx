@@ -104,12 +104,17 @@ function RegisterClienteForm() {
 
       const lastClientId = clients[clients.length - 1]?.client_id || 0;
       const newClientId = lastClientId + 1;
+      console.log(cedula);
+      
+      console.log(        !users.find(({ email }) => email === emailUser) && 
+      !users.find(({ username }) => username === userName));
+      
 
       // Verificar si el correo o el nombre de usuario ya existen
       if (
         !users.find(({ email }) => email === emailUser) && 
         !users.find(({ username }) => username === userName)
-      ) {
+      ) {   
         // Crear el objeto de usuario
         const user = {
           password: password,
@@ -123,38 +128,20 @@ function RegisterClienteForm() {
           role: role
         };
 
-        // Crear el objeto de cliente
-        const client = {
-          ID: cedula,
-          name: names,
-          last_name: lastNames,
-          email: emailUser,
-          phone_number: phoneNumber,
-          user: newUserId
-        };
-
-        // Objeto para el lenguaje
-        const languageData = { language: language, client: newClientId };
-
+   
+        
         // Realizar el envío de datos a las API correspondientes
         const response = await postData('api/register', user);
-        if (!response || !response.ok) {
-          throw new Error('Error al registrar el usuario');
+        setIsSubmitting(false); // Deshabilitar el botón de envío después de recibir la respuesta
+        
+        if (!response || !response.id) {
+          toast.error("Error al registrar el usuario.");
+          return;
         }
-
-        const responseClient = await postData('api/clients', client);
-        if (!responseClient || !responseClient.ok) {
-          throw new Error('Error al registrar el cliente');
-        }
-
-        const responseLanguage = await postData('api/languages_clients', languageData);
-        if (!responseLanguage || !responseLanguage.ok) {
-          throw new Error('Error al registrar el lenguaje del cliente');
-        }
-
-        // Mostrar los resultados de las respuestas
-        console.log(response, responseClient, responseLanguage);
+        
         toast.success("Registro exitoso. El usuario se ha creado correctamente.");
+        // Aquí puedes redirigir al usuario a otra página si lo deseas
+        
       } else {
         toast.error("Verifica los campos: el usuario o el correo ya existen.");
       }
@@ -162,7 +149,7 @@ function RegisterClienteForm() {
       toast.error(`Error al registrar usuario: ${error.message}`);
       console.error(error);  // Para poder depurar el error completo
     } finally {
-      setIsSubmitting(false);
+      
     }
   };
 
