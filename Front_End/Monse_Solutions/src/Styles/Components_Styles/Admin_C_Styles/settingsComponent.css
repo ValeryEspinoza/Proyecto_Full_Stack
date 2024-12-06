@@ -1,0 +1,168 @@
+/* settings.css */
+
+/* Contenedor principal */
+.settings-container {
+    margin: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título de la sección */
+  .settings-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Subtítulo para agrupar configuraciones */
+  .settings-subheader {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  
+  /* Entradas de texto */
+  .settings-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .settings-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Botones */
+  .settings-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .settings-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .settings-btn:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .settings-btn-secondary {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #f44336;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .settings-btn-secondary:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Sección de notificaciones */
+  .settings-notifications {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .settings-checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .settings-checkbox input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  /* Sección de selección de tema */
+  .settings-theme-section {
+    margin-top: 30px;
+  }
+  
+  .settings-theme-section label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .settings-theme-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .settings-theme-options input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .settings-theme-options label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Acciones de la configuración */
+  .settings-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .settings-container {
+      padding: 15px;
+    }
+  
+    .settings-input {
+      padding: 10px;
+    }
+  
+    .settings-btn,
+    .settings-btn-secondary {
+      width: 100%;
+    }
+  
+    .settings-theme-options {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .settings-header {
+      font-size: 24px;
+    }
+  
+    .settings-btn,
+    .settings-btn-secondary {
+      font-size: 14px;
+    }
+  }
+  

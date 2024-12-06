@@ -6,9 +6,11 @@ import SettingsComponent from '../Components/Admin_Components/SettingsComponent'
 
 function Settings() {
   return (
-    <div>
+    <div className='contenedoresPaginas'>
         <SideBar />
-        <SettingsComponent />
+        <div>
+          <SettingsComponent />
+        </div>
       
     </div>
   )

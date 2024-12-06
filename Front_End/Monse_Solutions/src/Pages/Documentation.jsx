@@ -9,7 +9,6 @@ function Documentation() {
     <div className='contenedoresPaginas'>
         <SideBar />
         <div>
-        <h1>Documentation</h1>
         <DocumetationForm />
         </div>
       

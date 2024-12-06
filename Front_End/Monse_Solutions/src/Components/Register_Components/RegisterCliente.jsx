@@ -1,161 +1,107 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import "../../Styles/Components_Styles/Register_Styles/RegisterCliente.css";
-import GetUser from '../../Services/Get/GetUsers';
-import GetClients from '../../Services/Get/GetClients';
-import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
+<<<<<<< HEAD
 import SendClients from '../../Services/Post/PostClients';
 import SendClientLanguage from '../../Services/Post/ClientsLanguage';
 import SendUser from '../../Services/Post/PostUser';
 import GetData from '../../Services/Get/GetData';
 import PostData from '../../Services/Post/PostData';
+=======
+import postData from '../../Services/Post/PostData';
+import GetData from '../../Services/Get/GetData';
+>>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
 
+function RegisterClienteForm() {
+  const [cedula, setCedula] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [emailUser, setEmailUser] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [language, setLanguage] = useState(1);
+  const [role, setRole] = useState("cliente");
+  const [isSuperUser, setIsSuperUser] = useState(false);
+  const [active, setActive] = useState(true);
+  const [isStaff, setIsStaff] = useState(false);
+  const [names, setNames] = useState("");
+  const [lastNames, setLastNames] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Función para concatenar nombres y apellidos
+  const concatenateNames = (firstName, secondName) => `${firstName} ${secondName}`;
 
+  // Manejo de cambios de cédula y obtención de datos
+  const handleCedulaChange = async (e) => {
+    const cedulaInput = e.target.value;
+    setCedula(cedulaInput);
 
+    if (cedulaInput.length >= 9) {
+      try {
+        const response = await fetch(`https://api.hacienda.go.cr/fe/ae?identificacion=${cedulaInput}`);
+        if (!response.ok) throw new Error('Error al obtener los datos de la cédula');
+        const data = await response.json();
 
-function RegisterClienteForm() { 
-  // Hooks
-  const [cedula, setCedula] = useState(""); 
-  const [FullName, SetFullName] = useState(""); 
-  const [UserName, SetUserName] = useState(""); 
-  const [EmailUser, SetEmail] = useState("");
-  const [PhoneNumber, SetPhoneNumber] = useState("")
-  const [Password, SetPassword] = useState("");
-  const [Password2, SetPassword2] = useState("");
-  const [Language, SetLanguage] = useState(1);
-  const [Role, SetRole] = useState("cliente");
-  const [IsSuperUser, SetIsSuperUser] = useState(false);
-  const [Active, SetActive] = useState(true)
-  const [IsStaff, SetIsStaff] = useState(false)
-  const [Names, SetNames]= useState("")
-  const [LastNames, SetLastNames]= useState("")
+        if (data.nombre) {
+          const fullName = data.nombre.trim();
+          setFullName(fullName);
 
+          const nameParts = fullName.split(' ');
+          const firstName = nameParts[0] || "";
+          const secondName = nameParts[1] || "";
+          const firstLastName = nameParts[nameParts.length - 2] || "";
+          const secondLastName = nameParts[nameParts.length - 1] || "";
 
+          setNames(concatenateNames(firstName, secondName));
+          setLastNames(concatenateNames(firstLastName, secondLastName));
 
-
-
-
-  const concatenarTextos = (valor1, valor2) => {
-    // Usando template literal para concatenar las cadenas
-    const resultado = `${valor1} ${valor2}`;  // Concatenación con template literal
-    return resultado;
+          toast.success("Cédula encontrada y datos completados automáticamente");
+        } else {
+          toast.error("No se encontró un usuario con esa cédula.");
+        }
+      } catch (error) {
+        toast.error(`Error al obtener los datos: ${error.message}`);
+      }
+    }
   };
 
-  
-  //Función para manejar el cambio en el input de la cédula
-  const handleCedulaChange = async (e) => {
-        const cedulaInput = e.target.value;
-        setCedula(cedulaInput);
-      
-        // Si la cédula tiene una longitud válida, hacemos la llamada a la API
-        if (cedulaInput.length >= 9) {
-
-          try {
-            //Realiza la llamada a la API de Hacienda
-            const response = await fetch(`https://api.hacienda.go.cr/fe/ae?identificacion=${cedulaInput}`);
-      
-            //Revisamos si la respuesta fue exitosa (status 200)
-            if (!response.ok) {
-              throw new Error('Error en la respuesta de la API');
-            }
-      
-            const data = await response.json();    
-            // Verificamos la respuesta completa en la consola
-            console.log("Respuesta de la API Cedula:", data);
-      
-            //Verificamos si el campo 'nombre' existe en la respuesta
-            if (data.nombre) {
-              const fullName = data.nombre; // Si el nombre está disponible
-              SetFullName(fullName);
-              console.log("Nombre completo actualizado:", fullName);
-
-        // Separar el nombre completo en partes
-        const partes = fullName.trim().split(' ');
-
-                  // Asignar las partes del nombre y apellidos
-                  let primerNombre = partes[0];
-                  let segundoNombre = '';
-                  let primerApellido = '';
-                  let segundoApellido = '';
-
-                  // Si hay más de un nombre
-                  if (partes.length > 1) {
-                    segundoNombre = partes[1];  // Segundo nombre si existe
-                  }
-
-                  // El último apellido es siempre el último valor
-                  if (partes.length > 2) {
-                    primerApellido = partes[partes.length - 2];  // El penúltimo es el primer apellido
-                    segundoApellido = partes[partes.length - 1]; // El último es el segundo apellido
-                  }
-
-                  // Concatenar valores
-                  let Names = concatenarTextos(primerNombre, segundoNombre)
-                  let LastsNames= concatenarTextos(primerApellido, segundoApellido)
-                  // Actualizar el estado de las variables
-                  SetNames(Names);
-                  SetLastNames(LastsNames);
-
-                console.log("Nombre completo actualizado:", Names, LastsNames);
-
-
-               
-            } else {
-              //Si no se encuentra un nombre, mostrar un mensaje de error
-              Swal.fire({
-                title: "Cédula no encontrada",
-                text: "No se encontró un usuario con esa cédula.",
-                icon: "error",
-              });
-            }
-            
-          } catch (error) {
-            // En caso de error, mostramos un mensaje con la razón del error
-            console.error("Error al obtener los datos del usuario:", error);
-            Swal.fire({
-              title: "Error de conexión",
-              text: `Hubo un problema al intentar obtener los datos: ${error.message}`,
-              icon: "error",
-            });
-          }
-        }
-      };
-      
-      
-  //Funciones para manejar los cambios en los demás campos de entrada
-  function GetEmail(input) {
-    SetEmail(input.target.value);
-  }
-  function GetUserName(input) {
-    SetUserName(input.target.value);
-  }
-  function GetPassword(input) {
-    SetPassword(input.target.value);
-  }
-
-  function GetPassword2(input) {
-    SetPassword2(input.target.value);
-  }
-
-  function GetLanguage(input) {
-    SetLanguage(input.target.value);
-  }
-
-  function GetPhoneNumber(input) {
-    SetPhoneNumber(input.target.value);
-  }
-
-  /*useEffect(() => {
-    async function fetchUserData() {
-        const userData = await GetUser();
-        console.log('User Data:', userData);
+  // Validación del formulario
+  const validateForm = () => {
+    if (!cedula || cedula.length < 9) {
+      toast.error("La cédula debe tener al menos 9 dígitos.");
+      return false;
     }
+    if (!fullName) {
+      toast.error("El nombre completo no puede estar vacío.");
+      return false;
+    }
+    if (!emailUser || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailUser)) {
+      toast.error("El correo electrónico no es válido.");
+      return false;
+    }
+    if (!userName) {
+      toast.error("El nombre de usuario no puede estar vacío.");
+      return false;
+    }
+    if (!password || password.length < 8) {
+      toast.error("La contraseña debe tener al menos 8 caracteres.");
+      return false;
+    }
+    if (password !== password2) {
+      toast.error("Las contraseñas no coinciden.");
+      return false;
+    }
+    return true;
+  };
 
-    fetchUserData();
-}, []);*/
+  // Función para manejar el registro
+  const handleRegister = async () => {
+    if (isSubmitting || !validateForm()) return;
 
+<<<<<<< HEAD
   // Función para agregar un nuevo usuario
   async function Add() {
     
@@ -201,12 +147,27 @@ function RegisterClienteForm() {
         , cedula
 
       );
+=======
+    setIsSubmitting(true);
+    try {
+      // Obtener los usuarios y clientes existentes para comprobar duplicados
+      const users = await GetData('api/register/');
+      const clients = await GetData('api/clients/');
+
+      const lastUserId = users[users.length - 1]?.id || 0;
+      const newUserId = lastUserId + 1;
+
+      const lastClientId = clients[clients.length - 1]?.client_id || 0;
+      const newClientId = lastClientId + 1;
+>>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
       console.log(cedula);
-      console.log(Language);
-      console.log(NewClientID)
+      
+      console.log(        !users.find(({ email }) => email === emailUser) && 
+      !users.find(({ username }) => username === userName));
       
 //Convertir a un objeto y pasarlo a PostData('api/register')
 
+<<<<<<< HEAD
 const postUser = { 
         Password: Password,
         UserName: UserName,
@@ -246,9 +207,54 @@ const postUsers = () => {
         });
     }
   }
+=======
+      // Verificar si el correo o el nombre de usuario ya existen
+      if (
+        !users.find(({ email }) => email === emailUser) && 
+        !users.find(({ username }) => username === userName)
+      ) {   
+        // Crear el objeto de usuario
+        const user = {
+          password: password,
+          username: userName,
+          email: emailUser,
+          first_name: names,
+          last_name: lastNames,
+          is_superuser: isSuperUser,
+          is_staff: isStaff,
+          is_active: active,
+          role: role
+        };
+
+   
+        
+        // Realizar el envío de datos a las API correspondientes
+        const response = await postData('api/register', user);
+        setIsSubmitting(false); // Deshabilitar el botón de envío después de recibir la respuesta
+        
+        if (!response || !response.id) {
+          toast.error("Error al registrar el usuario.");
+          return;
+        }
+        
+        toast.success("Registro exitoso. El usuario se ha creado correctamente.");
+        // Aquí puedes redirigir al usuario a otra página si lo deseas
+        
+      } else {
+        toast.error("Verifica los campos: el usuario o el correo ya existen.");
+      }
+    } catch (error) {
+      toast.error(`Error al registrar usuario: ${error.message}`);
+      console.error(error);  // Para poder depurar el error completo
+    } finally {
+      
+    }
+  };
+>>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
 
   return (
     <div className='bodyRegister'>
+      <ToastContainer />
       <div className="divTitleRegister">
         <div className="title-content">
           <h1 className="register">Register</h1>
@@ -266,30 +272,28 @@ const postUsers = () => {
         </div>
 
         <div className="divInputRegister">
-        <input
-        className='input-register disabled-input'
-        value={FullName}
-        onChange={() => {}}
-        placeholder='Full Name'
-        readOnly //Hacerlo solo de lectura
-        />
-
+          <input
+            className='input-register disabled-input'
+            value={fullName}
+            placeholder='Full Name'
+            readOnly
+          />
         </div>
-
 
         <div className="divInputRegister">
           <input
             className='input-register'
-            value={EmailUser}
-            onChange={GetEmail}
+            value={emailUser}
+            onChange={(e) => setEmailUser(e.target.value)}
             placeholder='Email'
           />
         </div>
+
         <div className="divInputRegister">
           <input
             className='input-register'
-            value={UserName}
-            onChange={GetUserName}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
             placeholder='UserName'
           />
         </div>
@@ -297,8 +301,8 @@ const postUsers = () => {
         <div className="divInputRegister">
           <input
             className='input-register'
-            value={PhoneNumber}
-            onChange={GetPhoneNumber}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             placeholder='Phone Number'
           />
         </div>
@@ -306,8 +310,8 @@ const postUsers = () => {
         <div className="divInputRegister">
           <input
             className='input-register'
-            value={Password}
-            onChange={GetPassword}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder='Password'
             type="password"
           />
@@ -316,27 +320,28 @@ const postUsers = () => {
         <div className="divInputRegister">
           <input
             className='input-register'
-            value={Password2}
-            onChange={GetPassword2}
+            value={password2}
+            onChange={(e) => setPassword2(e.target.value)}
             placeholder='Enter your password again'
             type="password"
           />
         </div>
 
         <select 
-         className="select-language"
-         value={Language}
-         onChange={GetLanguage}
-         
-         >
-          <option value={0} disabled selected>Choose a language</option>
+          className="select-language"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value={0} disabled>Choose a language</option>
           <option value={1}>English</option>
           <option value={2}>Español</option>
           <option value={3}>Français</option>
         </select>
 
         <br /><br />
-        <button onClick={Add} className="btn-Register">Register</button><br />
+        <button onClick={handleRegister} className="btn-Register" disabled={isSubmitting}>
+          {isSubmitting ? "Registrando..." : "Register"}
+        </button><br />
         <Link className='irALogin' to="/Login">Ir a Login</Link>
       </div>
     </div>

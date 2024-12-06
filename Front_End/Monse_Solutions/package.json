@@ -34,11 +34,15 @@
     "react-dom": "^18.3.1",
     "react-google-multi-lang": "^1.0.7",
     "react-i18next": "^15.1.2",
-    "react-icons": "^5.3.0",
+    "react-icons": "^5.4.0",
     "react-native-svg": "^15.7.1",
     "react-router-dom": "^6.28.0",
     "react-toastify": "^10.0.6",
     "sweetalert2": "^11.14.5",
+<<<<<<< HEAD
+=======
+    "toastify-js": "^1.12.0",
+>>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
     "typeface-titillium-web": "^1.1.13",
     "yup": "^1.4.0"
   },
