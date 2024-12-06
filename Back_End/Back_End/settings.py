@@ -87,12 +87,7 @@ CORS_ALLOWED_ORIGINS = [
 'http://localhost:5173', 'http://192.168.1.87:5173'
 ]
 
-CORS_ALLOWED_METHODS = [
-    "GET",
-    "POST",
-    "PUT",
-    "DELETE",
-    "OPTIONS"]
+
 
 
 ROOT_URLCONF = 'Back_End.urls'

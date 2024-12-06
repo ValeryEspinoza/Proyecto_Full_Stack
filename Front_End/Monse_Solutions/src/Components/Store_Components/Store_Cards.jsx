@@ -1,23 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import '../../Styles/Components_Styles/VirtualStore_Styles/VirtualStoreCards.css'
 import Imagen_Carrito from '../../Img/Components_Img/carrito_verde.png'
+import postData from '../../Services/Post/PostData';
+import GetData from '../../Services/Get/GetData';
+import {Link } from 'react-router-dom'; 
 
 function Store() {
 //Hooks
 const [storeData, setStoreData] = useState([]);
 const [storeProducts, setStoreProducts] = useState([]);
+const [searchTerm, setSearchTerm] = useState("");
+const [displayModal, setDisplayModal] = useState(false)
 
+//Modales
+const showModal = () => setDisplayModal(true);
+const hideModal = () => setDisplayModal(false);
 
-useEffect (() => {
-  async function getStoreProducts() {
-    const products = await fetch('api/products/')
+const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-    setStoreProducts(products)
+useEffect(() => {
+async function getStoreProducts() {
+
+    const storeProducts = await GetData('api/products/')
+
+    setStoreProducts(storeProducts)
   };
-    getStoreProducts();
-}, []);
+getStoreProducts();
+},[]);
+
+const filteredProducts = storeProducts.filter(product => 
+  product.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
 
+
+
+  
   return (
 <div>
 <div className='portadaTienda'>
@@ -33,7 +50,12 @@ useEffect (() => {
     <div className="container h-100">
       <div className="d-flex justify-content-center h-100">
         <div className="search">
-          <input className="search_input" type="text" name="" placeholder="Search here..."/>
+          <input
+          className="search_input"
+          type="text"
+          placeholder="Search here..."
+          value={searchTerm}
+          onChange={handleSearchChange}/>
           <a href="#" className="search_icon"><i className="fa fa-search"></i></a>
         </div>
       </div>
@@ -56,32 +78,48 @@ useEffect (() => {
 <div id='mapeo'>
 <div id="mapArticle">
   <div className="product-grid">
-    {productos.length > 0 ? (
-      productos.map((producto, index) => (
+    {filteredProducts.length > 0 ? (
+      storeProducts.map((producto, index) => (
         <div key={index} className="card" style={{ width: '18rem' }}>
 
-          {producto.formProduct && (<img src={producto.formProduct.imageUrl} className="card-img-top" alt="imagen de producto"/>)}
+          {producto.formProduct && (<img src={storeProducts.image_url} className="card-img-top" alt="imagen de producto"/>)}
           
           <div className="card-body">
 
-            { editable==producto.id ? <input type="text" onChange={(e) => setNombre(e.target.value)} placeholder="Nombre del producto"/>:<h5 className="card-title">{producto.formProduct.name}</h5>}
+           <h5 className="card-title">{storeProducts.name}</h5>
 
-            { editable==producto.id ? <input type="text" onChange={(e) => setDescripcion(e.target.value)} placeholder="Descripción del producto"/> : <p className="card-text"> {producto.formProduct.description}</p>}
+           <p className="card-text"> {storeProducts.description}</p>
           
           </div>
 
           <ul className="list-group list-group-flush">
 
-          { editable==producto.id ? <input type="text" onChange={(e) => setCategoria(e.target.value)} placeholder="Categoria" /> : <li className="list-group-item">{producto.formProduct.category}</li>}
+          <li className="list-group-item">{storeProducts.category}</li>
           
-          { editable==producto.id ? <input type="number" onChange={(e) => setPrecio(e.target.value)} placeholder="Precio del producto" /> : <li className="list-group-item">Precio: ${producto.formProduct.price}</li>}
-
-          { editable==producto.id ? <input type="text" onChange={(e) => setCantidad(e.target.value)} placeholder="Cantidad"/> : <li className="list-group-item">Cantidad: {producto.formProduct.Quantity}</li>}
-          
+          <li className="list-group-item">Precio: ${storeProducts.price}</li>
           </ul>
           <div className="card-body">
-            {editable==producto.id ? <button className="card-link" onClick={()=>GuardarCambio(producto.id)}>Guardar</button>:<button className="card-link" onClick={()=>Editar(producto.id, producto.formProduct.name, producto.formProduct.price, producto.formProduct.Quantity, producto.formProduct.category, producto.formProduct.description, producto.formProduct.imageUrl)}>Editar</button>}
-            {editable==producto.id ? <button className="card-link" onClick={() => setEditable(0)}>Cancelar</button> : <button className="card-link" onClick={() => Eliminar(producto.id)}>Borrar</button>}
+            <button onClick={showModal}>Más Información</button>
+            {displayModal && (
+              <div className="modal" tabindex="-1" role="dialog">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                    <p>Modal body text goes here.</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={hideModal}>Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            )}
           </div>
         </div>
       ))

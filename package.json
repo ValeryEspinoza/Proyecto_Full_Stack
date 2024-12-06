@@ -5,10 +5,13 @@
     "@fullcalendar/react": "^6.1.15",
     "aws-sdk": "^2.1692.0",
     "axios": "^1.7.8",
+    "cors": "^2.8.5",
     "emailjs-com": "^3.2.0",
     "react-calendar": "^5.1.0",
+    "react-chatbot-kit": "^2.2.2",
     "react-datepicker": "^7.5.0",
     "react-google-multi-lang": "^1.0.7",
+    "react-toastify": "^10.0.6",
     "sweetalert2": "^11.14.5"
   }
 }

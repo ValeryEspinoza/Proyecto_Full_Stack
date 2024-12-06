@@ -3,8 +3,12 @@ const GetData = async (EndPoint) => {
         console.log("Endpoint:", EndPoint);
 
         // Realiza la solicitud GET
-        const response = await fetch(`http://192.168.1.87:8000/${EndPoint}`, {
+
+        console.log("cargando");
+        
+        const response = await fetch(`http://192.168.1.87:8000/api/products/`, {
             method: "GET",
+
             headers: {
                 "Content-Type": "application/json",
             },
