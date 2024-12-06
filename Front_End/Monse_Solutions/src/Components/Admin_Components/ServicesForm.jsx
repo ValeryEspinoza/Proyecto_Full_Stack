@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../../Styles/Components_Styles/Admin_C_Styles/ServicesForm.css';
 import SendServices from '../../Services/Post/PostServices';
-import { toast, ToastContainer } from 'react-toastify'; // Importar React Toast
-import 'react-toastify/dist/ReactToastify.css'; // Importar estilos
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ServicesForm() {
   const [service, setService] = useState("");
@@ -62,14 +62,19 @@ function ServicesForm() {
 
       // Mostrar notificación de éxito
       toast.success("¡Servicio enviado exitosamente!", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",  // Usar la cadena en lugar de `toast.POSITION.TOP_RIGHT`
         autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
 
       // Limpiar el formulario y errores si la respuesta es exitosa
       setService("");
       setDescription("");
-      setImagenUrl("");
+      setImagenUrl(null);
       setCategory("");
       setErrors({});
     } catch (error) {
@@ -77,8 +82,13 @@ function ServicesForm() {
 
       // Mostrar notificación de error
       toast.error("Error al enviar el servicio. Intente de nuevo.", {
-        position: toast.POSITION.TOP_RIGHT,
+        position: "top-right",  // Usar la cadena en lugar de `toast.POSITION.TOP_RIGHT`
         autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
     }
   };
