@@ -4,4 +4,5 @@
     grid-template-columns: 5% 95%; /* Sidebar ocupa el 20%, BodyContent ocupa el 80% */
     height: 100vh; /* Ocupa toda la pantalla */
     margin: 5px;
+    background-color: white;
   }

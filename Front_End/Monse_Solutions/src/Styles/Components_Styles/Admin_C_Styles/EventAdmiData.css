@@ -1,0 +1,323 @@
+/* eventsadmidata.css */
+
+/* Contenedor principal */
+.events-table-container {
+  margin: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  overflow-x: auto;
+}
+
+/* Tabla de eventos */
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  table-layout: fixed;
+}
+
+.events-search-input {
+  padding: 8px 12px;
+  width: 250px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.events-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+}
+
+.events-btn.events-add-btn {
+  background-color: #f9fcf9;
+}
+
+.events-btn.events-add-btn:hover {
+  background-color: #45a049;
+}
+
+/* Formulario para agregar o editar evento */
+.events-form {
+  margin-top: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.events-form h3 {
+  margin-bottom: 20px;
+}
+
+/* Celdas y filas de la tabla */
+.events-th,
+.events-td {
+  padding: 6px 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  word-wrap: break-word;
+}
+
+.events-th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.events-tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.events-tr:hover {
+  background-color: #ddd;
+}
+
+/* Botones de acción */
+.events-btn-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events-btn {
+  padding: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.events-more-btn {
+  background-color: transparent;
+}
+
+.events-more-btn:hover {
+  color: #4CAF50;
+}
+
+/* Menú desplegable */
+.events-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.events-dropdown-btn {
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.events-edit-btn {
+  color: #4CAF50;
+}
+
+.events-edit-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.events-delete-btn {
+  color: #f44336;
+}
+
+.events-delete-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* Para que el menú de tres puntos se muestre correctamente en pantallas grandes */
+.events-btn-container:hover .events-dropdown {
+  display: block;
+}
+
+/* Encabezado */
+.events-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Clase personalizada para el logo */
+.events-logo {
+  width: 100px; /* Ajusta el tamaño del logo */
+  height: auto; /* Mantiene la proporción del logo */
+  margin-right: 20px;
+  object-fit: contain; /* Asegura que el logo se ajuste sin distorsionarse */
+}
+
+/* Estilo para el nombre de la empresa y el título */
+.events-company-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.events-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Estilos personalizados para el modal */
+.custom-modal {
+  max-width: auto;
+  margin: auto;
+}
+
+.custom-modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.custom-modal-body {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.custom-file-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.custom-btn-cancel {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.custom-btn-save {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.custom-btn-cancel:hover {
+  background-color: #d32f2f;
+}
+
+.custom-btn-save:hover {
+  background-color: #388e3c;
+}
+
+/* Responsividad */
+
+/* Vista responsiva - transformar tabla en fichas solo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .events-table {
+      display: none; /* Ocultar la tabla tradicional en pantallas pequeñas */
+  }
+
+  .events-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .events-card {
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+  }
+
+  .events-card-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 10px;
+  }
+
+  .events-card-content {
+      font-size: 14px;
+  }
+
+  .events-card-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+  }
+
+  .events-card-separator {
+      margin-top: 15px;
+      border: 0;
+      border-top: 1px solid #ddd;
+  }
+
+  .events-btn {
+      font-size: 14px;
+      padding: 8px 12px;
+  }
+}
+
+/* En pantallas de tamaño mediano (768px y más), muestra solo la tabla */
+@media (min-width: 768px) {
+  .events-cards {
+      display: none; /* Ocultar las fichas en pantallas grandes */
+  }
+
+  .events-table {
+      display: table; /* Mostrar la tabla solo en pantallas grandes */
+  }
+}
+
+/* En pantallas extra pequeñas, ajustamos el tamaño de los botones y la imagen */
+@media (max-width: 480px) {
+  .events-btn {
+      font-size: 12px; /* Reducir aún más el tamaño en pantallas pequeñas */
+      padding: 6px 10px;
+  }
+
+  .events-card-img {
+      width: 60px;
+      height: 60px;
+  }
+
+  .events-card-content {
+      font-size: 12px;
+  }
+}

@@ -83,10 +83,18 @@ MIDDLEWARE = [
 ]
 
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 CORS_ALLOWED_ORIGINS = [
-'http://localhost:5173', 'http://192.168.1.87:5173' 
+'http://localhost:5173', 'https://192.168.1.87',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",  # Cambia esto por el dominio de tu frontend
+    'https://192.168.1.87',
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'Back_End.urls'
 

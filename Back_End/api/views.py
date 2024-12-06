@@ -281,10 +281,12 @@ class projectsDetail(generics.RetrieveUpdateDestroyAPIView):
 class clientsListCreate(generics.ListCreateAPIView):
     queryset = clients.objects.all()
     serializer_class = clientsSerializer
+    permission_classes = [AllowAny]
 
 class clientsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = clients.objects.all()
     serializer_class = clientsSerializer 
+    permission_classes = [AllowAny]
     
 class sellsListCreate(generics.ListCreateAPIView):
     queryset = sells.objects.all()
@@ -367,10 +369,12 @@ class staff_projectsDetail(generics.RetrieveUpdateDestroyAPIView):
 class languages_clientsListCreate(generics.ListCreateAPIView):
     queryset = languages_clients.objects.all()
     serializer_class = languages_clientsSerializer
+    permission_classes = [AllowAny]
 
 class languages_clientsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = languages_clients.objects.all()
     serializer_class = languages_clientsSerializer
+    permission_classes = [AllowAny]
     
 class candidates_vacantsListCreate(generics.ListCreateAPIView):
     queryset = candidates_vacants.objects.all()
