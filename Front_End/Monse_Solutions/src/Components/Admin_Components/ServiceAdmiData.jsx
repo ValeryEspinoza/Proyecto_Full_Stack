@@ -5,18 +5,20 @@ import DeleteData from "../../Services/Delete/DeleteData";
 import PatchData from "../../Services/Patch/PatchData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'font-awesome/css/font-awesome.min.css';
-import '../../Styles/Components_Styles/Admin_C_Styles/ServiceAdmiData.css';
+import "font-awesome/css/font-awesome.min.css";
+import "../../Styles/Components_Styles/Admin_C_Styles/ServiceAdmiData.css";
 import ServicesForm from "./ServicesForm";
-import logoNegroF from '../../Img/Components_Img/logo_negrov.png';
+import logoNegroF from "../../Img/Components_Img/logo_negrov.png";
+import uploadImageToS3 from "../../Services/S3/UploadImage"; // Nueva función para subir imágenes
 
 const ServicesTable = () => {
   const [DatosServicios, SetDatosServicios] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");  
+  const [searchTerm, setSearchTerm] = useState("");
   const [editedService, setEditedService] = useState(null);
   const [editedField, setEditedField] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null); // Nueva variable para la imagen seleccionada
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
@@ -44,12 +46,12 @@ const ServicesTable = () => {
 
   const Delete = async (service_id) => {
     try {
-      await DeleteData('api/services/', service_id);
-      const updatedServicios = await GetData('api/services/');
+      await DeleteData("api/services/", service_id);
+      const updatedServicios = await GetData("api/services/");
       SetDatosServicios(updatedServicios);
       toast.success("Servicio eliminado con éxito.");
     } catch (error) {
-      console.error('Error al eliminar el servicio:', error);
+      console.error("Error al eliminar el servicio:", error);
       toast.error("Error al eliminar el servicio.");
     }
   };
@@ -57,49 +59,48 @@ const ServicesTable = () => {
   const handleFieldChange = (e, field) => {
     setEditedService({
       ...editedService,
-      [field]: e.target.value
+      [field]: e.target.value,
     });
     setEditedField(field);
   };
 
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]); // Almacena la imagen seleccionada
+  };
+
   const handleSaveAll = async () => {
     try {
+      let imageUrl = editedService.imagen_url;
+
+      // Subir imagen a AWS S3 si se seleccionó una nueva
+      if (selectedImage) {
+        imageUrl = await uploadImageToS3(selectedImage); // Sube la imagen y obtiene la URL
+      }
+
       const serviceData = {
         service_id: editedService.service_id,
         service: editedService.service,
         description: editedService.description,
         category: editedService.category,
-        imagen_url: editedService.imagen_url
+        imagen_url: imageUrl,
       };
-      await PutData('api/services', serviceData, editedService.service_id);
-      const updatedServicios = await GetData('api/services/');
+
+      await PutData("api/services", serviceData, editedService.service_id);
+      const updatedServicios = await GetData("api/services/");
       SetDatosServicios(updatedServicios);
       setEditedService(null);
+      setSelectedImage(null);
       toast.success("Cambios guardados exitosamente.");
     } catch (error) {
-      console.error('Error al guardar los cambios:', error);
+      console.error("Error al guardar los cambios:", error);
       toast.error("Error al guardar los cambios.");
     }
   };
 
-  const handleSaveField = async () => {
-    try {
-      const fieldData = {
-        [editedField]: editedService[editedField]
-      };
-      await PatchData('api/services', fieldData, editedService.service_id);
-      const updatedServicios = await GetData('api/services/');
-      SetDatosServicios(updatedServicios);
-      setEditedService(null);
-      toast.success("Campo guardado correctamente.");
-    } catch (error) {
-      console.error('Error al guardar el cambio específico:', error);
-      toast.error("Error al guardar el cambio del campo.");
-    }
-  };
-
   const cargarDatos = (serviceId) => {
-    const selectedService = DatosServicios.find(service => service.service_id === serviceId);
+    const selectedService = DatosServicios.find(
+      (service) => service.service_id === serviceId
+    );
     if (selectedService) {
       setEditedService({ ...selectedService });
       setEditedField(null);
@@ -183,14 +184,21 @@ const ServicesTable = () => {
               </td>
               <td className="services-td">
                 {editedService?.service_id === Servicios.service_id ? (
-                  <input
-                    type="text"
-                    value={editedService.imagen_url}
-                    onChange={(e) => handleFieldChange(e, "imagen_url")}
-                  />
+                  <>
+                    <input type="file" onChange={handleImageChange} />
+                    {selectedImage && <span>{selectedImage.name}</span>}
+                  </>
                 ) : (
-                  <a href={Servicios.imagen_url} target="_blank" rel="noopener noreferrer">
-                    <img src={Servicios.imagen_url} alt="Service Image" className="services-img" />
+                  <a
+                    href={Servicios.imagen_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={Servicios.imagen_url}
+                      alt="Service"
+                      className="services-img"
+                    />
                   </a>
                 )}
               </td>
@@ -205,20 +213,12 @@ const ServicesTable = () => {
                   {isDropdownOpen === Servicios.service_id && (
                     <div className="services-dropdown">
                       {editedService?.service_id === Servicios.service_id ? (
-                        <>
-                          <button
-                            className="services-dropdown-btn services-save-btn"
-                            onClick={handleSaveAll}
-                          >
-                            Save All
-                          </button>
-                          <button
-                            className="services-dropdown-btn services-save-btn"
-                            onClick={handleSaveField}
-                          >
-                            Save Field
-                          </button>
-                        </>
+                        <button
+                          className="services-dropdown-btn services-save-btn"
+                          onClick={handleSaveAll}
+                        >
+                          Save All
+                        </button>
                       ) : (
                         <>
                           <button
