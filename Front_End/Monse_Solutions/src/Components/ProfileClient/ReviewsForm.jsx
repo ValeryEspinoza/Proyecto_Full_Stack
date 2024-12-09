@@ -4,23 +4,19 @@ import GetData from "../../Services/Get/GetData";
 import PostData from "../../Services/Post/PostData";
 import { toast } from 'react-toastify';
 
-const ReviewForm = ({ onReviewAdded, clientId = "default-client-id" }) => { // clientId por defecto para pruebas
+const ReviewForm = () => {
+
   const [reviews, setReviews] = useState([]);
   const [formData, setFormData] = useState({
     review: '',
     date: new Date().toISOString().split('T')[0],
     rating: 5,
-    client: parseInt(clientId, 10), // Convertir clientId a número
+    client: 1, // Default client to 1
   });
-  const [errors, setErrors] = useState({}); // Para manejar errores de validación
+  const [errors, setErrors] = useState({});
 
-  // Actualizar clientId dinámicamente si cambia
-  useEffect(() => {
-    setFormData((prevData) => ({
-      ...prevData,
-      client: parseInt(clientId, 10), // Asegurarse de que client se mantenga como número
-    }));
-  }, [clientId]);
+  // Actualizamos el client dinámicamente si cambia el clientId
+
 
   // Cargar reviews existentes
   useEffect(() => {
@@ -65,28 +61,24 @@ const ReviewForm = ({ onReviewAdded, clientId = "default-client-id" }) => { // c
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return; // Validar antes de enviar
-    console.log("Datos enviados:", formData); // Verifica qué datos se están enviando
+  
     try {
-      const response = await PostData('reviews', formData);
-      if (response?.id) { // Validar que la respuesta del servidor sea válida
-        setReviews([...reviews, response]);
-        setFormData({
-          review: '',
-          date: new Date().toISOString().split('T')[0],
-          rating: 5,
-          client: parseInt(clientId, 10), // Asegurarse de que client se mantenga como número
-        });
+      if (formData) {
+        console.log("Datos enviados:", formData); // Imprime los datos enviados
+        const response = await PostData('reviews', formData);
+        console.log(response);
+        
         toast.success("Review enviada correctamente.");
-        if (onReviewAdded) onReviewAdded(response);
-      } else {
-        throw new Error("Respuesta inesperada del servidor.");
+      }else{
+        toast.success("Review No ha sido enviado correctamente.");
       }
+
     } catch (error) {
       console.error("Error al enviar la review:", error);
       toast.error("Error al enviar la review. Revisa los datos enviados.");
     }
   };
-
+  
   return (
     <div>
       <div className="color-bannerReview">

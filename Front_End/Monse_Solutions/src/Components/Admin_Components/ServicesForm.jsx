@@ -3,6 +3,7 @@ import '../../Styles/Components_Styles/Admin_C_Styles/ServicesForm.css';
 import SendServices from '../../Services/Post/PostServices';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useMessageProvider } from '../../Services/Funciones/MessageProvider';
 
 function ServicesForm() {
   const [service, setService] = useState("");
@@ -10,6 +11,9 @@ function ServicesForm() {
   const [imagenUrl, setImagenUrl] = useState(null); // Mantener el archivo
   const [category, setCategory] = useState("");
   const [errors, setErrors] = useState({}); // Estado para errores
+  const { setSuccessMessage } = useServicesMessage(); // Usamos el hook para enviar el mensaje
+  const [serviceName, setServiceName] = useState('');
+  const [serviceDescription, setServiceDescription] = useState('');
 
   const generarCadenaAleatoria = (longitudMinima = 20) => {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

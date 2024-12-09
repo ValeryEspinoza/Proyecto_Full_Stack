@@ -43,6 +43,26 @@ const ServicesTable = () => {
     ObtenerServicios();
   }, []);
 
+
+  useEffect(() => {
+    const alerta = async () => {
+      if (message) {
+        try {
+          const response = await GetData("services");
+          SetDatosServicios(response);
+          toast.success("Nuevo servicio agregado correctamente.");
+        } catch (error) {
+          console.error("Error al agregar servicios:", error);
+          toast.error("Error al Agregar el servicio.");
+        }
+    }
+
+    alerta()
+      // Limpiar el mensaje después de mostrarlo
+      clearMessage();
+    }
+  }, [message, clearMessage]);
+
   const Delete = async (service_id) => {
     try {
       await DeleteData('services', service_id);
