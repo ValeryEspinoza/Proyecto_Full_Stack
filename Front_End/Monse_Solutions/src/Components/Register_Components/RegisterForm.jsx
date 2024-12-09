@@ -17,11 +17,13 @@ function RegisterForm() {
         const[Access, SetAccess]=useState("")
 
         //Obtener Valor Input
-        function GetLastName(input) {
-                SetLastName(input.target.value)
-        }
+
+       
         function GetName(input) {
                 SetName(input.target.value)   
+        }
+        function GetLastName(input) {
+                SetLastName(input.target.value)
         }
         function GetEmail(input) {
                 SetEmail(input.target.value)
@@ -71,17 +73,18 @@ function RegisterForm() {
         
 
   return (
-        <div className='bodyRegister'>
+    <div className='bodyRegister2'>
+     
                 <div className="form-container">
         <h1 className="form-title">Registro</h1>
     
-        <input value={LastName} onChange={GetLastName} placeholder='Last Name' type="text" />
-        <input value={Name} onChange={GetName} placeholder='Name' type="text" />
-        <input value={EmailUser} onChange={GetEmail} placeholder='Email' type="text" />
-        <input value={Password} onChange={GetPassword} placeholder='Password' type="password" />
-        <input value={Password2} onChange={GetPassword2} placeholder='Enter your Password again' type="password" />
+        <input className='InputRegister' value={LastName} onChange={GetLastName} placeholder=' Name' type="text" />
+        <input className='InputRegister' value={Name} onChange={GetName} placeholder='Last Name' type="text" />
+        <input className='InputRegister' value={EmailUser} onChange={GetEmail} placeholder='Email' type="text" />
+        <input className='InputRegister' value={Password} onChange={GetPassword} placeholder='Password' type="password" />
+        <input className='InputRegister' value={Password2} onChange={GetPassword2} placeholder='Enter your Password again' type="password" />
     
-        <select value={Access} onChange={GetAccessValue} className="select-access">
+        <select className='InputRegister' value={Access} onChange={GetAccessValue} >
             <option value="">Access</option>
             <option value="Ad86fw">Administrador</option>
             <option value="Ck54pe">Colaborador</option>
@@ -90,7 +93,7 @@ function RegisterForm() {
         <button onClick={Add} className="btn-add">Add</button>
         <Link className='irAHome' to="/Login"><p>Ir a Login</p></Link>
     </div>
-    
+    <br /><br /><br />
         </div>
   )
 }

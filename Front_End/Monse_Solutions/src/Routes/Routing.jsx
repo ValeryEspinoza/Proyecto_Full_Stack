@@ -38,8 +38,8 @@ import ArticlePreventive from '../Pages/Articulos_pages/ArticlePreventive'
 import ServicesData from '../Components/Admin_Components/ServicesData'
 import ProductsTable from '../Components/Admin_Components/ProductsAdminData'
 import UsersTable from '../Components/Admin_Components/UsersAdmiData'
-
-
+import TasksAdminData from '../Components/Admin_Components/TasksAdminData'
+import EventsAdminData from '../Components/Admin_Components/EventsAdmiData'
 
 
 
@@ -85,6 +85,10 @@ function Routing() {
       <Route path="/ServicesTable" element={<ServicesTable />} />
       <Route path="/ProductsTable" element={<ProductsTable />} />
       <Route path="/UsersTable" element={<UsersTable />} />
+      <Route path="/TasksAdminData" element={<TasksAdminData />} />
+      <Route path="/EventsAdminData" element={<EventsAdminData />} />
+
+
 
       <Route path="/ProfileClient" element={<ProfileClient />} />
       

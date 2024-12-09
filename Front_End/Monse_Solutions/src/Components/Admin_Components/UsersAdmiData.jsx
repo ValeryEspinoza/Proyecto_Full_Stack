@@ -6,7 +6,7 @@ import PatchData from "../../Services/Patch/PatchData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import 'font-awesome/css/font-awesome.min.css';
-import '../../Styles/Components_Styles/Admin_C_Styles/UsersAdminData.css'; // Asegúrate de cambiar la clase si es necesario
+import '../../Styles/Components_Styles/Admin_C_Styles/UsersAdminData.css'; 
 import RegisterForm from "../Register_Components/RegisterForm";
 import logoNegroF from '../../Img/Components_Img/logo_negrov.png';
 
@@ -135,11 +135,9 @@ const UsersTable = () => {
           className="users-btn users-add-btn"
           onClick={() => setIsFormVisible(!isFormVisible)}
         >
-          <i className="fa fa-plus"></i> Agregar Usuario
-        </button>
+          <i className="fa fa-plus"></i> Agregar Usuario</button>
+         {isFormVisible && <RegisterForm />}
       </div>
-
-      {isFormVisible && <RegisterForm />}
 
       <table className="users-table">
         <thead>

@@ -9,10 +9,8 @@ function ServiciosAdmi() {
   return (
     <div className='contenedoresPaginas'>
       <SideBar />
-      <div>
-          <ServicesTable />
-      </div>
-    
+      <ServicesTable />
+ 
     </div>
   )
 }

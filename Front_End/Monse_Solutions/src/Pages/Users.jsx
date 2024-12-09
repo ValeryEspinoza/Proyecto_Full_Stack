@@ -8,9 +8,7 @@ function Users() {
   return (
     <div className='contenedoresPaginas'>
       <SideBar />
-      <div>
-        <UsersTable />
-      </div>
+      <UsersTable />
     </div>
   )
 }

@@ -29,7 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id',  'role', 'password', 'username', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active', 'date_joined', 'last_login', 'groups']
-
+        
     def create(self, validated_data):
         # Extrae la contraseña del validated_data
        
@@ -228,7 +228,7 @@ class candidateSerializer(serializers.ModelSerializer):
 class tasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = tasks
-        fields = ['tittle','description', 'expire_date', 'complete']
+        fields = [ 'task_id', 'tittle','description', 'expire_date', 'complete' ]
         
     def validate_tittle(self, value):
         validate_not_empty(value)
@@ -269,7 +269,7 @@ class tasksSerializer(serializers.ModelSerializer):
 class eventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = events
-        fields = ['tittle', 'description', 'starting_date', 'ending_date', 'place']
+        fields = ['event_id', 'tittle', 'description', 'starting_date', 'ending_date', 'place']
         
     def validate_tittle(self, value):
         validate_not_empty(value)
