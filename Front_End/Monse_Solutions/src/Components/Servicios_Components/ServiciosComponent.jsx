@@ -12,7 +12,7 @@ const ServiciosComponent = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await GetData('api/services/'); 
+        const response = await GetData('api/services/');
         setServices(response);
         toast.success("Servicios cargados correctamente.");
       } catch (error) {
@@ -27,8 +27,6 @@ const ServiciosComponent = () => {
   const filteredServices = services.filter((service) =>
     service.service.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log(services);
-  
 
   return (
     <div>
@@ -76,27 +74,28 @@ const ServiciosComponent = () => {
           {filteredServices.length > 0 ? (
             filteredServices.map((service) => (
               <div key={service.service_id} className="servicio-card">
-                <h2>{service.service}</h2>
-                <p>{service.description}</p>
-                <small>Categoría: {service.category}</small>
                 {service.imagen_url && (
                   <div className="servicio-image">
                     <img
                       src={service.imagen_url}
                       alt={`Imagen de ${service.service}`}
+                      className="servicio-img"
                     />
                   </div>
                 )}
+                <h2 className="servicio-title">{service.service}</h2>
+                <p className="servicio-description">{service.description}</p>
               </div>
             ))
           ) : (
             <p>No se encontraron servicios.</p>
           )}
+
         </div>
       </div>
+      <br /><br /><br /><br /><br />
     </div>
   );
 };
 
 export default ServiciosComponent;
-

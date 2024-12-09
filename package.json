@@ -6,9 +6,11 @@
     "aws-sdk": "^2.1692.0",
     "axios": "^1.7.8",
     "emailjs-com": "^3.2.0",
+    "jspdf": "^2.5.2",
     "react-calendar": "^5.1.0",
     "react-datepicker": "^7.5.0",
     "react-google-multi-lang": "^1.0.7",
-    "sweetalert2": "^11.14.5"
+    "sweetalert2": "^11.14.5",
+    "toastify-js": "^1.12.0"
   }
 }
