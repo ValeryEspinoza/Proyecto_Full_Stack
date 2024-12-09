@@ -13,15 +13,43 @@
     color: #333;                  /* Ajusta el color si es necesario */
     margin-bottom: 20px;          /* Añade un pequeño espacio debajo del título */
 }
-.textShedule{
-max-width: 50%;
-}
-.divProfileClient p {
-    font-size: 18px;
-    color: #555;                  /* Ajusta el color del texto */
-}
 
-
+.textShedule {
+    color: #333; /* Color de texto */
+    font-family:Arial, Helvetica, sans-serif;
+    text-align: start;
+  }
+  
+  .textShedule p {
+    font-size: 18px; /* Tamaño de fuente adecuado */
+    line-height: 1.6; /* Espaciado entre líneas */
+    margin-bottom: 15px; /* Separación entre párrafos */
+    text-align: center;
+  }
+  
+  .textShedule ol {
+    margin-left: 18px; /* Indentación de la lista */
+    padding-left: 10px;
+    list-style: decimal; /* Estilo de lista numérica */
+  }
+  
+  .textShedule ol li {
+    font-size: 20px;
+    margin-bottom: 10px; /* Separación entre elementos de la lista */
+    
+  }
+  
+  .textShedule ol li::marker {
+    color: #50C878; /* Color moderno para los números de la lista */
+  }
+  
+  .textShedule p:last-of-type {
+    font-style: italic; /* Estilo especial para el último párrafo */
+    color: #555; /* Color más suave */
+    text-align: center;
+    font-weight:bold;
+  }
+  
 
 @media screen and (max-width: 768px) {
     .divProfileClient {

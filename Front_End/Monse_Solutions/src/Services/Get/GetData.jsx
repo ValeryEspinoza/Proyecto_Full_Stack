@@ -3,10 +3,7 @@ const GetData = async (EndPoint) => {
         console.log("Endpoint:", EndPoint);
 
         // Realiza la solicitud GET
-
-        console.log("cargando");
-        
-        const response = await fetch(`http://192.168.1.87:8000/api/products/`, {
+        const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`, {
             method: "GET",
 
             headers: {

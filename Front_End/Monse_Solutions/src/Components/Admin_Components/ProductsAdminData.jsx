@@ -31,7 +31,7 @@ const ProductsTable = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await GetData("api/products/");
+        const response = await GetData("products");
         setProductData(response);
         toast.success("Productos cargados correctamente.");
       } catch (error) {
@@ -44,8 +44,8 @@ const ProductsTable = () => {
 
   const handleDelete = async (product_id) => {
     try {
-      await DeleteData("api/products/", product_id);
-      const updatedProducts = await GetData("api/products/");
+      await DeleteData("products", product_id);
+      const updatedProducts = await GetData("products");
       setProductData(updatedProducts);
       toast.success("Producto eliminado con éxito.");
     } catch (error) {
@@ -72,8 +72,8 @@ const ProductsTable = () => {
         sub_categories_product: editedProduct.sub_categories_product,
         imagen_url: editedProduct.imagen_url,
       };
-      await PutData("api/products", productData, editedProduct.product_id);
-      const updatedProducts = await GetData("api/products/");
+      await PutData("products", productData, editedProduct.product_id);
+      const updatedProducts = await GetData("products");
       setProductData(updatedProducts);
       setEditedProduct(null);
       toast.success("Cambios guardados exitosamente.");
@@ -88,8 +88,8 @@ const ProductsTable = () => {
       const fieldData = {
         [editedField]: editedProduct[editedField],
       };
-      await PatchData("api/products", fieldData, editedProduct.product_id);
-      const updatedProducts = await GetData("api/products/");
+      await PatchData("products", fieldData, editedProduct.product_id);
+      const updatedProducts = await GetData("products");
       setProductData(updatedProducts);
       setEditedProduct(null);
       toast.success("Campo guardado correctamente.");

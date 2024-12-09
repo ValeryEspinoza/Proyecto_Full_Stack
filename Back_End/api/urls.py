@@ -67,6 +67,9 @@ urlpatterns = [
     #areas
     path('areas/', views.areasListCreate.as_view(), name='areas-list'),
     path('areas/<int:pk>/', views.areasDetail.as_view(), name='areas-detail'),
+    
+    path('Cita/', views.CitaListCreate.as_view(), name='Cita-list'),
+    path('Cita/<int:pk>/', views.areasDetail.as_view(), name='Cita-detail'),
 
 
 #Tablas con relaciones foraneas**************

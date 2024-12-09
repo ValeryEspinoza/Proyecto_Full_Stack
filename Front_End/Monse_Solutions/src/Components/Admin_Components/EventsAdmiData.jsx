@@ -31,7 +31,7 @@ const EventsAdmiData = () => {
   useEffect(() => {
     const ObtenerEventos = async () => {
       try {
-        const response = await GetData("api/events/");
+        const response = await GetData("events");
         console.log(response);  // Verifica la estructura de los datos
         SetDatosEventos(response);
         toast.success("Eventos cargados correctamente.");
@@ -45,8 +45,8 @@ const EventsAdmiData = () => {
 
   const Delete = async (event_id) => {
     try {
-      await DeleteData('api/events/', event_id);
-      const updatedEventos = await GetData('api/events/');
+      await DeleteData('events', event_id);
+      const updatedEventos = await GetData('events');
       SetDatosEventos(updatedEventos);
       toast.success("Evento eliminado con éxito.");
     } catch (error) {
@@ -78,8 +78,8 @@ const EventsAdmiData = () => {
         ending_date: editedEvent.ending_date,
         place: editedEvent.place
       };
-      await PutData('api/events', eventData, editedEvent.event_id);
-      const updatedEventos = await GetData('api/events/');
+      await PutData('events', eventData, editedEvent.event_id);
+      const updatedEventos = await GetData('events');
       SetDatosEventos(updatedEventos);
       setEditedEvent(null);
       toast.success("Cambios guardados exitosamente.");
@@ -94,8 +94,8 @@ const EventsAdmiData = () => {
       const fieldData = {
         [editedField]: editedEvent[editedField]
       };
-      await PatchData('api/events', fieldData, editedEvent.event_id);
-      const updatedEventos = await GetData('api/events/');
+      await PatchData('events', fieldData, editedEvent.event_id);
+      const updatedEventos = await GetData('events');
       SetDatosEventos(updatedEventos);
       setEditedEvent(null);
       toast.success("Campo guardado correctamente.");
