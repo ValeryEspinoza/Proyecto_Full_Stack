@@ -56,7 +56,7 @@ function TasksForms() {
     try {
       // Simulación de un POST a un API (puedes reemplazarlo por tu lógica real de envío)
       console.log("Tarea enviada:", taskData);
-      await postData("api/tasks/", taskData);
+      await postData("tasks", taskData);
       
       // Mensaje de éxito
       setAlertMessage("Tarea creada exitosamente.");

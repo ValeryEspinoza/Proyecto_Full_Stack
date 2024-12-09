@@ -90,7 +90,7 @@ function ProductsForm() {
 
       // Enviar formulario con la URL de la imagen
       const formDataConImagen = { ...formData, imagen_url: imagenUrl };
-      await postData('api/products/', formDataConImagen);
+      await postData('products', formDataConImagen);
       console.log("Formulario enviado:", formDataConImagen);
 
       setIsSubmitted(true);

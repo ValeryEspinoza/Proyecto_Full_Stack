@@ -31,7 +31,7 @@ const TasksAdminData = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await GetData('api/tasks/');
+        const response = await GetData('tasks');
         if (response && Array.isArray(response)) {
           setTasks(response);
           toast.success("Tareas cargadas correctamente.");
@@ -52,8 +52,8 @@ const TasksAdminData = () => {
       return;
     }
     try {
-      await DeleteData("api/tasks/", taskId);
-      const updatedTasks = await GetData("api/tasks/");
+      await DeleteData("tasks", taskId);
+      const updatedTasks = await GetData("tasks");
       setTasks(updatedTasks);
       toast.success("Tarea eliminada con éxito.");
     } catch (error) {
@@ -85,8 +85,8 @@ const TasksAdminData = () => {
         expire_date: editedTask.expire_date,
         complete: editedTask.complete,
       };
-      await PutData("api/tasks", taskData, editedTask.task_id);
-      const updatedTasks = await GetData("api/tasks/");
+      await PutData("tasks", taskData, editedTask.task_id);
+      const updatedTasks = await GetData("tasks");
       setTasks(updatedTasks);
       setEditedTask(null);
       toast.success("Cambios guardados exitosamente.");
@@ -106,8 +106,8 @@ const TasksAdminData = () => {
       const fieldData = {
         [editedField]: editedTask[editedField],
       };
-      await PatchData("api/tasks", fieldData, editedTask.task_id);
-      const updatedTasks = await GetData("api/tasks/");
+      await PatchData("tasks", fieldData, editedTask.task_id);
+      const updatedTasks = await GetData("tasks");
       setTasks(updatedTasks);
       setEditedTask(null);
       setEditedField(null);

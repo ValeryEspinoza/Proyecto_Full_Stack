@@ -101,6 +101,7 @@ class categoriesDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = categoriesSerializer
     permission_classes = [IsAuthenticated, IsAdministrador] 
     
+    
 class suppliersListCreate(generics.ListCreateAPIView):
     queryset = suppliers.objects.all()
     serializer_class = suppliersSerializer

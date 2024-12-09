@@ -32,7 +32,7 @@ const ServicesTable = () => {
   useEffect(() => {
     const ObtenerServicios = async () => {
       try {
-        const response = await GetData("api/services/");
+        const response = await GetData("services");
         SetDatosServicios(response);
         toast.success("Servicios cargados correctamente.");
       } catch (error) {
@@ -45,8 +45,8 @@ const ServicesTable = () => {
 
   const Delete = async (service_id) => {
     try {
-      await DeleteData('api/services/', service_id);
-      const updatedServicios = await GetData('api/services/');
+      await DeleteData('services', service_id);
+      const updatedServicios = await GetData('services');
       SetDatosServicios(updatedServicios);
       toast.success("Servicio eliminado con éxito.");
     } catch (error) {
@@ -107,8 +107,8 @@ const ServicesTable = () => {
         serviceData.imagen_url = uploadedImageUrl; // Asignar la URL de la imagen subida
       }
 
-      await PutData('api/services', serviceData, editedService.service_id);
-      const updatedServicios = await GetData('api/services/');
+      await PutData('services', serviceData, editedService.service_id);
+      const updatedServicios = await GetData('services');
       SetDatosServicios(updatedServicios);
       setEditedService(null);
       setImageFile(null); // Limpiar el archivo después de guardar
@@ -124,8 +124,8 @@ const ServicesTable = () => {
       const fieldData = {
         [editedField]: editedService[editedField]
       };
-      await PatchData('api/services', fieldData, editedService.service_id);
-      const updatedServicios = await GetData('api/services/');
+      await PatchData('services', fieldData, editedService.service_id);
+      const updatedServicios = await GetData('services');
       SetDatosServicios(updatedServicios);
       setEditedService(null);
       toast.success("Campo guardado correctamente.");
