@@ -644,15 +644,18 @@ class reviewsSerializer(serializers.ModelSerializer):
         validate_not_empty(value)
         validate_min_characters(value, 5)
         validate_no_special_characters(value)
-        value= sanitize_input(value)
+        value = sanitize_input(value)
         return value
     
     def validate_rating(self, value):
-        validate_not_empty(value)
-        validate_min_characters(value, 1)
-        validate_max_characters(value, 5)
-        validate_max_characters(value)
+        # Validar que no sea nulo
+        if value is None:
+            raise serializers.ValidationError("Rating cannot be empty.")
+        # Validar que sea un número en el rango permitido
+        if not (1.0 <= value <= 5.0):
+            raise serializers.ValidationError("Rating must be between 1.0 and 5.0.")
         return value
+
            
            
 class proformas_invoicesSerializer(serializers.ModelSerializer):

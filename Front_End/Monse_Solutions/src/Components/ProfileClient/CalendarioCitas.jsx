@@ -242,15 +242,15 @@ const handleDownloadPDF = () => {
     </div>
 
     <FullCalendar
-  key={updateKey}
-  plugins={[dayGridPlugin, interactionPlugin]}
-  initialView="dayGridMonth"
-  dateClick={handleDateClick}
-  showNonCurrentDates={false} // Oculta días de otros meses
-  datesSet={(info) => {
+    key={updateKey}
+    plugins={[dayGridPlugin, interactionPlugin]}
+    initialView="dayGridMonth"
+    dateClick={handleDateClick}
+    showNonCurrentDates={false} // Oculta días de otros meses
+    datesSet={(info) => {
     const visibleDates = document.querySelectorAll('.fc-daygrid-day');
     visibleDates.forEach((day) => {
-      const dateStr = day.getAttribute('data-date'); // Obtiene la fecha del día
+      const dateStr = day.getAttribute('data-date'); //Obtiene la fecha del día
       if (availableHours[dateStr] && availableHours[dateStr].length > 0) {
         day.classList.add('available-day');
       } else {
