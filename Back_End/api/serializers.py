@@ -655,7 +655,6 @@ class reviewsSerializer(serializers.ModelSerializer):
         if not (1.0 <= value <= 5.0):
             raise serializers.ValidationError("Rating must be between 1.0 and 5.0.")
         return value
-
            
            
 class proformas_invoicesSerializer(serializers.ModelSerializer):

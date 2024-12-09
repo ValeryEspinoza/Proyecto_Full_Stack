@@ -248,7 +248,7 @@ class reviews(models.Model):
         return str(self.review)  
     
 
-    
+
 class proformas_invoices (models.Model):
     proforma_id = models.AutoField(primary_key=True)
     creation_date= models.DateTimeField(null=False)

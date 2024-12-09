@@ -5,7 +5,7 @@ import DeleteData from "../../Services/Delete/DeleteData";
 import PatchData from "../../Services/Patch/PatchData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import 'font-awesome/css/font-awesome.min.css';
+import "font-awesome/css/font-awesome.min.css";
 import '../../Styles/Components_Styles/Admin_C_Styles/UsersAdminData.css'; 
 import RegisterForm from "../Register_Components/RegisterForm";
 import logoNegroF from '../../Img/Components_Img/logo_negrov.png';
@@ -173,14 +173,15 @@ const UsersTable = () => {
                 )}
               </td>
               <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="text"
-                    value={editedUser.first_name}
-                    onChange={(e) => handleFieldChange(e, "first_name")}
-                  />
+                {isDropdownOpen === Usuario.id ? (
+                  <div className="users-dropdown">
+                    <button className="users-dropdown-item" onClick={() => cargarDatos(Usuario.id)}>Editar</button>
+                    <button className="users-dropdown-item" onClick={() => Delete(Usuario.id)}>Eliminar</button>
+                  </div>
                 ) : (
-                  Usuario.first_name
+                  <button className="users-dropdown-btn" onClick={() => toggleDropdown(Usuario.id)}>
+                    <i className="fa fa-ellipsis-v"></i>
+                  </button>
                 )}
               </td>
               <td className="users-td">
