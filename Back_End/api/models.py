@@ -116,6 +116,17 @@ class areas (models.Model):
     name = models.CharField(max_length=255, null=False)
     description = models.TextField(null=False)
     
+    
+class Cita(models.Model):
+    nombre = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=15)
+    direccion = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    fecha = models.DateField()
+    hora = models.TimeField()
+
+    def _str_(self):
+        return f"{self.nombre} - {self.fecha} {self.hora}"
 
 
 

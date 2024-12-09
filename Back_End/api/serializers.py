@@ -15,7 +15,7 @@ from .models import (
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
     staff, services, projects, clients, sells, products_suppliers, staff_tasks, staff_events, projects_services,
     staff_projects, languages_clients, reviews, proformas_invoices, candidates_vacants, proformas_invoices_services, 
-    proformas_invoices_staff, sells_details
+    proformas_invoices_staff, sells_details, Cita
     )
 
 
@@ -402,6 +402,12 @@ class areasSerializer(serializers.ModelSerializer):
         return value
 
 
+class Cita_Serializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Cita
+        fields =  '__all__'  
+        
+
 
       
         
@@ -632,7 +638,7 @@ class sellsSerializer(serializers.ModelSerializer):
 class reviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = reviews
-        fields = '__all__' 
+        fields = ['review_id', 'review', 'date', 'rating', 'client_id'] 
     
     def validate_review(self, value):
         validate_not_empty(value)
@@ -683,6 +689,8 @@ class proformas_invoicesSerializer(serializers.ModelSerializer):
         validate_negative_values(value)
         return value
     
+    
+
            
        
        

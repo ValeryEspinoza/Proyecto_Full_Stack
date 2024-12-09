@@ -13,7 +13,7 @@ from .models import (
     category_services, tasks, events, areas, sub_categories_products, products, inventory, jobs_positions,
     staff, services, projects, clients, sells, products_suppliers, staff_tasks, staff_events, projects_services,
     staff_projects, languages_clients, reviews, proformas_invoices, candidates_vacants,
-    proformas_invoices_staff, proformas_invoices_services, sells_details
+    proformas_invoices_staff, proformas_invoices_services, sells_details, Cita
     )
 
 from .serializers import (
@@ -24,7 +24,7 @@ from .serializers import (
     clientsSerializer, sellsSerializer, products_suppliersSerializer, staff_tasksSerializer, staff_eventsSerializer,
     projects_servicesSerializer, staff_projectsSerializer, languages_clientsSerializer,
     reviewsSerializer, proformas_invoicesSerializer, candidates_vacantsSerializer,
-    proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer,
+    proformas_invoices_servicesSerializer, proformas_invoices_staffSerializer, sells_detailsSerializer, Cita_Serializer
 )
 
 
@@ -199,6 +199,16 @@ class areasDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = areas.objects.all()
     serializer_class = areasSerializer
     permission_classes = [IsAuthenticated, IsAdministrador]
+    
+class CitaListCreate(generics.ListCreateAPIView):
+    queryset = Cita.objects.all()
+    serializer_class =   Cita_Serializer
+    permission_classes = [IsAuthenticated, IsAdministrador]
+    
+class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cita.objects.all()
+    serializer_class = Cita_Serializer
+    permission_classes = [IsAuthenticated, IsAdministrador] 
    
    
    
