@@ -4,7 +4,7 @@ import SendServices from '../../Services/Post/PostServices';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ServicesForm(a) {
+function ServicesForm() {
   const [service, setService] = useState("");
   const [description, setDescription] = useState("");
   const [imagenUrl, setImagenUrl] = useState(null); // Mantener el archivo

@@ -12,7 +12,7 @@ const ServiciosComponent = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await GetData('api/services/'); 
+        const response = await GetData('services'); 
         setServices(response);
         toast.success("Servicios cargados correctamente.");
       } catch (error) {

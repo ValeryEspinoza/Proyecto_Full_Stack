@@ -38,7 +38,7 @@ function LoginForm() {
     try {
       // Llamada al servicio para obtener el token JWT de autenticación
       const data = { email: EmailUser, password: PassUser };
-      const response = await postData('api/token/', data); // Endpoint para obtener token (asumido como api/token/)
+      const response = await postData('token', data); // Endpoint para obtener token (asumido como api/token/)
 
       if (response && response.access) {
         // Almacenar el token en el localStorage

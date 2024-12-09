@@ -62,7 +62,7 @@ function EventsForm() {
     }
 
     try {
-      await postData('/api/events/', eventData);
+      await postData('events', eventData);
       console.log("Evento enviado:", eventData);
       
       // Mensaje de éxito

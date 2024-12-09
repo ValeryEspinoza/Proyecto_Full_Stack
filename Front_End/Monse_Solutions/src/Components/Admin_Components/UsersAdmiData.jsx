@@ -31,7 +31,7 @@ const UsersTable = () => {
   useEffect(() => {
     const ObtenerUsuarios = async () => {
       try {
-        const response = await GetData("api/register");
+        const response = await GetData("register");
         SetUsuarios(response);
         toast.success("Usuarios cargados correctamente.");
       } catch (error) {
@@ -44,8 +44,8 @@ const UsersTable = () => {
 
   const Delete = async (user_id) => {
     try {
-      await DeleteData('api/register', user_id);
-      const updatedUsuarios = await GetData('api/register');
+      await DeleteData('register', user_id);
+      const updatedUsuarios = await GetData('register');
       SetUsuarios(updatedUsuarios);
       toast.success("Usuario eliminado con éxito.");
     } catch (error) {
@@ -79,8 +79,8 @@ const UsersTable = () => {
         last_login: editedUser.last_login,
         groups: editedUser.groups,
       };
-      await PutData('api/register', userData, editedUser.id);
-      const updatedUsuarios = await GetData('api/register');
+      await PutData('register', userData, editedUser.id);
+      const updatedUsuarios = await GetData('register');
       SetUsuarios(updatedUsuarios);
       setEditedUser(null);
       toast.success("Cambios guardados exitosamente.");
@@ -95,8 +95,8 @@ const UsersTable = () => {
       const fieldData = {
         [editedField]: editedUser[editedField]
       };
-      await PatchData('api/register', fieldData, editedUser.id);
-      const updatedUsuarios = await GetData('api/register');
+      await PatchData('register', fieldData, editedUser.id);
+      const updatedUsuarios = await GetData('register');
       SetUsuarios(updatedUsuarios);
       setEditedUser(null);
       toast.success("Campo guardado correctamente.");

@@ -4,7 +4,7 @@ const PatchData = async (endpoint, dato, id) => {
 
 try {
     // Construye la URL con el ID
-    const url = `http://192.168.1.87:8000/${endpoint}/${id}/`;
+    const url = `http://192.168.1.87:8000/api/${endpoint}/${id}/`;
     
     // Realiza la solicitud PATCH
     const respuesta = await fetch(url, {

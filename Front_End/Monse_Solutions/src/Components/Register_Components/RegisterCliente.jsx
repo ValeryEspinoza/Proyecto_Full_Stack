@@ -96,8 +96,8 @@ function RegisterClienteForm() {
     setIsSubmitting(true);
     try {
       // Obtener los usuarios y clientes existentes para comprobar duplicados
-      const users = await GetData('api/register/');
-      const clients = await GetData('api/clients/');
+      const users = await GetData('register');
+      const clients = await GetData('clients');
 
       const lastUserId = users[users.length - 1]?.id || 0;
       const newUserId = lastUserId + 1;
@@ -131,7 +131,7 @@ function RegisterClienteForm() {
    
         
         // Realizar el envío de datos a las API correspondientes
-        const response = await postData('api/register', user);
+        const response = await postData('register', user);
         setIsSubmitting(false); // Deshabilitar el botón de envío después de recibir la respuesta
         
         if (!response || !response.id) {
