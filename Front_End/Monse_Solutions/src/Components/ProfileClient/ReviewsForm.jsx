@@ -1,97 +1,135 @@
-import React, { useState } from 'react';
-import '../../Styles/Components_Styles/Home_C_Styles/ReviewsStyles/ReviewsForm.css'
+import React, { useState, useEffect } from 'react';
+import '../../Styles/Components_Styles/Home_C_Styles/ReviewsStyles/ReviewsForm.css';
+import GetData from "../../Services/Get/GetData";
+import PostData from "../../Services/Post/PostData";
+import { toast } from 'react-toastify';
 
-const ReviewForm = ({ onReviewAdded, clientId }) => {
+const ReviewForm = ({ onReviewAdded, clientId = "default-client-id" }) => { // clientId por defecto para pruebas
+  const [reviews, setReviews] = useState([]);
   const [formData, setFormData] = useState({
     review: '',
-    rating: 5, // Valor por defecto
-    date: new Date().toISOString().split('T')[0], // Fecha actual
-    client: clientId, // El cliente se pasa desde el componente principal
+    date: new Date().toISOString().split('T')[0],
+    rating: 5,
+    client: parseInt(clientId, 10), // Convertir clientId a número
   });
+  const [errors, setErrors] = useState({}); // Para manejar errores de validación
 
-  // Función para manejar los cambios en los campos del formulario
+  // Actualizar clientId dinámicamente si cambia
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      client: parseInt(clientId, 10), // Asegurarse de que client se mantenga como número
+    }));
+  }, [clientId]);
+
+  // Cargar reviews existentes
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await GetData('reviews');
+        setReviews(response);
+        toast.success("Reviews cargadas correctamente.");
+      } catch (error) {
+        console.error("Error al obtener los reviews:", error);
+        toast.error("Error al cargar las reviews.");
+      }
+    };
+    fetchReviews();
+  }, []);
+
+  // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    // Limpiar errores
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [e.target.name]: '',
+    }));
   };
 
-  // Función para manejar la selección de la calificación en estrellas
-  const handleRatingChange = (rating) => {
-    setFormData({
-      ...formData,
-      rating: rating,
-    });
+  // Validar formulario
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.review.trim()) newErrors.review = "La reseña no puede estar vacía.";
+    if (formData.rating < 1 || formData.rating > 5)
+      newErrors.rating = "La calificación debe estar entre 1 y 5.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Retorna true si no hay errores
   };
 
-  // Función para manejar el envío del formulario
-  const handleSubmit = (e) => {
+  // Manejar envío del formulario
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch('http://192.168.1.87:8000/api/reviews/', { // Ruta del endpoint en Django
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error al crear la reseña');
-        }
-        return response.json();
-      })
-      .then((newReview) => {
-        onReviewAdded(newReview); // Notifica al componente padre que hay un nuevo review
+    if (!validateForm()) return; // Validar antes de enviar
+    console.log("Datos enviados:", formData); // Verifica qué datos se están enviando
+    try {
+      const response = await PostData('reviews', formData);
+      if (response?.id) { // Validar que la respuesta del servidor sea válida
+        setReviews([...reviews, response]);
         setFormData({
           review: '',
-          rating: 5,
           date: new Date().toISOString().split('T')[0],
-          client: clientId,
+          rating: 5,
+          client: parseInt(clientId, 10), // Asegurarse de que client se mantenga como número
         });
-      })
-      .catch((error) => console.error(error));
+        toast.success("Review enviada correctamente.");
+        if (onReviewAdded) onReviewAdded(response);
+      } else {
+        throw new Error("Respuesta inesperada del servidor.");
+      }
+    } catch (error) {
+      console.error("Error al enviar la review:", error);
+      toast.error("Error al enviar la review. Revisa los datos enviados.");
+    }
   };
 
   return (
     <div>
-    <div className="color-bannerReview">
-     <p>Your feedback means a lot to us. <br /> 
-      We'd love to hear about your experience. <br />
-      Leave a review and help us improve!</p>
-    </div><br /><br />
-    <form className='formReview' onSubmit={handleSubmit}>
-      <div>
-        <textarea
-          name="review"
-          value={formData.review}
-          onChange={handleChange}
-          placeholder="Write your review here"
-          className='textareaReview'
-          required
-        />
+      <div className="color-bannerReview">
+        <p>Your feedback means a lot to us.<br />
+          We'd love to hear about your experience.<br />
+          Leave a review and help us improve!</p>
       </div>
-
-      <div>
-        <label>Rating</label>
-        <div className="rating">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <span
-              key={star}
-              className={`star ${formData.rating >= star ? 'filled' : ''}`}
-              onClick={() => handleRatingChange(star)}
-            >
-              ★
-            </span>
-          ))}
+      <br /><br />
+      <form className='formReview' onSubmit={handleSubmit}>
+        <div>
+          <textarea
+            name="review"
+            value={formData.review}
+            onChange={handleChange}
+            placeholder="Write your review here"
+            className='textareaReview'
+          />
+          {errors.review && <p className="error-message">{errors.review}</p>}
         </div>
-      </div>
 
-      <button className='btnReview' type="submit">Send review</button>
-    </form>
+        <div>
+          <label>Rating</label>
+          <div className="rating">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span
+                key={star}
+                className={`star ${formData.rating >= star ? 'filled' : ''}`}
+                onClick={() => setFormData({ ...formData, rating: star })}
+              >
+                ★
+              </span>
+            ))}
+          </div>
+          {errors.rating && <p className="error-message">{errors.rating}</p>}
+        </div>
+
+        <button className='btnReview' type="submit">Send review</button>
+      </form>
     </div>
   );
 };
 
 export default ReviewForm;
+
+
 

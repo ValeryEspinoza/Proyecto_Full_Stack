@@ -165,3 +165,98 @@ EndPoint (string): El endpoint al cual se le enviará la solicitud DELETE. Este 
 Respuesta:
 Si la solicitud es exitosa, devuelve un mensaje de confirmación o una respuesta JSON.
 Si la solicitud falla, lanza un error con detalles sobre el fallo.
+
+
+
+Documentación de Componentes CRUD: Servicios, Productos, Eventos, Tareas, Usuarios
+Los componentes de la aplicación siguen una arquitectura modular utilizando servicios CRUD (Crear, Leer, Actualizar, Eliminar) que permiten gestionar datos en diversas entidades como productos, eventos, tareas y usuarios. Además, algunos de estos componentes incluyen funcionalidades adicionales como filtrado de datos, carga de imágenes a servicios como Amazon Web Services (AWS) y la actualización de la base de datos con URLs de las imágenes cargadas. Todos los componentes están diseñados para ser responsivos y permiten la adición y edición de registros.
+
+1. Servicios
+Descripción: Los servicios son funciones modulares que permiten interactuar con la API y realizar operaciones CRUD sobre las entidades. Los métodos disponibles son:
+
+GET: Recuperar los datos de la entidad.
+POST: Crear un nuevo recurso.
+PUT: Actualizar un recurso existente.
+PATCH: Actualizar parcialmente un recurso.
+DELETE: Eliminar un recurso.
+Además de las operaciones CRUD, estos servicios pueden incluir funciones de filtrado y carga de archivos.
+
+Funciones adicionales:
+
+Filtrado: La función de filtrado permite que los datos puedan ser buscados por un campo específico (por ejemplo, nombre).
+Carga de imágenes a AWS: Se permite subir imágenes a un almacenamiento en la nube (como Amazon S3), y la URL de la imagen se almacena en la base de datos.
+2. Productos
+Descripción: El componente Productos permite gestionar todos los aspectos relacionados con los productos dentro de la aplicación. Los usuarios pueden agregar nuevos productos, editar productos existentes, eliminar productos y buscar productos por nombre. Además, el componente incluye una funcionalidad para cargar imágenes a AWS y almacenar la URL en la base de datos.
+
+Funcionalidad:
+
+Visualización: Los productos se muestran en una tabla con detalles como nombre, descripción, precio, subcategorías y imagen. Se implementa un sistema de búsqueda para filtrar los productos por nombre.
+Edición: Permite modificar los campos de un producto, como el nombre, descripción, precio, subcategoría y la imagen. Se puede editar un producto desde la tabla o mediante un formulario.
+Eliminación: Permite eliminar productos de la base de datos.
+Creación: Permite agregar un nuevo producto mediante un formulario con la opción de cargar una imagen que se sube a AWS.
+Carga de imagen: Las imágenes de los productos se cargan a un servicio como Amazon S3. La URL de la imagen se guarda en la base de datos.
+Funciones adicionales:
+
+Filtrado por nombre: Los productos pueden ser filtrados mediante un campo de búsqueda que filtra por el nombre del producto.
+Carga de imagen a AWS: El usuario puede cargar una imagen al agregar o editar un producto. Esta imagen se sube a Amazon S3, y la URL de la imagen se guarda en el producto.
+Responsividad: El componente es totalmente responsivo, adaptándose a diferentes tamaños de pantalla, como en dispositivos móviles o tabletas.
+Flujo de Trabajo:
+
+Al cargar el componente, se realiza una solicitud GET a la API para obtener la lista de productos.
+Los productos se muestran en una tabla donde cada fila tiene opciones para editar, eliminar o ver más detalles. También se permite filtrar por nombre.
+Para crear un producto, el usuario completa un formulario que incluye campos para nombre, descripción, precio, subcategoría y carga de imagen.
+La imagen cargada es enviada a AWS, y la URL es almacenada en el producto.
+Para editar un producto, se realiza una solicitud PUT o PATCH con los nuevos datos, incluyendo la URL de la imagen si es modificada.
+Para eliminar un producto, se realiza una solicitud DELETE para eliminarlo de la base de datos.
+3. Eventos
+Descripción: El componente Eventos permite gestionar los eventos, permitiendo su visualización, creación, edición y eliminación. Al igual que con los productos, el componente es completamente responsivo y tiene capacidad para agregar imágenes que se almacenan en AWS.
+
+Funcionalidad:
+
+Visualización: Los eventos se muestran en una lista o tabla con información como nombre, fecha, ubicación, y descripción.
+Edición: Permite editar detalles de un evento, como nombre, fecha, descripción y agregar o actualizar la imagen del evento.
+Eliminación: Permite eliminar eventos de la base de datos.
+Creación: Los usuarios pueden crear eventos, incluyendo la opción de cargar una imagen que se almacena en AWS.
+Flujo de Trabajo:
+
+Al cargar el componente, se hace una solicitud GET para obtener los eventos.
+Los eventos se visualizan en una tabla. Se pueden filtrar por nombre o fecha.
+Al agregar o editar un evento, se permite la carga de imágenes, las cuales se suben a AWS y su URL se guarda en el evento.
+Las ediciones se realizan mediante PUT o PATCH, y las eliminaciones con DELETE.
+4. Tareas
+Descripción: El componente Tareas se utiliza para gestionar las tareas, permitiendo su visualización, creación, edición y eliminación. Este componente también permite la carga de imágenes si es necesario.
+
+Funcionalidad:
+
+Visualización: Muestra una lista de tareas, con opciones para ver, editar y eliminar tareas.
+Edición: Permite modificar detalles como nombre, descripción y fecha de vencimiento de una tarea.
+Eliminación: Permite eliminar tareas.
+Creación: Los usuarios pueden agregar nuevas tareas, incluyendo la opción de cargar una imagen relacionada con la tarea.
+Flujo de Trabajo:
+
+Se realiza una solicitud GET para obtener la lista de tareas.
+Las tareas se muestran en una tabla donde se pueden filtrar por nombre o fecha.
+Las tareas se pueden editar, y se utiliza PUT o PATCH para enviar los cambios al servidor.
+Se pueden eliminar tareas con una solicitud DELETE.
+5. Usuarios
+Descripción: El componente Usuarios permite gestionar las cuentas de usuario dentro de la aplicación. Los administradores pueden agregar, editar y eliminar usuarios, y también gestionar su información, como el rol y la imagen de perfil, que se puede cargar a AWS.
+
+Funcionalidad:
+
+Visualización: Los usuarios registrados se muestran en una lista o tabla.
+Edición: Los administradores pueden editar los detalles de los usuarios, como nombre, correo electrónico, rol y la imagen de perfil.
+Eliminación: Permite eliminar cuentas de usuario.
+Creación: Los administradores pueden agregar nuevos usuarios y cargar imágenes de perfil que se almacenan en AWS.
+Flujo de Trabajo:
+
+Al cargar el componente, se realiza una solicitud GET para obtener todos los usuarios.
+Los usuarios se visualizan en una tabla. Es posible buscar usuarios por nombre o correo electrónico.
+Para editar un usuario, se permite modificar el nombre, correo electrónico, rol y imagen de perfil.
+La imagen de perfil se sube a AWS, y su URL se almacena en la base de datos.
+Las ediciones se realizan mediante PUT o PATCH, y la eliminación se realiza con DELETE.
+Resumen de Funcionalidades Adicionales
+Filtrado por nombre (productos, tareas, usuarios): Permite buscar por nombre, correo electrónico o cualquier otro campo relevante.
+Carga de imágenes a AWS: Los productos, eventos, tareas y usuarios pueden tener imágenes cargadas a Amazon S3. La URL de la imagen se almacena en la base de datos para ser utilizada posteriormente.
+Responsividad: Todos los componentes están diseñados para ser responsivos, lo que significa que se adaptan a diferentes tamaños de pantalla, asegurando una experiencia de usuario óptima en dispositivos móviles, tabletas y escritorios.
+Agregación y edición de datos: Los usuarios pueden agregar y editar productos, servicios, eventos, tareas, y usuarios a través de formularios interactivos. Las imágenes se cargan a la nube y se gestionan mediante URL almacenadas en la base de datos.
+Este enfoque modular garantiza una experiencia de usuario consistente y eficiente, además de permitir la integración de servicios externos como AWS para la gestión de archivos multimedia.
