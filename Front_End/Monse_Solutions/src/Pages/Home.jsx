@@ -6,7 +6,7 @@ import HomeFichaInformativa from '../Components/Home_Components/HomeFichaInforma
 import Home_Services from '../Components/Home_Components/Home_Services';
 import ControlledCarousel from '../Components/Home_Components/CarrucelIntroduccion';
 import Connect_with_us from '../Components/Home_Components/Connect_with_us';
-import Reviews from '../Components/Home_Components/Reviews';
+//import Reviews from '../Components/Home_Components/Reviews';
 
 
 function Home() {

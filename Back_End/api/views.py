@@ -333,6 +333,8 @@ class reviewsListCreate(generics.ListCreateAPIView):
     queryset = reviews.objects.all()
     serializer_class = reviewsSerializer
     permission_classes = [AllowAny]
+    
+    
 class reviewsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = reviews.objects.all()
     serializer_class = reviewsSerializer

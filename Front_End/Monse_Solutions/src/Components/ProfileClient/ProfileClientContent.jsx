@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../Styles/Components_Styles/ProfileClienteStyles/ProfileClientContent.css'
+import "toastify-js/src/toastify.css";
 
 function ProfileClientContent() {
   return (

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import ReviewsForm from '../ProfileClient/ReviewsForm';
 import ReviewsCard from './ReviewsCard';
 
@@ -32,5 +32,5 @@ const Reviews = () => {
 };
 
 export default Reviews;
-
+*/
 
