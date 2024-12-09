@@ -3,16 +3,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import "../../Styles/Components_Styles/Register_Styles/RegisterCliente.css";
 import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
-<<<<<<< HEAD
-import SendClients from '../../Services/Post/PostClients';
-import SendClientLanguage from '../../Services/Post/ClientsLanguage';
-import SendUser from '../../Services/Post/PostUser';
-import GetData from '../../Services/Get/GetData';
-import PostData from '../../Services/Post/PostData';
-=======
 import postData from '../../Services/Post/PostData';
 import GetData from '../../Services/Get/GetData';
->>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
 
 function RegisterClienteForm() {
   const [cedula, setCedula] = useState("");
@@ -101,53 +93,6 @@ function RegisterClienteForm() {
   const handleRegister = async () => {
     if (isSubmitting || !validateForm()) return;
 
-<<<<<<< HEAD
-  // Función para agregar un nuevo usuario
-  async function Add() {
-    
-    const Users = await GetData('api/register');
-
-
-  
-    //Buscar el ultimo usuario agregado y sumarle 1 para obtener el id del nuevo usuario
-    const lastUserId = Users[Users.length - 1].id;
-    const newUserId = lastUserId + 1;
-
-    //Conocer el id del ultimo registro y sumarle 1 para generar el id del nuevo usuario
-    const Clients = await GetData('api/clients/');
-    console.log("Clients", Clients);
-    const lastClientId = Clients[Clients.length - 1].client_id;
-    const NewClientID = lastClientId + 1;
-
-    if (
-      !Users.find(({ email }) => email === EmailUser) && !Users.find(({ username }) => username === UserName) &&
-      FullName !== "" &&
-      EmailUser !== "" &&
-      UserName !== "" &&
-      Password !== "" &&
-      Password2 !== "" &&
-      Password === Password2
-    ){
-      
-      console.log(
-        "Datos del usuario:",
-        "Nombres:" +Names,
-        "Apellidos:" +LastNames,
-        "Correo:" +EmailUser,
-        "Usuario:" +UserName,
-        "Contraseña"+ Password,
-        "Phone:" + PhoneNumber,
-        "Userid:"+ newUserId,
-        "Clientid:"+ NewClientID,
-        "Language:" + Language,
-        "Role:"+ Role,
-        "SuperUser:" + IsSuperUser,
-        "Active:" + Active,
-        "Staff:" + IsStaff
-        , cedula
-
-      );
-=======
     setIsSubmitting(true);
     try {
       // Obtener los usuarios y clientes existentes para comprobar duplicados
@@ -159,7 +104,6 @@ function RegisterClienteForm() {
 
       const lastClientId = clients[clients.length - 1]?.client_id || 0;
       const newClientId = lastClientId + 1;
->>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
       console.log(cedula);
       
       console.log(        !users.find(({ email }) => email === emailUser) && 
@@ -167,47 +111,6 @@ function RegisterClienteForm() {
       
 //Convertir a un objeto y pasarlo a PostData('api/register')
 
-<<<<<<< HEAD
-const postUser = { 
-        Password: Password,
-        UserName: UserName,
-        EmailUser: EmailUser,
-        Names: Names,
-        LastNames: LastNames,
-        IsSuperUser: IsSuperUser,
-        IsStaff: IsStaff,
-        Active: Active,
-        Role:Role
-      };
-
-const postUsers = () => {
-  PostData('api/register/', postUser)
-}
-
-        /*SendClients(
-          cedula,
-          Names,
-          LastNames,
-          EmailUser,
-          PhoneNumber,
-          newUserId);
-
-        SendClientLanguage(Language, NewClientID)*/
-
-      Swal.fire({
-        title: "Registro Exitoso!",
-        text: "Se ha registrado el usuario con éxito",
-        icon: "success",
-      });
-    }else{
-      Swal.fire({
-        title: "Registro Fallido",
-        text: "Verifica lo siguiente: 1) Todos los espacios estén debidamente llenos. 2) Las contraseñas coincidan. 3) Correo electrónico debe ser válido",
-        icon: "error",
-        });
-    }
-  }
-=======
       // Verificar si el correo o el nombre de usuario ya existen
       if (
         !users.find(({ email }) => email === emailUser) && 
@@ -250,7 +153,6 @@ const postUsers = () => {
       
     }
   };
->>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
 
   return (
     <div className='bodyRegister'>

@@ -39,10 +39,7 @@
     "react-router-dom": "^6.28.0",
     "react-toastify": "^10.0.6",
     "sweetalert2": "^11.14.5",
-<<<<<<< HEAD
-=======
     "toastify-js": "^1.12.0",
->>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
     "typeface-titillium-web": "^1.1.13",
     "yup": "^1.4.0"
   },

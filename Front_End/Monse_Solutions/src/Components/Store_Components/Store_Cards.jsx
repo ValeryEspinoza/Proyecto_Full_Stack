@@ -20,9 +20,9 @@ const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
 useEffect(() => {
 async function getStoreProducts() {
-
     const storeProducts = await GetData('api/products/')
 
+    
     setStoreProducts(storeProducts)
   };
 getStoreProducts();
@@ -32,9 +32,6 @@ const filteredProducts = storeProducts.filter(product =>
   product.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
 
-
-
-  
   return (
 <div>
 <div className='portadaTienda'>
@@ -79,10 +76,10 @@ const filteredProducts = storeProducts.filter(product =>
 <div id="mapArticle">
   <div className="product-grid">
     {filteredProducts.length > 0 ? (
-      storeProducts.map((producto, index) => (
+      storeProducts.map((index) => (
         <div key={index} className="card" style={{ width: '18rem' }}>
 
-          {producto.formProduct && (<img src={storeProducts.image_url} className="card-img-top" alt="imagen de producto"/>)}
+          {(<img src={storeProducts.image_url} className="card-img-top" alt="imagen de producto"/>)}
           
           <div className="card-body">
 
@@ -105,13 +102,13 @@ const filteredProducts = storeProducts.filter(product =>
               <div className="modal-dialog" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title">Modal title</h5>
+                    <h5 className="modal-title">{storeProducts.name}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div className="modal-body">
-                    <p>Modal body text goes here.</p>
+                    <p>{storeProducts.description}</p>
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={hideModal}>Close</button>

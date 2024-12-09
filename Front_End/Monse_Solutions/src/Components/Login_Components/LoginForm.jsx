@@ -26,39 +26,6 @@ function LoginForm() {
 
   // Botón Login
   async function Login() {
-<<<<<<< HEAD
-    const Users = await GetUser() 
-    
-    console.log('No funciono en nada');
-    
-
-    if ((Users.find(({email}) => email === EmailUser)) && (Users.find(({password}) => password === PassUser)) ) {
-
-      const token = jwt.sign({}, 'clave secreta', { expiresIn: '1h' });
-      
-      localStorage.setItem("Token", token);      
-      localStorage.setItem("Autenticado", "true");
-      console.log(token);
-
-
-      Swal.fire({
-        title: "Ingreso Exitoso!",
-        text: "Se ha iniciado de sesión con exito",
-        icon: "success"
-        });
-
-      
-      setTimeout(() => {
-        navigate("/Formularios");
-      }, 5000); 
-      
-    }else{
-      
-      Swal.fire({
-        title: "Inicio de sesión fallido!",
-        text: "Contraseña o correo no son válidos",
-        icon: "error"
-=======
     if (!EmailUser || !PassUser) {
       Swal.fire({
         title: "Campos Vacíos",
@@ -93,7 +60,6 @@ function LoginForm() {
           title: "Ingreso Fallido",
           text: "Correo o contraseña incorrectos",
           icon: "error"
->>>>>>> 71c86d1546ae246e53fe82cfb2f69d2ebc9cac32
         });
       }
     } catch (error) {
