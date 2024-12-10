@@ -60,7 +60,7 @@ function TasksForms({ onSuccess }) {
       onSuccess("¡Producto enviado exitosamente!");  // Llamamos a la función onSuccess para enviar el mensaje;
       
       // Mensaje de éxito
-      setAlertMessage("Tarea creada exitosamente.12");
+      setAlertMessage("Tarea creada exitosamente.");
       setAlertType("success"); // Tipo de mensaje: éxito
 
       // Mostrar el mensaje por 3 segundos antes de restablecer el formulario

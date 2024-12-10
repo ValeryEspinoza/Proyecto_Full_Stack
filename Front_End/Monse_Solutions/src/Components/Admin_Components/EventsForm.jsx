@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../Styles/Components_Styles/Admin_C_Styles/EventsForm.css';
 import postData from '../../Services/Post/PostData';
 
-function EventsForm() {
+function EventsForm({ onSuccess }) {
   const [eventData, setEventData] = useState({
     tittle: "",
     description: "",
@@ -63,7 +63,8 @@ function EventsForm() {
 
     try {
       await postData('events', eventData);
-      console.log("Evento enviado:", eventData);
+      onSuccess("¡Evento enviado exitosamente!");  // Llamamos a la función onSuccess para enviar el mensaje;
+      
       
       // Mensaje de éxito
       setAlertMessage("Evento creado exitosamente.");
