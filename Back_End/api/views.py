@@ -210,8 +210,44 @@ class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cita.objects.all()
     serializer_class = Cita_Serializer
     permission_classes = [IsAuthenticated, IsAdministrador] 
-   
-   
+    
+#vista para horarios disonibles 
+def obtener_horarios_disponibles(request):
+    # Definir horarios disponibles iniciales
+    fechas_disponibles = {
+    '2024-12-11': ['10:00 AM', '11:00 AM', '12:00 PM'],
+    '2024-12-13': ['2:00 PM', '3:00 PM', '4:00 PM'],
+    '2024-12-18': ['10:00 AM', '11:00 AM', '12:00 PM'],
+    '2024-12-20': ['2:00 PM', '3:00 PM', '4:00 PM'],
+
+
+    '2025-01-08': ['2:00 PM', '3:00 PM', '4:00 PM'],
+    '2025-01-15': ['10:00 AM', '11:00 AM', '12:00 PM'],
+    '2025-01-22': ['2:00 PM', '3:00 PM', '4:00 PM'],
+    '2025-01-29': ['10:00 AM', '11:00 AM', '12:00 PM'],
+
+    '2025-01-09': ['2:00 PM', '3:00 PM', '4:00 PM'],
+    '2025-01-16': ['10:00 AM', '11:00 AM', '12:00 PM'],
+    '2025-01-23': ['2:00 PM', '3:00 PM', '4:00 PM'],
+
+    '2025-01-10': ['2:00 PM', '3:00 PM', '4:00 PM'],
+    '2025-01-17': ['10:00 AM', '11:00 AM', '12:00 PM'],
+    '2025-01-24': ['2:00 PM', '3:00 PM', '4:00 PM'],
+    }
+    
+    # Obtén todas las citas ya reservadas
+    citas = Cita.objects.all()
+    
+    # Excluye las horas ya reservadas
+    for cita in citas:
+        fecha = str(cita.Date)  # Formatea la fecha
+        hora = cita.time.strftime("%I:%M %p")  # Formatea la hora
+        
+        if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
+            fechas_disponibles[fecha].remove(hora)
+    
+    # Retorna los horarios disponibles como respuesta JSON
+    return JsonResponse(fechas_disponibles)  
    
    
    
