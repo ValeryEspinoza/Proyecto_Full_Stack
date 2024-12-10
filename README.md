@@ -260,3 +260,7 @@ Carga de imágenes a AWS: Los productos, eventos, tareas y usuarios pueden tener
 Responsividad: Todos los componentes están diseñados para ser responsivos, lo que significa que se adaptan a diferentes tamaños de pantalla, asegurando una experiencia de usuario óptima en dispositivos móviles, tabletas y escritorios.
 Agregación y edición de datos: Los usuarios pueden agregar y editar productos, servicios, eventos, tareas, y usuarios a través de formularios interactivos. Las imágenes se cargan a la nube y se gestionan mediante URL almacenadas en la base de datos.
 Este enfoque modular garantiza una experiencia de usuario consistente y eficiente, además de permitir la integración de servicios externos como AWS para la gestión de archivos multimedia.
+
+
+PAYPAL:
+npm install react-toastify @paypal/react-paypal-js jspdf

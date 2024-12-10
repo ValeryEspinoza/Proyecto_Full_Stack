@@ -1,0 +1,85 @@
+/* CardPayment.css */
+
+/* Contenedor principal del formulario */
+.payment-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo del encabezado del formulario */
+  .payment-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .payment-header h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .payment-header p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Estilos para los campos del formulario */
+  .payment-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .payment-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .payment-form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Botón de envío */
+  .payment-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .payment-button:hover {
+    background-color: #45a049;
+  }
+  
+  .payment-button:active {
+    background-color: #388e3c;
+  }
+  
+  /* Añadir animación al formulario */
+  .payment-form {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
