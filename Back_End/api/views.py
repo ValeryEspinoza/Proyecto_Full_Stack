@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 from django.db.models import F
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.http import JsonResponse
+
 
 
 from .models import (
@@ -212,8 +216,41 @@ class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsAdministrador] 
    
    
-   
-   
+class HorariosDisponibles(APIView):
+    permission_classes = [AllowAny]
+    
+    def get(self, request):
+        # Fechas y horarios disponibles por defecto
+        fechas_disponibles = {
+            '2024-12-11': ['10:00 AM', '11:00 AM', '12:00 PM'],
+            '2024-12-13': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2024-12-18': ['10:00 AM', '11:00 AM', '12:00 PM'],
+            '2024-12-20': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2025-01-08': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2025-01-15': ['10:00 AM', '11:00 AM', '12:00 PM'],
+            '2025-01-22': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2025-01-29': ['10:00 AM', '11:00 AM', '12:00 PM'],
+            '2025-01-09': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2025-01-16': ['10:00 AM', '11:00 AM', '12:00 PM'],
+            '2025-01-23': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2025-01-10': ['2:00 PM', '3:00 PM', '4:00 PM'],
+            '2025-01-17': ['10:00 AM', '11:00 AM', '12:00 PM'],
+            '2025-01-24': ['2:00 PM', '3:00 PM', '4:00 PM'],
+        }
+        
+        # Obtener las citas ya reservadas
+        citas = Cita.objects.all()
+        
+        # Excluir las horas ya reservadas
+        for cita in citas:
+            fecha = str(cita.Date)  # Fecha de la cita
+            hora = cita.time.strftime("%I:%M %p")  # Hora de la cita
+            
+            if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
+                fechas_disponibles[fecha].remove(hora)
+        
+        # Retornar los horarios disponibles como respuesta JSON
+        return Response(fechas_disponibles)
    
  ##Vistas con foraneas   ****
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
@@ -445,7 +482,10 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
-    
+  
+  
+  
+ 
  
 """ Vista para reestablecer la contraseña
 from django.http import JsonResponse

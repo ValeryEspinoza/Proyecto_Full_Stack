@@ -22,7 +22,9 @@ const ProductsTable = () => {
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-
+  const filteredProducts = productData.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const toggleDropdown = (productId) => {
     setIsDropdownOpen(isDropdownOpen === productId ? null : productId);
@@ -42,27 +44,8 @@ const ProductsTable = () => {
     fetchProducts();
   }, []);
 
-  const filteredProducts = productData.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
-  
 
-  const handleSuccessMessage = (message) => {
-    toast.success(message); // Muestra la notificación de éxito
-    // Recargar los servicios después de mostrar el mensaje
-    const fetchProducts= async () => {
-      try {
-        const response = await GetData("services");
-        setProductData(response); // Actualiza los servicios
-        toast.success("Servicios actualizados correctamente.");
-      } catch (error) {
-        console.error("Error al obtener los servicios:", error);
-        toast.error("Error al cargar los servicios.");
-      }
-    };
-    fetchProducts(); // Llamar para recargar los servicios
-  };
 
   const handleDelete = async (product_id) => {
     try {
@@ -155,6 +138,22 @@ const handleImageChange = async (e, imagenDataBase) => {
       setEditedProduct({ ...selectedProduct });
       setEditedField(null);
     }
+  };
+
+  const handleSuccessMessage = (message) => {
+    toast.success(message); // Muestra la notificación de éxito
+    
+    const ObtenerProductos = async () => {
+      try {
+        const response = await GetData("products");
+        setProductData(response);
+        toast.success("Producto agregado correctamente.");
+      } catch (error) {
+        console.error("Error al agaregar el producto:", error);
+        toast.error("Error al cargar los Productos.");
+      }
+    };
+    ObtenerProductos(); // Llamar para recargar los servicios
   };
 
   return (
