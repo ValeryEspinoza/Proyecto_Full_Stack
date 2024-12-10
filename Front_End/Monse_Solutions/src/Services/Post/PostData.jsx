@@ -2,7 +2,7 @@ const postData = async (EndPoint, data) => {
   try {
     console.log('Enviando datos:', data); // Log de datos enviados
     
-    const response = await fetch(`http://192.168.88.209:8000/api/${EndPoint}/`, {
+    const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -22,9 +22,7 @@ const ProductsTable = () => {
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-  const filteredProducts = productData.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+
 
   const toggleDropdown = (productId) => {
     setIsDropdownOpen(isDropdownOpen === productId ? null : productId);
@@ -43,6 +41,28 @@ const ProductsTable = () => {
     };
     fetchProducts();
   }, []);
+
+  const filteredProducts = productData.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  
+
+  const handleSuccessMessage = (message) => {
+    toast.success(message); // Muestra la notificación de éxito
+    // Recargar los servicios después de mostrar el mensaje
+    const fetchProducts= async () => {
+      try {
+        const response = await GetData("services");
+        setProductData(response); // Actualiza los servicios
+        toast.success("Servicios actualizados correctamente.");
+      } catch (error) {
+        console.error("Error al obtener los servicios:", error);
+        toast.error("Error al cargar los servicios.");
+      }
+    };
+    fetchProducts(); // Llamar para recargar los servicios
+  };
 
   const handleDelete = async (product_id) => {
     try {
@@ -162,7 +182,7 @@ const handleImageChange = async (e, imagenDataBase) => {
         </button>
       </div>
 
-      {isFormVisible && <ProductsForm />}
+      {isFormVisible && <ProductsForm onSuccess={handleSuccessMessage} />}
 
       <table className="products-table">
         <thead>

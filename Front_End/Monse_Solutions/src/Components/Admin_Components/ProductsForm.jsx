@@ -17,7 +17,7 @@ const ConvertirNombreImagen = (nombreArchivo) => {
   return `${nombreAleatorio}.${extension}`;
 };
 
-function ProductsForm() {
+function ProductsForm({ onSuccess }) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -91,6 +91,7 @@ function ProductsForm() {
       // Enviar formulario con la URL de la imagen
       const formDataConImagen = { ...formData, imagen_url: imagenUrl };
       await postData('products', formDataConImagen);
+      onSuccess("¡Producto enviado exitosamente!");  // Llamamos a la función onSuccess para enviar el mensaje
       console.log("Formulario enviado:", formDataConImagen);
 
       setIsSubmitted(true);

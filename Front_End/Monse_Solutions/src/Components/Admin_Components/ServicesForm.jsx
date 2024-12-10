@@ -3,15 +3,15 @@ import '../../Styles/Components_Styles/Admin_C_Styles/ServicesForm.css';
 import SendServices from '../../Services/Post/PostServices';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useMessageProvider } from '../../Services/Funciones/MessageProvider';  // Importar el hook
 
-function ServicesForm() {
+
+function ServicesForm({ onSuccess }) { // Recibimos la función onSuccess
   const [service, setService] = useState("");
   const [description, setDescription] = useState("");
   const [imagenUrl, setImagenUrl] = useState(null); // Mantener el archivo
   const [category, setCategory] = useState("");
   const [errors, setErrors] = useState({}); // Estado para errores
-  const { setSuccessMessage } = useMessageProvider(); // Usar el contexto para setear el mensaje
+
 
   // Función para generar una cadena aleatoria
   const generarCadenaAleatoria = (longitudMinima = 20) => {
@@ -50,61 +50,52 @@ function ServicesForm() {
     return newErrors;
   };
 
-  // Manejo del envío del formulario
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ // Manejo del envío del formulario
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const validationErrors = validate();
+  const validationErrors = validate();
+  console.log(validationErrors); // Log para depurar
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors); // Actualiza el estado con los errores
-      return;
-    }
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors); // Actualiza el estado con los errores
+    return;
+  }
 
-    try {
-      const respuesta = await SendServices.SendServices(service, description, imagenUrl, category);
-      console.log(respuesta);
+  try {
+    const response= await SendServices.SendServices(service, description, imagenUrl, category);
+    console.log(response);
+    
+    onSuccess("¡Servicio enviado exitosamente!");  // Llamamos a la función onSuccess para enviar el mensaje
 
-      // Enviar un mensaje de éxito al contexto
-      setSuccessMessage('Servicio guardado correctamente!');  // Aquí actualizas el mensaje de éxito
 
-      // Mostrar notificación de éxito
-      toast.success("¡Servicio enviado exitosamente!", {
-        position: "top-right",  // Usar la cadena en lugar de `toast.POSITION.TOP_RIGHT`
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
 
-      // Limpiar el formulario y errores si la respuesta es exitosa
-      setService('');
-      setDescription('');
-      setImagenUrl(null);
-      setCategory('');
-      setErrors({});
-    } catch (error) {
-      console.error('Error al enviar los datos:', error);
+    // Limpiar el formulario y errores si la respuesta es exitosa
+    setService('');
+    setDescription('');
+    setImagenUrl(null);
+    setCategory('');
+    setErrors({});
+  } catch (error) {
+    console.error('Error al enviar los datos:', error);
 
-      // Mostrar notificación de error
-      toast.error("Error al enviar el servicio. Intente de nuevo.", {
-        position: "top-right",  // Usar la cadena en lugar de `toast.POSITION.TOP_RIGHT`
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
+    // Mostrar notificación de error
+    toast.error("Error al enviar el servicio. Intente de nuevo.", {
+      position: "top-right",  // Usar la cadena en lugar de `toast.POSITION.TOP_RIGHT`
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+};
 
   return (
     <div className="service-form-container">
       <h2 className="service-form-title">Formulario de Servicio</h2>
-      <div className="service-form" onSubmit={handleSubmit}>
+      <div className="service-form" >
         <div className="service-form-group">
           <label htmlFor="service" className="service-form-label">Nombre del Servicio:</label>
           <input
@@ -170,11 +161,11 @@ function ServicesForm() {
           {errors.imagenUrl && <span className="error" style={{ color: 'red' }}>{errors.imagenUrl}</span>}
         </div>
 
-        <button type="submit" className="service-form-button">Enviar</button>
+        <button onClick={handleSubmit} type="submit" className="service-form-button">Enviar</button>
       </div>
 
-      {/* Contenedor de React Toast */}
-      <ToastContainer />
+
+ 
     </div>
   );
 }

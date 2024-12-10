@@ -24,6 +24,7 @@ const ServicesTable = () => {
 
 
 
+
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
   const filteredServicios = DatosServicios.filter((service) =>
@@ -49,6 +50,21 @@ const ServicesTable = () => {
   }, []);
 
 
+  const handleSuccessMessage = (message) => {
+    toast.success(message); // Muestra la notificación de éxito
+    // Recargar los servicios después de mostrar el mensaje
+    const ObtenerServicios = async () => {
+      try {
+        const response = await GetData("services");
+        SetDatosServicios(response); // Actualiza los servicios
+        toast.success("Servicios actualizados correctamente.");
+      } catch (error) {
+        console.error("Error al obtener los servicios:", error);
+        toast.error("Error al cargar los servicios.");
+      }
+    };
+    ObtenerServicios(); // Llamar para recargar los servicios
+  };
 
   const Delete = async (service_id) => {
     try {
@@ -167,7 +183,7 @@ const ServicesTable = () => {
         </button>
       </div>
 
-      {isFormVisible && <ServicesForm a />}
+      {isFormVisible && <ServicesForm onSuccess={handleSuccessMessage} />} {/* Pasa la función al formulario */}
       
 
       <table className="services-table">
