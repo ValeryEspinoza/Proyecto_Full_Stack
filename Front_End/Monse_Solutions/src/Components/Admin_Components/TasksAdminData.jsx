@@ -32,19 +32,32 @@ const TasksAdminData = () => {
     const fetchTasks = async () => {
       try {
         const response = await GetData('tasks');
-        if (response && Array.isArray(response)) {
           setTasks(response);
-          toast.success("Tareas cargadas correctamente.");
-        } else {
-          toast.error("No se pudieron cargar las tareas.");
-        }
+          toast.success("Tareas cargadas correctamente.11");
+
       } catch (error) {
-        console.error("Error al obtener las tareas:", error);
-        toast.error("Error al cargar las tareas.");
+        console.error("Error al obtener las tareas:11", error);
+        toast.error("Error al cargar las tareas.11");
       }
     };
     fetchTasks();
   }, []);
+
+
+  
+  const handleSuccessMessage = (message) => {
+    toast.success(message); // Muestra la notificación de éxito
+    
+    const ObtenerTareas = async () => {
+      try {
+        const response = await GetData('tasks');
+        setTasks(response)
+      } catch (error) {
+        toast.error("Error al cargar las tareas.");
+      }
+    };
+    ObtenerTareas(); // Llamar para recargar los servicios
+  };
 
   const deleteTask = async (taskId) => {
     if (!taskId) {
@@ -153,12 +166,11 @@ const TasksAdminData = () => {
         </button>
       </div>
 
-      {isFormVisible && <TasksForms />}
+      {isFormVisible && <TasksForms onSuccess={handleSuccessMessage}  />}
 
       <table className="tasks-table">
         <thead>
           <tr>
-            <th className="tasks-th">ID Tarea</th>
             <th className="tasks-th">Título</th>
             <th className="tasks-th">Descripción</th>
             <th className="tasks-th">Fecha Límite</th>
@@ -169,7 +181,7 @@ const TasksAdminData = () => {
         <tbody>
           {filteredTasks.map((task) => (
             <tr key={task.task_id} className="tasks-tr">
-              <td className="tasks-td">{task.task_id}</td>
+
               <td className="tasks-td">
                 {editedTask?.task_id === task.task_id ? (
                   <input

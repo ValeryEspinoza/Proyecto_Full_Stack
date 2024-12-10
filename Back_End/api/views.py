@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 from django.db.models import F
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.http import JsonResponse
+import datetime
+
 
 
 from .models import (
@@ -212,8 +217,56 @@ class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsAdministrador] 
    
    
-   
-   
+
+class HorariosDisponibles(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        # Rango de fechas: desde hoy hasta 30 días hacia adelante (esto lo puedes ajustar como desees)
+        fecha_inicio = datetime.date.today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=30)
+
+        # Definir los bloques horarios disponibles por día
+        bloques_horarios = [
+            ('08:00 AM', '09:00 AM'),
+            ('09:00 AM', '10:00 AM'),
+            ('10:00 AM', '11:00 AM'),
+            ('11:00 AM', '12:00 PM'),
+            ('01:00 PM', '02:00 PM'),
+            ('02:00 PM', '03:00 PM'),
+            ('03:00 PM', '04:00 PM'),
+            ('04:00 PM', '05:00 PM')
+        ]
+
+        # Inicializamos un diccionario vacío para los horarios disponibles
+        fechas_disponibles = {}
+
+        # Generar las fechas y horarios disponibles dentro del rango
+        fecha_actual = fecha_inicio
+        while fecha_actual <= fecha_fin:
+            # Convertimos la fecha a formato string (para que sea fácil de comparar)
+            fecha_str = fecha_actual.strftime('%Y-%m-%d')
+
+            # Por cada fecha generamos los bloques horarios
+            fechas_disponibles[fecha_str] = [hora for hora, _ in bloques_horarios]
+
+            # Aumentamos un día
+            fecha_actual += datetime.timedelta(days=1)
+
+        # Obtener las citas ya reservadas
+        citas = Cita.objects.all()
+
+        # Excluir las horas ya reservadas de los horarios disponibles
+        for cita in citas:
+            fecha = str(cita.Date)  # Obtener la fecha de la cita
+            hora = cita.time.strftime("%I:%M %p")  # Obtener la hora de la cita en formato adecuado
+
+            # Si la fecha y hora están disponibles, se elimina de la lista de opciones
+            if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
+                fechas_disponibles[fecha].remove(hora)
+
+        # Retornar los horarios disponibles en formato JSON
+        return Response(fechas_disponibles)
    
  ##Vistas con foraneas   ****
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
@@ -333,6 +386,8 @@ class reviewsListCreate(generics.ListCreateAPIView):
     queryset = reviews.objects.all()
     serializer_class = reviewsSerializer
     permission_classes = [AllowAny]
+    
+    
 class reviewsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = reviews.objects.all()
     serializer_class = reviewsSerializer
@@ -443,7 +498,10 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
-    
+  
+  
+  
+ 
  
 """ Vista para reestablecer la contraseña
 from django.http import JsonResponse

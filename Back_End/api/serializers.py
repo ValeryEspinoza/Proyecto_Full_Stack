@@ -638,9 +638,9 @@ class sellsSerializer(serializers.ModelSerializer):
 class reviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = reviews
-        fields = ['review_id', 'review', 'date', 'rating', 'client_id'] 
+        fields = ['review', 'date', 'rating', 'client'] 
     
-    def validate_review(self, value):
+    """def validate_review(self, value):
         validate_not_empty(value)
         validate_min_characters(value, 5)
         validate_no_special_characters(value)
@@ -654,9 +654,7 @@ class reviewsSerializer(serializers.ModelSerializer):
         # Validar que sea un número en el rango permitido
         if not (1.0 <= value <= 5.0):
             raise serializers.ValidationError("Rating must be between 1.0 and 5.0.")
-        return value
-        
-
+        return value"""
            
            
 class proformas_invoicesSerializer(serializers.ModelSerializer):

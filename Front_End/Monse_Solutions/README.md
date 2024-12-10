@@ -18,13 +18,15 @@ npm install sweetalert2
 npm install @emailjs/browser      
 npm install react-bootstrap bootstrap 
 
+CALENDARIO
 npm install react-calendar
 npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/interaction emailjs-com
+
 npm install react-toastify
 npm install --save font-awesome
 npm install --save typeface-titillium-web  tipografia
 npm install react-datepicker
- npm install aws-sdk 
+npm install aws-sdk 
 npm install toastify-js
 
 
@@ -33,6 +35,8 @@ CHATBOT
 npm install react-chatbot-kit
 
 
-
 Para calendario de eventos y tareas 
 npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction
+
+PDF: 
+npm install jspdf-autotable
