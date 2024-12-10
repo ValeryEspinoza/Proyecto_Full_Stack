@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
+import datetime
 
 
 
@@ -216,40 +217,55 @@ class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsAdministrador] 
    
    
+
 class HorariosDisponibles(APIView):
     permission_classes = [AllowAny]
-    
+
     def get(self, request):
-        # Fechas y horarios disponibles por defecto
-        fechas_disponibles = {
-            '2024-12-11': ['10:00 AM', '11:00 AM', '12:00 PM'],
-            '2024-12-13': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2024-12-18': ['10:00 AM', '11:00 AM', '12:00 PM'],
-            '2024-12-20': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2025-01-08': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2025-01-15': ['10:00 AM', '11:00 AM', '12:00 PM'],
-            '2025-01-22': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2025-01-29': ['10:00 AM', '11:00 AM', '12:00 PM'],
-            '2025-01-09': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2025-01-16': ['10:00 AM', '11:00 AM', '12:00 PM'],
-            '2025-01-23': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2025-01-10': ['2:00 PM', '3:00 PM', '4:00 PM'],
-            '2025-01-17': ['10:00 AM', '11:00 AM', '12:00 PM'],
-            '2025-01-24': ['2:00 PM', '3:00 PM', '4:00 PM'],
-        }
-        
+        # Rango de fechas: desde hoy hasta 30 días hacia adelante (esto lo puedes ajustar como desees)
+        fecha_inicio = datetime.date.today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=30)
+
+        # Definir los bloques horarios disponibles por día
+        bloques_horarios = [
+            ('08:00 AM', '09:00 AM'),
+            ('09:00 AM', '10:00 AM'),
+            ('10:00 AM', '11:00 AM'),
+            ('11:00 AM', '12:00 PM'),
+            ('01:00 PM', '02:00 PM'),
+            ('02:00 PM', '03:00 PM'),
+            ('03:00 PM', '04:00 PM'),
+            ('04:00 PM', '05:00 PM')
+        ]
+
+        # Inicializamos un diccionario vacío para los horarios disponibles
+        fechas_disponibles = {}
+
+        # Generar las fechas y horarios disponibles dentro del rango
+        fecha_actual = fecha_inicio
+        while fecha_actual <= fecha_fin:
+            # Convertimos la fecha a formato string (para que sea fácil de comparar)
+            fecha_str = fecha_actual.strftime('%Y-%m-%d')
+
+            # Por cada fecha generamos los bloques horarios
+            fechas_disponibles[fecha_str] = [hora for hora, _ in bloques_horarios]
+
+            # Aumentamos un día
+            fecha_actual += datetime.timedelta(days=1)
+
         # Obtener las citas ya reservadas
         citas = Cita.objects.all()
-        
-        # Excluir las horas ya reservadas
+
+        # Excluir las horas ya reservadas de los horarios disponibles
         for cita in citas:
-            fecha = str(cita.Date)  # Fecha de la cita
-            hora = cita.time.strftime("%I:%M %p")  # Hora de la cita
-            
+            fecha = str(cita.Date)  # Obtener la fecha de la cita
+            hora = cita.time.strftime("%I:%M %p")  # Obtener la hora de la cita en formato adecuado
+
+            # Si la fecha y hora están disponibles, se elimina de la lista de opciones
             if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
                 fechas_disponibles[fecha].remove(hora)
-        
-        # Retornar los horarios disponibles como respuesta JSON
+
+        # Retornar los horarios disponibles en formato JSON
         return Response(fechas_disponibles)
    
  ##Vistas con foraneas   ****
