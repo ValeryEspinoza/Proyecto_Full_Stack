@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction'; // Para manejar clics en las fechas
+import interactionPlugin from '@fullcalendar/interaction';
 import emailjs from 'emailjs-com';
-import Toastify from "toastify-js";
-import "toastify-js/src/toastify.css";
-import '../../Styles/Components_Styles/ProfileClienteStyles/CalendarioCitas.css'; // Asegúrate de importar el archivo CSS
-import { jsPDF } from "jspdf";
-import Logo from '../../Img/Components_Img/logo_negrov.png'
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../../Styles/Components_Styles/ProfileClienteStyles/CalendarioCitas.css';
+import { jsPDF } from 'jspdf';
+import Logo from '../../Img/Components_Img/logo_negrov.png';
+import GetData from '../../Services/Get/GetData';
+
 
 function CalendarioCitas() {
   //Hooks de estado
@@ -25,61 +29,66 @@ function CalendarioCitas() {
   const [confirmedAppointment, setConfirmedAppointment] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [events, setEvents] = useState([]);
+  const [availableHours, setAvailableHours] = useState({}); // Almacena horarios disponibles por fecha
 
   useEffect(() => {
-    // Llama a tu API para obtener las fechas
-    fetch('horarios_disponibles')
-      .then((response) => response.json())
-      .then((data) => {
-        // Transforma las fechas en el formato que necesita FullCalendar
-        const formattedEvents = data.map((event) => ({
-          title: event.title || 'Fechas y horas disponibles', // Ajusta según el nombre de tu campo
-          start: event.start_date, // Campo de fecha de inicio (YYYY-MM-DD o ISO8601)
-          end: event.end_date, // Opcional: campo de fecha de fin
-        }));
-
+    const fetchHorarios = async () => {
+      try {
+        const response = await GetData('horarios_disponibles');
+    
+        // Validar si response es un objeto
+        if (typeof response !== 'object' || response === null) {
+          console.error('La respuesta no es un objeto:', response);
+          toast.error('Error al cargar los horarios. Formato inesperado.');
+          return;
+        }
+    
+        // Formatear eventos para el calendario
+        const formattedEvents = Object.keys(response).flatMap(date => 
+          response[date].map(time => ({
+            title: 'Fechas y horas disponibles',
+            start: date + 'T' + time, // Asegúrate de que el formato sea correcto
+            end: date + 'T' + time // Ajusta según sea necesario
+          }))
+        );
         setEvents(formattedEvents);
-      })
-      .catch((error) => console.error('Error al obtener fechas y horas disponibles', error));
-  }, []);
+    
+        // Estructurar horarios disponibles por fecha
+        setAvailableHours(response);
+      } catch (error) {
+        console.error('Error al obtener fechas y horas disponibles:', error);
+        toast.error('Error al cargar los horarios.');
+      }
+    };
 
-  console.log(availableHours);
+    fetchHorarios();
+  }, []);
 
   const handleDateClick = (arg) => {
     setSelectedDate(arg.dateStr);
     setAvailableTimes(availableHours[arg.dateStr] || []);
-  
-    // Limpiar clases previas de todos los días
-    const days = document.querySelectorAll('.fc-daygrid-day');
-    days.forEach((day) => {
-      day.classList.remove('selected-date');
-    });
-  
-    // Agregar la clase 'selected-date' al día seleccionado
-    const selectedDay = document.querySelector(`[data-date="${arg.dateStr}"]`);
-    if (selectedDay) {
-      selectedDay.classList.add('selected-date');
-    }
-  };
-  
 
-  // Función para manejar clic en hora
+    // Actualizar estilos visuales
+    const days = document.querySelectorAll('.fc-daygrid-day');
+    days.forEach((day) => day.classList.remove('selected-date'));
+    const selectedDay = document.querySelector(`[data-date="${arg.dateStr}"]`);
+    if (selectedDay) selectedDay.classList.add('selected-date');
+  };
+
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
     setAppointmentDetails({ date: selectedDate, time });
-   /* Toastify({
-      text: `Appointment selected for ${selectedDate} at ${time}`,
-      duration: 3500,
-      gravity: "top", // "top" or "bottom"
-      position: "center", // "left", "center" or "right"
-      className: "custom-toastCalendario", // Añadimos una clase personalizada
-    }).showToast();*/
+  
+    // Deshabilitar la hora seleccionada
+    setAvailableTimes((prevTimes) => prevTimes.filter(t => t !== time));
+  
+    // Aquí podrías hacer una llamada a la API para marcar la hora como ocupada
+    // await markTimeAsBooked(selectedDate, time);
   };
 
-  //useEffect para manejar la clase `selected-time`
   useEffect(() => {
     if (!selectedTime) return;
-  
+
     const timeElements = document.querySelectorAll('.calendarioCitas-time');
     timeElements.forEach((el) => {
       if (el.textContent === selectedTime) {
@@ -98,10 +107,9 @@ function CalendarioCitas() {
     }
     setIsEmailProvided(true);
   };
-  
-  //Cierra el modal
+
   const handleCloseModal = () => {
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
   };
 
   const resetForm = () => {
@@ -126,26 +134,34 @@ function CalendarioCitas() {
       time: appointmentDetails.time,
       email: email,
     };
-  
 
-    setIsSubmitting(true); // Mostrar el estado de envío
-    emailjs.send('service_9of4zxx', 'template_iwcqswu', templateParams, 'ymYtdvW4jhBm2ACDK')
-      .then((result) => {
-        console.log('Email enviado', result.text);
-        setIsSubmitting(false);
-        Toastify({
-          text: `Cita confirmada. Te hemos enviado un correo`,
-          duration: 3500,
-          gravity: "top", // "top" or "bottom"
-          position: "center", // "left", "center" or "right"
-          className: "custom-toastCalendario", // Añadimos una clase personalizada
-        }).showToast();
-        resetForm(); // Llamar al método aquí
-      }, (error) => {
-        console.log('Error al enviar email', error.text);
-        setIsSubmitting(false);
-        alert('Hubo un error al enviar el correo.');
-      });
+    setIsSubmitting(true);
+    emailjs
+      .send(
+        'service_9of4zxx',
+        'template_iwcqswu',
+        templateParams,
+        'ymYtdvW4jhBm2ACDK'
+      )
+      .then(
+        (result) => {
+          console.log('Email enviado', result.text);
+          setIsSubmitting(false);
+          Toastify({
+            text: `Cita confirmada. Te hemos enviado un correo`,
+            duration: 3500,
+            gravity: 'top',
+            position: 'center',
+            className: 'custom-toastCalendario',
+          }).showToast();
+          resetForm();
+        },
+        (error) => {
+          console.log('Error al enviar email', error.text);
+          setIsSubmitting(false);
+          alert('Hubo un error al enviar el correo.');
+        }
+      );
   };
 
   const handleTimeConfirm = () => {
@@ -153,22 +169,18 @@ function CalendarioCitas() {
       alert('Por favor, completa todos los campos antes de confirmar la cita.');
       return;
     }
-  
-    //Agregar toda la información al estado confirmedAppointment
+
     const fullAppointmentDetails = {
-      ...appointmentDetails, 
+      ...appointmentDetails,
       name,
       phone,
       address,
       email,
     };
-  
-    // Guardar toda la información en el estado
+
     setConfirmedAppointment(fullAppointmentDetails);
-    // Enviar la confirmación de la cita
     enviarConfirmacionCita(fullAppointmentDetails);
-    // Cerrar el modal
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
   };
   
 //DESCARGAR PDF
@@ -235,50 +247,26 @@ const handleDownloadPDF = () => {
     </div>
 
     <FullCalendar
-    key={updateKey}
-    plugins={[dayGridPlugin, interactionPlugin]}
-    initialView="dayGridMonth"
-    dateClick={handleDateClick}
-    events={events} // Pasas los eventos al calendario
-    showNonCurrentDates={false} // Oculta días de otros meses
-    datesSet={(info) => {
-    const visibleDates = document.querySelectorAll('.fc-daygrid-day');
-    visibleDates.forEach((day) => {
-      const dateStr = day.getAttribute('data-date'); //Obtiene la fecha del día
-      if (availableHours[dateStr] && availableHours[dateStr].length > 0) {
-        day.classList.add('available-day');
-      } else {
-        day.classList.remove('available-day'); 
-      }
-    });
-  }}
-  dayCellDidMount={(arg) => {
-    const dateStr = arg.date.toISOString().split('T')[0];
-    if (availableHours[dateStr]) {
-      arg.el.classList.add('available-day'); // Clase para días disponibles
-    }
-    if (dateStr === selectedDate) {
-      arg.el.classList.add('selected-date'); // Clase para el día seleccionado
-    } else {
-      arg.el.classList.remove('selected-date'); // Remueve la clase si no coincide
-    }
-  }}
-  
-/>
+        plugins={[dayGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        dateClick={handleDateClick}
+        events={events}
+        showNonCurrentDates={false}
+      />
 
-
-{selectedDate && (
-  <div className="calendarioCitas-available">
-    <h2 className="calendarioCitas-availableTimesTitle">Available hours for {selectedDate}:</h2>
-    <div className="calendarioCitas-times">
-        {availableTimes.map((time) => (
-          <div
-            key={time}
-            onClick={() => handleTimeSelect(time)}
-            className="calendarioCitas-time"
-          >
-            {time}
-          </div>
+      {selectedDate && (
+        <div className="calendarioCitas-available">
+          <h2>Available hours for {selectedDate}:</h2>
+          <div className="calendarioCitas-times">
+          {availableTimes.map((time, index) => (
+            <div
+              key={index}
+              onClick={() => handleTimeSelect(time)}
+              className={`calendarioCitas-time ${time === selectedTime ? 'selected-time' : ''}`}
+              style={{ cursor: time === selectedTime ? 'not-allowed' : 'pointer', opacity: time === selectedTime ? 0.5 : 1 }}
+            >
+              {time}
+            </div>
   ))}
 </div>
   </div>
