@@ -3,7 +3,7 @@ import '../../Styles/Components_Styles/Admin_C_Styles/ServicesForm.css';
 import SendServices from '../../Services/Post/PostServices';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useMessageProvider } from '../../Services/Funciones/MessageProvider';
+import { useMessageProvider } from '../../Services/Funciones/MessageProvider';  // Importar el hook
 
 function ServicesForm() {
   const [service, setService] = useState("");
@@ -11,19 +11,18 @@ function ServicesForm() {
   const [imagenUrl, setImagenUrl] = useState(null); // Mantener el archivo
   const [category, setCategory] = useState("");
   const [errors, setErrors] = useState({}); // Estado para errores
-  const { setSuccessMessage } = useServicesMessage(); // Usamos el hook para enviar el mensaje
-  const [serviceName, setServiceName] = useState('');
-  const [serviceDescription, setServiceDescription] = useState('');
+  const { setSuccessMessage } = useMessageProvider(); // Usar el contexto para setear el mensaje
 
+  // Función para generar una cadena aleatoria
   const generarCadenaAleatoria = (longitudMinima = 20) => {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const longitud = Math.floor(Math.random() * (30 - longitudMinima + 1)) + longitudMinima; // Entre 20 y 30 caracteres
-
     return Array.from({ length: longitud }, () =>
       caracteres.charAt(Math.floor(Math.random() * caracteres.length))
     ).join('');
   };
 
+  // Función para convertir el nombre de la imagen
   const convertirNombreImagen = (nombreArchivo) => {
     const extension = nombreArchivo.trim().split('.').pop(); // Obtener extensión
     const nombreAleatorio = generarCadenaAleatoria(20); // Generar nombre aleatorio
@@ -38,6 +37,7 @@ function ServicesForm() {
     }
   };
 
+  // Validación de los campos del formulario
   const validate = () => {
     const newErrors = {};
     if (!service) newErrors.service = "El nombre del servicio es requerido.";
@@ -50,6 +50,7 @@ function ServicesForm() {
     return newErrors;
   };
 
+  // Manejo del envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,6 +65,9 @@ function ServicesForm() {
       const respuesta = await SendServices.SendServices(service, description, imagenUrl, category);
       console.log(respuesta);
 
+      // Enviar un mensaje de éxito al contexto
+      setSuccessMessage('Servicio guardado correctamente!');  // Aquí actualizas el mensaje de éxito
+
       // Mostrar notificación de éxito
       toast.success("¡Servicio enviado exitosamente!", {
         position: "top-right",  // Usar la cadena en lugar de `toast.POSITION.TOP_RIGHT`
@@ -76,10 +80,10 @@ function ServicesForm() {
       });
 
       // Limpiar el formulario y errores si la respuesta es exitosa
-      setService("");
-      setDescription("");
+      setService('');
+      setDescription('');
       setImagenUrl(null);
-      setCategory("");
+      setCategory('');
       setErrors({});
     } catch (error) {
       console.error('Error al enviar los datos:', error);
@@ -166,7 +170,7 @@ function ServicesForm() {
           {errors.imagenUrl && <span className="error" style={{ color: 'red' }}>{errors.imagenUrl}</span>}
         </div>
 
-        <button onClick={handleSubmit} className="service-form-button">Enviar</button>
+        <button type="submit" className="service-form-button">Enviar</button>
       </div>
 
       {/* Contenedor de React Toast */}

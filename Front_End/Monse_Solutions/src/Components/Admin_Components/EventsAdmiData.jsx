@@ -143,7 +143,6 @@ const EventsAdmiData = () => {
       <table className="events-table">
         <thead>
           <tr>
-            <th className="events-th">Evento ID</th>
             <th className="events-th">Título</th>
             <th className="events-th">Descripción</th>
             <th className="events-th">Fecha Inicio</th>
@@ -155,7 +154,7 @@ const EventsAdmiData = () => {
         <tbody>
           {filteredEventos.map((event) => (
             <tr key={event.event_id} className="events-tr">
-              <td className="events-td">{event.event_id}</td>
+
               <td className="events-td">
                 {editedEvent?.event_id === event.event_id ? (
                   <input

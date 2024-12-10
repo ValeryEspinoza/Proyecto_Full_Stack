@@ -10,6 +10,9 @@ import '../../Styles/Components_Styles/Admin_C_Styles/ServiceAdmiData.css';
 import ServicesForm from "./ServicesForm";
 import logoNegroF from '../../Img/Components_Img/logo_negrov.png';
 import Amazon from "../../Services/Post/Amazon";
+
+
+
 const ServicesTable = () => {
   const [DatosServicios, SetDatosServicios] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(null);
@@ -18,6 +21,8 @@ const ServicesTable = () => {
   const [editedService, setEditedService] = useState(null);
   const [editedField, setEditedField] = useState(null);
   const [imageFile, setImageFile] = useState(null); // Nueva variable de estado para manejar el archivo de imagen
+
+
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
@@ -44,24 +49,6 @@ const ServicesTable = () => {
   }, []);
 
 
-  useEffect(() => {
-    const alerta = async () => {
-      if (message) {
-        try {
-          const response = await GetData("services");
-          SetDatosServicios(response);
-          toast.success("Nuevo servicio agregado correctamente.");
-        } catch (error) {
-          console.error("Error al agregar servicios:", error);
-          toast.error("Error al Agregar el servicio.");
-        }
-    }
-
-    alerta()
-      // Limpiar el mensaje después de mostrarlo
-      clearMessage();
-    }
-  }, [message, clearMessage]);
 
   const Delete = async (service_id) => {
     try {
@@ -181,11 +168,11 @@ const ServicesTable = () => {
       </div>
 
       {isFormVisible && <ServicesForm a />}
+      
 
       <table className="services-table">
         <thead>
           <tr>
-            <th className="services-th">Service ID</th>
             <th className="services-th">Service</th>
             <th className="services-th">Description</th>
             <th className="services-th">Category ID</th>
@@ -196,7 +183,7 @@ const ServicesTable = () => {
         <tbody>
           {filteredServicios.map((Servicios) => (
             <tr key={Servicios.service_id} className="services-tr">
-              <td className="services-td">{Servicios.service_id}</td>
+
               <td className="services-td">
                 {editedService?.service_id === Servicios.service_id ? (
                   <input
@@ -258,7 +245,7 @@ const ServicesTable = () => {
                             className="services-dropdown-btn services-save-btn"
                             onClick={handleSaveAll}
                           >
-                            Save All
+                            SAVE
                           </button>
 
                         </>
@@ -278,6 +265,7 @@ const ServicesTable = () => {
                           </button>
                         </>
                       )}
+
                     </div>
                   )}
                 </div>

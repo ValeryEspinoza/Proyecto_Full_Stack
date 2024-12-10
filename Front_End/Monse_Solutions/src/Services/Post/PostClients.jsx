@@ -37,7 +37,7 @@ async function SendClients (
         console.log(newUser);
         
     
-        const response = await fetch(`http://192.168.1.87:8000/api/clients/`, {
+        const response = await fetch(`http://192.168.88.209:8000/api/clients/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' 

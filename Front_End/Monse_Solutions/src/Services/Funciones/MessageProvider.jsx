@@ -1,30 +1,29 @@
+// Services/Funciones/MessageProvider.js
 import React, { createContext, useState, useContext } from 'react';
 
-// Crear el contexto para el mensaje
-const MessageProviderContext = createContext();
+// Crea el contexto
+const MessageContext = createContext();
 
-// Proveedor de mensaje (envolverá a los componentes que necesitan acceder al mensaje)
+// Proveedor del contexto
 export const MessageProvider = ({ children }) => {
-  const [message, setMessage] = useState(""); // Mensaje a compartir entre componentes
+  const [message, setMessage] = useState('');
 
-  // Función para establecer el mensaje
-  const setSuccessMessage = (msg) => {
-    setMessage(msg);
-  };
-
-  // Función para borrar el mensaje
-  const clearMessage = () => {
-    setMessage("");
+  const setSuccessMessage = (newMessage) => {
+    setMessage(newMessage);
   };
 
   return (
-    <MessageProviderContext.Provider value={{ message, setSuccessMessage, clearMessage }}>
+    <MessageContext.Provider value={{ message, setSuccessMessage }}>
       {children}
-    </MessageProviderContext.Provider>
+    </MessageContext.Provider>
   );
 };
 
-// Hook para acceder al mensaje desde cualquier componente
-export const useMessageProvider= () => {
-  return useContext(MessageProviderContext);
+// Custom hook para acceder al contexto
+export const useMessageProvider = () => {
+  const context = useContext(MessageContext);
+  if (!context) {
+    throw new Error('useMessageProvider must be used within a MessageProvider');
+  }
+  return context;
 };

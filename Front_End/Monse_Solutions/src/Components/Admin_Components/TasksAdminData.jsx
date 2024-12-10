@@ -158,7 +158,6 @@ const TasksAdminData = () => {
       <table className="tasks-table">
         <thead>
           <tr>
-            <th className="tasks-th">ID Tarea</th>
             <th className="tasks-th">Título</th>
             <th className="tasks-th">Descripción</th>
             <th className="tasks-th">Fecha Límite</th>
@@ -169,7 +168,7 @@ const TasksAdminData = () => {
         <tbody>
           {filteredTasks.map((task) => (
             <tr key={task.task_id} className="tasks-tr">
-              <td className="tasks-td">{task.task_id}</td>
+
               <td className="tasks-td">
                 {editedTask?.task_id === task.task_id ? (
                   <input

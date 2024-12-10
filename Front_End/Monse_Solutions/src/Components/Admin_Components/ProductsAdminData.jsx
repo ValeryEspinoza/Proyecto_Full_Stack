@@ -9,6 +9,7 @@ import "font-awesome/css/font-awesome.min.css";
 import "../../Styles/Components_Styles/Admin_C_Styles/ProductAdmiData.css";
 import ProductsForm from "./ProductsForm";
 import logoNegroF from "../../Img/Components_Img/logo_negrov.png";
+import Amazon from "../../Services/Post/Amazon";
 
 const ProductsTable = () => {
   const [productData, setProductData] = useState([]);
@@ -17,6 +18,7 @@ const ProductsTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [editedProduct, setEditedProduct] = useState(null);
   const [editedField, setEditedField] = useState(null);
+  const [imageFile, setImageFile] = useState(null); // Nueva variable de estado para manejar el archivo de imagen
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
@@ -62,6 +64,40 @@ const ProductsTable = () => {
     setEditedField(field);
   };
 
+
+
+// Manejo de cambio de archivo de imagen con renombrado
+const handleImageChange = async (e, imagenDataBase) => {
+  const file = e.target.files[0]; // Obtener el archivo seleccionado
+  const url = imagenDataBase; // URL base de la imagen
+
+  if (file) {
+    // Obtener el nombre del archivo y la extensión
+    const fileName = file.name;
+    const extension = fileName.split('.').pop();
+
+    // Encontrar la última barra y el primer punto después de ella para obtener la parte final de la URL
+    const start = url.lastIndexOf("/") + 1;
+    const end = url.indexOf(".", start);
+    const result = url.substring(start, end);
+
+    // Crear el nuevo nombre con la extensión original
+    const newName = result + "." + extension;
+    console.log('Nuevo nombre del archivo:', newName);
+
+    // Aquí renombramos el archivo para que tenga el nuevo nombre
+    const renamedFile = new File([file], newName, { type: file.type });
+
+    // Establecer el nuevo archivo en el estado, manteniendo el resto de la información en `editedService`
+    setImageFile(renamedFile); // Guardar el archivo renombrado en el estado
+    setEditedProduct({
+      ...editedProduct,
+      imagen_url: renamedFile, // Guardar el archivo completo con el nuevo nombre en el estado de `editedService`
+    });
+  }
+};
+
+
   const handleSaveAll = async () => {
     try {
       const productData = {
@@ -72,10 +108,19 @@ const ProductsTable = () => {
         sub_categories_product: editedProduct.sub_categories_product,
         imagen_url: editedProduct.imagen_url,
       };
+
+      // Si hay un archivo de imagen seleccionado, cargarla a Amazon
+      if (imageFile) {
+        // Aquí se realiza la carga a Amazon
+        const uploadedImageUrl = await Amazon(imageFile);  // Espera la URL cargada desde Amazon
+        productData.imagen_url = uploadedImageUrl; // Asigna la URL de la imagen subida
+      }
+
       await PutData("products", productData, editedProduct.product_id);
       const updatedProducts = await GetData("products");
       setProductData(updatedProducts);
       setEditedProduct(null);
+      setImageFile(null); // Limpiar el archivo después de guardar
       toast.success("Cambios guardados exitosamente.");
     } catch (error) {
       console.error("Error al guardar los cambios:", error);
@@ -83,22 +128,7 @@ const ProductsTable = () => {
     }
   };
 
-  const handleSaveField = async () => {
-    try {
-      const fieldData = {
-        [editedField]: editedProduct[editedField],
-      };
-      await PatchData("products", fieldData, editedProduct.product_id);
-      const updatedProducts = await GetData("products");
-      setProductData(updatedProducts);
-      setEditedProduct(null);
-      toast.success("Campo guardado correctamente.");
-    } catch (error) {
-      console.error("Error al guardar el cambio específico:", error);
-      toast.error("Error al guardar el cambio del campo.");
-    }
-  };
-
+  
   const loadProductData = (productId) => {
     const selectedProduct = productData.find((product) => product.product_id === productId);
     if (selectedProduct) {
@@ -137,7 +167,6 @@ const ProductsTable = () => {
       <table className="products-table">
         <thead>
           <tr>
-            <th className="products-th">ID</th>
             <th className="products-th">Nombre</th>
             <th className="products-th">Descripción</th>
             <th className="products-th">Precio</th>
@@ -149,7 +178,7 @@ const ProductsTable = () => {
         <tbody>
           {filteredProducts.map((product) => (
             <tr key={product.product_id} className="products-tr">
-              <td className="products-td">{product.product_id}</td>
+
               <td className="products-td">
                 {editedProduct?.product_id === product.product_id ? (
                   <input
@@ -197,9 +226,8 @@ const ProductsTable = () => {
               <td className="products-td">
                 {editedProduct?.product_id === product.product_id ? (
                   <input
-                    type="text"
-                    value={editedProduct.imagen_url}
-                    onChange={(e) => handleFieldChange(e, "imagen_url")}
+                    type="file"
+                    onChange={(e) => handleImageChange(e, product.imagen_url)}
                   />
                 ) : (
                   <a href={product.imagen_url} target="_blank" rel="noopener noreferrer">
@@ -225,12 +253,7 @@ const ProductsTable = () => {
                           >
                             Guardar Todo
                           </button>
-                          <button
-                            className="products-dropdown-btn products-save-btn"
-                            onClick={handleSaveField}
-                          >
-                            Guardar Campo
-                          </button>
+
                         </>
                       ) : (
                         <>
