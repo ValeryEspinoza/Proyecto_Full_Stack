@@ -35,5 +35,8 @@ CHATBOT
 npm install react-chatbot-kit
 
 
+Para calendario de eventos y tareas 
+npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction
+
 PDF: 
 npm install jspdf-autotable
