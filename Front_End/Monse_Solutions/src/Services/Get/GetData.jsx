@@ -1,3 +1,4 @@
+
 const GetData = async (EndPoint) => {
     try {
         console.log("Endpoint:", EndPoint);
@@ -32,3 +33,43 @@ const GetData = async (EndPoint) => {
 };
 
 export default GetData;
+
+/*
+// GetData.jsx
+const GetData = async () => {
+  try {
+    // Simula la respuesta del backend con reseñas más cortas y positivas
+    const simulatedReviews = [
+      { 
+        id: 1, 
+        review: "El trabajo de remodelación fue excelente. Cumplieron con todo lo prometido y los acabados quedaron perfectos. ¡Muy recomendados!", 
+        date: "2024-01-01", 
+        rating: 5, 
+        client: "Juan Pérez" 
+      },
+      { 
+        id: 2, 
+        review: "Estoy muy satisfecha con la remodelación de mi oficina. Los acabados son de calidad y el equipo fue muy profesional.", 
+        date: "2024-02-01", 
+        rating: 5, 
+        client: "María Rodríguez" 
+      },
+      { 
+        id: 3, 
+        review: "Excelente trabajo en la renovación de mi casa. Los acabados fueron impecables y el equipo muy atento.", 
+        date: "2024-03-01", 
+        rating: 5, 
+        client: "Carlos Gómez" 
+      },
+    ];
+    console.log("Datos simulados cargados");
+    return simulatedReviews; // Devuelve datos simulados
+  } catch (error) {
+    console.error("Error al obtener los datos simulados:", error);
+  }
+};
+
+export default GetData;*/
+
+  
+  

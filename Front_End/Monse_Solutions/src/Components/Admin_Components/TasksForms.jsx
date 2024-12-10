@@ -4,7 +4,7 @@ import postData from '../../Services/Post/PostData';
 
 
 
-function TasksForms() {
+function TasksForms({ onSuccess }) {
   const [taskData, setTaskData] = useState({
     tittle: "",
     description: "",
@@ -57,6 +57,7 @@ function TasksForms() {
       // Simulación de un POST a un API (puedes reemplazarlo por tu lógica real de envío)
       console.log("Tarea enviada:", taskData);
       await postData("tasks", taskData);
+      onSuccess("¡Producto enviado exitosamente!");  // Llamamos a la función onSuccess para enviar el mensaje;
       
       // Mensaje de éxito
       setAlertMessage("Tarea creada exitosamente.");
@@ -76,7 +77,7 @@ function TasksForms() {
       }, 3000); // 3000 ms = 3 segundos
 
     } catch (error) {
-      console.error("Error al enviar la tarea:", error);
+      console.error("Error al enviar la tarea 12:", error);
       
       // Mensaje de error
       setAlertMessage("Error al crear la tarea. Por favor, inténtalo de nuevo.");

@@ -63,7 +63,7 @@ class tasks (models.Model):
     task_id = models.AutoField(primary_key=True)
     tittle = models.CharField(max_length=255, null=False)
     description = models.TextField(null=False)
-    expire_date = models.DateTimeField(null=False)
+    expire_date = models.DateTimeField(null=False, blank=True)
     complete = models.BooleanField(default=False)
     def __str__(self):
         return str(self.tittle)
@@ -72,8 +72,8 @@ class events (models.Model):
     event_id = models.AutoField(primary_key=True)
     tittle = models.CharField(max_length=255, null=False)
     description = models.TextField(null=False)
-    starting_date = models.DateField(null=False)
-    ending_date = models.DateField(null=False)
+    starting_date = models.DateTimeField(null=False, blank=True)
+    ending_date = models.DateTimeField(null=False, blank=True)
     place = models.CharField(max_length=255, null=False)
     def __str__(self):
         return str(self.tittle)
@@ -127,7 +127,6 @@ class Cita(models.Model):
 
     def _str_(self):
         return f"{self.name} - {self.date} {self.time}"
-
 
 
 

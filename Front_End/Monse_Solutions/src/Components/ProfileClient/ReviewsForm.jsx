@@ -15,11 +15,8 @@ const ReviewForm = () => {
   });
   const [errors, setErrors] = useState({});
 
-  // Actualizamos el client dinámicamente si cambia el clientId
-
-
   // Cargar reviews existentes
-  useEffect(() => {
+useEffect(() => {
     const fetchReviews = async () => {
       try {
         const response = await GetData('reviews');
@@ -32,6 +29,9 @@ const ReviewForm = () => {
     };
     fetchReviews();
   }, []);
+   
+
+  
 
   // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
@@ -69,15 +69,19 @@ const ReviewForm = () => {
         console.log(response);
         
         toast.success("Review enviada correctamente.");
-      }else{
-        toast.success("Review No ha sido enviado correctamente.");
+  
+        // Enviar la reseña al componente principal
+        onReviewAdded(response); // Llama a la función pasada desde Reviews
+      } else {
+        toast.error("Review No ha sido enviado correctamente.");
       }
-
     } catch (error) {
       console.error("Error al enviar la review:", error);
       toast.error("Error al enviar la review. Revisa los datos enviados.");
     }
   };
+  
+
   
   return (
     <div>
