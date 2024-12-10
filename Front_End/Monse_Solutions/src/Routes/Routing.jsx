@@ -40,6 +40,9 @@ import ProductsTable from '../Components/Admin_Components/ProductsAdminData'
 import UsersTable from '../Components/Admin_Components/UsersAdmiData'
 import TasksAdminData from '../Components/Admin_Components/TasksAdminData'
 import EventsAdminData from '../Components/Admin_Components/EventsAdmiData'
+import PaypalForm from '../Components/Admin_Components/PaypalForm'
+import Carrito from '../Components/Admin_Components/Carrito'
+
 
 
 
@@ -87,8 +90,8 @@ function Routing() {
       <Route path="/UsersTable" element={<UsersTable />} />
       <Route path="/TasksAdminData" element={<TasksAdminData />} />
       <Route path="/EventsAdminData" element={<EventsAdminData />} />
-
-
+      <Route path="/PaypalForm" element={<PaypalForm />} />
+      <Route path='/Carrito' element={<Carrito />} />
 
       <Route path="/ProfileClient" element={<ProfileClient />} />
       

@@ -19,6 +19,7 @@
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
+    "@paypal/react-paypal-js": "^8.7.0",
     "aws-sdk": "^2.1692.0",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
