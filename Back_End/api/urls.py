@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import HorariosDisponibles
 
 
 from rest_framework_simplejwt.views import (
@@ -149,7 +148,9 @@ urlpatterns = [
 
     path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detail'), 
 
-    path('horarios_disponibles/', HorariosDisponibles.as_view(), name='horarios_disponibles'),
+    #path('productos_stock/', productos_stock_disponible.as_view(), name='productos_stock-details-detail'),
+     
+
 ]
 
    

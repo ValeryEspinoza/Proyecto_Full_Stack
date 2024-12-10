@@ -1,36 +1,46 @@
-
-/*import React, { useState, useEffect } from 'react';
-import ReviewsForm from '../ProfileClient/ReviewsForm';
-import ReviewsCard from './ReviewsCard';
+import React, { useEffect, useState } from 'react';
+import GetData from "../../Services/Get/GetData";
+import ReviewsCard from '../Home_Components/ReviewsCard'; // Importa el componente ReviewCard
+import { toast } from 'react-toastify';
+import '../../Styles/Components_Styles/Home_C_Styles/ReviewsStyles/ReviewsCard.css';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const clientId = 1; //Este valor podría venir de algún estado o contexto, dependiendo de cómo gestiones a los usuarios.
 
-  const handleReviewAdded = (newReview) => {
-    setReviews((prevReviews) => [...prevReviews, newReview]);
-  };
-
+  // Cargar reviews existentes
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await GetData('reviews');
+        setReviews(response);
+        toast.success("Reviews cargadas correctamente.");
+      } catch (error) {
+        console.error("Error al obtener los reviews:", error);
+        toast.error("Error al cargar las reviews.");
+      }
+    };
+    fetchReviews();
+  }, []);
 
   return (
-    <div>
-      <h2>Reviews</h2>
-      <ReviewsForm onReviewAdded={handleReviewAdded} clientId={clientId} />
-      <div>
-        {reviews.map((review) => (
+    <div className="reviews-section">
+    <h2 className="reviews-title">What our clients say!</h2><br />
+    <div className="reviews-grid">
+      {reviews.length === 0 ? (
+        <p>No hay reviews disponibles.</p>
+      ) : (
+        reviews.map((review) => (
           <ReviewsCard
-            key={review.review_id}
+            key={review.id} // Asegúrate de que cada review tenga un id único.
             review={review.review}
             date={review.date}
             rating={review.rating}
             client={review.client}
           />
-        ))}
-      </div>
+        ))
+      )}
     </div>
-  );
-};
+  </div>
+);}
 
 export default Reviews;
-*/
-

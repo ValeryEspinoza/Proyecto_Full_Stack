@@ -24,31 +24,24 @@ function CalendarioCitas() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [confirmedAppointment, setConfirmedAppointment] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [events, setEvents] = useState([]);
 
+  useEffect(() => {
+    // Llama a tu API para obtener las fechas
+    fetch('horarios_disponibles')
+      .then((response) => response.json())
+      .then((data) => {
+        // Transforma las fechas en el formato que necesita FullCalendar
+        const formattedEvents = data.map((event) => ({
+          title: event.title || 'Fechas y horas disponibles', // Ajusta según el nombre de tu campo
+          start: event.start_date, // Campo de fecha de inicio (YYYY-MM-DD o ISO8601)
+          end: event.end_date, // Opcional: campo de fecha de fin
+        }));
 
-  const availableHours = {
-// Diciembre
-'2024-12-06': ['10:00 AM', '11:00 AM', '12:00 PM'],
-'2024-12-09': ['2:00 PM', '3:00 PM', '4:00 PM'],
-'2024-12-11': ['10:00 AM', '11:00 AM', '12:00 PM'],
-'2024-12-13': ['2:00 PM', '3:00 PM', '4:00 PM'],
-'2024-12-18': ['10:00 AM', '11:00 AM', '12:00 PM'],
-'2024-12-20': ['2:00 PM', '3:00 PM', '4:00 PM'],
-
-// Enero
-'2025-01-08': ['2:00 PM', '3:00 PM', '4:00 PM'],
-'2025-01-15': ['10:00 AM', '11:00 AM', '12:00 PM'],
-'2025-01-22': ['2:00 PM', '3:00 PM', '4:00 PM'],
-'2025-01-29': ['10:00 AM', '11:00 AM', '12:00 PM'],
-
-'2025-01-09': ['2:00 PM', '3:00 PM', '4:00 PM'],
-'2025-01-16': ['10:00 AM', '11:00 AM', '12:00 PM'],
-'2025-01-23': ['2:00 PM', '3:00 PM', '4:00 PM'],
-
-'2025-01-10': ['2:00 PM', '3:00 PM', '4:00 PM'],
-'2025-01-17': ['10:00 AM', '11:00 AM', '12:00 PM'],
-'2025-01-24': ['2:00 PM', '3:00 PM', '4:00 PM'],
-};
+        setEvents(formattedEvents);
+      })
+      .catch((error) => console.error('Error al obtener fechas y horas disponibles', error));
+  }, []);
 
   console.log(availableHours);
 
@@ -246,6 +239,7 @@ const handleDownloadPDF = () => {
     plugins={[dayGridPlugin, interactionPlugin]}
     initialView="dayGridMonth"
     dateClick={handleDateClick}
+    events={events} // Pasas los eventos al calendario
     showNonCurrentDates={false} // Oculta días de otros meses
     datesSet={(info) => {
     const visibleDates = document.querySelectorAll('.fc-daygrid-day');

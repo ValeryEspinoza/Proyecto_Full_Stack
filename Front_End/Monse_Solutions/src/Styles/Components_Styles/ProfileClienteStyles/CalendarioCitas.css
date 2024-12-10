@@ -177,7 +177,7 @@
   }
   .selected-time {
     background-color: #ff9800; /* Color para la hora seleccionada */
-    color: white; /* Cambiar color de texto si es necesario */
+    color: rgb(27, 27, 27); /* Cambiar color de texto si es necesario */
     font-weight: bold;
   }
   

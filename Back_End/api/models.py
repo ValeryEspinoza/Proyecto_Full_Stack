@@ -132,7 +132,6 @@ class Cita(models.Model):
 
 
 
-
 #Modelos con llaves foraneas
 
 class sub_categories_products (models.Model):

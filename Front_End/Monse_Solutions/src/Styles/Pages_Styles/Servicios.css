@@ -83,46 +83,52 @@
 
 
 
-
-/* Estilos de servicios */
-
-.servicios {
-  padding: 20px;
-}
-
-
-
-.servicios_contenedor {
+/* Container for the services */
+.servicios-list {
   display: grid;
-  grid-template-columns: repeat(3, 0.3fr);
-  gap: 40px;
-
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 30px;
+  margin-left: 3%;
+  gap: 20px; /* Space between cards */
 }
 
-.servicio{
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+/* Each service card */
+.servicio-card {
+  background-color: #f9f9f9; /* Light background */
+  border: 1px solid #ddd; /* Border around the card */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   text-align: center;
-  padding: 8px;
-  margin-left: 30%;
+  transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+  width: 90%;
 }
 
-.servicio_imagen {
+.servicio-card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+}
+
+/* Image styling */
+.servicio-img {
   width: 100%;
-  height: 50%;
-  border-radius: 8px 8px 0 0;
+  height: 80%;
+  border-radius: 8px;
+  object-fit: cover; /* Ensure the image covers the area without distorting */
+  margin-bottom: 15px; /* Space between image and text */
 }
 
-.servicio_titulo {
-  font-size: 1.2rem;
-  color: #000000;
-  margin: 10px 0;
+/* Service title */
+.servicio-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.servicio_texto {
-  font-size: 0.9rem;
-  color: #000000;
-  line-height: 1.5;
+/* Service description */
+.servicio-description {
+  font-size: 1rem;
+  color: #000000; 
+  margin-bottom: 15px;
 }
+
+
