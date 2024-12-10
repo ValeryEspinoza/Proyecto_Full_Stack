@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dvn4_%k2zs-(#as$j+ml&zl=0@_l_wp_gdcv39##)_3_mn&jew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.87','http://localhost:3000']
+ALLOWED_HOSTS = ['192.168.1.87','http://localhost:3000', '192.168.88.209']
 
 
 # Application definition
@@ -86,7 +86,7 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-'http://localhost:5173', 'https://192.168.1.87',
+'http://localhost:5173', 'https://192.168.1.87', 'http://192.168.88.209',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
