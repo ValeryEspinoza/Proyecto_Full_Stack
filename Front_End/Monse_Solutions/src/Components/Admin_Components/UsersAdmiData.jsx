@@ -18,6 +18,8 @@ const UsersTable = () => {
   const [editedUser, setEditedUser] = useState(null);
   const [editedField, setEditedField] = useState(null);
 
+
+  
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
   const filteredUsuarios = Usuarios.filter((user) =>
@@ -62,6 +64,15 @@ const UsersTable = () => {
     setEditedField(field);
   };
 
+  const handleCheckboxchange = (e, field) => { 
+    setEditedUser({
+      ...editedUser,
+      [field]: e.target.checked // Usamos `checked` para los checkboxes
+    });
+    setEditedField(field);
+  };
+
+  
   const handleSaveAll = async () => {
     try {
       const userData = {
@@ -114,170 +125,188 @@ const UsersTable = () => {
     }
   };
 
-  return (
-    <div className="users-container">
-      <ToastContainer />
-      <header className="users-header">
-        <img src={logoNegroF} alt="Logo" className="users-logo" />
-        <h1 className="users-company-name">Usuarios</h1>
-        <h2 className="users-title">MS</h2>
-      </header>
-
-      <div className="users-table-header">
-        <input
-          type="text"
-          className="users-search-input"
-          placeholder="Buscar usuarios..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <button
-          className="users-btn users-add-btn"
-          onClick={() => setIsFormVisible(!isFormVisible)}
-        >
-          <i className="fa fa-plus"></i> Agregar Usuario</button>
-         {isFormVisible && <RegisterForm />}
-      </div>
-
-      <table className="users-table">
-        <thead>
-          <tr>
-            <th className="users-th">ID</th>
-            <th className="users-th">Username</th>
-            <th className="users-th">First Name</th>
-            <th className="users-th">Last Name</th>
-            <th className="users-th">Email</th>
-            <th className="users-th">Role</th>
-            <th className="users-th">Superuser</th>
-            <th className="users-th">Staff</th>
-            <th className="users-th">Active</th>
-            <th className="users-th">Date Joined</th>
-            <th className="users-th">Last Login</th>
-            <th className="users-th">Groups</th>
-            <th className="users-th">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsuarios.map((Usuario) => (
-            <tr key={Usuario.id} className="users-tr">
-              <td className="users-td">{Usuario.id}</td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="text"
-                    value={editedUser.username}
-                    onChange={(e) => handleFieldChange(e, "username")}
-                  />
-                ) : (
-                  Usuario.username
-                )}
-              </td>
-              <td className="users-td">
-                {isDropdownOpen === Usuario.id ? (
-                  <div className="users-dropdown">
-                    <button className="users-dropdown-item" onClick={() => cargarDatos(Usuario.id)}>Editar</button>
-                    <button className="users-dropdown-item" onClick={() => Delete(Usuario.id)}>Eliminar</button>
-                  </div>
-                ) : (
-                  <button className="users-dropdown-btn" onClick={() => toggleDropdown(Usuario.id)}>
-                    <i className="fa fa-ellipsis-v"></i>
-                  </button>
-                )}
-              </td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="text"
-                    value={editedUser.last_name}
-                    onChange={(e) => handleFieldChange(e, "last_name")}
-                  />
-                ) : (
-                  Usuario.last_name
-                )}
-              </td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="email"
-                    value={editedUser.email}
-                    onChange={(e) => handleFieldChange(e, "email")}
-                  />
-                ) : (
-                  Usuario.email
-                )}
-              </td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="text"
-                    value={editedUser.role}
-                    onChange={(e) => handleFieldChange(e, "role")}
-                  />
-                ) : (
-                  Usuario.role
-                )}
-              </td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="checkbox"
-                    checked={editedUser.is_superuser || false}
-                    onChange={(e) => handleFieldChange(e, "is_superuser")}
-                  />
-                ) : (
-                  Usuario.is_superuser ? "Yes" : "No"
-                )}
-              </td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="checkbox"
-                    checked={editedUser.is_staff || false}
-                    onChange={(e) => handleFieldChange(e, "is_staff")}
-                  />
-                ) : (
-                  Usuario.is_staff ? "Yes" : "No"
-                )}
-              </td>
-              <td className="users-td">
-                {editedUser?.id === Usuario.id ? (
-                  <input
-                    type="checkbox"
-                    checked={editedUser.is_active || false}
-                    onChange={(e) => handleFieldChange(e, "is_active")}
-                  />
-                ) : (
-                  Usuario.is_active ? "Yes" : "No"
-                )}
-              </td>
-              <td className="users-td">{Usuario.date_joined}</td>
-              <td className="users-td">{Usuario.last_login}</td>
-              <td className="users-td">{Usuario.groups}</td>
-              <td className="users-td">
-                {isDropdownOpen === Usuario.id ? (
-                  <div className="users-dropdown">
-                    <button className="users-dropdown-item" onClick={() => cargarDatos(Usuario.id)}>Editar</button>
-                    <button className="users-dropdown-item" onClick={() => Delete(Usuario.id)}>Eliminar</button>
-                  </div>
-                ) : (
-                  <button className="users-dropdown-btn" onClick={() => toggleDropdown(Usuario.id)}>
-                    <i className="fa fa-ellipsis-v"></i>
-                  </button>
-                )}
-              </td>
+    return (
+      <div className="users-container">
+        <ToastContainer />
+        <header className="users-header">
+          <img src={logoNegroF} alt="Logo" className="users-logo" />
+          <h1 className="users-company-name">Usuarios</h1>
+          <h2 className="users-title">MS</h2>
+        </header>
+    
+        <div className="users-table-header">
+          <input
+            type="text"
+            className="users-search-input"
+            placeholder="Buscar usuarios..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <button
+            className="users-btn users-add-btn"
+            onClick={() => setIsFormVisible(!isFormVisible)}
+          >
+            <i className="fa fa-plus"></i> Agregar Usuario
+          </button>
+          {isFormVisible && <RegisterForm />}
+        </div>
+    
+        <table className="users-table">
+          <thead>
+            <tr>
+              <th className="users-th">Username</th>
+              <th className="users-th">First Name</th>
+              <th className="users-th">Last Name</th>
+              <th className="users-th">Email</th>
+              <th className="users-th">Superuser</th>
+              <th className="users-th">Staff</th>
+              <th className="users-th">Active</th>
+              <th className="users-th">Date Joined</th>
+              <th className="users-th">Last Login</th>
+              <th className="users-th">Groups</th>
+              <th className="users-th">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredUsuarios.map((Usuario) => (
+              <tr key={Usuario.id} className="users-tr">
+                <td className="users-td">
+                  {editedUser?.id === Usuario.id ? (
+                    <input
+                      type="text"
+                      value={editedUser.username}
+                      onChange={(e) => handleFieldChange(e, "username")}
+                    />
+                  ) : (
+                    Usuario.username
+                  )}
+                </td>
+                <td className="users-td">
+                  {editedUser?.id === Usuario.id ? (
+                    <input
+                      type="text"
+                      value={editedUser.first_name}
+                      onChange={(e) => handleFieldChange(e, "first_name")}
+                    />
+                  ) : (
+                    Usuario.first_name
+                  )}
+                </td>
+                <td className="users-td">
+                  {editedUser?.id === Usuario.id ? (
+                    <input
+                      type="text"
+                      value={editedUser.last_name}
+                      onChange={(e) => handleFieldChange(e, "last_name")}
+                    />
+                  ) : (
+                    Usuario.last_name
+                  )}
+                </td>
+                <td className="users-td">
+                  {editedUser?.id === Usuario.id ? (
+                    <input
+                      type="email"
+                      value={editedUser.email}
+                      onChange={(e) => handleFieldChange(e, "email")}
+                    />
+                  ) : (
+                    Usuario.email
+                  )}
+                </td>
+    
+                                  <td className="users-td">
+                    {editedUser?.id === Usuario.id ? (
+                      <input
+                        type="checkbox"
+                        checked={editedUser.is_superuser || false} // Asegúrate que el valor esté como un booleano
+                        onChange={(e) => handleCheckboxchange(e, "is_superuser")} // Función para manejar el cambio
+                      />
+                    ) : (
+                      Usuario.is_superuser ? "Yes" : "No" // Si no se está editando, muestra "Yes" o "No"
+                    )}
+                  </td>
+                <td className="users-td">
+                  {editedUser?.id === Usuario.id ? (
+                    <input
+                      type="checkbox"
+                      checked={editedUser.is_staff || false}
+                      onChange={(e) => handleCheckboxchange(e, "is_staff")}
+                    />
+                  ) : (
+                    Usuario.is_staff ? "Yes" : "No"
+                  )}
+                </td>
+                <td className="users-td">
+                  {editedUser?.id === Usuario.id ? (
+                    <input
+                      type="checkbox"
+                      checked={editedUser.is_active || false}
+                      onChange={(e) => handleCheckboxchange(e, "is_active")}
+                    />
+                  ) : (
+                    Usuario.is_active ? "Yes" : "No"
+                  )}
+                </td>
+                <td className="users-td">{Usuario.date_joined}</td>
+                <td className="users-td">{Usuario.last_login}</td>
+                <td className="users-td">{Usuario.groups}</td>
+    
+  <td className="users-td">
+      <div className="users-btn-container">
+          <button
+            className="users-btn users-more-btn"
+            onClick={() => toggleDropdown(Usuario.id)} // Cambié "Servicios.service_id" por "Usuario.id"
+          >
+            <i className="fa fa-ellipsis-v"></i>
+          </button>
 
-      {(editedUser || editedField) && (
-        <button className="users-save-btn" onClick={handleSaveAll}>Guardar Todo</button>
-      )}
-      {editedUser && (
-        <button className="users-save-btn" onClick={handleSaveField}>Guardar Cambios</button>
-      )}
-    </div>
-  );
+    {isDropdownOpen === Usuario.id && ( // Se compara con Usuario.id
+      <div className="users-dropdown"> 
+        {editedUser?.id === Usuario.id ? (  // Verificamos si estamos editando el usuario
+          <>
+            <button
+              className="users-dropdown-btn users-save-btn" // Clase para el botón de guardar
+              onClick={handleSaveAll}  // Llamamos a la función que guarda todos los cambios
+            >
+              SAVE All
+            </button>
+
+            <button
+              className="users-dropdown-btn users-save-btn" 
+              onClick={handleSaveField}  // Llamamos a la función que guarda todos los cambios
+            >
+              SAVE FIELD
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              className="users-dropdown-btn users-edit-btn" // Clase para el botón de edición
+              onClick={() => cargarDatos(Usuario.id)}  // Función para cargar los datos del usuario
+            >
+              <i className="fa fa-pencil"></i> Edit
+            </button>
+            <button
+              className="users-dropdown-btn users-delete-btn" // Clase para el botón de eliminación
+              onClick={() => Delete(Usuario.id)}  // Función para eliminar el usuario
+            >
+              <i className="fa fa-trash"></i>
+              Delete
+            </button>
+          </>
+        )}
+      </div>
+    )}
+  </div>
+</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+    
 };
 
 export default UsersTable;
