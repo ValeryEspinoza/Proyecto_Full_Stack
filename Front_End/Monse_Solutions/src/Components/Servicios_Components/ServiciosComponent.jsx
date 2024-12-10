@@ -12,7 +12,7 @@ const ServiciosComponent = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await GetData('api/services/');
+        const response = await GetData('services');
         setServices(response);
         toast.success("Servicios cargados correctamente.");
       } catch (error) {
@@ -57,7 +57,8 @@ const ServiciosComponent = () => {
       <div className="servicios-container">
         <ToastContainer />
         <header className="servicios-header">
-          <h1>Lista de Servicios</h1>
+          <h1>List of Services</h1>
+          <br />
         </header>
 
         <div className="servicios-search">
