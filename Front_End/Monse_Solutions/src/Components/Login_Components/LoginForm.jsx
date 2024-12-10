@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import postData from '../../Services/Post/PostData'; // Usar un servicio POST para enviar las credenciales al backend
 import iconEmail from "../../Img/Components_Img/icon2_email.png";
 import iconPassword from "../../Img/Components_Img/icon_password.png";
+import {useAuth} from "../../Context/AuthContext";
 
 function LoginForm() {
   // Hooks
@@ -14,6 +15,8 @@ function LoginForm() {
   const [MensajeAlerta, SetMensajeAlerta] = useState("");
   const [Username, SetUsername] = useState("");
   
+
+  const {login} = useAuth ();
   // Obtener valor input
   function GetEmail(input) {
     SetEmailUser(input.target.value);
@@ -50,9 +53,7 @@ function LoginForm() {
       console.log( response.access);
       
       if (response && response.access) {
-        // Almacenar el token en el localStorage
-        localStorage.setItem("Autenticado", "true");
-        localStorage.setItem("token", response.access); // Guardamos el token para futuras peticiones
+        login(response.access);
 
         Swal.fire({
           title: "Ingreso Exitoso!",
