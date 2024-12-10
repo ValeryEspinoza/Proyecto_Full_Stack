@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import '../../Styles/Components_Styles/VirtualStore_Styles/VirtualStoreCards.css'
-import Imagen_Carrito from '../../Img/Components_Img/carrito_verde.png'
-import postData from '../../Services/Post/PostData';
+import React, { useEffect, useState } from 'react';
+import '../../Styles/Components_Styles/VirtualStore_Styles/VirtualStoreCards.css';
+import Imagen_Carrito from '../../Img/Components_Img/carrito_verde.png';
 import GetData from '../../Services/Get/GetData';
-import {Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 function Store() {
-//Hooks
-const [storeData, setStoreData] = useState([]);
-const [storeProducts, setStoreProducts] = useState([]);
-const [searchTerm, setSearchTerm] = useState("");
-const [displayModal, setDisplayModal] = useState(false)
+  // Hooks
+  const [storeProducts, setStoreProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [displayModal, setDisplayModal] = useState (false);
 
-//Modales
-const showModal = () => setDisplayModal(true);
-const hideModal = () => setDisplayModal(false);
+  // Fetch products from the API
+  useEffect(() => {
+    async function getStoreProducts() {
+      const products = await GetData('products');
+      setStoreProducts(products);
+    }
+    getStoreProducts();
+  }, []);
 
-const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-useEffect(() => {
-async function getStoreProducts() {
-    const storeProducts = await GetData('api/products/')
+  const showModal = () => setDisplayModal(true);
+  const hideModal = () => setDisplayModal(false);
 
-    
-    setStoreProducts(storeProducts)
-  };
-getStoreProducts();
-},[]);
-
-const filteredProducts = storeProducts.filter(product => 
-  product.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
+  // Filter products based on searchTerm
+  const filteredProducts = storeProducts.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
 <div>
@@ -71,64 +68,52 @@ const filteredProducts = storeProducts.filter(product =>
 </button>
 </div>
 </div>
-
+      
+{/* Lista de Productos mapeados */}
 <div id='mapeo'>
-<div id="mapArticle">
-  <div className="product-grid">
-    {filteredProducts.length > 0 ? (
-      storeProducts.map((index) => (
-        <div key={index} className="card" style={{ width: '18rem' }}>
-
-          {(<img src={storeProducts.image_url} className="card-img-top" alt="imagen de producto"/>)}
-          
-          <div className="card-body">
-
-           <h5 className="card-title">{storeProducts.name}</h5>
-
-           <p className="card-text"> {storeProducts.description}</p>
-          
-          </div>
-
-          <ul className="list-group list-group-flush">
-
-          <li className="list-group-item">{storeProducts.category}</li>
-          
-          <li className="list-group-item">Precio: ${storeProducts.price}</li>
-          </ul>
-          <div className="card-body">
-            <button onClick={showModal}>Más Información</button>
-            {displayModal && (
-              <div className="modal" tabindex="-1" role="dialog">
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title">{storeProducts.name}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                    <p>{storeProducts.description}</p>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={hideModal}>Close</button>
-                  </div>
+<div id='mapArticle'>
+      <div className="product-grid">
+        {filteredProducts.map((product) => (
+          <div className="product-card" key={product.id}>
+            <img src={product.imagen_url} alt={product.name} className="card-img-top" />
+                <div className='card-body'>
+                    <h3 className="card-title">{product.name}</h3>
+                    <p className="card-text">{product.description}</p>               
                 </div>
-              </div>
-            </div>
+            <ul className="list-group list-group-flush">
+                <li className="list-group-item">Precio: ${product.price}</li>
+            </ul>
+        <div className='card-body'>
+        <button onClick={showModal}>Más Información</button>
+            {displayModal && (
+                <div className="modal" tabindex="-1" role="dialog">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">{product.name}</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                            <div className="modal-body">
+                                <p>{product.description}</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={hideModal}>Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
             )}
-          </div>
         </div>
-      ))
-    ) : (
-      <p>No hay producto(s)/servicio(s) disponibles.</p>
-    )}
-  </div>
-</div>
+        </div>
+        ))}
+      </div>
 </div>
 </div>
 
-  )
+</div>
+);
 }
 
-export default Store
+export default Store;

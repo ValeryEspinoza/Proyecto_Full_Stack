@@ -3,7 +3,7 @@ const GetData = async (EndPoint) => {
         console.log("Endpoint:", EndPoint);
 
         // Realiza la solicitud GET
-        const response = await fetch(`http://192.168.88.209:8000/api/${EndPoint}/`, {
+        const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`, {
             method: "GET",
 
             headers: {

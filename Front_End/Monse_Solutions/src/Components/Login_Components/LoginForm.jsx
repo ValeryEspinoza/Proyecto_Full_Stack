@@ -12,6 +12,7 @@ function LoginForm() {
   const [PassUser, SetPassUser] = useState("");
   const [EmailUser, SetEmailUser] = useState("");
   const [MensajeAlerta, SetMensajeAlerta] = useState("");
+  const [Username, SetUsername] = useState("");
   
   // Obtener valor input
   function GetEmail(input) {
@@ -22,24 +23,32 @@ function LoginForm() {
     SetPassUser(input.target.value);
   }
 
+  function GetUsername(input){
+    SetUsername(input.target.value)
+  }
+
   const navigate = useNavigate();
 
   // Botón Login
   async function Login() {
-    if (!EmailUser || !PassUser) {
+    if (!Username || !EmailUser || !PassUser) {
       Swal.fire({
         title: "Campos Vacíos",
-        text: "Por favor ingrese su correo y contraseña",
+        text: "Por favor ingrese su usuario, correo y contraseña",
         icon: "warning"
       });
       return;
     }
-
     try {
       // Llamada al servicio para obtener el token JWT de autenticación
-      const data = { email: EmailUser, password: PassUser };
-      const response = await postData('token', data); // Endpoint para obtener token (asumido como api/token/)
-
+      const data = { 
+        username: Username,
+        email: EmailUser, 
+        password: PassUser 
+      };
+      const response = await postData('login', data); // Endpoint para obtener token (asumido como api/token/)
+      console.log( response.access);
+      
       if (response && response.access) {
         // Almacenar el token en el localStorage
         localStorage.setItem("Autenticado", "true");
@@ -80,6 +89,18 @@ function LoginForm() {
         </div>
 
         <div className="login-container">
+
+          <div className="input-container">
+            <img src={iconEmail} alt="Email Icon" className="input-icon" />
+            <input 
+              className="input-field" 
+              value={Username} 
+              onChange={GetUsername} 
+              placeholder="Username" 
+              name="user" 
+              id="user"
+            />
+          </div>
           <div className="input-container">
             <img src={iconEmail} alt="Email Icon" className="input-icon" />
             <input 
