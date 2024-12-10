@@ -51,21 +51,14 @@ class UserListCreate(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
-    
-    """def perform_create(self, serializer): #Esta validando el role
-        user = serializer.save()
-        if user.role == User.Role.ADMIN:
-            user.is_staff = True
-            user.is_superuser = True
-            user.save()"""
-            
+
     def login_user(request):
         if request.method == 'POST':
             password = request.POST['password']
             email = request.POST['email']
             
-            # Intentar autenticar al usuario
-            user = authenticate(request, email=email, password=password )
+            # Intentar autenticar al usuario usando el email
+            user = authenticate(request, username=email, password=password)  # Cambié 'email' por 'username'
             
             if user is not None:
                 # Si la autenticación es exitosa, iniciar la sesión
@@ -76,7 +69,7 @@ class UserListCreate(generics.ListCreateAPIView):
                 return render(request, 'login.html', {'error': 'Credenciales incorrectas'})
 
         return render(request, 'login.html')
-        
+
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
