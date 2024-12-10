@@ -43,6 +43,21 @@ const EventsAdmiData = () => {
     ObtenerEventos();
   }, []);
 
+    
+  const handleSuccessMessage = (message) => {
+    toast.success(message); // Muestra la notificación de éxito
+    
+    const ObtenerEventos = async () => {
+      try {
+        const response = await GetData("events");
+        SetDatosEventos(response);
+      } catch (error) {
+        toast.error("Error al cargar los eventos.");
+      }
+    };
+    ObtenerEventos(); // Llamar para recargar los eventos
+  };
+
   const Delete = async (event_id) => {
     try {
       await DeleteData('events', event_id);
@@ -138,7 +153,7 @@ const EventsAdmiData = () => {
         </button>
       </div>
 
-      {isFormVisible && <EventsForm />}
+      {isFormVisible && <EventsForm onSuccess={handleSuccessMessage} />}
 
       <table className="events-table">
         <thead>

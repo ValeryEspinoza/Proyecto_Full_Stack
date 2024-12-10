@@ -217,6 +217,7 @@ class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsAdministrador] 
    
    
+
 class HorariosDisponibles(APIView):
     permission_classes = [AllowAny]
 
@@ -266,7 +267,6 @@ class HorariosDisponibles(APIView):
 
         # Retornar los horarios disponibles en formato JSON
         return Response(fechas_disponibles)
-
    
  ##Vistas con foraneas   ****
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
