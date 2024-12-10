@@ -1,31 +1,15 @@
-import { useEffect, useState } from "react";
+import React from 'react'
 import { Navigate } from "react-router-dom";
-import Cookies from 'js-cookie';
-import jwt_decode from "jsonwebtoken"; // Import the library for decoding and verifying the JWT.
+import { useAuth } from "../Context/AuthContext";
 
-const ProtectedRoutes = ({ component: Component }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const ProtectedRoutes = ({children }) => {
+  const {user} = useAuth();
 
-  useEffect(() => {
-    const checkAuthentication = async () => {
-        const response = await fetch('/api/protected-endpoint/', {
-            method: 'GET',
-            credentials: 'include', // Include cookies in request
-        });
-        
-        if (response.ok) {
-            setAutentication(true);
-        } else {
-            setAutentication(false);
-        }
-    };
+  if(!user){
+    return <Navigate to="/login"/>
+  }
 
-    checkAuthentication();
-}, []);
-
-  return isAuthenticated 
-    ? <Component /> 
-    : <Navigate to="/login" />;
+  return children;
 };
 
 export default ProtectedRoutes;

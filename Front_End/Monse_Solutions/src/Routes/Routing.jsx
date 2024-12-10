@@ -41,11 +41,13 @@ import UsersTable from '../Components/Admin_Components/UsersAdmiData'
 import TasksAdminData from '../Components/Admin_Components/TasksAdminData'
 import EventsAdminData from '../Components/Admin_Components/EventsAdmiData'
 
-
+import AuthProvider from '../Context/AuthContext'
+import ProtectedRoutes from './ProtectedRoutes'
 
 
 function Routing() {
   return (
+    <AuthProvider>
     <Router>
     <ScrollToTop />
     <Routes>
@@ -71,16 +73,11 @@ function Routing() {
       <Route path="/Store" element={<VirtualStore />} />
       <Route path="/ServicesData" element={<ServicesData />} />
 
-
-
-
-
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Article10Tips" element={<Article10Tips />} />
       <Route path="/ArticleGarden" element={<ArticleGarden />} />
       <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ArticleColor" element={<ArticleColor />} />
-
 
       <Route path="/ServicesTable" element={<ServicesTable />} />
       <Route path="/ProductsTable" element={<ProductsTable />} />
@@ -88,14 +85,19 @@ function Routing() {
       <Route path="/TasksAdminData" element={<TasksAdminData />} />
       <Route path="/EventsAdminData" element={<EventsAdminData />} />
 
-
-
       <Route path="/ProfileClient" element={<ProfileClient />} />
       
 
+      <Route
+      path="/DashBoard"
+      element={<ProtectedRoutes> <DashBoard/></ProtectedRoutes>}
+      />  
+  
+
     </Routes>
    </Router>
-  )
-}
+   </AuthProvider>
+  );
+};
 
 export default Routing

@@ -16,7 +16,7 @@ function LoginForm() {
   const [Username, SetUsername] = useState("");
   
 
-  const {login} = useAuth ();
+  const login = useAuth();
   // Obtener valor input
   function GetEmail(input) {
     SetEmailUser(input.target.value);
