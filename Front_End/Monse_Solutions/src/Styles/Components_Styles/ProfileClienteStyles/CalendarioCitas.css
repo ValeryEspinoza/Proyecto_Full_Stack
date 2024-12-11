@@ -172,8 +172,9 @@
 }
   
   .selected-date {
-    background-color: #ff9800 !important; /* Cambia el color según tus preferencias */
-    color: white !important; /* Asegura que el texto sea visible */
+    background-color: #ff9800; /* Cambia el color según tus preferencias */
+    color: white; /* Asegura que el texto sea visible */
+    font-weight: bold;
   }
   .selected-time {
     background-color: #ff9800; /* Color para la hora seleccionada */
