@@ -267,6 +267,53 @@ class HorariosDisponibles(APIView):
 
         # Retornar los horarios disponibles en formato JSON
         return Response(fechas_disponibles)
+
+    def post(self, request):
+        # Rango de fechas: desde hoy hasta 30 días hacia adelante (esto lo puedes ajustar como desees)
+        fecha_inicio = datetime.date.today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=30)
+
+        # Definir los bloques horarios disponibles por día
+        bloques_horarios = [
+            ('08:00 AM', '09:00 AM'),
+            ('09:00 AM', '10:00 AM'),
+            ('10:00 AM', '11:00 AM'),
+            ('11:00 AM', '12:00 PM'),
+            ('01:00 PM', '02:00 PM'),
+            ('02:00 PM', '03:00 PM'),
+            ('03:00 PM', '04:00 PM'),
+            ('04:00 PM', '05:00 PM')
+        ]
+
+        # Inicializamos un diccionario vacío para los horarios disponibles
+        fechas_disponibles = {}
+
+        # Generar las fechas y horarios disponibles dentro del rango
+        fecha_actual = fecha_inicio
+        while fecha_actual <= fecha_fin:
+            # Convertimos la fecha a formato string (para que sea fácil de comparar)
+            fecha_str = fecha_actual.strftime('%Y-%m-%d')
+
+            # Por cada fecha generamos los bloques horarios
+            fechas_disponibles[fecha_str] = [hora for hora, _ in bloques_horarios]
+
+            # Aumentamos un día
+            fecha_actual += datetime.timedelta(days=1)
+
+        # Obtener las citas ya reservadas
+        citas = Cita.objects.all()
+
+        # Obtener los datos del POST (suponiendo que la fecha y hora son enviados en el body de la solicitud)
+        fecha_solicitada = request.data.get('fecha')
+        hora_solicitada = request.data.get('hora')
+
+        # Comprobar si la fecha y hora solicitada están disponibles y eliminar de las opciones si es necesario
+        if fecha_solicitada and hora_solicitada:
+            if fecha_solicitada in fechas_disponibles and hora_solicitada in fechas_disponibles[fecha_solicitada]:
+                fechas_disponibles[fecha_solicitada].remove(hora_solicitada)
+
+        # Retornar los horarios disponibles después de la posible eliminación
+        return Response(fechas_disponibles)
    
  ##Vistas con foraneas   ****
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
