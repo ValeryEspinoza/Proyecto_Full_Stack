@@ -127,9 +127,9 @@ function CalendarioCitas() {
       name,
       phone,
       address,
+      email: email,
       date: appointmentDetails.date,
       time: appointmentDetails.time,
-      email: email,
     };
 
     setIsSubmitting(true);
@@ -164,11 +164,18 @@ function CalendarioCitas() {
 
 //ACTUALIZAR HORAS
 const actualizarHorario = async (date, time) => {
-  try {
-    // Llamamos a postData con el endpoint y los datos necesarios
-    const response = await PostData('horarios_disponibles', { date, time });
+  const appointmentData = {
+    name: name,
+    phone: phone,
+    address: address,
+    email: email,
+    date: date,  // Aquí usas el parámetro `date` que recibes
+    time: time   // Aquí usas el parámetro `time` que recibes
+  };
+  console.log('Datos del horario a enviar:', appointmentData);
 
-    // Verificación de la respuesta
+  try {
+    const response = await PostData('horarios_disponibles', appointmentData);
     if (response) {
       console.log('Horario actualizado correctamente:', response);
       toast.success('Horario actualizado correctamente.');
@@ -181,6 +188,8 @@ const actualizarHorario = async (date, time) => {
     toast.error('Error al conectar con el servidor.');
   }
 };
+
+
 const handleTimeConfirm = async () => {
   if (!isEmailProvided || !appointmentDetails.date || !appointmentDetails.time) {
     alert('Por favor, completa todos los campos antes de confirmar la cita.');
@@ -196,7 +205,7 @@ const handleTimeConfirm = async () => {
   };
 
   // Actualizar horario en el backend
-  await actualizarHorario(appointmentDetails.date, appointmentDetails.time);
+  await actualizarHorario(fullAppointmentDetails.date, fullAppointmentDetails.time);
 
   // Enviar confirmación de la cita
   enviarConfirmacionCita(fullAppointmentDetails);
