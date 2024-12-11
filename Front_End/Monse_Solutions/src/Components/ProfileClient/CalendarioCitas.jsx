@@ -35,7 +35,6 @@ function CalendarioCitas() {
     const fetchHorarios = async () => {
       try {
         const response = await GetData('horarios_disponibles');
-    
         // Validar si response es un objeto
         if (typeof response !== 'object' || response === null) {
           console.error('La respuesta no es un objeto:', response);
@@ -113,7 +112,7 @@ function CalendarioCitas() {
   };
 
   const resetForm = () => {
-    setSelectedDate(null);
+    
     setAvailableTimes([]);
     setAppointmentDetails({});
     setEmail('');

@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
 import datetime
+import re
 
 
 
@@ -202,33 +203,34 @@ class areasDetail(generics.RetrieveUpdateDestroyAPIView):
 class CitaListCreate(generics.ListCreateAPIView):
     queryset = Cita.objects.all()
     serializer_class =   Cita_Serializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
     
 class CitaDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cita.objects.all()
     serializer_class = Cita_Serializer
-    permission_classes = [IsAuthenticated, IsAdministrador] 
+    permission_classes = [AllowAny] 
    
-   
+from rest_framework.response import Response
+from rest_framework import status
 
 class HorariosDisponibles(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        # Rango de fechas: desde hoy hasta 30 días hacia adelante (esto lo puedes ajustar como desees)
+        # Rango de fechas: desde hoy hasta 30 días hacia adelante
         fecha_inicio = datetime.date.today()
         fecha_fin = fecha_inicio + datetime.timedelta(days=30)
 
-        # Definir los bloques horarios disponibles por día
+        # Definir los bloques horarios disponibles por día (en formato de 24 horas)
         bloques_horarios = [
-            ('08:00 AM', '09:00 AM'),
-            ('09:00 AM', '10:00 AM'),
-            ('10:00 AM', '11:00 AM'),
-            ('11:00 AM', '12:00 PM'),
-            ('01:00 PM', '02:00 PM'),
-            ('02:00 PM', '03:00 PM'),
-            ('03:00 PM', '04:00 PM'),
-            ('04:00 PM', '05:00 PM')
+            ('08:00', '09:00'),
+            ('09:00', '10:00'),
+            ('10:00', '11:00'),
+            ('11:00', '12:00'),
+            ('13:00', '14:00'),
+            ('14:00', '15:00'),
+            ('15:00', '16:00'),
+            ('16:00', '17:00')
         ]
 
         # Inicializamos un diccionario vacío para los horarios disponibles
@@ -237,13 +239,8 @@ class HorariosDisponibles(APIView):
         # Generar las fechas y horarios disponibles dentro del rango
         fecha_actual = fecha_inicio
         while fecha_actual <= fecha_fin:
-            # Convertimos la fecha a formato string (para que sea fácil de comparar)
             fecha_str = fecha_actual.strftime('%Y-%m-%d')
-
-            # Por cada fecha generamos los bloques horarios
             fechas_disponibles[fecha_str] = [hora for hora, _ in bloques_horarios]
-
-            # Aumentamos un día
             fecha_actual += datetime.timedelta(days=1)
 
         # Obtener las citas ya reservadas
@@ -251,8 +248,8 @@ class HorariosDisponibles(APIView):
 
         # Excluir las horas ya reservadas de los horarios disponibles
         for cita in citas:
-            fecha = str(cita.Date)  # Obtener la fecha de la cita
-            hora = cita.time.strftime("%I:%M %p")  # Obtener la hora de la cita en formato adecuado
+            fecha = str(cita.date)  # Obtener la fecha de la cita
+            hora = cita.time.strftime("%H:%M")  # Obtener la hora de la cita en formato 24 horas
 
             # Si la fecha y hora están disponibles, se elimina de la lista de opciones
             if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
@@ -260,6 +257,99 @@ class HorariosDisponibles(APIView):
 
         # Retornar los horarios disponibles en formato JSON
         return Response(fechas_disponibles)
+
+    def post(self, request):
+        # Rango de fechas: desde hoy hasta 30 días hacia adelante
+        fecha_inicio = datetime.date.today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=30)
+
+        # Definir los bloques horarios disponibles por día (en formato de 24 horas)
+        bloques_horarios = [
+            ('08:00', '09:00'),
+            ('09:00', '10:00'),
+            ('10:00', '11:00'),
+            ('11:00', '12:00'),
+            ('13:00', '14:00'),
+            ('14:00', '15:00'),
+            ('15:00', '16:00'),
+            ('16:00', '17:00')
+        ]
+
+        # Inicializamos un diccionario vacío para los horarios disponibles
+        fechas_disponibles = {}
+
+        # Generar las fechas y horarios disponibles dentro del rango
+        fecha_actual = fecha_inicio
+        while fecha_actual <= fecha_fin:
+            fecha_str = fecha_actual.strftime('%Y-%m-%d')
+            fechas_disponibles[fecha_str] = [hora for hora, _ in bloques_horarios]
+            fecha_actual += datetime.timedelta(days=1)
+
+        # Obtener las citas ya reservadas
+        citas = Cita.objects.all()
+
+        # Excluir las horas ya reservadas de los horarios disponibles
+        for cita in citas:
+            fecha = str(cita.date)  # Obtener la fecha de la cita
+            hora = cita.time.strftime("%H:%M")  # Obtener la hora de la cita en formato 24 horas
+            # Si la fecha y hora están disponibles, se elimina de la lista de opciones
+            if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
+                fechas_disponibles[fecha].remove(hora)
+
+        # Obtener los datos del POST
+        name = request.data.get('name')
+        phone = request.data.get('phone')
+        address = request.data.get('address')
+        email = request.data.get('email')
+        fecha_solicitada = request.data.get('date')
+        hora_solicitada = request.data.get('time')
+        
+
+        # Validación: verificar que todos los campos estén presentes
+        if not name or not phone or not address or not email or not fecha_solicitada or not hora_solicitada:
+            return Response(
+                {"Error": "Todos los campos son obligatorios."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        # Validación de formato de fecha (YYYY-MM-DD)
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', fecha_solicitada):
+            return Response(
+                {"detail": "El formato de la fecha es incorrecto. Debe ser YYYY-MM-DD."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Validación de formato de hora (HH:MM 24 horas)
+        if not re.match(r'^[0-2][0-9]:[0-5][0-9]$', hora_solicitada):
+            return Response(
+                {"detail": "El formato de la hora es incorrecto. Debe ser HH:MM en formato 24 horas."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
+        # Validación: verificar si la fecha y hora solicitada están disponibles
+        if fecha_solicitada not in fechas_disponibles or hora_solicitada not in fechas_disponibles[fecha_solicitada]:
+            return Response(
+                {"Error": "La fecha y hora solicitada no están disponibles."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Si todo es válido, se elimina la hora de la lista de disponibles y se guarda la cita
+        fechas_disponibles[fecha_solicitada].remove(hora_solicitada)
+
+        nueva_cita = Cita(
+            name=name,
+            phone=phone,
+            address=address,
+            email=email,
+            date=fecha_solicitada,
+            time=datetime.datetime.strptime(hora_solicitada, "%H:%M").time()
+        )
+        nueva_cita.save()
+
+        # Respuesta exitosa
+        return Response(
+            {"Error": "Cita creada con éxito."},
+            status=status.HTTP_201_CREATED
+        )
    
  ##Vistas con foraneas   ****
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
