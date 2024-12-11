@@ -37,18 +37,19 @@ function CalendarioCitas() {
     const fetchHorarios = async () => {
       try {
         const response = await GetData('horarios_disponibles');
-        // Validar si response es un objeto
+        
+        // Validar si la respuesta es un objeto
         if (typeof response !== 'object' || response === null) {
           console.error('La respuesta no es un objeto:', response);
           toast.error('Error al cargar los horarios. Formato inesperado.');
           return;
         }
-    
+
         // Formatear eventos para el calendario
         const formattedEvents = Object.keys(response).map(date => ({
           title: '', // Deja vacío para que no se muestre en la celda
           start: date, // Solo la fecha, sin hora
-          allDay: true, // Esto asegura que no aparezcan como eventos de tiempo
+          allDay: true,
           extendedProps: {
             availableTimes: response[date], // Adjunta las horas disponibles como propiedades
           }
@@ -57,6 +58,18 @@ function CalendarioCitas() {
         
         // Estructurar horarios disponibles por fecha
         setAvailableHours(response);
+
+        // Cambiar el color de los días con horas disponibles
+        const days = document.querySelectorAll('.fc-daygrid-day');
+        days.forEach((day) => {
+          const dayDate = day.getAttribute('data-date'); // Obtén la fecha de cada celda
+          if (response[dayDate]) {
+            day.classList.add('has-available-times'); // Agregar clase si tiene horas disponibles
+          } else {
+            day.classList.remove('has-available-times'); // Eliminar clase si no tiene horas
+          }
+        });
+
       } catch (error) {
         console.error('Error al obtener fechas y horas disponibles:', error);
         toast.error('Error al cargar los horarios.');
@@ -64,19 +77,23 @@ function CalendarioCitas() {
     };
 
     fetchHorarios();
-  }, []);
+}, []);
 
-  const handleDateClick = (arg) => {
-    setSelectedDate(arg.dateStr);
-    setAvailableTimes(availableHours[arg.dateStr] || []);
 
-    // Actualizar estilos visuales
-    const days = document.querySelectorAll('.fc-daygrid-day');
-    days.forEach((day) => day.classList.remove('selected-date'));
-    const selectedDay = document.querySelector(`[data-date="${arg.dateStr}"]`);
-    if (selectedDay) selectedDay.classList.add('selected-date');
-  };
+const handleDateClick = (arg) => {
+  setSelectedDate(arg.dateStr);
+  setAvailableTimes(availableHours[arg.dateStr] || []);
 
+  // Cambiar estilos visuales
+  const days = document.querySelectorAll('.fc-daygrid-day');
+  days.forEach((day) => {
+      day.classList.remove('selected-date'); // Eliminar la clase de todos los días
+  });
+  const selectedDay = document.querySelector(`[data-date="${arg.dateStr}"]`);
+  if (selectedDay) {
+      selectedDay.classList.add('selected-date'); // Agregar clase al día seleccionado
+  }
+};
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
     setAppointmentDetails({ date: selectedDate, time });
@@ -162,15 +179,15 @@ function CalendarioCitas() {
   };
 
 
-//ACTUALIZAR HORAS
+//ACTUALIZAR HORAS EN EL BACKEND
 const actualizarHorario = async (date, time) => {
   const appointmentData = {
     name: name,
     phone: phone,
     address: address,
     email: email,
-    date: date,  // Aquí usas el parámetro `date` que recibes
-    time: time   // Aquí usas el parámetro `time` que recibes
+    date: date,  
+    time: time  
   };
   console.log('Datos del horario a enviar:', appointmentData);
 
@@ -189,7 +206,6 @@ const actualizarHorario = async (date, time) => {
   }
 };
 
-
 const handleTimeConfirm = async () => {
   if (!isEmailProvided || !appointmentDetails.date || !appointmentDetails.time) {
     alert('Por favor, completa todos los campos antes de confirmar la cita.');
@@ -206,7 +222,6 @@ const handleTimeConfirm = async () => {
 
   // Actualizar horario en el backend
   await actualizarHorario(fullAppointmentDetails.date, fullAppointmentDetails.time);
-
   // Enviar confirmación de la cita
   enviarConfirmacionCita(fullAppointmentDetails);
   setConfirmedAppointment(fullAppointmentDetails);
@@ -288,7 +303,7 @@ const handleDownloadPDF = () => {
 
       {selectedDate && (
         <div className="calendarioCitas-available">
-          <h2>Available hours for {selectedDate}:</h2>
+          <h2 className='calendarioCitas-availableTimesTitle'>Available hours for {selectedDate}:</h2>
           <div className="calendarioCitas-times">
           {availableTimes.map((time, index) => (
             <div

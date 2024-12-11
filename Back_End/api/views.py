@@ -226,7 +226,7 @@ class HorariosDisponibles(APIView):
     def get(self, request):
         # Rango de fechas: desde hoy hasta 30 días hacia adelante
         fecha_inicio = datetime.date.today()
-        fecha_fin = fecha_inicio + datetime.timedelta(days=30)
+        fecha_fin = fecha_inicio + datetime.timedelta(days=60)
 
         # Definir los bloques horarios disponibles por día (en formato de 24 horas)
         bloques_horarios = [
