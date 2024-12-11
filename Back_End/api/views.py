@@ -263,7 +263,7 @@ class HorariosDisponibles(APIView):
 
             # Si la fecha y hora están disponibles, se elimina de la lista de opciones
             if fecha in fechas_disponibles and hora in fechas_disponibles[fecha]:
-                fechas_disponibles[fecha].remove(hora)
+                fechas_disponibles[fecha]
 
         # Retornar los horarios disponibles en formato JSON
         return Response(fechas_disponibles)
