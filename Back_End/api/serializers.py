@@ -405,7 +405,8 @@ class areasSerializer(serializers.ModelSerializer):
 class Cita_Serializer(serializers.ModelSerializer):
     class Meta: 
         model = Cita
-        fields =  '__all__'  
+        fields = ["name", "phone", "address", "email", "date", "time"]
+ 
         
 
 

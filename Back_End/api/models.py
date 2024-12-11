@@ -122,7 +122,7 @@ class Cita(models.Model):
     phone = models.CharField(max_length=15)
     address = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    Date = models.DateField()
+    date = models.DateField()
     time = models.TimeField()
 
     def _str_(self):
