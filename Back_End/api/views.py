@@ -87,6 +87,11 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
+    
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all() 
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny] 
 
 
 

@@ -1,25 +1,19 @@
 import React from "react";
-import Routing from "./Routes/Routing";
-import ChatBot from "../src/Components/ChatBot_Components/ChatBot"; // Importar el componente del chatbot
-//import { MessageProvider } from "./Services/Funciones/MessageContext"; // Importar el proveedor correcto
-//import Sender from "./Services/Funciones/Sender";
-//import Receiver from "./Services/Funciones/Receiver";
+import Routing from "./Routes/Routing"; // Rutas de la aplicación
+import ChatBot from "../src/Components/ChatBot_Components/ChatBot"; // Componente del chatbot
+import { AuthProvider } from "./Context/AuthProvider"; // Importar el AuthProvider
 
 function App() {
   return (
-    <div>
-      {/* Renderizar las rutas */}
-      <Routing />
-      
-      {/* Chatbot */}
-      <ChatBot />
+    <AuthProvider> {/* Envuelve toda la aplicación en AuthProvider */}
+      <div>
+        {/* Renderizar las rutas */}
+        <Routing />
 
-      {/* Proveedor de mensaje para Sender y Receiver
-      <MessageProvider>
-        <Sender />
-        <Receiver />
-      </MessageProvider> */}
-    </div>
+        {/* Chatbot */}
+        <ChatBot />
+      </div>
+    </AuthProvider>
   );
 }
 
