@@ -1,8 +1,10 @@
-import React, { createContext, useState, useContext } from 'react';
+// src/Context/AuthContext.js
+import { createContext } from 'react';
 
-// Create the AuthContext
+// Crear y exportar el contexto
 const AuthContext = createContext();
 
+<<<<<<< HEAD
 // Custom hook to use AuthContext
 export const useAuth = () => {
     return useContext(AuthContext);
@@ -47,3 +49,6 @@ const decodeToken = (token) => {
 };
 
 export default AuthContext;
+=======
+export default AuthContext;
+>>>>>>> a15c67dd53660787e81368dc5524c50d1e16f672

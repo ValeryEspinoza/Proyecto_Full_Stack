@@ -11,6 +11,7 @@ import '../../Styles/Components_Styles/ProfileClienteStyles/CalendarioCitas.css'
 import { jsPDF } from 'jspdf';
 import Logo from '../../Img/Components_Img/logo_negrov.png';
 import GetData from '../../Services/Get/GetData';
+import PostData from '../../Services/Post/PostData';
 
 
 function CalendarioCitas() {
@@ -31,6 +32,7 @@ function CalendarioCitas() {
   const [events, setEvents] = useState([]);
   const [availableHours, setAvailableHours] = useState({}); // Almacena horarios disponibles por fecha
 
+
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
@@ -43,15 +45,16 @@ function CalendarioCitas() {
         }
     
         // Formatear eventos para el calendario
-        const formattedEvents = Object.keys(response).flatMap(date => 
-          response[date].map(time => ({
-            title: 'Fechas y horas disponibles',
-            start: date + 'T' + time, // Asegúrate de que el formato sea correcto
-            end: date + 'T' + time // Ajusta según sea necesario
-          }))
-        );
+        const formattedEvents = Object.keys(response).map(date => ({
+          title: '', // Deja vacío para que no se muestre en la celda
+          start: date, // Solo la fecha, sin hora
+          allDay: true, // Esto asegura que no aparezcan como eventos de tiempo
+          extendedProps: {
+            availableTimes: response[date], // Adjunta las horas disponibles como propiedades
+          }
+        }));
         setEvents(formattedEvents);
-    
+        
         // Estructurar horarios disponibles por fecha
         setAvailableHours(response);
       } catch (error) {
@@ -77,13 +80,8 @@ function CalendarioCitas() {
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
     setAppointmentDetails({ date: selectedDate, time });
-  
-    // Deshabilitar la hora seleccionada
-    setAvailableTimes((prevTimes) => prevTimes.filter(t => t !== time));
-  
-    // Aquí podrías hacer una llamada a la API para marcar la hora como ocupada
-    // await markTimeAsBooked(selectedDate, time);
   };
+  
 
   useEffect(() => {
     if (!selectedTime) return;
@@ -129,9 +127,9 @@ function CalendarioCitas() {
       name,
       phone,
       address,
+      email: email,
       date: appointmentDetails.date,
       time: appointmentDetails.time,
-      email: email,
     };
 
     setIsSubmitting(true);
@@ -163,24 +161,58 @@ function CalendarioCitas() {
       );
   };
 
-  const handleTimeConfirm = () => {
-    if (!isEmailProvided || !appointmentDetails.date || !appointmentDetails.time) {
-      alert('Por favor, completa todos los campos antes de confirmar la cita.');
-      return;
-    }
 
-    const fullAppointmentDetails = {
-      ...appointmentDetails,
-      name,
-      phone,
-      address,
-      email,
-    };
-
-    setConfirmedAppointment(fullAppointmentDetails);
-    enviarConfirmacionCita(fullAppointmentDetails);
-    setIsModalOpen(false);
+//ACTUALIZAR HORAS
+const actualizarHorario = async (date, time) => {
+  const appointmentData = {
+    name: name,
+    phone: phone,
+    address: address,
+    email: email,
+    date: date,  // Aquí usas el parámetro `date` que recibes
+    time: time   // Aquí usas el parámetro `time` que recibes
   };
+  console.log('Datos del horario a enviar:', appointmentData);
+
+  try {
+    const response = await PostData('horarios_disponibles', appointmentData);
+    if (response) {
+      console.log('Horario actualizado correctamente:', response);
+      toast.success('Horario actualizado correctamente.');
+    } else {
+      console.error('La respuesta no contiene datos.');
+      toast.error('No se pudo actualizar el horario.');
+    }
+  } catch (error) {
+    console.error('Error al actualizar el horario:', error);
+    toast.error('Error al conectar con el servidor.');
+  }
+};
+
+
+const handleTimeConfirm = async () => {
+  if (!isEmailProvided || !appointmentDetails.date || !appointmentDetails.time) {
+    alert('Por favor, completa todos los campos antes de confirmar la cita.');
+    return;
+  }
+
+  const fullAppointmentDetails = {
+    ...appointmentDetails,
+    name,
+    phone,
+    address,
+    email,
+  };
+
+  // Actualizar horario en el backend
+  await actualizarHorario(fullAppointmentDetails.date, fullAppointmentDetails.time);
+
+  // Enviar confirmación de la cita
+  enviarConfirmacionCita(fullAppointmentDetails);
+  setConfirmedAppointment(fullAppointmentDetails);
+  setIsModalOpen(false);
+};
+
   
 //DESCARGAR PDF
 const handleDownloadPDF = () => {
@@ -251,6 +283,7 @@ const handleDownloadPDF = () => {
         dateClick={handleDateClick}
         events={events}
         showNonCurrentDates={false}
+        eventDisplay="none"
       />
 
       {selectedDate && (
