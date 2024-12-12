@@ -50,7 +50,6 @@ import ProtectedRoutes from './ProtectedRoutes'
 
 function Routing() {
   return (
-    <AuthProvider>
     <Router>
     <ScrollToTop />
     <Routes>
@@ -101,7 +100,7 @@ function Routing() {
 
     </Routes>
    </Router>
-   </AuthProvider>
+
   );
 };
 
