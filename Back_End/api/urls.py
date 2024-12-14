@@ -152,6 +152,11 @@ urlpatterns = [
     path('sells_details/<int:pk>/', views.sells_detailsDetail.as_view(), name='sells_details-detail'), 
 
     path('horarios_disponibles/', HorariosDisponibles.as_view(), name='horarios_disponibles'),
+    
+    path('appointments/', HorariosDisponibles.as_view(), name='horarios_disponibles'),
+    path('appointments/check', HorariosDisponibles.as_view(), name='check_email_exists'),  # Ruta para la verificación por email
+    
+    path('sells/2024/', Sells2024ListCreate.as_view(), name='sells_2024'),  # Este es el endpoint para ventas de 2024
 ]
 
    
