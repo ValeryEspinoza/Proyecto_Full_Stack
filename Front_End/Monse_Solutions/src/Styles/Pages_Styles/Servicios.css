@@ -72,18 +72,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* Container for the services */
 .servicios-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -132,3 +120,23 @@
 }
 
 
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+  .servicios-list {
+    grid-template-columns: repeat(2, 1fr); /* Cambia a dos columnas */
+    gap: 10px; /* Reduce el espaciado entre las tarjetas */
+  }
+
+  .servicio-card {
+    padding: 15px; /* Reduce el padding */
+    width: 90%; /* Ajusta la anchura al 100% */
+  }
+
+  .servicio-title {
+    font-size: 1.2rem; /* Reduce el tamaño del título */
+  }
+
+  .servicio-description {
+    font-size: 0.9rem; /* Reduce el tamaño del texto de la descripción */
+  }
+}

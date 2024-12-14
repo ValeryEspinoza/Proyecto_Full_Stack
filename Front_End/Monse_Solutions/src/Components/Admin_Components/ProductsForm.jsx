@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../Styles/Components_Styles/Admin_C_Styles/ProductsForm.css';
 import Amazon from '../../Services/Post/Amazon';
 import postData from '../../Services/Post/PostData';
@@ -29,6 +29,29 @@ function ProductsForm({ onSuccess }) {
   const [errors, setErrors] = useState({});
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [subcategories, setSubcategories] = useState([]); // Estado para subcategorías
+
+  // Obtener subcategorías desde el backend
+  useEffect(() => {
+    const fetchSubcategories = async () => {
+      try {
+        const response = await fetch('/sub_categories_products/', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`, // Token de autenticación, si es necesario
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Error al obtener las subcategorías");
+        }
+        const data = await response.json();
+        setSubcategories(data);
+      } catch (error) {
+        console.error("Error al cargar las subcategorías:", error);
+      }
+    };
+
+    fetchSubcategories();
+  }, []);
 
   // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
@@ -50,8 +73,6 @@ function ProductsForm({ onSuccess }) {
     }));
   };
 
-  
-
   // Validar formulario
   const validateForm = () => {
     const newErrors = {};
@@ -60,13 +81,13 @@ function ProductsForm({ onSuccess }) {
     } else if (formData.name.trim().length < 10) {
       newErrors.name = "El nombre debe tener al menos 10 caracteres.";
     }
-  
+
     if (!formData.description.trim()) newErrors.description = "La descripción es obligatoria.";
     if (!formData.price || formData.price <= 0) newErrors.price = "El precio debe ser mayor a 0.";
     if (!formData.sub_categories_product.trim())
       newErrors.sub_categories_product = "La subcategoría es obligatoria.";
     if (!imageFile) newErrors.imagen_url = "Debe seleccionar una imagen.";
-  
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // Retorna true si no hay errores
   };
@@ -91,7 +112,7 @@ function ProductsForm({ onSuccess }) {
       // Enviar formulario con la URL de la imagen
       const formDataConImagen = { ...formData, imagen_url: imagenUrl };
       await postData('products', formDataConImagen);
-      onSuccess("¡Producto enviado exitosamente!");  // Llamamos a la función onSuccess para enviar el mensaje
+      onSuccess("¡Producto enviado exitosamente!"); // Llamamos a la función onSuccess para enviar el mensaje
       console.log("Formulario enviado:", formDataConImagen);
 
       setIsSubmitted(true);
@@ -106,19 +127,18 @@ function ProductsForm({ onSuccess }) {
     <div className="product-form-container">
       <h2 className="product-form-title">Formulario de Producto</h2>
       <form className="product-form" onSubmit={handleSubmit}>
-        
         <div className="product-form-group">
-        <label htmlFor="name" className="product-form-label">Nombre del Producto:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className="product-form-input"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {errors.name && <p className="error-message">{errors.name}</p>}
-      </div>
+          <label htmlFor="name" className="product-form-label">Nombre del Producto:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="product-form-input"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          {errors.name && <p className="error-message">{errors.name}</p>}
+        </div>
 
         <div className="product-form-group">
           <label htmlFor="description" className="product-form-label">Descripción:</label>
@@ -148,14 +168,20 @@ function ProductsForm({ onSuccess }) {
 
         <div className="product-form-group">
           <label htmlFor="sub_categories_product" className="product-form-label">Subcategoría:</label>
-          <input
-            type="text"
+          <select
             id="sub_categories_product"
             name="sub_categories_product"
             className="product-form-input"
             value={formData.sub_categories_product}
             onChange={handleChange}
-          />
+          >
+            <option value="">Selecciona una subcategoría</option>
+            {subcategories.map((subcategory) => (
+              <option key={subcategory.sub_category_product_id} value={subcategory.sub_category_product_id}>
+                {subcategory.name}
+              </option>
+            ))}
+          </select>
           {errors.sub_categories_product && <p className="error-message">{errors.sub_categories_product}</p>}
         </div>
 

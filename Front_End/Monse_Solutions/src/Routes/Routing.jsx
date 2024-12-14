@@ -57,7 +57,7 @@ function Routing() {
     <Routes>
              
 
-      <Route path="/Register" element={<ProtectedRoute component= {Register} />} />
+      <Route path="/Register" element={<Register />} />
       <Route path="/RegisterCliente" element={<RegisterCliente />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/" element={<Home/>} />
@@ -65,18 +65,18 @@ function Routing() {
       <Route path="/Servicios" element={<Servicios />} />
       <Route path="/About" element={<AboutUs />} />
       <Route path="/Formularios" element={<Formularios />} />
-      <Route path="/ServiciosAdmi" element={<ProtectedRoute component={ServiciosAdmi} />} />
-      <Route path="/DashBoard" element={<ProtectedRoute component={DashBoard} />} />
-      <Route path='/Tasks' element={<ProtectedRoute component={Tasks} />} />
-      <Route path="/Events" element={<ProtectedRoute component={Events} />} />
-      <Route path="/Calendar" element={<ProtectedRoute component={Calendar} />} />
-      <Route path="/Products" element={<ProtectedRoute component={Products} />} />
-      <Route path="/Users" element={<ProtectedRoute component={Users} />} />
-      <Route path="/Settings" element={<ProtectedRoute component={Settings} />} />
-      <Route path="/Documentation" element={<ProtectedRoute component={Documentation} />} />
-      <Route path="/EventosTareas" element={<ProtectedRoute component={EventosTareas} />} />
+      <Route path="/ServiciosAdmi" element={<ServiciosAdmi/>} />
+      <Route path="/DashBoard" element={<DashBoard />} />
+      <Route path='/Tasks' element={<Tasks />} />
+      <Route path="/Events" element={<Events />} />
+      <Route path="/Calendar" element={<Calendar/> } />
+      <Route path="/Products" element={<Products/>} />
+      <Route path="/Users" element= {<Users /> } />
+      <Route path="/Settings" element={<Settings />} />
+      <Route path="/Documentation" element={<Documentation />} />
+      <Route path="/EventosTareas" element={<EventosTareas />} />
       <Route path="/Store" element={<VirtualStore />} />
-      <Route path="/ServicesData" element={<ProtectedRoute component={ServicesData }/>} />
+      <Route path="/ServicesData" element={<ServicesData />} />
       <Route path='/NotAuthorized'element={<NotAuthorized />} />
       
       <Route path="/Blog" element={<Blog />} />
@@ -86,15 +86,15 @@ function Routing() {
       <Route path="/ArticleColor" element={<ArticleColor />} />
 
 
-      <Route path="/ServicesTable" element={<ProtectedRoute component={ServicesTable} />} />
-      <Route path="/ProductsTable" element={<ProtectedRoute component={ProductsTable} />} />
-      <Route path="/UsersTable" element={<ProtectedRoute component={UsersTable} />} />
-      <Route path="/TasksAdminData" element={<ProtectedRoute component={TasksAdminData} />} />
-      <Route path="/EventsAdminData" element={<ProtectedRoute component={EventsAdminData} />} />
-      <Route path="/PaypalForm" element={<ProtectedRoute component={PaypalForm} />} />
-      <Route path='/Carrito' element={<ProtectedRoute component={Carrito} />} />
+      <Route path="/ServicesTable" element={<ServicesTable />} />
+      <Route path="/ProductsTable" element={<ProductsTable />} />
+      <Route path="/UsersTable" element={< UsersTable />} />
+      <Route path="/TasksAdminData" element={<TasksAdminData />} />
+      <Route path="/EventsAdminData" element={<EventsAdminData />} />
+      <Route path="/PaypalForm" element={<PaypalForm />} />
+      <Route path='/Carrito' element={<Carrito />} />
 
-      <Route path="/ProfileClient" element={<ProtectedRoute component={ProfileClient} />} />
+      <Route path="/ProfileClient" element={< ProfileClient />} />
       
 
     </Routes>
