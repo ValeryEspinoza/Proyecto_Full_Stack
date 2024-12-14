@@ -155,6 +155,7 @@ class products(models.Model):
     sub_categories_product = models.ForeignKey(sub_categories_products, on_delete=models.CASCADE)   
     def __str__(self):
         return str(self.name)
+    
 class inventory(models.Model):
     inventory_id = models.AutoField(primary_key=True)
     initial_stock = models.IntegerField(null=False)

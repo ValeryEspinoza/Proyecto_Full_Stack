@@ -12,8 +12,8 @@ function ProfileClientPage() {
       <NavBar />
       <ProfileClientContent />
       <CalendarioCitas />
-<br /><br /><br /><br /><br />
-      <ReviewForm />
+      <br /><br />
+      <ReviewForm /><br /><br />
       <Footer />
     </div>
   )

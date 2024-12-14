@@ -265,6 +265,21 @@ class HorariosDisponibles(APIView):
         # Retornar los horarios disponibles en formato JSON
         return Response(fechas_disponibles)
 
+
+    # Método para verificar si existe una cita con el mismo correo
+    def get_by_email(self, request):
+        email = request.query_params.get('email')
+        if not email:
+            return Response({"Error": "El correo electrónico es requerido."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Verificar si hay citas con el mismo correo
+        cita_existente = Cita.objects.filter(email=email).exists()
+        if cita_existente:
+            return Response({"Error": "Ya existe una cita agendada con este correo electrónico."}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({"message": "No existe una cita con este correo."}, status=status.HTTP_200_OK)
+
+
     def post(self, request):
         # Rango de fechas: desde hoy hasta 30 días hacia adelante
         fecha_inicio = datetime.date.today()
@@ -318,6 +333,8 @@ class HorariosDisponibles(APIView):
                 {"Error": "Todos los campos son obligatorios."},
                 status=status.HTTP_400_BAD_REQUEST
             )
+            
+            
         # Validación de formato de fecha (YYYY-MM-DD)
         if not re.match(r'^\d{4}-\d{2}-\d{2}$', fecha_solicitada):
             return Response(
@@ -377,7 +394,8 @@ class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
     permission_classes = [AllowAny]
-    
+   
+
     
 # Consulta Productos con stock disponible    
 """class productos_stock_disponible(generics.ListAPIView):
@@ -502,11 +520,13 @@ class proformas_invoicesDetail(generics.RetrieveUpdateDestroyAPIView):
 class products_suppliersListCreate(generics.ListCreateAPIView):
     queryset = products_suppliers.objects.all()
     serializer_class = products_suppliersSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
+    #permission_classes = [IsAuthenticated, IsAdministrador]
 class products_suppliersDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products_suppliers.objects.all()
     serializer_class = products_suppliersSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
+    #permission_classes = [IsAuthenticated, IsAdministrador]
     
 class staff_tasksListCreate(generics.ListCreateAPIView):
     queryset = staff_tasks.objects.all()
@@ -584,13 +604,21 @@ class proformas_invoices_staffDetail(generics.RetrieveUpdateDestroyAPIView):
 class sells_detailsListCreate(generics.ListCreateAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
+    #permission_classes = [IsAuthenticated, IsAdministrador]
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
+    permission_classes = [AllowAny]
   
   
-  
+class Sells2024ListCreate(generics.ListCreateAPIView):
+    serializer_class = sellsSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        # Filtra las ventas donde la fecha de la venta esté en 2024
+        return sells.objects.filter(sell_date__year=2024)
  
  
 """ Vista para reestablecer la contraseña

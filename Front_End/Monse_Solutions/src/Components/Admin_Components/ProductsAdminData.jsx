@@ -18,7 +18,7 @@ const ProductsTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [editedProduct, setEditedProduct] = useState(null);
   const [editedField, setEditedField] = useState(null);
-  const [imageFile, setImageFile] = useState(null); // Nueva variable de estado para manejar el archivo de imagen
+  const [imageFile, setImageFile] = useState(null); //Nueva variable de estado para manejar el archivo de imagen
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
