@@ -1,74 +1,77 @@
-import React, { useState } from 'react';
+// LoginForm.js
+
+import React, { useState, useContext } from 'react';
 import "../../Styles/Components_Styles/Login_Styles/LoginForm.css";
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import postData from '../../Services/Post/PostData'; // Usar un servicio POST para enviar las credenciales al backend
-import iconEmail from "../../Img/Components_Img/icon2_email.png";
-import iconPassword from "../../Img/Components_Img/icon_password.png";
+import postData from '../../Services/Post/PostData'; // Servicio POST para enviar credenciales
+import AuthContext from '../../Context/AuthContext';
 
 function LoginForm() {
-  // Hooks
   const [PassUser, SetPassUser] = useState("");
-  const [EmailUser, SetEmailUser] = useState("");
-  const [MensajeAlerta, SetMensajeAlerta] = useState("");
-  
-  // Obtener valor input
+  const [UserName, SetUserName] = useState("");
+  const { login } = useContext(AuthContext); // Obtener la función login del contexto
+  const navigate = useNavigate();
+
+  // Obtener valores de input
   function GetEmail(input) {
-    SetEmailUser(input.target.value);
+    SetUserName(input.target.value);
   }
 
   function GetPass(input) {
     SetPassUser(input.target.value);
   }
 
-  const navigate = useNavigate();
-
-  // Botón Login
+  // Botón de login
   async function Login() {
-    if (!EmailUser || !PassUser) {
+    if (!UserName || !PassUser) {
       Swal.fire({
         title: "Campos Vacíos",
         text: "Por favor ingrese su correo y contraseña",
-        icon: "warning"
+        icon: "warning",
       });
       return;
     }
 
     try {
-      // Llamada al servicio para obtener el token JWT de autenticación
-      const data = { email: EmailUser, password: PassUser };
-      const response = await postData('token', data); // Endpoint para obtener token (asumido como api/token/)
+      // Llamada al servicio para obtener el token
+      const data = { username: UserName, password: PassUser };
+      const response = await postData('token', data); // Suponiendo que el endpoint para obtener el token es /api/token/
+      console.log(response);
 
-      if (response && response.access) {
-        // Almacenar el token en el localStorage
-        localStorage.setItem("Autenticado", "true");
-        localStorage.setItem("token", response.access); // Guardamos el token para futuras peticiones
+      if (response) {
+        // Llamar la función login del contexto para almacenar el token
+        const token = response.access;
+        localStorage.setItem("token", token);
+        login(token); // Guardamos el token en el contexto y localStorage
+
+        // Guardar el token en el localStorage
+        localStorage.setItem("token", response.access);
 
         Swal.fire({
           title: "Ingreso Exitoso!",
           text: "Bienvenido a Monse Solutions",
-          icon: "success"
+          icon: "success",
         });
 
-        // Redirigir a la página principal
+        // Redirigir a la página principal después de un breve retraso
         setTimeout(() => {
-          navigate("/Formularios");
+          navigate("/Dashboard");
         }, 1500);
       } else {
         Swal.fire({
           title: "Ingreso Fallido",
           text: "Correo o contraseña incorrectos",
-          icon: "error"
+          icon: "error",
         });
       }
     } catch (error) {
       Swal.fire({
         title: "Error",
         text: "Ocurrió un error al intentar iniciar sesión",
-        icon: "error"
+        icon: "error",
       });
-      console.error("Error de login: ", error);
+      console.error("Error de login:", error);
     }
   }
 
@@ -81,35 +84,29 @@ function LoginForm() {
 
         <div className="login-container">
           <div className="input-container">
-            <img src={iconEmail} alt="Email Icon" className="input-icon" />
-            <input 
-              className="input-field" 
-              value={EmailUser} 
-              onChange={GetEmail} 
-              placeholder="Email" 
-              name="email" 
+            <input
+              className="input-field"
+              value={UserName}
+              onChange={GetEmail}
+              placeholder="Email"
+              name="email"
               id="email"
             />
           </div>
 
           <div className="input-container">
-            <img src={iconPassword} alt="Password Icon" className="input-icon" />
-            <input 
-              className="input-field" 
-              value={PassUser} 
-              onChange={GetPass} 
-              type="password" 
-              placeholder="Password" 
-              name="password" 
+            <input
+              className="input-field"
+              value={PassUser}
+              onChange={GetPass}
+              type="password"
+              placeholder="Password"
+              name="password"
               id="password"
             />
           </div>
 
           <button onClick={Login} className="btn-login">Log In</button>
-
-          <Link className='goToHome' to="/">
-            <p>Go to Home</p>
-          </Link>
         </div>
       </div>
     </div>

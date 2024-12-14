@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .views import HorariosDisponibles
+from .views import UserListView
 
 
 from rest_framework_simplejwt.views import (
@@ -12,13 +13,14 @@ urlpatterns = [
     
     
 #esta es la URL del login que devuelve el token*****************
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Para obtener token de acceso y refresco
-    path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token de acceso
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Para obtener token de acceso y refresco
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token de acceso
+    
     
     path('register/', views.UserListCreate.as_view(), name='user-list'), 
     path('register/<int:pk>/', views.UserDetail.as_view(), name='user-detail'),    
     
-
+    path('users', UserListView.as_view(), name='user-list'), 
     
 #Tablas sin relaciones foraneas *********************
     #Categorias de productos
