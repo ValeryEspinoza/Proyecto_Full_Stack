@@ -79,6 +79,7 @@ function Routing() {
       <Route path='/NotAuthorized'element={<NotAuthorized />} />
 
 
+      <Route path="/Register" element={<Register />} />
       <Route path="/RegisterCliente" element={<RegisterCliente />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/" element={<Home/>} />
@@ -88,12 +89,36 @@ function Routing() {
       <Route path="/Formularios" element={<Formularios />} />
       <Route path="/Store" element={<VirtualStore />} />
 
+      <Route path="/ServiciosAdmi" element={<ServiciosAdmi/>} />
+      <Route path="/DashBoard" element={<DashBoard />} />
+      <Route path='/Tasks' element={<Tasks />} />
+      <Route path="/Events" element={<Events />} />
+      <Route path="/Calendar" element={<Calendar/> } />
+      <Route path="/Products" element={<Products/>} />
+      <Route path="/Users" element= {<Users /> } />
+      <Route path="/Settings" element={<Settings />} />
+      <Route path="/Documentation" element={<Documentation />} />
+      <Route path="/EventosTareas" element={<EventosTareas />} />
+      <Route path="/Store" element={<VirtualStore />} />
+      <Route path="/ServicesData" element={<ServicesData />} />
+      <Route path='/NotAuthorized'element={<NotAuthorized />} />
+      
       <Route path="/Blog" element={<Blog />} />
       <Route path="/Article10Tips" element={<Article10Tips />} />
       <Route path="/ArticleGarden" element={<ArticleGarden />} />
       <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ArticleColor" element={<ArticleColor />} />
 
+
+      <Route path="/ServicesTable" element={<ServicesTable />} />
+      <Route path="/ProductsTable" element={<ProductsTable />} />
+      <Route path="/UsersTable" element={< UsersTable />} />
+      <Route path="/TasksAdminData" element={<TasksAdminData />} />
+      <Route path="/EventsAdminData" element={<EventsAdminData />} />
+      <Route path="/PaypalForm" element={<PaypalForm />} />
+      <Route path='/Carrito' element={<Carrito />} />
+
+      <Route path="/ProfileClient" element={< ProfileClient />} />
       
 
     </Routes>

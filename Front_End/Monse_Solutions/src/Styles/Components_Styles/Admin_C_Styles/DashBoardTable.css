@@ -21,21 +21,50 @@ a {
     padding: 0 2em;
     border-radius: 8px; /* Agregamos un borde suave para hacerlo más moderno */
 }
-
-.dashboard-hero-tabs h1 {
-    font-size: 2rem;
+  
+  
+  .slogan-dashboard {
+    color: #50C878; /* Gris oscuro para los subtítulos */
+    font-size: 1.5rem;
     margin: 0;
-    letter-spacing: 1rem;
-    color: #1E1E1E; /* Gris oscuro para los títulos */
+  }
+  
+  .DashboardTitle {
+    font-size: 6rem;
+    margin: 0;
+    font-weight: bold;
+    display: inline-block;
 }
 
-.dashboard-hero-tabs h3 {
-    font-size: 1rem;
-    letter-spacing: 0.3rem;
-    opacity: 0.7;
-    color: #1E1E1E; /* Gris oscuro para los subtítulos */
+.Dash, .Board {
+    animation: colorChange 2s infinite alternate; /* Animación para cambiar el color */
 }
 
+.Dash {
+    color: #1E1E1E;
+}
+
+.Board {
+    color: #50C878;
+}
+
+@keyframes colorChange {
+    0% {
+        color: #1E1E1E;
+    }
+    100% {
+        color: #50C878; /* Cambia a un segundo color */
+    }
+}
+
+.TitleSlide{
+    font-size: 6rem;
+}
+.SectionTitles{
+    font-size: 3rem;
+    font-weight: bold;
+    color: #50C878;
+}
 .dashboard-hero-tabs-container {
     display: flex;
     flex-direction: row;
@@ -59,11 +88,11 @@ a {
     justify-content: center;
     align-items: center;
     flex: 1;
-    color: #1E1E1E; /* Gris oscuro para las pestañas */
-    letter-spacing: 0.1rem;
+    color: #1E1E1E;
     transition: all 0.5s ease;
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     padding: 10px;
+    font-weight: bold;
 }
 
 .dashboard-hero-tab:hover {
@@ -79,19 +108,4 @@ a {
     height: 6px;
     background: #50C878; /* Verde para la barra deslizante */
     transition: left 0.3s ease;
-}
-
-@media (min-width: 800px) {
-  .dashboard-hero-tabs,
-  .dashboard-slide {
-    h1 {
-        font-size: 3rem;
-    }
-    h3 {
-        font-size: 1.1rem; /* Un poco más grande en pantallas grandes */
-    }
-  }
-  .dashboard-hero-tab {
-    font-size: 1rem;
-  }
 }
