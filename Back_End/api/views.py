@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 import datetime
 import re
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 
@@ -96,7 +98,26 @@ class UserListView(generics.ListAPIView):
 
 
 
+class ProtectedView(APIView):
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request):
+        user = request.user
+        if user.role == 'administrador' or user.role == 'colaborador':
+            return Response({"message": "Acceso permitido"}, status=status.HTTP_200_OK)
+        return Response({"message": "Acceso denegado"}, status=status.HTTP_403_FORBIDDEN)
+
+
+
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    @csrf_exempt  # Desactiva la verificación CSRF para esta vista
+    def get(self, request):
+        print("Token recibido:", request.headers.get('Authorization'))  # Verifica que el token llega correctamente
+        user = request.user
+        serializer = UserSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 ##### Vistas sin foraneas**********************************************+
@@ -197,11 +218,11 @@ class prioritiesDetail(generics.RetrieveUpdateDestroyAPIView):
 class category_servicesListCreate(generics.ListCreateAPIView):
     queryset = category_services.objects.all()
     serializer_class = category_servicesSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
 class category_servicesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = category_services.objects.all()
     serializer_class = category_servicesSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador] 
+    permission_classes = [AllowAny]
     
 class areasListCreate(generics.ListCreateAPIView):
     queryset = areas.objects.all()
@@ -384,10 +405,12 @@ class HorariosDisponibles(APIView):
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
-    permission_classes =[IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]  # Solo para pruebas
+
 class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
+    permission_classes = [AllowAny]
  
  
 class productsListCreate(generics.ListCreateAPIView):
@@ -434,10 +457,16 @@ class inventoryListCreate(generics.ListCreateAPIView):
     queryset = inventory.objects.all()
     serializer_class = inventorySerializer
     permission_classes = [IsAuthenticated, IsAdministrador]
+
+    def get(self, request):
+        return Response({"message": "This is a protected route!"})
+    
 class inventoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = inventory.objects.all()
     serializer_class = inventorySerializer
     permission_classes =[IsAuthenticated,IsAdministrador]
+    def get(self, request):
+        return Response({"message": "This is a protected route!"})
 
 class jobs_positionsListCreate(generics.ListCreateAPIView):
     queryset = jobs_positions.objects.all()
@@ -605,7 +634,7 @@ class proformas_invoices_staffDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = proformas_invoices_staff.objects.all()
     serializer_class = proformas_invoices_staffSerializer
     permission_classes = [IsAuthenticated, IsAdministrador]
-    
+
 class sells_detailsListCreate(generics.ListCreateAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer

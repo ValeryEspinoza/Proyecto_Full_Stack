@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 /* Contenedor de la página de contacto */
+=======
+>>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 .contact-page-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+<<<<<<< HEAD
 }
 
 /* Encabezado de la página de contacto */
@@ -48,11 +52,31 @@
   font-weight: bold;
   color: #50C878;
   font-size: 20px;
+=======
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #666;
+>>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 }
 
 .contact-content {
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
   align-items: flex-start;
   gap: 5px;
 }
@@ -105,4 +129,73 @@
     width: 100%; /* Asegura que el mapa ocupe todo el ancho disponible */
     height: 200px; /* Reducción de la altura */
   }
+=======
+  gap: 20px;
+}
+
+.contact-info {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.contact-info h3 {
+  margin-bottom: 10px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.contact-form-container {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+}
+
+.contact-map {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contact-map img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Media Queries para móviles */
+@media (max-width: 768px) {
+  .contact-page-container {
+      padding: 15px;
+  }
+
+  .contact-header h1 {
+      font-size: 2rem;
+  }
+
+  .contact-header p {
+      font-size: 1rem;
+  }
+
+  .contact-content {
+      flex-direction: column; /* Coloca los elementos en una sola columna */
+      gap: 10px;
+  }
+
+  .contact-info,
+  .contact-form-container {
+      width: 100%; /* Ocupan todo el ancho disponible */
+      padding: 15px;
+  }
+
+  .contact-map img {
+      border-radius: 5px;
+  }
+>>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 }

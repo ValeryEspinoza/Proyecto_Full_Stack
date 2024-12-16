@@ -130,7 +130,7 @@ function TasksForms({ onSuccess }) {
         <div className="task-form-group">
           <label htmlFor="expire_date" className="task-label">Expire Date</label>
           <input
-            type="datetime-local"
+            type="date"
             id="expire_date"
             name="expire_date"
             value={taskData.expire_date}

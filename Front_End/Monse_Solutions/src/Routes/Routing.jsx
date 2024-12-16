@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute'
+import { useState } from 'react'
 
 import NotAuthorized from '../Pages/NotAuthorized'
 
@@ -53,13 +54,34 @@ import Carrito from '../Components/Admin_Components/Carrito'
 
 
 function Routing() {
+  const [admin]= useState(1);
+
+  const [cliente]= useState(3);
+
+
   return (
 <Router>
     <ScrollToTop />
     <Routes>
-             
 
-      <Route path="/Register" element={<ProtectedRoute component= {Register} />} />
+    <Route path='/Tasks'  element={<ProtectedRoute requiredRole={admin}><Tasks /></ProtectedRoute>} />
+      <Route path="/Events"  element={<ProtectedRoute requiredRole={admin}>< Events /></ProtectedRoute>} />
+      <Route path="/Calendar"  element={<ProtectedRoute requiredRole={admin}>< Calendar /></ProtectedRoute>} />
+      <Route path="/Products"  element={<ProtectedRoute requiredRole={admin}>< Products /></ProtectedRoute>} />
+      <Route path="/Users"  element={<ProtectedRoute requiredRole={admin}>< Users /></ProtectedRoute>} />
+      <Route path="/Settings"  element={<ProtectedRoute requiredRole={admin}>< Settings /></ProtectedRoute>} />
+      <Route path="/ServiciosAdmi" element={<ProtectedRoute requiredRole={admin}>< ServiciosAdmi /></ProtectedRoute>} />
+      <Route path="/Dashboard" element={<ProtectedRoute requiredRole={admin} ><DashBoard /></ProtectedRoute>} />
+      <Route path="/Register" element={<ProtectedRoute requiredRole={admin} ><Register /></ProtectedRoute>} />
+      <Route path="/Documentation" element={<ProtectedRoute requiredRole={admin} ><Documentation /></ProtectedRoute>} />
+      <Route path="/EventosTareas" element={<ProtectedRoute requiredRole={admin} ><EventosTareas /></ProtectedRoute>} />
+      <Route path="/ServicesData" element={<ProtectedRoute requiredRole={admin} ><ServicesData /></ProtectedRoute>} />
+      <Route path="/ProfileClient" element={<ProtectedRoute requiredRole={cliente} ><ProfileClient /></ProtectedRoute>} />
+      
+      <Route path='/NotAuthorized'element={<NotAuthorized />} />
+
+
+      <Route path="/Register" element={<Register />} />
       <Route path="/RegisterCliente" element={<RegisterCliente />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/" element={<Home/>} />
@@ -67,18 +89,20 @@ function Routing() {
       <Route path="/Servicios" element={<Servicios />} />
       <Route path="/About" element={<AboutUs />} />
       <Route path="/Formularios" element={<Formularios />} />
-      <Route path="/ServiciosAdmi" element={<ProtectedRoute component={ServiciosAdmi} />} />
-      <Route path="/DashBoard" element={<ProtectedRoute component={DashBoard} />} />
-      <Route path='/Tasks' element={<ProtectedRoute component={Tasks} />} />
-      <Route path="/Events" element={<ProtectedRoute component={Events} />} />
-      <Route path="/Calendar" element={<ProtectedRoute component={Calendar} />} />
-      <Route path="/Products" element={<ProtectedRoute component={Products} />} />
-      <Route path="/Users" element={<ProtectedRoute component={Users} />} />
-      <Route path="/Settings" element={<ProtectedRoute component={Settings} />} />
-      <Route path="/Documentation" element={<ProtectedRoute component={Documentation} />} />
-      <Route path="/EventosTareas" element={<ProtectedRoute component={EventosTareas} />} />
       <Route path="/Store" element={<VirtualStore />} />
-      <Route path="/ServicesData" element={<ProtectedRoute component={ServicesData }/>} />
+
+      <Route path="/ServiciosAdmi" element={<ServiciosAdmi/>} />
+      <Route path="/DashBoard" element={<DashBoard />} />
+      <Route path='/Tasks' element={<Tasks />} />
+      <Route path="/Events" element={<Events />} />
+      <Route path="/Calendar" element={<Calendar/> } />
+      <Route path="/Products" element={<Products/>} />
+      <Route path="/Users" element= {<Users /> } />
+      <Route path="/Settings" element={<Settings />} />
+      <Route path="/Documentation" element={<Documentation />} />
+      <Route path="/EventosTareas" element={<EventosTareas />} />
+      <Route path="/Store" element={<VirtualStore />} />
+      <Route path="/ServicesData" element={<ServicesData />} />
       <Route path='/NotAuthorized'element={<NotAuthorized />} />
       
       <Route path="/Blog" element={<Blog />} />

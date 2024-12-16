@@ -1,8 +1,7 @@
 const PatchData = async (endpoint, dato, id) => {
-
-
-
 try {
+    const token = localStorage.getItem('accessToken');
+
     // Construye la URL con el ID
     const url = `http://192.168.1.87:8000/api/${endpoint}/${id}/`;
     
@@ -11,6 +10,7 @@ try {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json', // Indica que se está enviando un JSON
+            'Authorization': `Bearer ${token}` // Incluye el token de acceso
         },
         body: JSON.stringify(dato), // Convierte el objeto 'dato' a JSON para enviarlo en el cuerpo
     });

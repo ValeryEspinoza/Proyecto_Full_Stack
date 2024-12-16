@@ -1,101 +1,126 @@
-import React from 'react'
-import "../../Styles/Components_Styles/Register_Styles/RegisterForm.css"
-import SendUser from '../../Services/Post/PostUser'
-import GetUser from '../../Services/Get/GetUsers'
-import Swal from 'sweetalert2'
-import { Link } from 'react-router-dom'
-
-import { useState } from 'react'
+import React, { useState } from 'react';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+import '../../Styles/Components_Styles/Register_Styles/RegisterForm.css';
+import postData from '../../Services/Post/PostData';
+import GetData from '../../Services/Get/GetData';
 
 function RegisterForm() {
-        /*Hooks*/
-        const[Name, SetName]=useState("")
-        const[LastName, SetLastName]=useState("")
-        const[EmailUser, SetEmail]=useState("")
-        const[Password, SetPassword]=useState("")
-        const[Password2, SetPassword2]=useState("")
-        const[Access, SetAccess]=useState("")
+    // Hooks para manejar el estado
+    const [name, setName] = useState(""); // Nombre
+    const [lastName, setLastName] = useState(""); // Apellido
+    const [emailUser, setEmail] = useState(""); // Correo electrónico
+    const [password, setPassword] = useState(""); // Contraseña
+    const [password2, setPassword2] = useState(""); // Confirmación de contraseña
+    const [access, setAccess] = useState(""); // Rol de acceso
+    const [isSubmitting, setIsSubmitting] = useState(false); // Indicador de envío
 
-        //Obtener Valor Input
+    // Validación del formulario
+    const validateForm = () => {
+        if (!name || !lastName || !emailUser || !password || !password2 || !access) {
+            Swal.fire({
+                title: "Registro Fallido",
+                text: "Todos los campos deben estar completos.",
+                icon: "error",
+            });
+            return false;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailUser)) {
+            Swal.fire({
+                title: "Registro Fallido",
+                text: "Correo electrónico no válido.",
+                icon: "error",
+            });
+            return false;
+        }
+        if (password !== password2) {
+            Swal.fire({
+                title: "Registro Fallido",
+                text: "Las contraseñas no coinciden.",
+                icon: "error",
+            });
+            return false;
+        }
+        return true;
+    };
 
-       
-        function GetName(input) {
-                SetName(input.target.value)   
-        }
-        function GetLastName(input) {
-                SetLastName(input.target.value)
-        }
-        function GetEmail(input) {
-                SetEmail(input.target.value)
-        }
-        function GetPassword(input) {
-                SetPassword(input.target.value)
-        }
-        function GetPassword2(input) {
-                SetPassword2(input.target.value)
-        }
-        function GetAccessValue(input) {
-                SetAccess(input.target.value)
-        }
-    
-     console.log(Name);
-     
+    // Manejo del registro
+    const handleRegister = async () => {
+        if (isSubmitting || !validateForm()) return;
 
-        //Boton Add
-        async function Add() {
-                const Users= await GetUser()
-          
-                
-                console.log();
-                
+        setIsSubmitting(true);
+        try {
+            const users = await GetData('register');
+            const lastUserId = users[users.length - 1]?.id || 0;
+            const newUserId = lastUserId + 1;
 
-                if ( !(Users.find(({ Email }) => Email === EmailUser)) && !(Name === "" && LastName === "" && EmailUser === "" && Password ==="" && Password2 === "") && !(Access === "" || Access === "Access" ) && (Password === Password2) ) {
-                     SendUser(LastName, Name, EmailUser, Password, Access)   
-                    
-                        Swal.fire({
+            if (!users.find(({ email }) => email === emailUser)) {
+                const user = {
+                    password,
+                    username: `${name.toLowerCase()}.${lastName.toLowerCase()}`, // Crear username automáticamente
+                    email: emailUser,
+                    first_name: name,
+                    last_name: lastName,
+                    is_superuser: access === "administrador",
+                    is_staff: access === "administrador",
+                    is_active: true,
+                    role: access,
+                };
+
+                const response = await postData('register', user);
+
+                if (response && response.id) {
+                    Swal.fire({
                         title: "Registro Exitoso!",
-                        text: "Se ha registrado el usuario con exito",
-                        icon: "success"
-                        });
-
-                }else{
-                          
-                        Swal.fire({
-                                title: "Registro Fallido",
-                                text: " Verifica lo siguiente: 1) Todos los espacios esten debidamente llenos. 2)Contraseñas coincidan. 3) Correo electronico debe ser válido",
-                                icon: "error"
-                                });
-                      
-                        
+                        text: "El usuario se ha registrado correctamente.",
+                        icon: "success",
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Registro Fallido",
+                        text: "Error al registrar el usuario.",
+                        icon: "error",
+                    });
                 }
-               
+            } else {
+                Swal.fire({
+                    title: "Registro Fallido",
+                    text: "El correo ya está en uso.",
+                    icon: "error",
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: `Ocurrió un error: ${error.message}`,
+                icon: "error",
+            });
+        } finally {
+            setIsSubmitting(false);
         }
-        
+    };
 
-  return (
-    <div className='bodyRegister2'>
-     
-                <div className="form-container">
-        <h1 className="form-title">Registro</h1>
-    
-        <input className='InputRegister' value={LastName} onChange={GetLastName} placeholder=' Name' type="text" />
-        <input className='InputRegister' value={Name} onChange={GetName} placeholder='Last Name' type="text" />
-        <input className='InputRegister' value={EmailUser} onChange={GetEmail} placeholder='Email' type="text" />
-        <input className='InputRegister' value={Password} onChange={GetPassword} placeholder='Password' type="password" />
-        <input className='InputRegister' value={Password2} onChange={GetPassword2} placeholder='Enter your Password again' type="password" />
-    
-        <select className='InputRegister' value={Access} onChange={GetAccessValue} >
-            <option value="">Access</option>
-            <option value="Ad86fw">Administrador</option>
-            <option value="Ck54pe">Colaborador</option>
-        </select>
-    
-        <button onClick={Add} className="btn-add">Add</button>
-        <Link className='irAHome' to="/Login"><p>Ir a Login</p></Link>
-    </div>
-    <br /><br /><br />
+    return (
+        <div className='bodyRegister2'>
+            <div className="form-container">
+                <h1 className="form-title">Registro</h1>
+                <input className='InputRegister' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name' type="text" />
+                <input className='InputRegister' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' type="text" />
+                <input className='InputRegister' value={emailUser} onChange={(e) => setEmail(e.target.value)} placeholder='Email' type="text" />
+                <input className='InputRegister' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' type="password" />
+                <input className='InputRegister' value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder='Confirm Password' type="password" />
+                <select className='InputRegister' value={access} onChange={(e) => setAccess(e.target.value)}>
+                    <option value="">Select Access</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="colaborador">Colaborador</option>
+                </select>
+                <button onClick={handleRegister} className="btn-add" disabled={isSubmitting}>
+                    {isSubmitting ? "Registrando..." : "Registrar"}
+                </button>
+                <Link className='irAHome' to="/Login"><p>Ir a Login</p></Link>
+            </div>
         </div>
-  )
+    );
 }
 
-export default RegisterForm
+export default RegisterForm;

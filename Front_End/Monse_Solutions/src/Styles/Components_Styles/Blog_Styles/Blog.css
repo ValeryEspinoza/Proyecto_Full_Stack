@@ -318,6 +318,10 @@
       width: 90%;
       max-width: 500px;
     }
+
+    .divTextoIntroBlog{
+      width: 100%;
+    }
   }
   
   @media (max-width: 480px) {

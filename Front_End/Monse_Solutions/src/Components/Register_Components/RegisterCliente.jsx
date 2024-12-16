@@ -262,7 +262,6 @@ const validateForm = () => {
             type="password"
           />
         </div>
-
         <br /><br />
         <button onClick={handleRegister} className="btn-Register" disabled={isSubmitting}>
           {isSubmitting ? "Registrando..." : "Register"}
@@ -270,6 +269,7 @@ const validateForm = () => {
         <Link className='irALogin' to="/Login">Ir a Login</Link>
       </div>
     </div>
+    
   );
 }
 
