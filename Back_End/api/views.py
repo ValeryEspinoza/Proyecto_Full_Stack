@@ -405,12 +405,8 @@ class HorariosDisponibles(APIView):
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
-<<<<<<< HEAD
-    permission_classes =[AllowAny]
-=======
     permission_classes = [AllowAny]  # Solo para pruebas
 
->>>>>>> a6885da4ced6cb3159de653e33ab72458c644bfe
 class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
