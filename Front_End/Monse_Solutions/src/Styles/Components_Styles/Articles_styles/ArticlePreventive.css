@@ -153,7 +153,11 @@
     transform: translateY(-10px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
-
+hr {
+    border: none;
+    border-top: 2.5px solid #50C878;
+    margin: 20px 0;
+  }
 
 /* Media querie */
 @media (max-width: 768px) {

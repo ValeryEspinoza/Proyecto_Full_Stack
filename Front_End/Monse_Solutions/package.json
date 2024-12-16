@@ -20,6 +20,7 @@
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
     "@paypal/react-paypal-js": "^8.7.0",
+    "aos": "^2.3.4",
     "aws-sdk": "^2.1692.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.7",

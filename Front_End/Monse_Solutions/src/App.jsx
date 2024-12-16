@@ -4,17 +4,22 @@ import ChatBot from "../src/Components/ChatBot_Components/ChatBot"; // Component
 import { AuthProvider } from "./Context/AuthProvider"; // Importar el AuthProvider
 
 function App() {
+  // Función para verificar si la página actual es el Dashboard
+  const isDashboard = window.location.pathname.toLowerCase() === "/dashboard";
+
   return (
     <AuthProvider> {/* Envuelve toda la aplicación en AuthProvider */}
       <div>
         {/* Renderizar las rutas */}
         <Routing />
 
-        {/* Chatbot */}
-        <ChatBot />
+        {/* Renderizar el ChatBot solo si no es la página del Dashboard */}
+        {!isDashboard && <ChatBot />}
       </div>
     </AuthProvider>
   );
 }
 
 export default App;
+
+

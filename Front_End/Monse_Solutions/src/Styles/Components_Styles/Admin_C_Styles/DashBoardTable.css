@@ -1,13 +1,12 @@
-body {
-    font-family: "Century Gothic", 'Lato', sans-serif;
-}
 
 a {
   text-decoration: none;
   color: #1E1E1E; /* Gris oscuro para los enlaces */
 }
 
-
+.divDashboard{
+    margin-top: -100px;
+}
 .dashboard-hero-tabs,
 .dashboard-slide {
     display: flex;
@@ -21,7 +20,12 @@ a {
     padding: 0 2em;
     border-radius: 8px; /* Agregamos un borde suave para hacerlo más moderno */
 }
-  
+
+.imgGrafico{
+    width: 45%;
+    height: auto;
+    opacity: 70%;
+}
   
   .slogan-dashboard {
     color: #50C878; /* Gris oscuro para los subtítulos */
@@ -109,3 +113,66 @@ a {
     background: #50C878; /* Verde para la barra deslizante */
     transition: left 0.3s ease;
 }
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .divDashboard {
+      margin-top: -20px; /* Ajuste para dispositivos móviles */
+      padding: 1em; /* Reducción de padding */
+      margin-bottom: -100px;
+    }
+  
+    .dashboard-hero-tabs,
+    .dashboard-slide {
+      flex-direction: column; /* Columna para pantallas pequeñas */
+      padding: 1em; /* Reducción de padding */
+      border-radius: 0; /* Quitar borde redondeado para simplificar */
+      margin-top: -200px;
+    }
+    .dashboard-hero-tab:hover {
+        color: #FFFFFF; /* Blanco para el texto al hacer hover */
+        background: #50C878; /* Verde para el fondo de las pestañas al hacer hover */
+        transition: all 0.5s ease;
+    }
+    .imgGrafico {
+      width: 60%; /* Redimensionar la imagen para móviles */
+      height: auto;
+      opacity: 100%; /* Mostrar la imagen completamente opaca */
+    }
+  
+    .slogan-dashboard {
+      font-size: 1rem; /* Reducción del tamaño de la fuente */
+    }
+  
+    .DashboardTitle {
+      font-size: 3rem; /* Reducción del tamaño de la fuente */
+    }
+  
+    .Dash,
+    .Board {
+      font-size: 1.8rem; /* Reducción del tamaño de la fuente */
+    }
+  
+    .TitleSlide {
+      font-size: 3rem; /* Reducción del tamaño de la fuente */
+    }
+  
+    .SectionTitles {
+      font-size: 1.3rem; /* Reducción del tamaño de la fuente */
+    }
+  
+    .dashboard-hero-tabs-container {
+      flex-direction: column; /* Columna para pantallas pequeñas */
+      height: auto; /* Altura adaptable */
+
+    }
+  
+    .dashboard-hero-tab {
+      font-size: 1rem; /* Reducción del tamaño de la fuente */
+      padding: 5px; /* Reducción del padding */
+    }
+  
+    .dashboard-hero-tab-slider {
+      height: 4px; /* Reducción de altura */
+    }
+  }

@@ -2,7 +2,7 @@
 .join-our-team-container {
     background-color: #E5DEF0;
     background-position: center;
-    height: 600px;
+    height:600px;
     color: #fff;
     margin-top: -30px; 
     padding: 0; 
@@ -75,7 +75,7 @@ width: 80%;
 
 
 .inputFormTeam {
-  width:60%;
+  width:40%;
   font-size: 16px;
   border: none;
   outline: none;
@@ -99,8 +99,6 @@ width: 80%;
   margin-bottom: 12px;
 }
 
-
-
 @media (max-width: 768px) {
   .join-our-team-container {
     flex-direction: column; /*Cambia el diseño a una columna para mejor visualización en pantallas pequeñas */
@@ -122,7 +120,8 @@ width: 80%;
   }
 
   .join {
-    font-size: 200%; /* Reduce el tamaño del título para pantallas más pequeñas */
+    font-size: 170%; /* Reduce el tamaño del título para pantallas más pequeñas */
+    text-align: center;
   }
 
   .parrafoJoin {

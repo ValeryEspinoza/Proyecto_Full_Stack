@@ -1,16 +1,16 @@
-// LoginForm.js
-
 import React, { useState, useContext } from 'react';
 import "../../Styles/Components_Styles/Login_Styles/LoginForm.css";
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import postData from '../../Services/Post/PostData'; // Servicio POST para enviar credenciales
+import "toastify-js/src/toastify.css";
+import Toastify from "toastify-js";
+import postData from '../../Services/Post/PostData'; //Servicio POST para enviar credenciales
 import AuthContext from '../../Context/AuthContext';
+import '../../Styles/toastStyles.css'
 
 function LoginForm() {
   const [PassUser, SetPassUser] = useState("");
   const [UserName, SetUserName] = useState("");
-  const { login } = useContext(AuthContext); // Obtener la función login del contexto
+  const { login } = useContext(AuthContext); //Obtener la función login del contexto
   const navigate = useNavigate();
 
   // Obtener valores de input
@@ -25,13 +25,15 @@ function LoginForm() {
   // Botón de login
   async function Login() {
     if (!UserName || !PassUser) {
-      Swal.fire({
-        title: "Campos Vacíos",
-        text: "Por favor ingrese su correo y contraseña",
-        icon: "warning",
-      });
-      return;
-    }
+      Toastify({
+        text: 'Please complete all fields before submitting',
+        duration: 3000,
+        gravity: 'top',
+        position: 'center',
+        close: true,
+        className: 'toast-error',
+      }).showToast();
+        }
 
     try {
       // Llamada al servicio para obtener el token
@@ -47,30 +49,28 @@ function LoginForm() {
 
         // Guardar el token en el localStorage
         localStorage.setItem("token", response.access);
-
-        Swal.fire({
-          title: "Ingreso Exitoso!",
-          text: "Bienvenido a Monse Solutions",
-          icon: "success",
-        });
-
+          Toastify({
+          text: `Successful Entry!`,
+          duration: 3500,
+          gravity: 'top',
+          position: 'center',
+          className: 'toastsuccess',
+          }).showToast();
         // Redirigir a la página principal después de un breve retraso
         setTimeout(() => {
           navigate("/Dashboard");
         }, 1500);
       } else {
-        Swal.fire({
-          title: "Ingreso Fallido",
-          text: "Correo o contraseña incorrectos",
-          icon: "error",
-        });
+        Toastify({
+          text: "Incorrect email or password",
+          duration: 3000,
+          gravity: "top",
+          position: "center",
+          close: true,
+          className: "toast-error",
+      }).showToast();
       }
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: "Ocurrió un error al intentar iniciar sesión",
-        icon: "error",
-      });
       console.error("Error de login:", error);
     }
   }

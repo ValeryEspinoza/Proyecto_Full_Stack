@@ -14,7 +14,7 @@ const Article1 = () => {
     <div className="article-container">
       {/* Portada del artículo */}
       <header className="article-header">
-        <h1 className="article-title">{t('cardBlogTitle1')}<br />for your home</h1>
+        <h1 className="article-title">{t('cardBlogTitle1')}</h1>
       </header>
 
       {/* Introducción */}

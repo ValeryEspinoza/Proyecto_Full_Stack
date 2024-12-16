@@ -3,6 +3,7 @@ import '../../Styles/Components_Styles/Home_C_Styles/ReviewsStyles/ReviewsForm.c
 import GetData from "../../Services/Get/GetData";
 import PostData from "../../Services/Post/PostData";
 import { toast } from 'react-toastify';
+import '../../Styles/toastStyles.css'
 
 const ReviewForm = () => {
 
@@ -68,16 +69,36 @@ useEffect(() => {
         const response = await PostData('reviews', formData);
         console.log(response);
         
-        toast.success("Review enviada correctamente.");
+        Toastify({
+          text: `Review sent successfully`,
+          duration: 3500,
+          gravity: 'top',
+          position: 'center',
+          className: 'toastsuccess',
+        }).showToast();
   
         //Enviar la reseña al componente principal
         onReviewAdded(response); //Llama a la función pasada desde Reviews
       } else {
-        toast.error("Review No ha sido enviado correctamente.");
+          Toastify({
+            text: `Review has not been sent successfully`,
+            duration: 3500,
+            gravity: 'top',
+            position: 'center',
+            className: 'custom-toastCalendario',
+            backgroundColor: 'red',
+          }).showToast();
       }
     } catch (error) {
       console.error("Error al enviar la review:", error);
-      toast.error("Error al enviar la review. Revisa los datos enviados.");
+      Toastify({
+        text: `Error sending the review. Please check the submitted data`,
+        duration: 3500,
+        gravity: 'top',
+        position: 'center',
+        className: 'custom-toastCalendario',
+        backgroundColor: 'red',
+      }).showToast();
     }
   };
   

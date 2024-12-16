@@ -1,18 +1,22 @@
+/* ============================= */
+/* Sección: Estructura principal */
+/* ============================= */
 .bodyRegister {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: #FFFAFA; 
+    background: #FFFAFA;
     min-height: 100vh; /* Cambiado a min-height */
     width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding-bottom: 20px; /* Espacio adicional al final */
-
-}
-
-/* Contenedor del título */
-.divTitleRegister {
+  }
+  
+  /* ============================= */
+  /* Sección: Contenedor del título */
+  /* ============================= */
+  .divTitleRegister {
     background-image: url(../../../Img/Components_Img/portada_register.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,35 +29,39 @@
     align-items: center;
     position: relative;
     z-index: 1;
- 
-}
-.register{
+  }
+  
+  .register {
     color: white;
-    font-size: 100px;
-}
-.title-content {
+    font-size: 70px;
+    font-weight: bold;
+  }
+  
+  .title-content {
     display: flex;
     align-items: center; /* Centra el contenido verticalmente */
     justify-content: center; /* Centra el contenido horizontalmente */
     gap: 30px; /* Espacio entre el icono y el texto */
     margin-top: -10%;
-}
-
-.iconRegister {
+  }
+  
+  .iconRegister {
     width: auto;
     height: 100px;
     margin-right: 0; /* Elimina el margen negativo */
-}
-
-.irALogin{
-    font-weight:bold;
+  }
+  
+  .irALogin {
+    font-weight: bold;
     text-decoration: none;
     margin-bottom: 3x;
     color: #1E1E1E;
-}
-
-/* Contenedor del formulario que flota */
-.register-container {
+  }
+  
+  /* ================================ */
+  /* Sección: Contenedor del formulario */
+  /* ================================ */
+  .register-container {
     max-width: 500px;
     width: 80%;
     padding: 40px;
@@ -65,38 +73,41 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: -160px; 
+    margin-top: -160px;
     z-index: 2; /* Se coloca encima de la barra */
     position: relative;
     margin-left: 33%;
-}
-.divInputRegister{
+  }
+  
+  .divInputRegister {
     display: flex;
     align-items: center;
     padding: 1px 20px;
     margin: 10px 0;
     width: 95%;
-}
-
-.input-register {
+  }
+  
+  .input-register {
     width: 100% !important;
     padding: 12px !important;
     border: none !important;
     font-size: 16px !important;
     outline: none !important;
     transition: border-color 0.3s !important;
-}
-
-.input-register:focus {
+  }
+  
+  .input-register:focus {
     border-bottom: 1px solid #1E1E1E;
-}
-
-.input-register::placeholder {
+  }
+  
+  .input-register::placeholder {
     color: #aaa;
-}
-
-/* Estilo para el campo deshabilitado pero manteniendo el diseño */
-.disabled-input {
+  }
+  
+  /* ================================== */
+  /* Sección: Campos deshabilitados */
+  /* ================================== */
+  .disabled-input {
     background-color: #fff; /* Fondo blanco o el color que desees */
     border: 1px solid #ccc; /* El borde de los campos normales */
     color: #333; /* Color del texto */
@@ -107,10 +118,13 @@
     cursor: not-allowed; /* Cursor para indicar que el campo está deshabilitado */
   }
   
-.btn-Register{
+  /* ============================= */
+  /* Sección: Botón de registro */
+  /* ============================= */
+  .btn-Register {
     width: 50%;
     padding: 8px;
-    background-color:#50C878;
+    background-color: #50C878;
     color: white;
     border: none;
     border-radius: 5px;
@@ -119,13 +133,16 @@
     transition: background-color 0.3s;
     margin-top: -26px;
     font-weight: bold;
-}
-
-.btn-Register:hover {
+  }
+  
+  .btn-Register:hover {
     background-color: #1E1E1E;
-}
-
-.select-language {
+  }
+  
+  /* ============================= */
+  /* Sección: Selección de idioma */
+  /* ============================= */
+  .select-language {
     width: 85%;
     padding: 12px;
     font-size: 16px;
@@ -134,68 +151,74 @@
     outline: none;
     margin: 10px 0;
     transition: border-color 0.3s;
-}
-
-.select-language:focus {
+  }
+  
+  .select-language:focus {
     border-color: #1E1E1E;
-}
-
-
-/* Media Query para dispositivos móviles */
+  }
+  
+/* ============================= */
+/* Sección: Media querie */
+/* ============================= */
 @media (max-width: 768px) {
-
-    /* Ajustar el título */
-    .register {
-        font-size: 50px; /* Reducir el tamaño del texto del título */
+  
+    /* Estructura principal */
+    .bodyRegister {
+      align-items: center;
     }
-    .title-content{
-        margin-top: 10%;
-    }
-    .iconRegister {
-        height: 60px; /* Reducir el tamaño del icono */
-    }
-
-    /* Ajustar el contenedor del formulario */
-    .register-container {
-        width: 90%;
-        padding: 20px;
-        margin-top: 40px; /* Ajuste para que el formulario se vea bien */
-    }
-
-    /* Ajustes en los inputs */
-    .input-register {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .divInputRegister {
-        padding: 5px 15px;
-    }
-
-    /* Ajustar el botón */
-    .btn-Register {
-        width: 70%; /* Aumentar el tamaño del botón en móviles */
-        padding: 10px;
-        font-size: 16px; 
-    }
-
-    /* Ajustar el select de idiomas */
-    .select-language {
-        width: 90%; 
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    /* Ajustar el link de ir al login */
-    .irALogin {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-
-    /* Ajustar la barra de título */
+  
+    /* Contenedor del título */
     .divTitleRegister {
-        height: 200px; 
-        padding: 100px 0;
-        margin-top: 200px;
+      height: 200px; /* Reduce el tamaño para dispositivos más pequeños */
+      padding: 150px 0; /* Ajusta el relleno */
+      align-items: center;
     }
-}
+  
+    .register {
+      font-size: 40px; /* Reduce el tamaño del texto */
+    }
+  
+    .title-content {
+      flex-direction: column; /* Cambia la disposición a vertical */
+      gap: 10px; /* Reduce el espacio entre elementos */
+    }
+  
+    .iconRegister {
+      height: 70px; /* Ajusta el tamaño del ícono */
+    }
+  
+    /* Contenedor del formulario */
+    .register-container {
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    width: 90%; /* Deja un margen del 10% a los lados */
+    padding: 20px; /* Espaciado interno */
+    margin: 0 auto; /* Centra horizontalmente */
+    margin-top: -80px; /* Ajusta la posición superior según el diseño */
+    }
+  
+    /* Entradas del formulario */
+    .divInputRegister {
+      padding: 0 10px; /* Reduce el espacio horizontal */
+      width: 100%; /* Ajusta para dispositivos móviles */
+    }
+  
+    .input-register {
+      font-size: 14px; /* Ajusta el tamaño del texto */
+    }
+  
+    /* Botón de registro */
+    .btn-Register {
+      width: 70%; /* Botón más ancho pero con márgenes visibles */
+      font-size: 16px; /* Reduce el tamaño del texto */
+      padding: 10px; /* Ajusta el relleno */
+      margin-top: -10px; /* Ajusta el margen superior */
+    }
+  
+    /* Selección de idioma */
+    .select-language {
+      width: 100%; /* Ocupa todo el ancho del contenedor */
+      font-size: 14px; /* Reduce ligeramente el tamaño del texto */
+      padding: 10px; /* Reduce el relleno */
+    }
+  }
+  
