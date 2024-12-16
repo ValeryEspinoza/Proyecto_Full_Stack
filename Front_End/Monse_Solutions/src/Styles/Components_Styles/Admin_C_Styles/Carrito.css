@@ -118,14 +118,14 @@
   }
   
   .pago-opcion.activo {
-    background-color: #3498db;
+    background-color: #50C878;
     color: white;
     border-radius: 5px;
   }
   
   .pago-opcion.activo:hover {
     transform: scale(1.1);
-    background-color: #2980b9;
+    background-color: #50C878;
   }
   
   /* Botón de pago */
@@ -153,7 +153,35 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .transferencia-background{
+    background-color: #e3e3e3;
+    border-radius: 5px;
+    width:60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .transferencia-container{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #1d1d1d;
+    padding: 20px;
+    .transferencia-title{
+      text-align: center;
+    }
+    .transferencia-strong{
+      color: #27ae60;
+    }
+    input:hover{
+      color: #2ecc71;
+    }
+  }
+  .carrito-navbar{
+    width:100%
+  }
   
+    .carrito-footer{
+      width: 100%;
+    }
   /* Responsividad */
   @media (max-width: 768px) {
     .carrito-container {
@@ -186,5 +214,6 @@
     .pago-btn-container {
       margin-top: 20px;
     }
+    
   }
   

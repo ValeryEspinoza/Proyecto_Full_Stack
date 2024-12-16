@@ -3,7 +3,12 @@ a {
   text-decoration: none;
   color: #1E1E1E; /* Gris oscuro para los enlaces */
 }
+.dashboard-main{
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
 
+}
 .divDashboard{
     margin-top: -100px;
 }
@@ -113,7 +118,6 @@ a {
     background: #50C878; /* Verde para la barra deslizante */
     transition: left 0.3s ease;
 }
-
 /* Ajustes específicos para dispositivos móviles */
 @media (max-width: 768px) {
     .divDashboard {
@@ -176,3 +180,5 @@ a {
       height: 4px; /* Reducción de altura */
     }
   }
+
+

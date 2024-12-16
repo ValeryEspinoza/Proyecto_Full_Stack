@@ -81,7 +81,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://192.168.1.87',
 ]
 
-CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'Back_End.urls'
 

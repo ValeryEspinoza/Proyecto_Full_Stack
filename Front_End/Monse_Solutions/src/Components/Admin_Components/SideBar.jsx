@@ -35,8 +35,9 @@ useEffect(() => {
 }, []); // Dependencia vacía, se ejecuta solo al montar el componente
 
   const salir = async () => {
-    const response = await logout();
     
+    const response = await logout();
+
     if (response) {
       toast.success("Cerrando Sesion...");
           

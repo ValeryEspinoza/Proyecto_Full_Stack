@@ -160,7 +160,7 @@ function ServicesForm({ onSuccess }) { // Recibimos la función onSuccess
   >
     <option value="">Seleccione una categoría</option>
     {category_services.map((service) => (
-      <option value={service.category_id} key={service.category_id}>
+      <option key={service.category_id}>
         {service.name}
       </option>
     ))}

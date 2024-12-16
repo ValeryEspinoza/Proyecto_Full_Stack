@@ -6,6 +6,7 @@ const GetData = async (EndPoint) => {
         // Realiza la solicitud GET
         const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`, {
             method: "GET",
+
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
