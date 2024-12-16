@@ -26,7 +26,6 @@ function LoginForm() {
       toast.warning("Por favor ingrese su usuario y contraseña");
       return;
     }
-
     try {
       const credentials = { username: UserName, password: PassUser };
       // Llamar a login desde el contexto

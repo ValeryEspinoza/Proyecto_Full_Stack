@@ -109,6 +109,7 @@ function RegisterClienteForm() {
       console.log(        !users.find(({ email }) => email === emailUser) && 
       !users.find(({ username }) => username === userName));
       
+//Convertir a un objeto y pasarlo a PostData('api/register')
 
       // Verificar si el correo o el nombre de usuario ya existen
       if (

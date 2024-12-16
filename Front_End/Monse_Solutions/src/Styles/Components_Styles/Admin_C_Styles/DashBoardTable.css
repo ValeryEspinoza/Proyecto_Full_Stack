@@ -109,3 +109,9 @@ a {
     background: #50C878; /* Verde para la barra deslizante */
     transition: left 0.3s ease;
 }
+.dashboard-main{
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+
+}
