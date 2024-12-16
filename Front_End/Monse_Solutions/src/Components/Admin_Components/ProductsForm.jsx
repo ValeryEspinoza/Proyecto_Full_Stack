@@ -183,6 +183,7 @@ function ProductsForm({ onSuccess }) {
           <input
             type="file"
             id="imagen_url"
+
             name="imagen_url"
             accept="image/*"
             className="product-form-input"

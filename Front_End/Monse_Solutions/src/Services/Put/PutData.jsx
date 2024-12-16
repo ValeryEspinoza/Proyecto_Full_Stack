@@ -1,8 +1,7 @@
 const PutData = async (endpoint, dato, id) => {
 
 try {
-    console.log( "Endpoint y ID:", endpoint, id )
-        console.log( "Dato a enviar:", dato)
+        const token = localStorage.getItem('token_access');
     
 
     // Construye la URL con el ID
@@ -13,6 +12,7 @@ try {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json', // Indica que se está enviando un JSON
+            'Authorization': `Bearer ${token}`,  // Agrega el token en el encabezado Authorization
         },
         body: JSON.stringify(dato), // Convierte el objeto 'dato' a JSON para enviarlo en el cuerpo
     });

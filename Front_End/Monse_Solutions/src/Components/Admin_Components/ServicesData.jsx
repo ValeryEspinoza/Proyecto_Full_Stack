@@ -3,11 +3,10 @@ import "../../Styles/Components_Styles/Admin_C_Styles/ServicesData.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import GetServices from '../../Services/Get/GetServices'
 import DeleteServices from '../../Services/Delete/DeleteServices'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import EditServices from '../../Services/Put/PutServices'
+
 
 function ServicesData() {
 ////Hooks
