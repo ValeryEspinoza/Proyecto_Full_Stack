@@ -73,7 +73,7 @@ function LoginForm() {
               className="input-field"
               value={UserName}
               onChange={GetEmail}
-              placeholder="Email"
+              placeholder="UserName"
               name="email"
               id="email"
             />

@@ -219,6 +219,15 @@ class category_servicesListCreate(generics.ListCreateAPIView):
     queryset = category_services.objects.all()
     serializer_class = category_servicesSerializer
     permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        try:
+            # Procesamos la solicitud POST
+            return super().create(request, *args, **kwargs)
+        except Exception as e:
+            # Capturamos cualquier error y lo mostramos en la respuesta
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
 class category_servicesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = category_services.objects.all()
     serializer_class = category_servicesSerializer
