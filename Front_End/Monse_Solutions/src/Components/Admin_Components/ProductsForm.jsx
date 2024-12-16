@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../Styles/Components_Styles/Admin_C_Styles/ProductsForm.css';
 import Amazon from '../../Services/Post/Amazon';
 import postData from '../../Services/Post/PostData';
+import GetData from '../../Services/Get/GetData';
 
 const ConvertirNombreImagen = (nombreArchivo) => {
   const generarCadenaAleatoria = (longitudMinima = 20) => {
@@ -33,29 +34,21 @@ function ProductsForm({ onSuccess }) {
 
   // Obtener subcategorías desde el backend
   useEffect(() => {
-    const fetchSubcategories = async () => {
-      try {
-        const response = await fetch('/sub_categories_products/', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`, // Token de autenticación, si es necesario
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Error al obtener las subcategorías");
-        }
-        const data = await response.json();
-        setSubcategories(data);
-      } catch (error) {
-        console.error("Error al cargar las subcategorías:", error);
-      }
+    
+    const obtenerSubcaterias = async () => {
+      const response = await GetData('sub_categories_products')
+      console.log(response);
+      setSubcategories(response)
+      
     };
-
-    fetchSubcategories();
+    obtenerSubcaterias()
+ 
   }, []);
 
   // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+  
 
     if (files && files[0]) {
       setImageFile(files[0]); // Guardar archivo para subir
@@ -177,7 +170,7 @@ function ProductsForm({ onSuccess }) {
           >
             <option value="">Selecciona una subcategoría</option>
             {subcategories.map((subcategory) => (
-              <option key={subcategory.sub_category_product_id} value={subcategory.sub_category_product_id}>
+              <option value={subcategory.sub_category_product_id} key={subcategory.sub_category_product_id} >
                 {subcategory.name}
               </option>
             ))}

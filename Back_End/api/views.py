@@ -197,11 +197,11 @@ class prioritiesDetail(generics.RetrieveUpdateDestroyAPIView):
 class category_servicesListCreate(generics.ListCreateAPIView):
     queryset = category_services.objects.all()
     serializer_class = category_servicesSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    permission_classes = [AllowAny]
 class category_servicesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = category_services.objects.all()
     serializer_class = category_servicesSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador] 
+    permission_classes = [AllowAny]
     
 class areasListCreate(generics.ListCreateAPIView):
     queryset = areas.objects.all()

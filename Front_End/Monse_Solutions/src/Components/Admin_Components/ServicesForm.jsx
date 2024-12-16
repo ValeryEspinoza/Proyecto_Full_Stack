@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Import único de React y hooks
 import '../../Styles/Components_Styles/Admin_C_Styles/ServicesForm.css';
 import SendServices from '../../Services/Post/PostServices';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GetData from '../../Services/Get/GetData';
+import postData from '../../Services/Post/PostData';
+
 
 
 function ServicesForm({ onSuccess }) { // Recibimos la función onSuccess
@@ -11,6 +14,21 @@ function ServicesForm({ onSuccess }) { // Recibimos la función onSuccess
   const [imagenUrl, setImagenUrl] = useState(null); // Mantener el archivo
   const [category, setCategory] = useState("");
   const [errors, setErrors] = useState({}); // Estado para errores
+  const [category_services, setcategory_services] = useState([]); // Estado para categorías
+
+
+    // Obtener categorias desde el backend
+    useEffect(() => {
+    
+      const obtenercategory_services = async () => {
+        const response = await GetData('category_services')
+        console.log(response);
+        setcategory_services(response)
+        
+      };
+      obtenercategory_services()
+   
+    }, []);
 
 
   // Función para generar una cadena aleatoria
@@ -129,24 +147,27 @@ function ServicesForm({ onSuccess }) { // Recibimos la función onSuccess
         </div>
 
         <div className="service-form-group">
-          <label htmlFor="category" className="service-form-label">Categoría:</label>
-          <select
-            id="category"
-            className="service-form-select"
-            value={category}
-            onChange={(e) => {
-              setCategory(parseInt(e.target.value, 10));
-              setErrors((prev) => ({ ...prev, category: "" })); // Limpia el error al cambiar el select
-            }}
-            required
-          >
-            <option value="">Seleccione una categoría</option>
-            <option value={1}>Categoría 1</option>
-            <option value={2}>Categoría 2</option>
-            <option value={3}>Categoría 3</option>
-          </select>
-          {errors.category && <span className="error" style={{ color: 'red' }}>{errors.category}</span>}
-        </div>
+  <label htmlFor="category" className="service-form-label">Categoría:</label>
+  <select
+    id="category"
+    className="service-form-select"
+    value={category}
+    onChange={(e) => {
+      setCategory(parseInt(e.target.value, 10));
+      setErrors((prev) => ({ ...prev, category: "" })); // Limpia el error al cambiar el select
+    }}
+    required
+  >
+    <option value="">Seleccione una categoría</option>
+    {category_services.map((service) => (
+      <option value={service.category_id} key={service.category_id}>
+        {service.name}
+      </option>
+    ))}
+  </select>
+  {errors.category && <span className="error" style={{ color: 'red' }}>{errors.category}</span>}
+</div>
+
 
         <div className="service-form-group">
           <label htmlFor="imagen_url" className="service-form-label">Imagen (URL o archivo):</label>

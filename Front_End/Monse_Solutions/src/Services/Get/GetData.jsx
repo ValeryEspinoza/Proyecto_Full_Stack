@@ -33,7 +33,7 @@ const GetData = async (EndPoint) => {
 
 export default GetData;
 
-/*
+/*}}
 // GetData.jsx
 const GetData = async () => {
   try {
