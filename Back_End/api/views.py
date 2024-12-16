@@ -8,9 +8,15 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from django.http import JsonResponse
-import datetime
+from django.db.models import Count
+from django.contrib.auth.models import User
+from django.deb.models.functions import TruncMonth
+from datetime import datetime, timedelta
+
 import re
+
 
 
 
@@ -608,16 +614,32 @@ class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
     permission_classes = [AllowAny]
-  
-  
-class Sells2024ListCreate(generics.ListCreateAPIView):
-    serializer_class = sellsSerializer
-    permission_classes = [AllowAny]
 
-    def get_queryset(self):
-        # Filtra las ventas donde la fecha de la venta esté en 2024
-        return sells.objects.filter(sell_date__year=2024)
- 
+
+def clientes_registrados_view(request):
+    try:
+        one_year_ago = datetime.now() - timedelta(days=365)
+
+    
+        data = (
+            User.objects.filter(date_joined__gte=one_year_ago)
+            .annotate(month=TruncMonth('date_joined'))
+                  .values('month')
+                  .annotate(count=Count('id'))
+                  .order_by('month')
+            )
+        if not data:
+            print("No data found to request")
+            return JsonResponse({'meses':[], 'clientes': []})
+    
+        meses = [entry['month'].strftime('%B %Y') for entry in data]
+        clientes = [entry['count'] for entry in data]
+        return JsonResponse({'meses': meses, 'clientes': clientes})
+
+    except Exception as e:
+        print(f"Error in clientes_registrados_view: {e}")
+        return JsonResponse({'error':str(e)}, status=500)
+
  
 """ Vista para reestablecer la contraseña
 from django.http import JsonResponse

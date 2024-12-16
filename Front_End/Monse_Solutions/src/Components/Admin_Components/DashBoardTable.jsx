@@ -1,6 +1,9 @@
 import React from 'react'
 import '../../Styles/Components_Styles/Admin_C_Styles/DashBoardTable.css'
-/*import SalesChart from "../Gráficos_Components/SalesChart";*/
+import SalesChart from "../Gráficos_Components/SalesChart"
+import ProductSalesChart from "../Gráficos_Components/ProductsSalesCharts"
+import ClientsRegisteredChart from '../Gráficos_Components/ClientsRegisteredChart'
+
 
 function DashBoardTable() {
   return (
@@ -18,23 +21,28 @@ function DashBoardTable() {
     <a className="dashboard-hero-tab" href="#tab-angular">Ventas por producto</a>
     <a className="dashboard-hero-tab" href="#tab-other">Crecimiento de Clientes</a>
     <span className="dashboard-hero-tab-slider"></span>
+    <br />
   </div>
 </section>
-
+<br />
 <main className="dashboard-main">
   <section className="dashboard-slide" id="tab-es6">
     <h1 className='SectionTitles'>Ventas 2024</h1>
     {/*<SalesChart dataEndpoint="sells/2024" />*/}
+    <SalesChart className="charts"/>
   </section>
 
   <section className="dashboard-slide" id="tab-angular">
     <h1 className='SectionTitles'>Ventas por producto</h1>
-    <h3>something about angular</h3>
+
+    <ProductSalesChart className="charts"/>      
   </section>
 
   <section className="dashboard-slide" id="tab-other">
     <h1 className='SectionTitles'>Crecimiento de Clientes</h1>
-    <h3>something about other</h3>
+
+    <ClientsRegisteredChart className="charts"/>
+
   </section>
 
 </main>

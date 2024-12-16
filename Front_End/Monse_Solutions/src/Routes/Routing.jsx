@@ -47,10 +47,6 @@ import PaypalForm from '../Components/Admin_Components/PaypalForm'
 import Carrito from '../Components/Admin_Components/Carrito'
 
 
-import AuthProvider from '../Context/AuthContext'
-import ProtectedRoutes from './ProtectedRoutes'
-
-
 function Routing() {
   return (
     <Router>
@@ -67,11 +63,11 @@ function Routing() {
       <Route path="/About" element={<AboutUs />} />
       <Route path="/Formularios" element={<Formularios />} />
       <Route path="/ServiciosAdmi" element={<ProtectedRoute component={ServiciosAdmi} />} />
-      <Route path="/DashBoard" element={<ProtectedRoute component={DashBoard} />} />
+      <Route path="/DashBoard" element={<DashBoard/>} />
       <Route path='/Tasks' element={<ProtectedRoute component={Tasks} />} />
       <Route path="/Events" element={<ProtectedRoute component={Events} />} />
       <Route path="/Calendar" element={<ProtectedRoute component={Calendar} />} />
-      <Route path="/Products" element={<ProtectedRoute component={Products} />} />
+      <Route path="/Products" element={<Products/>} />
       <Route path="/Users" element={<ProtectedRoute component={Users} />} />
       <Route path="/Settings" element={<ProtectedRoute component={Settings} />} />
       <Route path="/Documentation" element={<ProtectedRoute component={Documentation} />} />
@@ -87,12 +83,12 @@ function Routing() {
       <Route path="/ArticleColor" element={<ArticleColor />} />
 
       <Route path="/ServicesTable" element={<ProtectedRoute component={ServicesTable} />} />
-      <Route path="/ProductsTable" element={<ProtectedRoute component={ProductsTable} />} />
+      <Route path="/ProductsTable" element={<ProductsTable/>} />
       <Route path="/UsersTable" element={<ProtectedRoute component={UsersTable} />} />
       <Route path="/TasksAdminData" element={<ProtectedRoute component={TasksAdminData} />} />
       <Route path="/EventsAdminData" element={<ProtectedRoute component={EventsAdminData} />} />
       <Route path="/PaypalForm" element={<ProtectedRoute component={PaypalForm} />} />
-      <Route path='/Carrito' element={<ProtectedRoute component={Carrito} />} />
+      <Route path='/Carrito' element={<Carrito/>} />
 
       <Route path="/ProfileClient" element={<ProfileClient />} />
       
