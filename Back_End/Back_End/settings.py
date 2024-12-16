@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dvn4_%k2zs-(#as$j+ml&zl=0@_l_wp_gdcv39##)_3_mn&jew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.87','http://localhost:3000', '192.168.88.209']
+ALLOWED_HOSTS = ['http://localhost:', '192.168.1.87']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    
 ]
 
 
@@ -49,22 +50,11 @@ INSTALLED_APPS = [
 # Configuración de Django REST Framework para usar JWT
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Asegúrate de que esta clase está aquí
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # Requiere autenticación para acceder a las vistas
     ],
-    'DEFAULT_AUTHENTICATION_CLASSES': []
-
-}
-
-
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Tiempo de expiración del token de acceso
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # Tiempo de expiración del token de actualización
-    'ROTATE_REFRESH_TOKENS': True,                    # Permite la rotación de tokens de actualización
-    'BLACKLIST_AFTER_ROTATION': True,                 # Marca tokens de actualización como inactivos después de su uso
 }
 
 
@@ -72,21 +62,18 @@ SIMPLE_JWT = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Este es necesario para la autenticación basada en usuario
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-'http://localhost:5173', 'https://192.168.1.87', 'http://192.168.88.209',
+'http://localhost:5173', 'http://192.168.1.87',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -174,7 +161,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 from datetime import timedelta
-SECURE_COOKIE = True  # Ensure this is set if using HTTPS
+
 CSRF_COOKIE_SECURE = True  # Ensure this is set if using HTTPS
 SIMPLE_JWT = {
   'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),

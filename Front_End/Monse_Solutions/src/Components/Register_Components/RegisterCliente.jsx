@@ -229,16 +229,6 @@ function RegisterClienteForm() {
           />
         </div>
 
-        <select 
-          className="select-language"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option value={0} disabled>Choose a language</option>
-          <option value={1}>English</option>
-          <option value={2}>Español</option>
-          <option value={3}>Français</option>
-        </select>
 
         <br /><br />
         <button onClick={handleRegister} className="btn-Register" disabled={isSubmitting}>

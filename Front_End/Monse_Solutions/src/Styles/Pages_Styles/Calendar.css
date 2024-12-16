@@ -3,5 +3,17 @@
   display: grid;
   grid-template-columns: 5% 95%; /* Sidebar ocupa el 20%, BodyContent ocupa el 80% */
   height: 100vh; /* Ocupa toda la pantalla */
-  margin: 5px;
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+  .contenedoresPaginas {
+    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-rows: auto auto; /* Sidebar y BodyContent en filas */
+  }
+
+ .calendar-container{
+  margin-left: -10%;
+ } 
+
 }

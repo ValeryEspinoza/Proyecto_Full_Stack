@@ -1,13 +1,49 @@
 import React from 'react'
 import '../../Styles/Components_Styles/Admin_C_Styles/SideBar.css'
 import 'font-awesome/css/font-awesome.min.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { AuthContext } from '../../Context/AuthContext';
+import { useContext, useEffect } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 function SideBar() {
+const {logout} = useContext(AuthContext);
+const [nombre, SetNombre]= useState("")
+const [apellido, SetApellido]= useState("")
 
-  
+
+useEffect(() => {
+  // Recuperamos el objeto almacenado en localStorage
+  const storedUser = localStorage.getItem('userData');
+
+  if (storedUser) {
+    // Convertimos la cadena JSON de vuelta a un objeto
+    const userObj = JSON.parse(storedUser);
+    console.log(userObj); // { name: 'John Doe', email: 'john.doe@example.com', role: 'admin' }
+
+    // Asignamos los valores a los estados
+    SetNombre(userObj.name);  // Asegúrate de que el nombre de la propiedad sea correcto
+    SetApellido(userObj.last_Name); // Asegúrate de que el nombre de la propiedad sea correcto
+  } else {
+    console.log('No se encontraron datos de usuario en localStorage');
+  }
+}, []); // Dependencia vacía, se ejecuta solo al montar el componente
+
+  const salir = async () => {
+    const response = await logout();
+    
+    if (response) {
+      toast.success("Cerrando Sesion...");
+          
+    }else{
+      toast.error("Error al cerrar sesión");
+    }
+  };
     return (
       <div>
         <body className="bodySideBar">
@@ -24,7 +60,7 @@ function SideBar() {
                     alt="Valery Espinoza"
                     className="nav-img"
                   />
-                  <span className="nav-text">Valery Espinoza</span>
+                  <span className="nav-text">{nombre+ " "+apellido}</span>
                 </Link>
               </li>
               <li className="elementLiTE">
@@ -75,15 +111,19 @@ function SideBar() {
                   <span className="nav-text">Documentation</span>
                 </Link>
               </li>
+
+
             </ul>
+
   
             <ul className="logout">
-              <li className="logoutLi">
-                <Link to="/">
-                  <i className="fa fa-power-off fa-2x"></i>
-                  <span className="nav-text">Logout</span>
+
+              <button onClick={salir} className="elementLiTE" >
+                <Link >
+                <i className="fa fa-power-off fa-2x"></i>
+                <span className="nav-text">LogOut</span>
                 </Link>
-              </li>
+              </button>
             </ul>
           </nav>
         </body>

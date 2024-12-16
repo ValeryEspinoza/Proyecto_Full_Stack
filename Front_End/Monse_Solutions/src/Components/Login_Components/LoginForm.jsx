@@ -1,20 +1,17 @@
-// LoginForm.js
-
 import React, { useState, useContext } from 'react';
 import "../../Styles/Components_Styles/Login_Styles/LoginForm.css";
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import postData from '../../Services/Post/PostData'; // Servicio POST para enviar credenciales
-import AuthContext from '../../Context/AuthContext';
-import iconEmail from '../../Img/Components_Img/icon2_email.png'
+import { AuthContext } from '../../Context/AuthContext';
+import postData from '../../Services/Post/PostData';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginForm() {
   const [PassUser, SetPassUser] = useState("");
   const [UserName, SetUserName] = useState("");
-  const { login } = useContext(AuthContext); // Obtener la función login del contexto
   const navigate = useNavigate();
+  const { login} = useContext(AuthContext);
 
-  // Obtener valores de input
   function GetEmail(input) {
     SetUserName(input.target.value);
   }
@@ -24,56 +21,43 @@ function LoginForm() {
   }
 
   // Botón de login
-  async function Login() {
+  async function Ingresar() {
     if (!UserName || !PassUser) {
-      Swal.fire({
-        title: "Campos Vacíos",
-        text: "Por favor ingrese su correo y contraseña",
-        icon: "warning",
-      });
+      toast.warning("Por favor ingrese su usuario y contraseña");
       return;
     }
     try {
-      // Llamada al servicio para obtener el token
-      const data = { username: UserName, password: PassUser };
-      const response = await postData('token', data); // Suponiendo que el endpoint para obtener el token es /api/token/
-      console.log(response);
+      const credentials = { username: UserName, password: PassUser };
+      // Llamar a login desde el contexto
+      const response = await login(credentials);
+      const data = response.data
+      const grupo = data.groups
 
-      if (response) {
-        // Llamar la función login del contexto para almacenar el token
-        const token = response.access;
-        localStorage.setItem("token", token);
-        login(token); // Guardamos el token en el contexto y localStorage
 
-        // Guardar el token en el localStorage
-        localStorage.setItem("token", response.access);
+      if (response.success) {
+            if (grupo[0]==1) {
+              toast.success("Ingreso Exitoso! Bienvenido a Monse Solutions");
 
-        Swal.fire({
-          title: "Ingreso Exitoso!",
-          text: "Bienvenido a Monse Solutions",
-          icon: "success",
-        });
+              setTimeout(() => {
+                navigate("/Dashboard");
+              }, 1500);
+            }else{
+              toast.success("Ingreso Exitoso! Bienvenido a User Profile");
 
-        // Redirigir a la página principal después de un breve retraso
-        setTimeout(() => {
-          navigate("/Dashboard");
-        }, 1500);
+              setTimeout(() => {
+                navigate("/ProfileClient");
+              }, 1500);
+            }
       } else {
-        Swal.fire({
-          title: "Ingreso Fallido",
-          text: "Correo o contraseña incorrectos",
-          icon: "error",
-        });
+        toast.error(response.message || 'Error en el login');
       }
+
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: "Ocurrió un error al intentar iniciar sesión",
-        icon: "error",
-      });
-      console.error("Error de login:", error);
+      toast.error("Ocurrió un error al intentar iniciar sesión");
     }
+
   }
+
 
   return (
     <div className="bodyLogin">
@@ -106,9 +90,12 @@ function LoginForm() {
             />
           </div>
 
-          <button onClick={Login} className="btn-login">Log In</button>
+          <button onClick={Ingresar} className="btn-login">Log In</button>
+
         </div>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }

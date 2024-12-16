@@ -1,14 +1,16 @@
 
+
 const GetData = async (EndPoint) => {
     try {
-        console.log("Endpoint:", EndPoint);
-
+      const token = localStorage.getItem('accessToken');
         // Realiza la solicitud GET
         const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`, {
             method: "GET",
 
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+                
             },
         });
 
@@ -34,7 +36,7 @@ const GetData = async (EndPoint) => {
 
 export default GetData;
 
-/*
+/*}}
 // GetData.jsx
 const GetData = async () => {
   try {

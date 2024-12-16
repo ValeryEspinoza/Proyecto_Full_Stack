@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from .views import HorariosDisponibles
 from .views import UserListView
+from .views import ProtectedView
+from .views import UserProfileView
+
 
 
 from rest_framework_simplejwt.views import (
@@ -15,7 +18,8 @@ urlpatterns = [
 #esta es la URL del login que devuelve el token*****************
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  # Para obtener token de acceso y refresco
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token de acceso
-    
+    path('user/profile/', UserProfileView.as_view(), name='user-profile'),
+    path('api/protected/', ProtectedView.as_view(), name='protected_view'),
     
     path('register/', views.UserListCreate.as_view(), name='user-list'), 
     path('register/<int:pk>/', views.UserDetail.as_view(), name='user-detail'),    
@@ -156,8 +160,7 @@ urlpatterns = [
     path('appointments/', HorariosDisponibles.as_view(), name='horarios_disponibles'),
     path('appointments/check', HorariosDisponibles.as_view(), name='check_email_exists'),  # Ruta para la verificación por email
     
-    path('sells', sells2024ListCreate.as_view(), name='sells2024'),  # Este es el endpoint para ventas de 2024
-    path('clientesregistrados', clientes_registrados_view, name='clientesregistrados'),
+ 
 ]
 
    

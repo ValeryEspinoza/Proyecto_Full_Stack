@@ -1,9 +1,14 @@
+   
 async function DeleteData(EndPoint, id) {
     try {
+       
+        let token = localStorage.getItem('accessToken');
+        
         const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/${id}/`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         });
 
