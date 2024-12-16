@@ -1,7 +1,7 @@
 
 async function GetClients() {
     try {
-        const response = await fetch(`http://192.168.88.209:8000/api/clients/`);
+        const response = await fetch(`http://192.168.1.87:8000/api/clients/`);
         /*
         const token = "tu_token_aqui";  // Asegúrate de obtener el token de algún lugar (localStorage, Redux, etc.)
         

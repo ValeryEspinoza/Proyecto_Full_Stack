@@ -1,10 +1,28 @@
 import React from 'react'
 import '../../Styles/Components_Styles/ProfileClienteStyles/ProfileClientContent.css'
 import "toastify-js/src/toastify.css";
+import { useState } from 'react';
+import { AuthContext } from '../../Context/AuthContext';
+import { useContext, useEffect } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProfileClientContent() {
+const {logout} = useContext(AuthContext);
+
+    const salir = async () => {
+      const response = await logout();
+      
+      if (response) {
+        toast.success("Cerrando Sesion...");
+            
+      }else{
+        toast.error("Error al cerrar sesión");
+      }
+    };
   return (
     <div className='divProfileClient'>
+      <button onClick={salir}>Logout</button>
   {/* Introducción del formulario */}
     <h2 className='titleShedule'>Schedule your appointment<br />to visit your project</h2>
     <div className='textShedule'>
