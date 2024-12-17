@@ -5,6 +5,7 @@ import postData from '../../Services/Post/PostData';
 import GetData from '../../Services/Get/GetData';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../../Styles/toastStyles.css'
 
 const ConvertirNombreImagen = (nombreArchivo) => {
   const generarCadenaAleatoria = (longitudMinima = 20) => {
@@ -93,7 +94,13 @@ function ServicesForm({ onSuccess }) {
       // Enviar formulario con la URL de la imagen
       const dataToSend = { ...formData, imagen_url: imagenUrl };
       await postData('services', dataToSend);
-      onSuccess("¡Servicio enviado exitosamente!");
+          Toastify({
+            text: `¡Servicio enviado exitosamente!`,
+            duration: 3500,
+            gravity: 'top',
+            position: 'center',
+            className: 'toastsuccess',
+            }).showToast();
       setIsSubmitted(true);
 
       // Limpiar formulario
@@ -102,7 +109,14 @@ function ServicesForm({ onSuccess }) {
       setErrors({});
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
-      toast.error("Error al enviar el servicio. Inténtelo de nuevo.");
+        Toastify({
+          text: 'Error al enviar el servicio. Inténtelo de nuevo',
+          duration: 3000,
+          gravity: 'top',
+          position: 'center',
+          close: true,
+          className: 'toast-error',
+        }).showToast();
     } finally {
       setIsUploading(false);
     }
