@@ -1,3 +1,93 @@
+# Plataforma Web para Monse Solutions
+
+## Información General
+
+**Nombre del Proyecto:** Plataforma Web para Monse Solutions – Gestión de Remodelación y Acabados  
+---
+## Introducción
+Monse Solutions es una empresa dedicada a **remodelaciones y acabados**, enfocada en transformar espacios con calidad e innovación. Esta plataforma tiene como objetivo mejorar la **gestión interna de proyectos**, fortalecer la comunicación con clientes y ampliar su presencia en línea.
+---
+## Problema a Solucionar
+
+Monse Solutions necesita una solución digital que permita:
+- Gestionar proyectos de manera organizada.
+- Mejorar la comunicación entre colaboradores y clientes.
+- Optimizar procesos operativos.
+---
+## Objetivo General
+Desarrollar una plataforma web moderna para la gestión interna de proyectos y comunicación con clientes, además de ofrecer información sobre los servicios de Monse Solutions.
+---
+## Objetivos Específicos
+
+1. **Exposición de la Marca:** Mostrar servicios, valores y filosofía empresarial.
+2. **Aumentar la Interacción:** Facilitar comunicación entre clientes y staff mediante chat y agenda de citas.
+3. **Optimizar la Gestión de Proyectos:** Mejorar el control administrativo y seguimiento en tiempo real.
+
+---
+
+## Alcance del Proyecto
+
+La plataforma tendrá dos enfoques principales:
+
+1. **Gestión Interna de Proyectos:**
+   - Asignación y seguimiento de tareas.
+   - Calendarios, recordatorios y proformas.
+   - Dashboard administrativo.
+
+2. **Portal para Clientes:**
+   - Consulta del estado de proyectos.
+   - Comunicación en tiempo real (chat).
+   - Tienda virtual para adquisición de productos.
+
+---
+
+## Funcionalidades Principales
+
+1. **Página Principal (Home):**
+   - Barra de navegación.
+   - Información de servicios.
+   - Testimonios de clientes.
+   - ChatBot con respuestas predeterminadas.
+
+2. **Servicios:**
+   - Descripción detallada y ejemplos de trabajos anteriores.
+
+3. **Tienda Virtual:**
+   - Venta de kits y productos especializados.
+   - Integración con el blog.
+
+4. **Dashboard Administrativo:**
+   - Gestión de tareas, eventos y comunicación interna.
+
+5. **Agenda de Visitas/Reuniones:**
+   - Calendario interactivo con disponibilidad de citas.
+
+6. **Gestión de Usuarios:**
+   - Registro, autenticación y control de accesos.
+
+7. **Blog:**
+   - Recomendaciones sobre mantenimiento y uso de productos.
+
+8. **Traducción Automática:**
+   - Uso de Google Translate para accesibilidad multilingüe.
+
+9. **Seguridad y Almacenamiento:**
+   - Implementación de Amazon Web Services (AWS).
+   - Cumplimiento con GDPR mediante cookies.
+
+---
+
+## Estructura de Archivos
+
+```plaintext
+
+├── frontend/                 # Desarrollo Frontend
+├── backend/                  # Desarrollo Backend
+├── database/                 # Modelado y scripts de la base de datos
+├── docs/                     # Documentación del proyecto
+└── README.md                 # Este archivo
+
+
 # Configuración Inicial
 
 ## BACK END
