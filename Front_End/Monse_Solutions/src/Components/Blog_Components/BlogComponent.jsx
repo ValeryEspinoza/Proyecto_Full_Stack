@@ -86,7 +86,7 @@ function Blog() {
             <h3 className='descBlog'>{t('descBlog2')}</h3>
             <p className='textBlog'>
             {t('textBlog2')}</p>
-            <Link to="/Contact">
+            <Link to="/ArticleColor">
               <button className="btnLeerMas">{t('cardBlogLink')}</button>
             </Link>
           </div>
@@ -105,7 +105,7 @@ function Blog() {
             <h2 className='titleBlog'>{t('titleBlog3')}</h2>
             <h3 className='descBlog'>{t('descBlog3')}</h3>
             <p className='textBlog'> {t('textBlog3')} </p>
-            <Link to="/Contact">
+            <Link to="/ArticleCloset">
               <button className="btnLeerMas">{t('cardBlogLink')}</button>
             </Link>
           </div>

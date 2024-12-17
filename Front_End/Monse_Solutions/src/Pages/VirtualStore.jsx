@@ -1,13 +1,14 @@
 import React from 'react'
 import NavBar from '../Components/General_Components/NavBar'
+import StoreNavbar from '../Components/Store_Components/StoreNavbar'
 import Footer from '../Components/General_Components/Footer'
-import VirtualStore_Cards_Components from '../Components/VirtualStore_Components/VirtualStore_Cards_Components'
+import Store from '../Components/Store_Components/Store_Cards'
 
 function VirtualStore() {
   return (
     <div>
-      <NavBar/>
-      <VirtualStore_Cards_Components/>
+      <StoreNavbar/>
+      <Store/>
       <Footer/>
     </div>
   )

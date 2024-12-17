@@ -31,7 +31,7 @@ const Reviews = () => {
       ) : (
         reviews.map((review) => (
           <ReviewsCard
-            key={review.id} // Asegúrate de que cada review tenga un id único.
+            key={review.id} //Asegúrate de que cada review tenga un id único.
             review={review.review}
             date={review.date}
             rating={review.rating}

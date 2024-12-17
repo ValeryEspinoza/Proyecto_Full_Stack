@@ -1,0 +1,218 @@
+.color-container {
+    font-family: 'Centhury', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 900px;
+}
+.color-content{
+    text-align: justify;
+}
+hr {
+    border: none;
+    border-top: 2.5px solid #50C878;
+    margin: 20px 0;
+  }
+.color-header {
+    background-image: url(../../../Img/Components_Img/art_closet.png);
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+}
+
+.color-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.color-title {
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    z-index: 1;
+    position: relative;
+    color: white;
+}
+
+.color-intro {
+    background-color: #F1F1F1;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.color-desc {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Animación para el botón */
+@keyframes zoomEffect {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.color-cta .color-btn-container {
+    text-align: center;
+}
+
+.color-cta .color-btn {
+    background-color: #50C878;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.color-cta .color-btn:hover {
+    background-color: #3e8e41;
+    transform: scale(1.05);
+}
+.color-btn:first-of-type {
+    animation: zoomEffect 2s infinite ease-in-out;
+    display: inline-block; /* Asegura que las transformaciones funcionen */
+  }
+.color-what-is, .color-key-areas, .color-benefits {
+    margin: 20px 0;
+}
+
+.color-subtitle {
+    font-size: 2.5em;
+    color: #50C878;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.color-subtitle2 {
+    font-size: 2.2em;
+    color: #333333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.color-columns {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+}
+
+.left-column, .right-column {
+    width: 48%; /* Ajusta el ancho de cada columna */
+}
+
+.sub-list {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.sub-list li::before {
+    font-weight: bold; /* Números en negrita */
+}
+
+.color-tip {
+    font-style: normal;
+}
+
+.highlight {
+    font-weight: bold; 
+    color: #50C878; 
+    font-style: normal;
+}
+
+.right-column ol {
+    list-style-position: inside;
+}
+
+.color-key-areas ol {
+    padding-left: 20px;
+}
+.color-cta-title{
+    font-weight: bold;
+}
+.cta-button2 {
+    background-color: #ffffff;
+    color: #363636;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .cta-button2:hover {
+    background-color: #3e8e41;
+    transform: scale(1.05);
+  }
+
+/* Media querie */
+@media (max-width: 768px) {
+    .color-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .color-header {
+        height: 250px;
+        background-position: center;
+    }
+
+    .color-title {
+        font-size: 2em;
+    }
+
+    .color-intro {
+        padding: 20px;
+    }
+
+    .color-desc {
+        font-size: 1em;
+    }
+
+    .color-cta .color-btn {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    .color-subtitle {
+        font-size: 2em;
+    }
+
+    .color-subtitle2 {
+        font-size: 2em;
+    }
+
+    .color-key-areas ol {
+        padding-left: 20px;
+    }
+
+    .color-cta {
+        padding: 20px;
+    }
+
+    .color-cta .color-btn {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+}

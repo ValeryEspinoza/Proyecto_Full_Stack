@@ -1,99 +1,105 @@
+/* ============================= */
+/* Sección: Contenedor principal */
+/* ============================= */
 .services-container {
-    padding: 20px;
-    text-align: center;
-    background-color: #ffffff; 
-  }
-  
-.Titulo_Sevices {
-    font-size: 36px;
-    margin-bottom: 5px;
-  }
-  
-  .subheading {
-    font-size: 18px;
-    color: #000000;
-    margin-bottom: 20px;
-  }
-  
-  .services_grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-left: 8%;
-
+  padding: 20px;
+  text-align: center;
+  background-color: #ffffff; 
 }
-  
+
+/* ========================== */
+/* Sección: Títulos y textos */
+/* ========================== */
+h2.Titulo_Services {
+  font-size: 45px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #50C878;
+}
+
+.subheading {
+  font-size: 18px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* =========================== */
+/* Sección: Diseño de servicios */
+/* =========================== */
+.services_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-left: 8%;
+}
+
 .services_card {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: rgba(39, 39, 39, 0.5) 0px 22px 70px 4px;
-    width: 280px;
-    text-align: left;
-  }
-
-  .services_image {  
-    height: 150px;
-    background-color: #ddd; /* Color de fondo temporal */
-    border-radius: 4px;
-    margin-bottom: 15px;
-    width: 260px;
-    height: 197px
-  }
-  
-  .Nombre_Services {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .Descripcion_Services {
-    font-size: 14px;
-    color: #000000;
-  }
-
-
-  @media screen and (min-width: 200px) and (max-width: 700px) {
-    .services_grid {
-        grid-template-columns: repeat(1, 1fr);
-        gap : 20px;
-        margin-left: 20%;
-    }
-
-    .service-card {
-        width: 220px; /* Reducir el ancho de las tarjetas */
-    }
-
-    .Titulo_Sevices {
-        font-size: 30px; /* Reducir tamaño de título */
-    }
-
-    .subheading {
-        font-size: 16px; /* Reducir tamaño del subheading */
-    }
-
-    .service-image {
-        height: 150px;
-        border-radius: 4px;
-        margin-bottom: 15px;
-        width: 20%;
-      }
+  background-color: #fff;
+  padding: 10px; /* Aplica padding en todos los lados */
+  border-radius: 8px;
+  box-shadow: rgba(39, 39, 39, 0.2) 0px 22px 70px 4px;
+  width: 280px;
+  text-align: left;
+  box-sizing: border-box; /* Asegura que el padding se incluya dentro de la width/height */
 }
 
-/* Para pantallas entre 768px y 1024px (por ejemplo, tabletas) */
-@media screen and (min-width: 700px) and (max-width: 1000px) {
-    .services_grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
+.services_image {  
+  height: 150px;
+  background-color: #ddd; /* Color de fondo temporal */
+  border-radius: 4px;
+  margin-bottom: 15px;
+  width: 260px;
+  height: 197px;
+}
 
-    .service-card {
-        width: 220px; /* Reducir el ancho de las tarjetas */
-    }
+.Nombre_Services {
+  font-size: 23px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 
-    .Titulo_Sevices {
-        font-size: 26px; /* Reducir tamaño de título */
-    }
+.Descripcion_Services {
+  font-size: 14px;
+  color: #000000;
+}
 
-    .subheading {
-        font-size: 14px; /* Reducir tamaño del subheading */
-    }
+/* ============================= */
+/* Sección: Responsivo (media query) */
+/* ============================= */
+@media (max-width: 768px) { /* Cambia el número según la resolución deseada */
+  .services-container {
+    padding: 10px; /* Ajusta el padding para dispositivos móviles */
+    text-align: left; /* Cambia a texto alineado a la izquierda */
+  }
+
+  h2.Titulo_Services {
+    font-size: 30px; /* Redimensiona el título */
+    text-align: center;
+  }
+
+  .subheading {
+    font-size: 16px; /* Ajusta el tamaño del texto */
+  }
+
+  .services_grid {
+    grid-template-columns: 1fr; /* Una columna en dispositivos pequeños */
+    margin-left: 0; /* Cero márgenes */
+  }
+
+  .services_card {
+    width: 80%; /* Ancho total en dispositivos móviles */
+    margin: 5px auto; /* Centrado horizontal */
+  }
+
+  .services_image {
+    width: 100%; /* Ajusta el ancho */
+    height: auto; /* Mantén la proporción de la imagen */
+  }
+
+  .Nombre_Services {
+    font-size: 18px; /* Ajusta el tamaño del texto */
+  }
+
+  .Descripcion_Services {
+    font-size: 12px; /* Ajusta el tamaño del texto */
+  }
 }

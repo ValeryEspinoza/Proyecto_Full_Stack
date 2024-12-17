@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
 import postData from '../../Services/Post/PostData';
 import GetData from '../../Services/Get/GetData';
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+import '../../Styles/toastStyles.css'
 
 function RegisterClienteForm() {
   const [cedula, setCedula] = useState("");
@@ -14,7 +17,6 @@ function RegisterClienteForm() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [language, setLanguage] = useState(1);
   const [role, setRole] = useState("cliente");
   const [isSuperUser, setIsSuperUser] = useState(false);
   const [active, setActive] = useState(true);
@@ -49,45 +51,77 @@ function RegisterClienteForm() {
 
           setNames(concatenateNames(firstName, secondName));
           setLastNames(concatenateNames(firstLastName, secondLastName));
-
-          toast.success("Cédula encontrada y datos completados automáticamente");
+          Toastify({
+            text: `Cédula encontrada y datos completados automáticamente`,
+            duration: 3500,
+            gravity: 'top',
+            position: 'center',
+            className: 'toastsuccess',
+          }).showToast();
         } else {
-          toast.error("No se encontró un usuario con esa cédula.");
+          showToastError(`No se encontró un usuario con esa cédula`);
         }
       } catch (error) {
-        toast.error(`Error al obtener los datos: ${error.message}`);
+        showToastError(`Error al obtener los datos`);
       }
     }
   };
-
+// Función auxiliar para mostrar Toastify
+const showToastError = (message) => {
+  Toastify({
+    text: message,
+    duration: 3000,
+    gravity: 'top',
+    position: 'center',
+    className: 'toast-error',
+  }).showToast();
+};
   // Validación del formulario
-  const validateForm = () => {
-    if (!cedula || cedula.length < 9) {
-      toast.error("La cédula debe tener al menos 9 dígitos.");
-      return false;
-    }
-    if (!fullName) {
-      toast.error("El nombre completo no puede estar vacío.");
-      return false;
-    }
-    if (!emailUser || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailUser)) {
-      toast.error("El correo electrónico no es válido.");
-      return false;
-    }
-    if (!userName) {
-      toast.error("El nombre de usuario no puede estar vacío.");
-      return false;
-    }
-    if (!password || password.length < 8) {
-      toast.error("La contraseña debe tener al menos 8 caracteres.");
-      return false;
-    }
-    if (password !== password2) {
-      toast.error("Las contraseñas no coinciden.");
-      return false;
-    }
-    return true;
-  };
+const validateForm = () => {
+  // Verificar campos vacíos
+  if (!cedula || !fullName || !emailUser || !userName || !password || !password2) {
+    showToastError(`Todos los campos son obligatorios`);
+    return false;
+  }
+
+  // Validar cédula
+  if (cedula.length < 9) {
+    showToastError(`La cédula debe tener al menos 9 dígitos`);
+    return false;
+  }
+
+  // Validar nombre completo
+  if (!fullName.trim()) {
+    showToastError(`El nombre completo no puede estar vacío`);
+    return false;
+  }
+
+  // Validar correo electrónico
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailUser)) {
+    showToastError(`El correo electrónico no es válido`);
+    return false;
+  }
+
+  // Validar nombre de usuario
+  if (!userName.trim()) {
+    showToastError(`El nombre de usuario no puede estar vacío`);
+    return false;
+  }
+
+  // Validar contraseña
+  if (password.length < 8) {
+    showToastError(`La contraseña debe tener al menos 8 caracteres`);
+    return false;
+  }
+
+  // Validar coincidencia de contraseñas
+  if (password !== password2) {
+    showToastError(`Las contraseñas no coinciden`);
+    return false;
+  }
+
+  return true;
+};
 
   // Función para manejar el registro
   const handleRegister = async () => {
@@ -109,6 +143,7 @@ function RegisterClienteForm() {
       console.log(        !users.find(({ email }) => email === emailUser) && 
       !users.find(({ username }) => username === userName));
       
+//Convertir a un objeto y pasarlo a PostData('api/register')
 
       // Verificar si el correo o el nombre de usuario ya existen
       if (
@@ -127,26 +162,28 @@ function RegisterClienteForm() {
           is_active: active,
           role: role
         };
-
-   
-        
+       
         // Realizar el envío de datos a las API correspondientes
         const response = await postData('register', user);
         setIsSubmitting(false); // Deshabilitar el botón de envío después de recibir la respuesta
         
         if (!response || !response.id) {
-          toast.error("Error al registrar el usuario.");
+          showToastError(`Error al registrar el usuario`);
           return;
         }
-        
-        toast.success("Registro exitoso. El usuario se ha creado correctamente.");
-        // Aquí puedes redirigir al usuario a otra página si lo deseas
+        Toastify({
+          text: `Registro exitoso. El usuario se ha creado correctamente`,
+          duration: 3500,
+          gravity: 'top',
+          position: 'center',
+          className: 'toastsuccess',
+        }).showToast();
         
       } else {
-        toast.error("Verifica los campos: el usuario o el correo ya existen.");
+        showToastError(`Verifica los campos: el usuario o el correo ya existen`);
       }
     } catch (error) {
-      toast.error(`Error al registrar usuario: ${error.message}`);
+      showToastError(`Error al registrar usuario`);
       console.error(error);  // Para poder depurar el error completo
     } finally {
       
@@ -155,7 +192,6 @@ function RegisterClienteForm() {
 
   return (
     <div className='bodyRegister'>
-      <ToastContainer />
       <div className="divTitleRegister">
         <div className="title-content">
           <h1 className="register">Register</h1>
@@ -227,8 +263,6 @@ function RegisterClienteForm() {
             type="password"
           />
         </div>
-
-
         <br /><br />
         <button onClick={handleRegister} className="btn-Register" disabled={isSubmitting}>
           {isSubmitting ? "Registrando..." : "Register"}
@@ -236,6 +270,7 @@ function RegisterClienteForm() {
         <Link className='irALogin' to="/Login">Ir a Login</Link>
       </div>
     </div>
+    
   );
 }
 

@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../Styles/Components_Styles/ProfileClienteStyles/CalendarioCitas.css';
 import { jsPDF } from 'jspdf';
+import '../../Styles/toastStyles.css'
 import Logo from '../../Img/Components_Img/logo_negrov.png';
 import GetData from '../../Services/Get/GetData';
 import PostData from '../../Services/Post/PostData';
@@ -173,7 +174,7 @@ const handleDateClick = (arg) => {
             duration: 3500,
             gravity: 'top',
             position: 'center',
-            className: 'custom-toastCalendario',
+            className: 'toastsuccess',
           }).showToast();
           resetForm();
         },
@@ -185,8 +186,7 @@ const handleDateClick = (arg) => {
             duration: 3500,
             gravity: 'top',
             position: 'center',
-            className: 'custom-toastCalendario',
-            backgroundColor: 'red',
+            className: 'toast-error',
           }).showToast();
         }
       );

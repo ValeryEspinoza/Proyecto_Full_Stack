@@ -21,7 +21,7 @@
     font-size: 70px;
     font-weight: bold;
     margin: 0;
-    color: #50C878;
+    color: #ffffff;
     transition: color 0.3s ease, transform 0.3s ease;    
 }
 .tienda-tittle:hover{
@@ -30,9 +30,6 @@
 }
 .carritoCompras{
     display: flex;
-    justify-content: flex-end; /* Aligns children to the right */
-    align-items: flex-start;   /* Aligns children to the top */
-    height: 300px;             /* Set a height for the container */
     position: relative;
 }
 .carrito{
@@ -41,43 +38,42 @@ width: auto;
 }
 
 #buscadores{
-    display: flex;               /* Use Flexbox for layout */
-    justify-content: space-between; /* Space between items */
-    align-items: center;        /* Center items vertically */
+    display: flex;               
+    justify-content: space-between; 
+    align-items: center;       
     width: 100%; 
-}
-#searcherInput {
-    flex: 1;                    /* Allow the search box to take available space */
-    display: flex;              /* Use Flexbox for the search box */
-    justify-content: center;    /* Center the search box */
+    padding: 10px;
 }
 #botones{
     margin-left: auto;
+    margin-right: 5%;
 }
 .btn-search{
     color: #161616d8;
     background-color: #9e9e9e41;
     margin-left: 10px
-    margin
 }
 .btn-search:hover{
     color: #ffffff;
-    background-color: #000000;
+    background-color: #50C878;
 }
-
+.btn-search.active{
+    color: #ffffff;
+    background-color: #50C878;
+}
 .cardForm{
     margin-left: auto;
     margin-right: auto;
     width: 18rem;
     text-align: center;
 }
-
 #mapArticle{
+    margin-left: 60px;
+    margin-right: 0px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
-
 .card{
     width: 18rem;
     margin: 10px;
@@ -88,3 +84,103 @@ width: auto;
     background-color: #ffffff7c;
     display: inline-block;
 }
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Use fixed positioning */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(5px); /* Apply blur effect */
+    background-color: #00000000;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.modal-dialog {
+    max-width: 500px; /* Set a max width for the modal */
+    width: 90%; /* Responsive width */
+    margin: auto; /* Center the modal */
+}
+
+.modal-content {
+    background-color: white; /* White background for the content */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.modal-header, .modal-body, .modal-footer {
+    padding: 15px; /* Add padding */
+}
+
+.modal-body {
+    max-height: 70vh; /* Limit height */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.containerBuscadores{
+margin-top: 30px;
+}
+/* Buscador */
+.Tienda-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+  }
+  
+  /* Contenedor del input e ícono */
+  .searchTienda-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* Ajusta el ancho */
+  }
+  
+  /* Estilo del input */
+  .Tienda-search .searchTienda-container .tienda-search-input {
+    width: 450px;
+    height: 50px;
+    padding: 0 70px 0 20px; /* Espacio para el ícono a la derecha */
+    font-size: 16px;
+    color: #555;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    background-color: #f1f3f4; /* Fondo gris claro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Estilo al hacer foco */
+  .tienda-search-input:focus {
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.5); /* Sombra azul */
+    background-color: #ffffff; /* Fondo blanco */
+  }
+  
+  /* Contenedor del ícono circular */
+  .searchTienda-icon-container {
+    position: absolute;
+    right: -1px; /* Posición a la derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #50C878; 
+    border-radius: 50%; /* Hace el fondo circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    cursor: pointer;
+  }
+  
+  /* Estilo del ícono */
+  .searchTienda-icon {
+    width: 25px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Hace el ícono blanco */
+    pointer-events: none; /* Evita interferencias con clics */
+  }

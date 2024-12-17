@@ -1,35 +1,53 @@
-
-
 .Información {
-    text-align: center; 
-    margin: 50px 0; 
-    background-color: #d4d4d4;
+  text-align: center;
+  margin: 50px 0;
+  background-color: #d4d4d4;
+}
+
+.TextoPrincipal {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #181717;
+}
+
+.Texto {
+  font-size: 20px;
+  font-weight: 300;
+  color: #272626;
+  margin-bottom: 20px;
+}
+
+.BotonContactenos {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.BotonContactenos:hover {
+  background-color: #555;
+}
+
+@media (max-width: 768px) { /* Cambia el número según la resolución deseada */
+  .Información {
+      margin: 20px 0; /* Ajusta los márgenes */
+      padding: 10px; /* Añade un poco de espacio adicional */
   }
-  
-  .TextoPrincipal{
-    font-size: 48px; 
-    font-weight: bold; 
-    margin-bottom: 10px;
-    color: #181717; 
+
+  .TextoPrincipal {
+      font-size: 24px; /* Redimensiona el texto para pantallas pequeñas */
   }
-  
+
   .Texto {
-    font-size: 20px;
-    font-weight: 300;
-    color: #272626;
-    margin-bottom: 20px; 
+      font-size: 16px; /* Redimensiona el texto para pantallas pequeñas */
   }
-  
-  .BotonContactenos{
-    background-color: #333; 
-    color: #fff; 
-    padding: 10px 20px;
-    border: none; 
-    border-radius: 5px; 
-    font-size: 18px;
-    cursor: pointer; 
+
+  .BotonContactenos {
+      padding: 8px 16px; /* Ajusta el tamaño del botón */
+      font-size: 16px; /* Redimensiona el texto del botón */
   }
-  
-  .BotonContact:hover {
-    background-color: #555; 
-  }
+}

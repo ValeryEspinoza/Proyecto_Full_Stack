@@ -1,60 +1,33 @@
-/*
 import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import GetData from "../../Services/Get/GetData";
+import {Line} from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
+import GetData from '../../Services/Get/GetData';
+import '../../Styles/Components_Styles/Graphs_Styles/SalesChart.css'
 
 
-// Registrar los elementos de Chart.js
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register( CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler );
 
-const SalesChart = ({ dataEndpoint }) => {
-  const [chartData, setChartData] = useState({});  // Datos para el gráfico
-  const [loading, setLoading] = useState(true);    // Indicador de carga
+var beneficios = [0,56,20,36,80,40,30,5,12];
+var meses =["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-  useEffect(() => {
-    // Función para obtener los datos del endpoint
-    const fetchData = async () => {
-      try {
-        const data = await GetData(dataEndpoint);  // Llamada a la función GetData
-
-        // Transformar los datos para adaptarlos al gráfico
-        const labels = data.map(item => item.name);  // Usar el nombre del producto como etiqueta
-        const sales = data.map(item => parseFloat(item.price));  // Usar el precio como datos de ventas
-
-        setChartData({
-          labels,
-          datasets: [
-            {
-              label: "Ventas 2024",
-              data: sales,
-              backgroundColor: "rgba(75, 192, 192, 0.5)",
-              borderColor: "rgba(75, 192, 192, 1)",
-              borderWidth: 1,
-            },
-          ],
-        });
-
-        setLoading(false); // Cambiar el estado de carga a false
-      } catch (error) {
-        console.error("Error al obtener los datos del gráfico:", error);
-      }
-    };
-
-    fetchData();  // Llamar la función para obtener los datos
-  }, [dataEndpoint]);  // El efecto se ejecutará cuando cambie el `dataEndpoint`
-
-  return (
-    <div>
-      {loading ? (
-        <p>Cargando gráfico...</p>  // Mensaje mientras se cargan los datos
-      ) : (
-        // Mostrar el gráfico cuando se haya cargado la data
-        <Bar data={chartData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
-      )}
-    </div>
-  );
+var midata = {
+  labels: meses,
+  datasets: [ //Lineas de los graficos
+    {
+      label: 'Beneficios',
+      data: beneficios,
+      tension: 0.5,
+      fill: true,
+      borderColor: 'rgba(44, 139, 88)',
+      pointRadius:5,
+      pointBorderColor: 'rgba(44, 139, 88)',
+      pointBackgroundColor: 'rgba(80, 200, 120)',
+  },
+],
 };
 
-export default SalesChart;
-*/
+var misoptions ={};
+
+export default function SalesChart(){
+  return <Line data={midata} options= {misoptions}/>
+};

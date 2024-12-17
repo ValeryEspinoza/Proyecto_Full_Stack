@@ -190,18 +190,6 @@
   font-weight: bold;
 }
 
-/* Alertas */
-.custom-toastCalendario {
-  background: linear-gradient(to right, #4CAF50, #2ba32f); /* Cambia los colores si lo deseas */
-  color: white; /* Texto en blanco */
-  font-size: 16px; /* Ajusta el tamaño del texto */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 10px; /* Espaciado interno */
-  text-align: center; /* Centra el texto */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añade una sombra */
-  font-weight: bold;
-}
-
 /* Modal de confirmación de cita */
 .modern-modal-overlay {
   position: fixed;

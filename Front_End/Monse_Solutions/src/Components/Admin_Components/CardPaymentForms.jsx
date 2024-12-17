@@ -24,9 +24,10 @@ function CardPaymentForms({ montoTotal }) {
     <div className="payment-container">
       <div className="payment-header">
         <h2>Formulario de Pago</h2>
-        <p>Total a pagar: ${montoTotal}</p>
+          <p>Total a pagar: <strong className='payment-amount'>${montoTotal}</strong></p>
       </div>
       <form onSubmit={handlePaymentSubmit} className="payment-form">
+        <div className='div-payment-form'>
         <label htmlFor="cardNumber">Número de tarjeta:</label>
         <input
           type="text"
@@ -59,7 +60,7 @@ function CardPaymentForms({ montoTotal }) {
           placeholder="CVV"
           required
         />
-
+        </div>
         <button type="submit" className="payment-button">
           Procesar Pago
         </button>

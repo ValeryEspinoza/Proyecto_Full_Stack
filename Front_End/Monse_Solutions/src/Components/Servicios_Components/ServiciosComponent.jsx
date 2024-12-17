@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../Styles/Pages_Styles/Servicios.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import GetData from "../../Services/Get/GetData";
+import IconSearch from "../../Img/Components_Img/icon_buscar2.png"
 
 const ServiciosComponent = () => {
   const [services, setServices] = useState([]);
@@ -14,10 +13,8 @@ const ServiciosComponent = () => {
       try {
         const response = await GetData('services');
         setServices(response);
-        toast.success("Servicios cargados correctamente.");
       } catch (error) {
         console.error("Error al obtener los servicios:", error);
-        toast.error("Error al cargar los servicios.");
       }
     };
     fetchServices();
@@ -55,21 +52,30 @@ const ServiciosComponent = () => {
 
       {/* SERVICIOS */}
       <div className="servicios-container">
-        <ToastContainer />
         <header className="servicios-header">
-          <h1>List of Services</h1>
-          <br />
+          <h1 className="TitleList">List of services</h1>
         </header>
-
+<br />
         <div className="servicios-search">
+        <div className="search-container">
           <input
             type="text"
-            placeholder="Buscar servicios..."
+            placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="servicios-search-input"
           />
+          <div className="search-icon-container">
+            <img
+              src={IconSearch}
+              alt="Buscar"
+              className="search-icon"
+            />
+          </div>
         </div>
+      </div>
+      <br />
+
 
         <div className="servicios-list">
           {filteredServices.length > 0 ? (

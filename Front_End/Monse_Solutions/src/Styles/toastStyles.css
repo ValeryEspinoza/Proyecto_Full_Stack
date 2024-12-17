@@ -1,0 +1,74 @@
+
+/* Alertas */
+.toastsuccess {
+  background: linear-gradient(to right, #4CAF50, #2ba32f); /* Degradado moderno */
+  color: #ffffff !important; /* Texto blanco */
+  font-size: 16px !important; /* Tamaño de fuente */
+  font-family: 'Inter', sans-serif !important; /* Tipografía moderna */
+  border-radius: 12px !important; /* Bordes más redondeados */
+  padding: 10px 5px !important; /* Espaciado interno amplio */
+  text-align: center !important; /* Centrar texto */
+  font-weight: 510 !important; /* Texto seminegrita */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* Sombra moderna */
+  letter-spacing: 0.5px !important; /* Espaciado entre letras */
+  animation: fadeIn 0.5s ease-out !important; /* Animación de entrada */
+
+  /* Centrado vertical */
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999; /* Asegura que esté encima de otros elementos */
+  left: 0; /* Mantener a la izquierda */
+  right: 0; /* Ocupa todo el ancho */
+  margin: 0 auto; /* Centra horizontalmente si tiene un ancho fijo */
+  max-width: 35%;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.toast-error {
+  background: #d31027 !important;
+  color: #ffffff !important; /* Texto blanco */
+  font-size: 16px !important; /* Tamaño de fuente */
+  font-family: 'Inter', sans-serif !important; /* Tipografía moderna */
+  border-radius: 12px !important; /* Bordes más redondeados */
+  padding: 10px 5px !important; /* Espaciado interno amplio */
+  text-align: center !important; /* Centrar texto */
+  font-weight: 510 !important; /* Texto seminegrita */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* Sombra moderna */
+  letter-spacing: 0.5px !important; /* Espaciado entre letras */
+  animation: fadeIn 0.5s ease-out !important; /* Animación de entrada */
+
+  /* Centrado vertical */
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999; /* Asegura que esté encima de otros elementos */
+  left: 0; /* Mantener a la izquierda */
+  right: 0; /* Ocupa todo el ancho */
+  margin: 0 auto; /* Centra horizontalmente si tiene un ancho fijo */
+  max-width: 30%;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+

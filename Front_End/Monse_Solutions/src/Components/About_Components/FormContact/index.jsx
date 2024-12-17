@@ -1,28 +1,32 @@
-import React, { useRef } from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useRef } from "react";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import emailjs from 'emailjs-com';
-import Swal from 'sweetalert2';
+import emailjs from "emailjs-com";
+import "toastify-js/src/toastify.css";
+import Toastify from "toastify-js";
+import "../../../Styles/Components_Styles/AboutUs_C_Styles/JoinOurTeam.css";
 
 function FormContact() {
-    const formRef = useRef(); // Crea una referencia al formulario
+    const formRef = useRef(); //Crea una referencia al formulario
 
-    // Esquema de validación con Yup
+    // ESQUEMA DE VALIDACIÓN CON Yup
     const validationSchema = Yup.object({
         name: Yup.string()
             .min(2, "El nombre debe tener al menos 2 caracteres")
             .max(50, "El nombre no debe exceder los 50 caracteres")
             .required("El nombre es obligatorio"),
         email: Yup.string()
-            .email("Correo electrónico no válido"),
+            .email("Correo electrónico no válido")
+            .required("El correo electrónico es obligatorio"),
         phone: Yup.string()
             .matches(/^[0-9]{8}$/, "El número debe tener 8 dígitos")
             .required("El teléfono es obligatorio"),
         message: Yup.string()
-            .min(10, "El mensaje debe tener al menos 10 caracteres")
+            .min(5, "El mensaje debe tener al menos 5 caracteres")
             .required("El mensaje es obligatorio"),
     });
 
+    // VALORES INICIALES DEL FORMULARIO
     const initialValues = {
         name: "",
         email: "",
@@ -30,67 +34,126 @@ function FormContact() {
         message: "",
     };
 
-    const handleSubmit = (values, { resetForm, setErrors, setStatus }) => {
-        // Verifica si hay errores de validación (esto lo maneja Formik y Yup)
-        const errors = {};  // Esto ya no es necesario, lo maneja Formik
-        const errorMessages = [];  // Aquí guardaremos todos los errores
-
-        // Recolecta los errores de Formik
-        Object.keys(values).forEach(field => {
-            if (!values[field]) {
-                errorMessages.push(`${field} es obligatorio`);  // Agrega un error si el campo está vacío
-            }
-        });
-
-        // Si existen errores, muestra la alerta
-        if (errorMessages.length > 0) {
-            Swal.fire({
-                title: "Error",
-                text: errorMessages.join("\n"),  // Muestra todos los errores
-                icon: "error",
-            });
-            return;
-        }
-
-        // Enviar correo si no hay errores
-        emailjs.sendForm('service_9of4zxx', 'template_vw6uh2k', formRef.current, 'ymYtdvW4jhBm2ACDK')
+    // FUNCIÓN DE ENVÍO DEL FORMULARIO
+    const handleSubmit = (values, { resetForm }) => {
+        emailjs
+            .sendForm(
+                "service_9of4zxx",
+                "template_vw6uh2k",
+                formRef.current,
+                "ymYtdvW4jhBm2ACDK"
+            )
             .then(
                 () => {
-                    Swal.fire({
-                        title: "¡Solicitud enviada!",
-                        text: "Revisaremos tu solicitud. No dudes en contactarnos si tienes alguna pregunta.",
-                        icon: "success"
-                    });
+                    Toastify({
+                        text: `Your request has been sent! Contact us if you have any questions`,
+                        duration: 3000,
+                        gravity: 'top',
+                        position: 'center',
+                        className: 'toastsuccess',
+                    }).showToast();
                     resetForm(); // Limpia el formulario
                 },
                 (error) => {
-                    Swal.fire({
-                        title: "¡Hubo un error!",
-                        text: "Inténtalo de nuevo.",
-                        icon: "error"
-                    });
+                    Toastify({
+                        text: "There was an error! Try again",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "center",
+                        close: true,
+                        className: "toast-error",
+                    }).showToast();
                     console.error(error);
                 }
             );
     };
 
+    // RENDERIZACIÓN DEL FORMULARIO
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
-            {() => (
-                <Form ref={formRef} className="join-form">
-                    <Field type="text" id="name" name="name" placeholder="Your name" className="inputFormTeam" />
+            {({ errors, touched, validateForm, isValid, handleSubmit }) => (
+                <Form
+                    ref={formRef}
+                    className="join-form"
+                    onSubmit={(e) => {
+                        e.preventDefault(); // Previene el envío inmediato
+                        validateForm().then((formErrors) => {
+                            if (Object.keys(formErrors).length > 0) {
+                                // Mostrar Toastify si hay errores
+                                Toastify({
+                                    text: "Please complete all fields before submitting",
+                                    duration: 2000,
+                                    gravity: "top",
+                                    position: "center",
+                                    close: true,
+                                    className: "toast-error",
+                                }).showToast();
+                            } else {
+                                handleSubmit(e); // Enviar el formulario si no hay errores
+                            }
+                        });
+                    }}
+                >
+                    {/* Campo Name */}
+                    <Field
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Your name"
+                        className={`inputFormTeam ${
+                            errors.name && touched.name ? "error-input" : ""
+                        }`}
+                        title={errors.name && touched.name ? errors.name : ""}
+                    />
                     <br />
-                    <Field type="email" id="email" name="email" className="inputFormTeam" placeholder="Your email" />
+
+                    {/* Campo Email */}
+                    <Field
+                        type="email"
+                        id="email"
+                        name="email"
+                        className={`inputFormTeam ${
+                            errors.email && touched.email ? "error-input" : ""
+                        }`}
+                        placeholder="Your email"
+                        title={errors.email && touched.email ? errors.email : ""}
+                    />
                     <br />
-                    <Field type="text" id="phone" name="phone" className="inputFormTeam" placeholder="Your phone" />
+
+                    {/* Campo Phone */}
+                    <Field
+                        type="text"
+                        id="phone"
+                        name="phone"
+                        className={`inputFormTeam ${
+                            errors.phone && touched.phone ? "error-input" : ""
+                        }`}
+                        placeholder="Your phone"
+                        title={errors.phone && touched.phone ? errors.phone : ""}
+                    />
                     <br />
-                    <Field as="textarea" id="message" name="message" className="textAreaForm" placeholder="Your message" />
+
+                    {/* Campo Message */}
+                    <Field
+                        as="textarea"
+                        id="message"
+                        name="message"
+                        className={`inputFormTeam ${
+                            errors.message && touched.message ? "error-input" : ""
+                        }`}
+                        placeholder="Your message"
+                        title={errors.message && touched.message ? errors.message : ""}
+                    />
                     <br />
-                    <button className="btnJoinTeam" type="submit">Send</button>
+
+                    {/* Botón de Envío */}
+                    <button type="submit" className="submit-button">
+                        Send
+                    </button>
                 </Form>
             )}
         </Formik>
@@ -98,4 +161,5 @@ function FormContact() {
 }
 
 export default FormContact;
+
 

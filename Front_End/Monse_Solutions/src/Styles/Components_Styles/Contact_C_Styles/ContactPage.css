@@ -1,7 +1,58 @@
+<<<<<<< HEAD
+/* Contenedor de la página de contacto */
+=======
+>>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 .contact-page-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+<<<<<<< HEAD
+}
+
+/* Encabezado de la página de contacto */
+.contact-header {
+  text-align: center;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Asegura que el contenedor tenga la misma altura que sus hijos */
+}
+
+.TitleContact {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+  color: #000000;
+  transition: color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.TitleContact:hover {
+  color: #2C8B58;
+  transform: scale(1.05);
+}
+
+.textContact {
+  font-size: 21px;
+  text-align: justify;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align-last: center;
+  width: 80%;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+
+/* Información del contacto */
+.InfoTitle {
+  font-weight: bold;
+  color: #50C878;
+  font-size: 20px;
+=======
   background-color: #ffffff;
   border-radius: 10px;
 }
@@ -19,11 +70,66 @@
 .contact-header p {
   font-size: 1.2rem;
   color: #666;
+>>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 }
 
 .contact-content {
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.contact-info, .contact-form-container {
+  flex: 1;
+}
+
+.contact-map {
+  margin-top: 38px;
+}
+
+.contact-map iframe {
+  width: 80%;
+  height: 300px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Contenedor del formulario de contacto */
+.contact-form-container {
+  margin-bottom: 50px;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) { /* Ajuste para dispositivos móviles */
+  .contact-page-container {
+    padding: 10px; /* Reducción del padding para evitar espacios grandes */
+  }
+
+  .TitleContact {
+    font-size: 30px; /* Reducción del tamaño de fuente */
+    margin-top: 10px; /* Ajuste de margen */
+  }
+
+  .textContact {
+    width: 90%; /* Ajuste del ancho para evitar que los textos peguen en los bordes */
+  }
+
+  .contact-content {
+    flex-direction: column; /* Cambia la dirección de los elementos para dispositivos más pequeños */
+  }
+
+  .contact-info, .contact-form-container {
+    width: 100%; /* Asegura que ambos elementos ocupen el 100% del ancho en dispositivos móviles */
+    margin-bottom: 20px; /* Espaciado entre los elementos */
+  }
+
+  .contact-map iframe {
+    width: 100%; /* Asegura que el mapa ocupe todo el ancho disponible */
+    height: 200px; /* Reducción de la altura */
+  }
+=======
   gap: 20px;
 }
 
@@ -91,4 +197,5 @@
   .contact-map img {
       border-radius: 5px;
   }
+>>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 }

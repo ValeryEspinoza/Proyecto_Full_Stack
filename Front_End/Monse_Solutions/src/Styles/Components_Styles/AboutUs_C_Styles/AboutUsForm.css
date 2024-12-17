@@ -14,8 +14,14 @@
     text-align: center;
 }
 .about-title {
-    font-size: 80px;
+    font-size: 60px;
     font-weight: bold;
+    color: black;
+}
+.about-title:hover{
+    color: #2C8B58;
+    transform: scale(1.05); 
+
 }
 .parrafoAbout {
     font-size: 21px;

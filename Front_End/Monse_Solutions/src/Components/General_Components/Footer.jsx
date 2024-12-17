@@ -61,8 +61,9 @@ function Footer() {
 
   <p className="custom-footer-company-about">
     <span>{t('texto_footer')}</span>
-    Monse Solutions es una empresa especializada en acabados y remodelaciones, 
-    dedicada a transformar espacios y mejorar la funcionalidad y estética de hogares y oficinas. 
+    Monse Solutions is a company specialized in finishes and renovations, 
+    dedicated to transforming spaces and enhancing the functionality 
+    and aesthetics of homes and offices.
   </p>
 
   <div className="custom-footer-icons">

@@ -45,7 +45,7 @@ const ArticlePreventive = () => {
         </ul>
         <p className="maintenance-tip"><span className="highlight">Pro Tip:</span> 
         Hire a professional electrician for a full system check-up once a year.</p>
-
+        <hr />
 <strong>2. Plumbing:</strong>
         <ul className="sub-list">
           <li>Periodic Checks: Inspect pipes and faucets for leaks or corrosion.</li>
@@ -54,7 +54,7 @@ const ArticlePreventive = () => {
         </ul>
         <p className="maintenance-tip"><span className="highlight">Pro Tip:</span> 
         Keep a basic plumbing repair kit in your home for minor fixes.</p>
-
+        <hr />
 <strong>3. Walls and Paint:</strong>
         <ul className="sub-list">
           <li>Wall Cleaning: Regularly dust and clean walls to maintain their condition.</li>
@@ -63,7 +63,7 @@ const ArticlePreventive = () => {
         </ul>
         <p className="maintenance-tip"><span className="highlight">Pro Tip:</span> 
         Use moisture-resistant paints in areas prone to leaks.</p>
-
+        <hr />
 <strong>4. Ventilation and HVAC Systems:</strong>
         <ul className="sub-list">
           <li>Clean Filters: Change air conditioning and heating filters every 2-3 months.</li>
@@ -72,7 +72,7 @@ const ArticlePreventive = () => {
         </ul>
         <p className="maintenance-tip"><span className="highlight">Pro Tip:</span> 
         Use a humidifier to maintain optimal air quality in dry climates.</p>
-        
+        <hr />        
 <strong>5. Roofs and Leaks:</strong>
         <ul className="sub-list">
           <li>Visual Inspection: Check your roof twice a year, especially after heavy rain.</li>

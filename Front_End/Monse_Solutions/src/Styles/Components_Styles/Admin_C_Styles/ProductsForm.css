@@ -22,6 +22,7 @@
     flex-direction: column;
   }
   
+
   /* Cada grupo de campos */
   .product-form-group {
     display: flex;

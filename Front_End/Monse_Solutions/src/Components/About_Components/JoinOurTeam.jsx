@@ -4,6 +4,7 @@ import team from '../../Img/Components_Img/icon_team-22.png';
 import FormContact from './FormContact';
 import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
 import '../../config/i18n'
+import '../../Styles/toastStyles.css'
 
 
 

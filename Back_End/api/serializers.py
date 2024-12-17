@@ -361,9 +361,10 @@ class prioritiesSerializer(serializers.ModelSerializer):
 class category_servicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = category_services
-        fields =["name", "description"]
-        
-    def validate_name(self, values):
+
+        fields = ['category_services_id', 'name', 'description']
+
+    def validate_name(self, value):
         validate_not_empty(value)  # Verifica que no esté vacío
         validate_min_characters(value, 5)  # Verifica la longitud mínima
         validate_max_characters(value, 250)  # Verifica la longitud máxima

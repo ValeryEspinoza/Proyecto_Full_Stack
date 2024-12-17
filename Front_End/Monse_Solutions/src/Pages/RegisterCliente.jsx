@@ -8,7 +8,7 @@ function RegisterC() {
   return (
     <div>
     <NavBar />
-    <RegisterCliente /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <RegisterCliente /><br /><br />
     <Footer />
     </div>
   )

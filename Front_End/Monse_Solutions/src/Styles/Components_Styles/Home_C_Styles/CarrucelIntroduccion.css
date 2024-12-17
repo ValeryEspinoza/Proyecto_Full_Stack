@@ -33,3 +33,14 @@
   font-weight: bold;
   max-width: 550px;
 }
+
+@media (max-width: 768px) { /* Cambia el número según la resolución deseada */
+  .contenedorVideoPortada {
+      height: 60vh; /* Ajusta la altura según necesites */
+  }
+
+  .textoOverlay {
+      font-size: 2.5rem; /* Redimensiona el texto para pantallas pequeñas */
+      max-width: 300px; /* Ajusta el ancho máximo del texto */
+  }
+}

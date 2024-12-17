@@ -1,76 +1,123 @@
-
-/* Contenedor principal */
+/* ============================= */
+/* Sección: Contenedor principal */
+/* ============================= */
 .reviews-section {
-    background: #f9f9f9;
-    padding: 40px 90px;
-    text-align: center;
+  background: #f9f9f9;
+  padding: 40px 90px;
+  text-align: center;
+}
+
+/* ========================== */
+/* Sección: Título principal */
+/* ========================== */
+.reviews-title {
+  font-size: 45px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #50C878;
+}
+
+/* ==================================== */
+/* Sección: Distribución en cuadrícula */
+/* ==================================== */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* ======================= */
+/* Sección: Diseño Tarjeta */
+/* ======================= */
+.review-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================= */
+/* Sección: Encabezado Reseña */
+/* ========================= */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.review-rating {
+  font-size: 1.7rem;
+  color: #ffd000;
+}
+
+/* =========================== */
+/* Sección: Información Cliente */
+/* =========================== */
+.reviewer-info {
+  text-align: right;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #444;
+}
+
+.reviewer-date {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* =========================== */
+/* Sección: Texto de la reseña */
+/* =========================== */
+.review-body {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+/* =========================== */
+/* Sección: Media querie */
+/* =========================== */
+
+@media (max-width: 768px) { 
+  /* Sección: Contenedor principal */
+  .reviews-section {
+    padding: 20px; /* Reduce el padding para evitar que el contenido toque los bordes */
   }
-  
-  /* Título */
+
+  /* Sección: Título principal */
   .reviews-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 30px; /* Ajusta el tamaño del título para pantallas pequeñas */
   }
-  
-  /* Distribución en cuadrícula */
+
+  /* Sección: Distribución en cuadrícula */
   .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    justify-items: center;
+    gap: 15px; /* Reduce el espacio entre las tarjetas */
+    grid-template-columns: 1fr; /* Una sola columna para tarjetas */
   }
-  
-  /* Tarjeta */
+
+  /* Sección: Diseño Tarjeta */
   .review-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 100%;
-    max-width: 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 90%; /* Asegura que las tarjetas no se peguen a los bordes */
+    margin: 0 auto; /* Centra las tarjetas horizontalmente */
   }
-  
-  .review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Encabezado */
-  .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .review-rating {
-    font-size: 1.7rem;
-    color: #50C878;
-  }
-  
-  /* Información del cliente */
-  .reviewer-info {
-    text-align: right;
-  }
-  
-  .reviewer-name {
-    font-weight: bold;
-    font-size: 1rem;
-    color: #444;
-  }
-  
-  .review-date {
-    font-size: 0.9rem;
-    color: #999;
-  }
-  
-  /* Texto de la reseña */
+
+  /* Sección: Texto de la reseña */
   .review-body {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.6;
+    font-size: 0.9rem; /* Ajusta el tamaño del texto para mejorar la legibilidad */
+    line-height: 1.5; /* Ajusta el interlineado para mantener el espacio visual */
   }
-  
+}

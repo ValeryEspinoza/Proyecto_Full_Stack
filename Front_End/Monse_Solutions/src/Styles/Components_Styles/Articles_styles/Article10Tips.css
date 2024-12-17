@@ -29,7 +29,7 @@
   z-index: 0; /* Asegura que el fondo esté detrás del título */
 }
 .article-title {
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: center;
   font-weight: bold;
   z-index: 1; /* Asegura que esté encima de cualquier pseudo-elemento u otros elementos */

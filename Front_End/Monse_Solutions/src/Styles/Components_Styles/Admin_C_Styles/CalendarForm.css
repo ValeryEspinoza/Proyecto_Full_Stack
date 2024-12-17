@@ -3,7 +3,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
 }
   
 .calendar-container {
@@ -180,4 +179,41 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    .calendar-container {
+        margin: 0 auto; /* Centra el contenedor */
+        padding: 10px; /* Ajusta el padding */
+    }
+
+    .title {
+        font-size: 18px; /* Reduce el tamaño de la fuente */
+    }
+
+    .days-header {
+        grid-template-columns: repeat(7, 1fr); /* Mantén la estructura de cuadrícula */
+    }
+
+    .calendar-grid {
+        grid-template-columns: 1fr 1fr 1fr; /* Ajusta la cuadrícula para 3 columnas */
+    }
+
+    .calendar-box {
+        height: auto; /* Quita la altura fija */
+        padding: 5px; /* Ajusta el padding */
+        margin: 5px; /* Añade margen para evitar pegajosidad */
+        font-size: 12px; /* Reduce el tamaño de la fuente */
+    }
+
+    .form-overlay {
+        padding: 5px; /* Ajusta el padding del overlay */
+    }
+
+    .expanded-content {
+        padding: 10px; /* Ajusta el padding del contenido expandido */
+    }
+
+    .close-btn {
+        font-size: 20px; /* Ajusta el tamaño del botón */
+    }
+}

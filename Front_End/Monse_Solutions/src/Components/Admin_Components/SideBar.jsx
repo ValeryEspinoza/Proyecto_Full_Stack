@@ -8,6 +8,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import { useContext, useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import logoutIcon from "../../Img/Components_Img/icon_logout.png"; 
 
 
 
@@ -35,8 +36,9 @@ useEffect(() => {
 }, []); // Dependencia vacía, se ejecuta solo al montar el componente
 
   const salir = async () => {
-    const response = await logout();
     
+    const response = await logout();
+
     if (response) {
       toast.success("Cerrando Sesion...");
           
@@ -48,8 +50,6 @@ useEffect(() => {
       <div>
         <body className="bodySideBar">
           <div className="area"></div>
-  
-
   
           <nav className={`main-menu`}>
             <ul className="listContentElementsSide">
@@ -111,20 +111,20 @@ useEffect(() => {
                   <span className="nav-text">Documentation</span>
                 </Link>
               </li>
-
-
             </ul>
+            
+            <button 
+            className="btnLogOut" 
+            onClick={salir} 
+            style={{ all: 'unset' }} // Quita estilos predeterminados
+          >
+            <img 
+              src={logoutIcon} 
+              alt="Log Out" 
+              className="logoutIcon"
+            />
+          </button>
 
-  
-            <ul className="logout">
-
-              <button onClick={salir} className="elementLiTE" >
-                <Link >
-                <i className="fa fa-power-off fa-2x"></i>
-                <span className="nav-text">LogOut</span>
-                </Link>
-              </button>
-            </ul>
           </nav>
         </body>
       </div>
