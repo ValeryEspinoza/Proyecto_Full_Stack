@@ -21,7 +21,7 @@ function Store() {
   // Fetch products from the API
   useEffect(() => {
     async function getStoreProducts() {
-      const products = await OpenGet('productsView');      
+      const products = await OpenGet('products');      
       setStoreProducts(products);
     }
     getStoreProducts();
