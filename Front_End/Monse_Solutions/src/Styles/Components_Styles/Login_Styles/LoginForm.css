@@ -19,6 +19,7 @@
 .divTitleLogin {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: -90px;
 }
 .login-title{
     font-weight: bold;
@@ -75,6 +76,7 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -103,6 +105,7 @@
 
     .divTitleLogin {
         margin-bottom: 15px;
+        margin-top: 20px;
     }
 
     .login-title {
