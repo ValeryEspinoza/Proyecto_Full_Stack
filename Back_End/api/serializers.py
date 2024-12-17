@@ -641,6 +641,7 @@ class reviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = reviews
         fields = ['review', 'date', 'rating', 'client'] 
+        
     
     """def validate_review(self, value):
         validate_not_empty(value)
