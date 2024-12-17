@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../Styles/Pages_Styles/Servicios.css";
-import GetData from "../../Services/Get/GetData";
+import GetServices from "../../Services/Get/GetServices";
 import IconSearch from "../../Img/Components_Img/icon_buscar2.png"
 
 const ServiciosComponent = () => {
@@ -11,7 +11,7 @@ const ServiciosComponent = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await GetData('services');
+        const response = await GetServices();
         setServices(response);
       } catch (error) {
         console.error("Error al obtener los servicios:", error);
