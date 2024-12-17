@@ -361,7 +361,7 @@ class prioritiesSerializer(serializers.ModelSerializer):
 class category_servicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = category_services
-        fields = '__all__'  
+        fields =["name", "description"]
         
     def validate_name(self, values):
         validate_not_empty(value)  # Verifica que no esté vacío

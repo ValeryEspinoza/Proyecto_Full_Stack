@@ -30,15 +30,15 @@ function ProductsForm({ onSuccess }) {
   const [errors, setErrors] = useState({});
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [subcategories, setSubcategories] = useState([]); // Estado para subcategorías
+  const [subcategories, setCategory_services] = useState([]); 
 
   // Obtener subcategorías desde el backend
   useEffect(() => {
     
-    const obtenerSubcaterias = async () => {
-      const response = await GetData('sub_categories_products')
+    const obtenerCategory_services = async () => {
+      const response = await GetData('category_services')
       console.log(response);
-      setSubcategories(response)
+      setCategory_services(response)
       
     };
     obtenerSubcaterias()
