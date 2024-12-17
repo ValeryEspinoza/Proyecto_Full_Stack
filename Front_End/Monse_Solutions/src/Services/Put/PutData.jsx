@@ -1,7 +1,8 @@
 const PutData = async (endpoint, dato, id) => {
 
 try {
-        const token = localStorage.getItem('token_access');
+    const token = localStorage.getItem('accessToken');
+    console.log(token);
     
 
     // Construye la URL con el ID
