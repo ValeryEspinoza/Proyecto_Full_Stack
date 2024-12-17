@@ -1,7 +1,7 @@
 
-async function GetServices() {
+async function OpenGet(EndPoint) {
     try {
-        const response = await fetch(`http://192.168.1.87:8000/api/services`);
+        const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`);
         const data = await response.json();
         console.log(data);
         
@@ -13,4 +13,4 @@ async function GetServices() {
 }
 
 
-export default GetServices
+export default OpenGet

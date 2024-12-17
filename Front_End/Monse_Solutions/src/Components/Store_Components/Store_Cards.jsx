@@ -4,7 +4,8 @@ import Imagen_Carrito from '../../Img/Components_Img/carrito_verde.png';
 import GetData from '../../Services/Get/GetData';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import IconSearch from "../../Img/Components_Img/icon_buscar2.png"
+import IconSearch from "../../Img/Components_Img/icon_buscar2.png";
+import OpenGet from '../../Services/Get/OpenGet';
 
 function Store() {
   // Hooks
@@ -20,7 +21,7 @@ function Store() {
   // Fetch products from the API
   useEffect(() => {
     async function getStoreProducts() {
-      const products = await GetData('products');
+      const products = await OpenGet('productsView');      
       setStoreProducts(products);
     }
     getStoreProducts();
@@ -29,10 +30,13 @@ function Store() {
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
 
+  
   // Filtrar productos en base al input de busqueda
-  const filteredProducts = storeProducts.filter(product =>
+  const filteredProducts = storeProducts.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+
 
   // Orden de los productos mediante los botones
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -112,30 +116,15 @@ const navegacion = () => {
 </div>
 <div id='botones'>
 <button
-  className={`btn-search ${activeButton === 'new' ? 'active' : ''}`}
-  onClick={() => {
-    setSortOrder('new');
-    setActiveButton('new');
-  }}
->
+  className={`btn-search ${activeButton === 'new' ? 'active' : ''}`}onClick={() => {setSortOrder('new'); setActiveButton('new');}}>
   New
 </button>
 <button
-  className={`btn-search ${activeButton === 'asc' ? 'active' : ''}`}
-  onClick={() => {
-    setSortOrder('asc');
-    setActiveButton('asc');
-  }}
->
+  className={`btn-search ${activeButton === 'asc' ? 'active' : ''}`}onClick={() => {setSortOrder('asc');setActiveButton('asc');}}>
   Price Ascending
 </button>
 <button
-  className={`btn-search ${activeButton === 'desc' ? 'active' : ''}`}
-  onClick={() => {
-    setSortOrder('desc');
-    setActiveButton('desc');
-  }}
->
+  className={`btn-search ${activeButton === 'desc' ? 'active' : ''}`}onClick={() => {setSortOrder('desc');setActiveButton('desc');}}>
     Price Descending
 </button>
 </div>
@@ -145,6 +134,7 @@ const navegacion = () => {
 <div id='mapeo'>
 <div id='mapArticle'>
       <div className="product-grid">
+
         {sortedProducts.map((product) => (
           <div className="card" key={product.id}>
             <img src={product.imagen_url} alt={product.name} className="card-img-top" />
@@ -158,6 +148,8 @@ const navegacion = () => {
         <div className='card-body'>
         <button onClick={() => setActiveProduct(product)}>Más Información</button>
         <button onClick={() => carritoVirtual(product)}>Añadir al Carrito</button>
+
+{/* Funcionalidad del modal*/}
         {activeProduct && activeProduct.id === product.id && (
     <div className="modal" tabindex="-1" role="dialog">
         <div className="modal-dialog" role="document">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../Styles/Components_Styles/Home_C_Styles/Home_Services.css';
 import { useTranslation } from 'react-i18next'; 
 import '../../config/i18n';
-import GetServices from '../../Services/Get/GetServices';
+import OpenGet from '../../Services/Get/OpenGet';
 
 function Home_Services() {
   const { t, i18n } = useTranslation();
@@ -15,7 +15,7 @@ function Home_Services() {
   useEffect(() => {
     const fetchAndSetServices = async () => {
       try {
-        const services = await GetServices(); // Obtén los servicios desde el backend
+        const services = await OpenGet('services'); // Obtén los servicios desde el backend
         if (services.length > 0) {
           // Selecciona 3 servicios aleatorios
           const shuffled = services.sort(() => 0.5 - Math.random());

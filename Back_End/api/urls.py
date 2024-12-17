@@ -4,6 +4,7 @@ from .views import HorariosDisponibles
 from .views import UserListView
 from .views import ProtectedView
 from .views import UserProfileView
+from .views import PublicProductsListView
 
 
 
@@ -20,7 +21,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Para refrescar el token de acceso
     path('user/profile/', UserProfileView.as_view(), name='user-profile'),
     path('api/protected/', ProtectedView.as_view(), name='protected_view'),
-    
+    path('productsView/', PublicProductsListView.as_view(), name='public-products-list'),  # URL para la vista
     path('register/', views.UserListCreate.as_view(), name='user-list'), 
     path('register/<int:pk>/', views.UserDetail.as_view(), name='user-detail'),    
     

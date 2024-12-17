@@ -423,14 +423,25 @@ class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [IsAuthenticated]
-   
+    permission_classes = [AllowAny]
+    
+class PublicProductsListView(APIView):
+    permission_classes = [AllowAny]  # Permite acceso a cualquier usuario (sin autenticación)
 
+    def get(self, request):
+        # Obtener todos los productos
+        products = products.objects.all()
+        
+        # Serializar los productos
+        serializer = productsSerializer(products, many=True)
+        
+        # Devolver los productos serializados en la respuesta
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
 # Consulta Productos con stock disponible    
 """class productos_stock_disponible(generics.ListAPIView):

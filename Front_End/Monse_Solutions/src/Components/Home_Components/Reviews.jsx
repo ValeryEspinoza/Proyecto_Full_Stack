@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import GetReviews from '../../Services/Get/GetReviews';
+import OpenGet from '../../Services/Get/OpenGet';
 import ReviewsCard from '../Home_Components/ReviewsCard'; // Importa el componente ReviewCard
 import { toast } from 'react-toastify';
 import '../../Styles/Components_Styles/Home_C_Styles/ReviewsStyles/ReviewsCard.css';
@@ -11,7 +11,7 @@ const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await GetReviews();
+        const response = await OpenGet('reviews');
         setReviews(response);
         toast.success("Reviews cargadas correctamente.");
       } catch (error) {

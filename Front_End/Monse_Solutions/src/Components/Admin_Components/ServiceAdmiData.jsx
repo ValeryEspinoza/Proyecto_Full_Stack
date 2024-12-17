@@ -10,7 +10,6 @@ import '../../Styles/Components_Styles/Admin_C_Styles/ServiceAdmiData.css';
 import ServicesForm from "./ServicesForm";
 import logoNegroF from '../../Img/Components_Img/logo_negrov.png';
 import Amazon from "../../Services/Post/Amazon";
-import '../../Styles/toastStyles.css'
 
 
 
@@ -35,36 +34,16 @@ const ServicesTable = () => {
   const toggleDropdown = (serviceId) => {
     setIsDropdownOpen(isDropdownOpen === serviceId ? null : serviceId);
   };
-    // Función auxiliar para mostrar ToastifyError
-    const showToastError = (message) => {
-      Toastify({
-        text: message,
-        duration: 3000,
-        gravity: 'top',
-        position: 'center',
-        className: 'toast-error',
-      }).showToast();
-    };
 
-    //Función auxiliar para mostrar ToastifySuccess
-    const showToastSuccess = (message) => {
-      Toastify({
-        text: message,
-        duration: 3500,
-        gravity: 'top',
-        position: 'center',
-        className: 'toastsuccess',
-        }).showToast();
-  
   useEffect(() => {
     const ObtenerServicios = async () => {
       try {
         const response = await GetData("services");
         SetDatosServicios(response);
-        showToastSuccess(`Servicios cargados correctamente`);
+        toast.success("Servicios cargados correctamente.");
       } catch (error) {
         console.error("Error al obtener los servicios:", error);
-        showToastError(`Error al cargar los servicios`);
+        toast.error("Error al cargar los servicios.");
       }
     };
     ObtenerServicios();
@@ -78,10 +57,10 @@ const ServicesTable = () => {
       try {
         const response = await GetData("services");
         SetDatosServicios(response); // Actualiza los servicios
-        showToastSuccess(`Servicios actualizados correctamente`);
+        toast.success("Servicios actualizados correctamente.");
       } catch (error) {
         console.error("Error al obtener los servicios:", error);
-        showToastError(`Error al cargar los servicios`);
+        toast.error("Error al cargar los servicios.");
       }
     };
     ObtenerServicios(); // Llamar para recargar los servicios
@@ -92,10 +71,10 @@ const ServicesTable = () => {
       await DeleteData('services', service_id);
       const updatedServicios = await GetData('services');
       SetDatosServicios(updatedServicios);
-      showToastSuccess(`Servicio eliminado con éxito`);
+      toast.success("Servicio eliminado con éxito.");
     } catch (error) {
       console.error('Error al eliminar el servicio:', error);
-      showToastError(`Error al eliminar el servicio`);
+      toast.error("Error al eliminar el servicio.");
     }
   };
 
@@ -162,10 +141,10 @@ const ServicesTable = () => {
       SetDatosServicios(updatedServicios);
       setEditedService(null);
       setImageFile(null); // Limpiar el archivo después de guardar
-      showToastSuccess(`Cambios guardados exitosamente`);
+      toast.success("Cambios guardados exitosamente.");
     } catch (error) {
       console.error('Error al guardar los cambios:', error);
-      showToastError(`Error al guardar los cambios`);
+      toast.error("Error al guardar los cambios.");
     }
   };
 
@@ -181,6 +160,7 @@ const ServicesTable = () => {
 
   return (
     <div className="services-table-container">
+      <ToastContainer />
       <header className="services-header">
         <img src={logoNegroF} alt="Logo" className="services-logo" />
         <h1 className="services-company-name">Servicios</h1>
@@ -313,5 +293,5 @@ const ServicesTable = () => {
     </div>
   );
 };
-}
+
 export default ServicesTable;
