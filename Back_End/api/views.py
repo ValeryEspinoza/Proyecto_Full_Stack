@@ -423,12 +423,12 @@ class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
    
 
     
