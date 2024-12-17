@@ -70,8 +70,6 @@
     color: white;
 }
 
-
-<<<<<<< HEAD
 .TitleList{
   font-size: 45px;
   margin-bottom: 5px;
@@ -80,10 +78,6 @@
 }
 
 /* Container for the services */
-=======
-
-
->>>>>>> 45efd79bad8bb481bc20dc8a011b815c664100bd
 .servicios-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

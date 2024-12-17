@@ -21,7 +21,7 @@
     font-size: 70px;
     font-weight: bold;
     margin: 0;
-    color: #50C878;
+    color: #ffffff;
     transition: color 0.3s ease, transform 0.3s ease;    
 }
 .tienda-tittle:hover{
@@ -43,11 +43,6 @@ width: auto;
     align-items: center;       
     width: 100%; 
     padding: 10px;
-}
-#searcherInput {
-    flex: 1;               
-    display: flex;              
-    justify-content: center;    
 }
 #botones{
     margin-left: auto;
@@ -123,3 +118,69 @@ width: auto;
     max-height: 70vh; /* Limit height */
     overflow-y: auto; /* Allow vertical scrolling */
 }
+
+.containerBuscadores{
+margin-top: 30px;
+}
+/* Buscador */
+.Tienda-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+  }
+  
+  /* Contenedor del input e ícono */
+  .searchTienda-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 900px; /* Ajusta el ancho */
+  }
+  
+  /* Estilo del input */
+  .Tienda-search .searchTienda-container .tienda-search-input {
+    width: 450px;
+    height: 50px;
+    padding: 0 70px 0 20px; /* Espacio para el ícono a la derecha */
+    font-size: 16px;
+    color: #555;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    background-color: #f1f3f4; /* Fondo gris claro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Estilo al hacer foco */
+  .tienda-search-input:focus {
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.5); /* Sombra azul */
+    background-color: #ffffff; /* Fondo blanco */
+  }
+  
+  /* Contenedor del ícono circular */
+  .searchTienda-icon-container {
+    position: absolute;
+    right: -1px; /* Posición a la derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #50C878; 
+    border-radius: 50%; /* Hace el fondo circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    cursor: pointer;
+  }
+  
+  /* Estilo del ícono */
+  .searchTienda-icon {
+    width: 25px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Hace el ícono blanco */
+    pointer-events: none; /* Evita interferencias con clics */
+  }

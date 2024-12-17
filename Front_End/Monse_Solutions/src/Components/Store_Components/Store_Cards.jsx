@@ -4,6 +4,7 @@ import Imagen_Carrito from '../../Img/Components_Img/carrito_verde.png';
 import GetData from '../../Services/Get/GetData';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import IconSearch from "../../Img/Components_Img/icon_buscar2.png"
 
 function Store() {
   // Hooks
@@ -82,19 +83,29 @@ const navegacion = () => {
         </div>
 </div>
 
-<div id='buscadores'>
+<div className="containerBuscadores" id='buscadores'>
 <div id='searcherInput'>
     <div id='searchers'>
-    <div className="container h-100">
+    <div>
       <div className="d-flex justify-content-center h-100">
-        <div className="search">
-          <input
-          className="search_input"
+      <div className="Tienda-search">
+        <div className="searchTienda-container">
+        <input
           type="text"
           placeholder="Search here..."
           value={searchTerm}
-          onChange={handleSearchChange}/>
+          onChange={handleSearchChange}
+          className="tienda-search-input"
+          />
+          <div className="searchTienda-icon-container">
+          <img
+            src={IconSearch}
+            alt="Buscar"
+            className="searchTienda-icon"
+          />
+         </div>
         </div>
+      </div>
       </div>
     </div>
     </div>

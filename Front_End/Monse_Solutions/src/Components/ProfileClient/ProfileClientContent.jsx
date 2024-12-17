@@ -6,6 +6,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import { useContext, useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import logoutIcon2 from "../../Img/Components_Img/icon_logout2.png"; 
 
 function ProfileClientContent() {
 const {logout} = useContext(AuthContext);
@@ -22,7 +23,19 @@ const {logout} = useContext(AuthContext);
     };
   return (
     <div className='divProfileClient'>
-      <button onClick={salir}>Logout</button>
+      <div className='divBtnLogOutClient'>
+     <button 
+      className="btnLogOutClient" 
+      onClick={salir} 
+      style={{ all: 'unset' }} // Quita estilos predeterminados
+    >
+      <img 
+        src={logoutIcon2} 
+        alt="Log Out" 
+        className="logoutIconClient"
+      />
+    </button>
+    </div>
   {/* Introducción del formulario */}
     <h2 className='titleShedule'>Schedule your appointment<br />to visit your project</h2>
     <div className='textShedule'>

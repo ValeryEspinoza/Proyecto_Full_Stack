@@ -163,6 +163,8 @@ El objetivo de las siguientes funciones es garantizar que los datos proporcionad
 # Para integrar los gráficos
 - `npm install chart.js react-chartjs-2`: Instala `react-chartjs-2
 
+- `npm install aos --save`: Instala la librería AOS (Animate on Scroll) para animaciones en la aplicación.
+
 # SERVICIOS Y PRODUCTOS FORMULARIOS
 ## Servicios CRUD Modularizados
 

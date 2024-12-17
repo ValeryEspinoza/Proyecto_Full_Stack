@@ -165,12 +165,29 @@ nav.main-menu.expanded {
 }
 
 /* Menú de salida */
-.logout {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
+.btnLogOut {
+    all: unset; /* Resetea todos los estilos */
+    display: inline-block; /* Permite manejar el tamaño y posicionamiento */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Opcional: centra horizontalmente */
+  }
+  
+  /* Estilos para la imagen */
+  .logoutIcon {
+    display: block;
+    width: 150px; /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+    transition: transform 0.3s ease; /* Efecto suave para la animación */
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  /* Efecto al pasar el cursor */
+  .logoutIcon:hover {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+  }
+  
 /* Estilo para la scrollable */
 .no-touch .scrollable.hover {
     overflow-y: hidden;

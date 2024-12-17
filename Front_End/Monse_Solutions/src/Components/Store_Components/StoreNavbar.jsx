@@ -8,6 +8,7 @@ import Logo_Negro from '../../Img/Components_Img/Logo_blanco.png';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // Importa el hook useTranslation
 import '../../config/i18n'
+import { FiShoppingCart } from 'react-icons/fi'; // Ícono de carrito de Feather Icons
 
 export default function NavBar() {
   const { t, i18n } = useTranslation();
@@ -58,12 +59,10 @@ export default function NavBar() {
                   <Link className="itemLinkNav" to="/Servicios">{t('Services')}</Link>
                   <Link className="itemLinkNav" to="/About">{t('About us')} </Link>
                   <Link className="itemLinkNav" to="/Contact"> {t('Contact')}</Link>
-                  <Link className="itemLinkNav" to="/Store"> {t('Store')}</Link>
-                  <Link className="itemLinkNav" to="/About">{t('About')}</Link>
-                  <Link className="itemLinkNav" to="/Contact">{t('Contact')}</Link>
-                  <Link className="itemLinkNav" to="/Store">{t('Store')}</Link>
                   <Link className="itemLinkNav" to="/Blog">{t('Blog')}</Link>
-                  <Link className="itemLinkNav" to="/Carrito">{t('Carrito')}</Link>
+                  <Link className="itemLinkNav" to="/Store"> {t('Store')}</Link>
+                  <Link className="itemLinkNav" to="/Carrito">
+                  <FiShoppingCart size={25} /></Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

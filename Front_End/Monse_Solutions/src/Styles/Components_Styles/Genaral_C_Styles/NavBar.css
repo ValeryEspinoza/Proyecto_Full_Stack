@@ -133,6 +133,13 @@
   outline: none;
 }
 
+
+.itemLinkNav svg {
+  color: #ffffff; /* Color específico del ícono */
+  font-weight: bold;
+}
+
+
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
   /* Fondo y texto del Offcanvas */

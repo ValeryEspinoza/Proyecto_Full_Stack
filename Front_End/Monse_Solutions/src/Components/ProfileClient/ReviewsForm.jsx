@@ -50,9 +50,9 @@ useEffect(() => {
   //Validar formulario
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.review.trim()) newErrors.review = "La reseña no puede estar vacía.";
+    if (!formData.review.trim()) newErrors.review = "The review cannot be empty";
     if (formData.rating < 1 || formData.rating > 5)
-      newErrors.rating = "La calificación debe estar entre 1 y 5.";
+      newErrors.rating = "You must provide a rating";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // Retorna true si no hay errores
