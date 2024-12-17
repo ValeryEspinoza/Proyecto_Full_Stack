@@ -108,11 +108,11 @@ const ServicesTable = () => {
       // Aquí renombramos el archivo para que tenga el nuevo nombre
       const renamedFile = new File([file], newName, { type: file.type });
   
-      // Establecer el nuevo archivo en el estado, manteniendo el resto de la información en `editedService`
+      // Establecer el nuevo archivo en el estado, manteniendo el resto de la información en editedService
       setImageFile(renamedFile); // Guardar el archivo renombrado en el estado
       setEditedService({
         ...editedService,
-        imagen_url: renamedFile, // Guardar el archivo completo con el nuevo nombre en el estado de `editedService`
+        imagen_url: renamedFile, // Guardar el archivo completo con el nuevo nombre en el estado de editedService
       });
     }
   };
