@@ -14,7 +14,9 @@
 
 **Almacenamiento:**  
 - Amazon Web Services (AWS)
-- MySQL Workbench
+  
+**Base de datos:**  
+- MySQL (administrada con MySQL Workbench)
 ---
 ## Equipo de Desarrollo
 
