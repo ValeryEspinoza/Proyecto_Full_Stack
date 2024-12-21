@@ -8,15 +8,10 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from django.http import JsonResponse
-from django.db.models import Count
-from django.contrib.auth.models import User
-from datetime import datetime, timedelta
-
+import datetime
 import re
 from django.views.decorators.csrf import csrf_exempt
-
 
 
 
@@ -65,13 +60,14 @@ class UserListCreate(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
+            
     def login_user(request):
         if request.method == 'POST':
             password = request.POST['password']
             email = request.POST['email']
             
-            # Intentar autenticar al usuario usando el email
-            user = authenticate(request, username=email, password=password)  # Cambié 'email' por 'username'
+            # Intentar autenticar al usuario
+            user = authenticate(request, email=email, password=password )
             
             if user is not None:
                 # Si la autenticación es exitosa, iniciar la sesión
@@ -82,16 +78,16 @@ class UserListCreate(generics.ListCreateAPIView):
                 return render(request, 'login.html', {'error': 'Credenciales incorrectas'})
 
         return render(request, 'login.html')
-
+        
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
     
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all() 
     serializer_class = UserSerializer
-    permission_classes = [AllowAny] 
+    permission_classes = [IsAdministrador | IsCliente]
 
 
 
@@ -170,21 +166,21 @@ class candidateDetail(generics.RetrieveUpdateDestroyAPIView):
 class eventsListCreate(generics.ListCreateAPIView):
     queryset = events.objects.all()
     serializer_class = eventsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
 class eventsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = events.objects.all()
     serializer_class = eventsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
     
 class tasksListCreate(generics.ListCreateAPIView):
     queryset = tasks.objects.all()
     serializer_class = tasksSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
     
 class tasksDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = tasks.objects.all()
     serializer_class = tasksSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
 
 class languagesListCreate(generics.ListCreateAPIView):
     queryset = languages.objects.all()
@@ -412,36 +408,25 @@ class HorariosDisponibles(APIView):
 class sub_categories_productsListCreate(generics.ListCreateAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
-    permission_classes = [AllowAny]  # Solo para pruebas
+    permission_classes = [IsAdministrador]  # Solo para pruebas
 
 class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sub_categories_products.objects.all()
     serializer_class = sub_categories_productsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
  
  
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdministrador]
 
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [AllowAny]
-    
-class PublicProductsListView(APIView):
-    permission_classes = [AllowAny]  # Permite acceso a cualquier usuario (sin autenticación)
+    permission_classes = [IsAdministrador]
+   
 
-    def get(self, request):
-        # Obtener todos los productos
-        products = products.objects.all()
-        
-        # Serializar los productos
-        serializer = productsSerializer(products, many=True)
-        
-        # Devolver los productos serializados en la respuesta
-        return Response(serializer.data, status=status.HTTP_200_OK)
     
 # Consulta Productos con stock disponible    
 """class productos_stock_disponible(generics.ListAPIView):
@@ -658,14 +643,15 @@ class sells_detailsListCreate(generics.ListCreateAPIView):
     serializer_class = sells_detailsSerializer
     permission_classes = [AllowAny]
     #permission_classes = [IsAuthenticated, IsAdministrador]
-    
 class sells_detailsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = sells_details.objects.all()
     serializer_class = sells_detailsSerializer
     permission_classes = [AllowAny]
+  
+  
 
-
-
+ 
+ 
 """ Vista para reestablecer la contraseña
 from django.http import JsonResponse
 from .utils import reset_user_password

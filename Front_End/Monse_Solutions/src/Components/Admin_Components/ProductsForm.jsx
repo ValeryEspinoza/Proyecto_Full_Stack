@@ -36,12 +36,12 @@ function ProductsForm({ onSuccess }) {
   useEffect(() => {
     
     const obtenerCategory_services = async () => {
-      const response = await GetData('category_services')
+      const response = await GetData('sub_categories_products')
       console.log(response);
       setCategory_services(response)
       
     };
-    obtenerSubcaterias()
+    obtenerCategory_services()
  
   }, []);
 

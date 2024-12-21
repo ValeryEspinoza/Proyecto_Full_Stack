@@ -7,36 +7,85 @@ import CardPaymentForms from './CardPaymentForms';      // Asegúrate de tener e
 import '../../Styles/Components_Styles/Admin_C_Styles/Carrito.css';
 import Navbar from "../General_Components/NavBar"
 import Footer from "../General_Components/Footer"
+import Toastify from 'toastify-js';
 
 
 function Carrito() {
     const [productos, setProductos] = useState([]);
     const [metodoPago, setMetodoPago] = useState('');
     const [activeProduct, setActiveProduct] = useState(null);
+    const [archivoCargado, setArchivoCargado] = useState(null);
 
-    // Fetch products from localStorage
+    // Hace el llamado de los productos del localStorage
     useEffect(() => {
         const storedCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
         const parsedCarrito = storedCarrito.map(producto => ({
             ...producto,
-            price: Number(producto.price), // Ensure price is a number
+            price: Number(producto.price), //Se asegura de que los valores de precio sean numeros 
         }));
         setProductos(parsedCarrito);
     }, []);
 
-    // Calculate total
+    // Calcula el total a cobrar
     const calcularTotal = () => {
         return productos.reduce((total, producto) => total + producto.price, 0).toFixed(2);
     };
 
-    // Remove product
+    // Elimina product
 const eliminarProducto = (id) => {;
     const newProductos = productos.filter(producto => producto.id !== id); // Filter out the product
     setProductos(newProductos); // Update the state
     localStorage.setItem('carrito', JSON.stringify(newProductos)); // Update localStorage
     toast.success('Producto eliminado con éxito', { position: "top-right" });
+  };
+
+  //Almacena el archivo cargado en Transferencia Cargada
+const handleFileChange = (e) => {
+  if (e.target.files.length > 0) {
+    const archivo = e.target.files[0];
+    setArchivoCargado(e.target.files[0].name);
+    Toastify({
+      text: `Se subio el archivo ${archivo.name}`,
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      close: true,
+      className: "toastsuccess",
+  }).showToast();
+
+} else{
+  Toastify({
+    text: "Archivo sin cargar",
+    duration: 3000,
+    gravity: "top",
+    position: "center",
+    close: true,
+    className: "toast-error",
+}).showToast();
+  setArchivoCargado(null);
+}
 };
-;
+  {/* Validación del pago al presionar el boton*/}
+  const handlePaymentSubmit = (e) => {
+    {/* Se encarga de prevenir que se recargue la pagina del formulario */}
+    e.preventDefault(); 
+
+    {/* Elimina los elementos de localStorage con tal de limpiar el carrito */}
+    localStorage.removeItem('carrito')
+    localStorage.removeItem('carritoId')
+
+    setProductos([]);
+
+
+    {/* Alarte de realizado */}
+    Toastify({
+      text: `Pago de $${montoTotal} procesado con éxito. Tarjeta: ${cardNumber}`,
+      duration: 3500,
+      gravity: 'top',
+      position: 'center',
+      className: 'toastsuccess',
+      }).showToast();
+  };
 
 
 
@@ -47,7 +96,7 @@ const eliminarProducto = (id) => {;
           
             <h1 className="carrito-title">Tu Carrito de Compras</h1>
 
-            {/* Product List */}
+            {/* Lisat y mapeo de los productos */}
             <div className="productos-list">
                 {productos.length === 0 ? (
                     <p>El carrito está vacío.</p>
@@ -69,7 +118,7 @@ const eliminarProducto = (id) => {;
                 )}
             </div>
 
-            {/* Cart Total */}
+            {/* Monto total a cobrar*/}
             {productos.length > 0 && (
                 <div className="total-container">
                     <h3>Total: ${calcularTotal()}</h3>
@@ -112,17 +161,33 @@ const eliminarProducto = (id) => {;
           <p>CLABE: <strong className='transferencia-strong'>987654321</strong></p>
           <p>Referencias: <strong className='transferencia-strong'>Monse Solutions. S.A. de C.V.</strong></p>
           <p>Por favor, realiza la transferencia y envíanos el comprobante.</p>
-          <input type="file" placeholder='Subir Comprobante' id='file-inputs'/>
+
+          {/* Inputs para depositar el comprobante de la transferencia*/}
+          {/* Label se encarga de crear el input y darle el texto que se mostrara dependiendo del estado */}
+          <label htmlFor="file-inputs"
+          className={`file-label ${archivoCargado ? 'file-loaded':''}`}>
+            {archivoCargado ? `Archivo cargado: ${archivoCargado}` : 'Subir comprobante'}
+          </label>
+
+          {/* Es el encargado de brindar el espacio para subir el comprobante */}
+          <input type="file" id='file-inputs' placeholder='Archivos' className='file-input' onChange={handleFileChange}/>
+          <button
+            onClick={handlePaymentSubmit}
+            className="btn-enviar"
+            disabled={!archivoCargado} // Desactiva el boton si no hay un archivo
+            >
+                Enviar comprobante
+            </button>
+          
           <br />
         </div>
         </div>
-      )}
+      )};
 
-            <ToastContainer />
+        <ToastContainer />
         </div>
         <Footer className='carrito-footer'/>
         </div>
     );
-}
-
+};
 export default Carrito;

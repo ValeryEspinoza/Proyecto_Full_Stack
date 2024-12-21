@@ -235,6 +235,9 @@ Actualiza parcialmente un recurso mediante PATCH.
 ### DELETE: `DeleteData`
 Solicita la eliminación de un recurso en el servidor.
 
+### OpenGet: `OpenGet`
+Realiza la función del Get para los servicios, reviews, productos y los renderiza en las páginas publicas.
+
 ---
 
 # Documentación de Componentes CRUD

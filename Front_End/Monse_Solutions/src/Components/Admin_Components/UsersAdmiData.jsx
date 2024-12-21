@@ -125,6 +125,23 @@ const UsersTable = () => {
     }
   };
 
+
+  const handleSuccessMessage = (message) => {
+    toast.success(message); // Muestra la notificación de éxito
+    
+    const ObtenerProductos = async () => {
+      try {
+        const response = await GetData("register");
+        SetUsuarios(response);
+        toast.success("Usuarios cargados correctamente.");
+      } catch (error) {
+        console.error("Error al obtener los usuarios:", error);
+        toast.error("Error al cargar los usuarios.");
+      }
+    };
+    ObtenerProductos(); // Llamar para recargar los servicios
+  };
+
     return (
       <div className="users-container">
         <ToastContainer />
@@ -148,7 +165,7 @@ const UsersTable = () => {
           >
             <i className="fa fa-plus"></i> Agregar Usuario
           </button>
-          {isFormVisible && <RegisterForm />}
+          {isFormVisible && <RegisterForm onSuccess={handleSuccessMessage} />}
         </div>
     
         <table className="users-table">

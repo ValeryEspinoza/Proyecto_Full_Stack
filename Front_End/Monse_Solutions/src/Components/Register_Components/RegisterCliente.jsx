@@ -3,11 +3,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import "../../Styles/Components_Styles/Register_Styles/RegisterCliente.css";
 import { Link } from 'react-router-dom';
 import iconRegister from "../../Img/Components_Img/icon_register.png";
-import postData from '../../Services/Post/PostData';
+import PostUser from '../../Services/Post/PostUser';
 import GetData from '../../Services/Get/GetData';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 import '../../Styles/toastStyles.css'
+import OpenGet from '../../Services/Get/OpenGet';
 
 function RegisterClienteForm() {
   const [cedula, setCedula] = useState("");
@@ -66,62 +67,64 @@ function RegisterClienteForm() {
       }
     }
   };
-// Función auxiliar para mostrar Toastify
-const showToastError = (message) => {
-  Toastify({
-    text: message,
-    duration: 3000,
-    gravity: 'top',
-    position: 'center',
-    className: 'toast-error',
-  }).showToast();
-};
+
+  // Función auxiliar para mostrar Toastify
+  const showToastError = (message) => {
+    Toastify({
+      text: message,
+      duration: 3000,
+      gravity: 'top',
+      position: 'center',
+      className: 'toast-error',
+    }).showToast();
+  };
+
   // Validación del formulario
-const validateForm = () => {
-  // Verificar campos vacíos
-  if (!cedula || !fullName || !emailUser || !userName || !password || !password2) {
-    showToastError(`Todos los campos son obligatorios`);
-    return false;
-  }
+  const validateForm = () => {
+    // Verificar campos vacíos
+    if (!cedula || !fullName || !emailUser || !userName || !password || !password2) {
+      showToastError(`Todos los campos son obligatorios`);
+      return false;
+    }
 
-  // Validar cédula
-  if (cedula.length < 9) {
-    showToastError(`La cédula debe tener al menos 9 dígitos`);
-    return false;
-  }
+    // Validar cédula
+    if (cedula.length < 9) {
+      showToastError(`La cédula debe tener al menos 9 dígitos`);
+      return false;
+    }
 
-  // Validar nombre completo
-  if (!fullName.trim()) {
-    showToastError(`El nombre completo no puede estar vacío`);
-    return false;
-  }
+    // Validar nombre completo
+    if (!fullName.trim()) {
+      showToastError(`El nombre completo no puede estar vacío`);
+      return false;
+    }
 
-  // Validar correo electrónico
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailUser)) {
-    showToastError(`El correo electrónico no es válido`);
-    return false;
-  }
+    // Validar correo electrónico
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailUser)) {
+      showToastError(`El correo electrónico no es válido`);
+      return false;
+    }
 
-  // Validar nombre de usuario
-  if (!userName.trim()) {
-    showToastError(`El nombre de usuario no puede estar vacío`);
-    return false;
-  }
+    // Validar nombre de usuario
+    if (!userName.trim()) {
+      showToastError(`El nombre de usuario no puede estar vacío`);
+      return false;
+    }
 
-  // Validar contraseña
-  if (password.length < 8) {
-    showToastError(`La contraseña debe tener al menos 8 caracteres`);
-    return false;
-  }
+    // Validar contraseña
+    if (password.length < 8) {
+      showToastError(`La contraseña debe tener al menos 8 caracteres`);
+      return false;
+    }
 
-  // Validar coincidencia de contraseñas
-  if (password !== password2) {
-    showToastError(`Las contraseñas no coinciden`);
-    return false;
-  }
+    // Validar coincidencia de contraseñas
+    if (password !== password2) {
+      showToastError(`Las contraseñas no coinciden`);
+      return false;
+    }
 
-  return true;
-};
+    return true;
+  };
 
   // Función para manejar el registro
   const handleRegister = async () => {
@@ -130,21 +133,15 @@ const validateForm = () => {
     setIsSubmitting(true);
     try {
       // Obtener los usuarios y clientes existentes para comprobar duplicados
-      const users = await GetData('register');
-      const clients = await GetData('clients');
+      const users = await OpenGet('register');
+      const clients = await OpenGet('clients');
 
       const lastUserId = users[users.length - 1]?.id || 0;
       const newUserId = lastUserId + 1;
 
       const lastClientId = clients[clients.length - 1]?.client_id || 0;
       const newClientId = lastClientId + 1;
-      console.log(cedula);
       
-      console.log(        !users.find(({ email }) => email === emailUser) && 
-      !users.find(({ username }) => username === userName));
-      
-//Convertir a un objeto y pasarlo a PostData('api/register')
-
       // Verificar si el correo o el nombre de usuario ya existen
       if (
         !users.find(({ email }) => email === emailUser) && 
@@ -164,13 +161,15 @@ const validateForm = () => {
         };
        
         // Realizar el envío de datos a las API correspondientes
-        const response = await postData('register', user);
+        const response = await PostUser(user);
         setIsSubmitting(false); // Deshabilitar el botón de envío después de recibir la respuesta
         
         if (!response || !response.id) {
           showToastError(`Error al registrar el usuario`);
           return;
         }
+
+        // Restablecer los valores de los inputs después del registro exitoso
         Toastify({
           text: `Registro exitoso. El usuario se ha creado correctamente`,
           duration: 3500,
@@ -178,6 +177,23 @@ const validateForm = () => {
           position: 'center',
           className: 'toastsuccess',
         }).showToast();
+
+        // Limpiar los inputs
+        setCedula("");
+        setFullName("");
+        setUserName("");
+        setEmailUser("");
+        setPhoneNumber("");
+        setPassword("");
+        setPassword2("");
+        setRole("cliente");
+        setIsSuperUser(false);
+        setActive(true);
+        setIsStaff(false);
+
+        // Restablecer los nombres si es necesario
+        setNames("");
+        setLastNames("");
         
       } else {
         showToastError(`Verifica los campos: el usuario o el correo ya existen`);
@@ -270,7 +286,6 @@ const validateForm = () => {
         <Link className='irALogin' to="/Login">Ir a Login</Link>
       </div>
     </div>
-    
   );
 }
 

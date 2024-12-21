@@ -13,6 +13,7 @@ import '../../Styles/toastStyles.css'
 import Logo from '../../Img/Components_Img/logo_negrov.png';
 import GetData from '../../Services/Get/GetData';
 import PostData from '../../Services/Post/PostData';
+import OpenGet from '../../Services/Get/OpenGet';
 
 /**
  * Componente principal para gestionar el calendario de citas.

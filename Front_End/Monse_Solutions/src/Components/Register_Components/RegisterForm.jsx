@@ -5,11 +5,12 @@ import '../../Styles/Components_Styles/Register_Styles/RegisterForm.css';
 import postData from '../../Services/Post/PostData';
 import GetData from '../../Services/Get/GetData';
 
-function RegisterForm() {
+function RegisterForm({ onSuccess }) {
     // Hooks para manejar el estado
     const [name, setName] = useState(""); // Nombre
     const [lastName, setLastName] = useState(""); // Apellido
     const [emailUser, setEmail] = useState(""); // Correo electrónico
+    const [UserName, setUserName] = useState(""); // Correo electrónico
     const [password, setPassword] = useState(""); // Contraseña
     const [password2, setPassword2] = useState(""); // Confirmación de contraseña
     const [access, setAccess] = useState(""); // Rol de acceso
@@ -17,7 +18,7 @@ function RegisterForm() {
 
     // Validación del formulario
     const validateForm = () => {
-        if (!name || !lastName || !emailUser || !password || !password2 || !access) {
+        if (!name || !lastName || !emailUser || !password || !password2 || !access || !UserName) {
             Swal.fire({
                 title: "Registro Fallido",
                 text: "Todos los campos deben estar completos.",
@@ -57,7 +58,7 @@ function RegisterForm() {
             if (!users.find(({ email }) => email === emailUser)) {
                 const user = {
                     password,
-                    username: `${name.toLowerCase()}.${lastName.toLowerCase()}`, // Crear username automáticamente
+                    username: UserName,
                     email: emailUser,
                     first_name: name,
                     last_name: lastName,
@@ -67,7 +68,10 @@ function RegisterForm() {
                     role: access,
                 };
 
+                console.log(user);
+                
                 const response = await postData('register', user);
+                onSuccess("¡Producto enviado exitosamente!");
 
                 if (response && response.id) {
                     Swal.fire({
@@ -75,6 +79,15 @@ function RegisterForm() {
                         text: "El usuario se ha registrado correctamente.",
                         icon: "success",
                     });
+
+                    // Reseteamos los campos del formulario
+                    setName("");
+                    setLastName("");
+                    setEmail("");
+                    setUserName("");
+                    setPassword("");
+                    setPassword2("");
+                    setAccess("");
                 } else {
                     Swal.fire({
                         title: "Registro Fallido",
@@ -107,6 +120,7 @@ function RegisterForm() {
                 <input className='InputRegister' value={name} onChange={(e) => setName(e.target.value)} placeholder='Name' type="text" />
                 <input className='InputRegister' value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last Name' type="text" />
                 <input className='InputRegister' value={emailUser} onChange={(e) => setEmail(e.target.value)} placeholder='Email' type="text" />
+                <input className='InputRegister' value={UserName} onChange={(e) => setUserName(e.target.value)} placeholder='Username' type="text" />
                 <input className='InputRegister' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' type="password" />
                 <input className='InputRegister' value={password2} onChange={(e) => setPassword2(e.target.value)} placeholder='Confirm Password' type="password" />
                 <select className='InputRegister' value={access} onChange={(e) => setAccess(e.target.value)}>
@@ -124,3 +138,4 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
+

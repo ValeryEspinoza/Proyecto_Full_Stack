@@ -3,6 +3,8 @@ import '../../Styles/Components_Styles/Home_C_Styles/Home_Services.css';
 import { useTranslation } from 'react-i18next'; 
 import '../../config/i18n';
 import OpenGet from '../../Services/Get/OpenGet';
+import { Link } from 'react-router-dom';
+
 
 function Home_Services() {
   const { t, i18n } = useTranslation();
@@ -45,6 +47,11 @@ function Home_Services() {
               )}
               <h3 className="Nombre_Services">{service.service}</h3>
               <p>{service.description}</p>
+              <button className="button-content-home">      
+                    <Link to="/Contact" className="button-Services-home">
+                        <span className="span-services-home">Get a Quote</span>
+                    </Link>
+              </button>
             </div>
           ))}
         </div>

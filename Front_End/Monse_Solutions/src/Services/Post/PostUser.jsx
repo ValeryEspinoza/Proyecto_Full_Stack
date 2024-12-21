@@ -1,34 +1,10 @@
 //Send  product data to server 
-async function SendUser ( 
-
-    password,
-    username,
-    email,
-    first_name,
-    last_name,
-    is_superuser,
-    is_staff,
-    is_active,
-    role) {
+async function PostUser (newUser) {
   
       try { 
-        const newUser ={
-                  
-
-          password,
-          username,
-          email,
-          first_name,
-          last_name,
-          is_superuser,
-          is_staff,
-          is_active,
-          role
-        }
-
+ 
+        console.log(newUser);
         
-        
-    
         const response = await fetch(`http://192.168.1.87:8000/api/register/`, {
         method: 'POST',
         headers: {
@@ -50,5 +26,5 @@ async function SendUser (
       }
     }
     
-        export default SendUser
+export default PostUser
   

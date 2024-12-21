@@ -32,6 +32,51 @@
 }
 /* Bloques de color */
 
+
+/* Estilo para el contenedor del botón */
+.button-content {
+  border: none;
+  background: transparent; /* Sin fondo para el contenedor */
+  padding: 0; /* Elimina el padding del botón */
+}
+
+/* Estilo para el enlace (Link) */
+.button-Services {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #278d49; /* Verde claro de fondo */
+  color: #fff; /* Texto blanco */
+  padding: 12px 24px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de la fuente */
+  font-weight: 500;
+  border-radius: 4px; /* Bordes redondeados */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilo para el texto dentro del enlace */
+.span-services {
+  display: inline-block;
+}
+
+/* Efecto hover para el enlace */
+.button-Services:hover {
+  background-color: #228B22; /* Verde oscuro al pasar el ratón */
+  transform: translateY(-3px); /* Efecto de elevación */
+}
+
+/* Efecto active cuando se presiona el enlace */
+.button-Services:active {
+  background-color: #006400; /* Verde muy oscuro cuando se presiona */
+  transform: translateY(0); /* Elimina la elevación */
+}
+
+/* Estilo para cuando el enlace está en foco (clic en el enlace) */
+.button-Services:focus {
+  outline: none; /* Eliminar el contorno */
+  box-shadow: 0 0 5px 2px rgba(50, 205, 50, 0.6); /* Sombra verde al estar en foco */
+}
+
 .divCajasTexto {
     display: flex;
     justify-content: space-around;

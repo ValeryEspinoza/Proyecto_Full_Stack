@@ -84,6 +84,13 @@ width: auto;
     background-color: #ffffff7c;
     display: inline-block;
 }
+.btn-shop{
+    background-color: #46a264;
+}
+.card-img-top{
+    width: 100%;
+    height: 200px;
+}
 .modal {
     display: flex;
     justify-content: center;
@@ -94,7 +101,7 @@ width: auto;
     right: 0;
     bottom: 0;
     backdrop-filter: blur(5px); /* Apply blur effect */
-    background-color: #00000000;
+    background-color: #9e9e9e00;
     z-index: 1000; /* Ensure it appears above other content */
 }
 

@@ -12,7 +12,9 @@ function ProfileClientContent() {
 const {logout} = useContext(AuthContext);
 
     const salir = async () => {
+
       const response = await logout();
+      console.log(response);
       
       if (response) {
         toast.success("Cerrando Sesion...");
@@ -20,14 +22,16 @@ const {logout} = useContext(AuthContext);
       }else{
         toast.error("Error al cerrar sesión");
       }
+
     };
+    
   return (
     <div className='divProfileClient'>
       <div className='divBtnLogOutClient'>
      <button 
       className="btnLogOutClient" 
       onClick={salir} 
-      style={{ all: 'unset' }} // Quita estilos predeterminados
+  
     >
       <img 
         src={logoutIcon2} 

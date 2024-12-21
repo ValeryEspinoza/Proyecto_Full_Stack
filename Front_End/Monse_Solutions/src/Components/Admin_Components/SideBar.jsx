@@ -53,8 +53,9 @@ useEffect(() => {
   
           <nav className={`main-menu`}>
             <ul className="listContentElementsSide">
+              
               <li className="PerfilUser">
-                <Link className="linkSideBar" to="/DashBoard">
+                <Link className="linkSideBar" to="/Settings">
                   <img
                     src="https://picsum.photos/36"
                     alt="Valery Espinoza"
@@ -99,12 +100,7 @@ useEffect(() => {
                   <span className="nav-text">Events and Tasks</span>
                 </Link>
               </li>
-              <li className="elementLiTE">
-                <Link to="/Settings">
-                  <i className="fa fa-cogs fa-2x"></i>
-                  <span className="nav-text">Tools & Resources</span>
-                </Link>
-              </li>
+
               <li className="elementLiTE">
                 <Link to="/Documentation">
                   <i className="fa fa-book fa-2x"></i>

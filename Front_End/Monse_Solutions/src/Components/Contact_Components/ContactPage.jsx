@@ -3,14 +3,11 @@ import ContactForm from '../../Components/Contact_Components/ContactForm';
 import "../../Styles/Components_Styles/Contact_C_Styles/ContactPage.css";
 import { useTranslation } from 'react-i18next';
 import '../../config/i18n';
-
 const ContactPage = () => {
   const { t, i18n } = useTranslation();
-
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
   };
-
   return (
 <div className="contact-page-container">
   <div className="contact-header">
@@ -22,7 +19,6 @@ const ContactPage = () => {
       <h3 className="InfoTitle">{t('infoTituloContact')}</h3>
       <p><strong>{t('Phone')}:</strong> +506 8591 6349</p>
       <p><strong>{t('Email')}:</strong> monsesolutions@gmail.com</p>
-      <p><strong>{t('Website')}:</strong> www.monsesolutions.com</p>
       <p><strong>{t('Address')}:</strong> Nosara, Guanacaste, Costa Rica</p>
       <div className="contact-map">
         <h3 className="InfoTitle">{t('textMap')}</h3>
@@ -39,9 +35,6 @@ const ContactPage = () => {
     </div>
   </div>
 </div>
-
-
   );
 };
-
 export default ContactPage;

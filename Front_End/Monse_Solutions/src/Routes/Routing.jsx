@@ -73,8 +73,16 @@ function Routing() {
       <Route path="/Documentation" element={<ProtectedRoute requiredRole={admin} ><Documentation /></ProtectedRoute>} />
       <Route path="/EventosTareas" element={<ProtectedRoute requiredRole={admin} ><EventosTareas /></ProtectedRoute>} />
       <Route path="/ServicesData" element={<ProtectedRoute requiredRole={admin} ><ServicesData /></ProtectedRoute>} />
-      <Route path="/ProfileClient" element={<ProfileClient />} />
-      
+      <Route path="/Formularios" element={<Formularios />} />
+      <Route path='/Tasks' element={<ProtectedRoute requiredRole={admin} ><ServicesData /></ProtectedRoute>} />
+      <Route path="/Events" element={<ProtectedRoute requiredRole={admin} ><ServicesData /></ProtectedRoute>} />
+      <Route path="/ProfileClient" element={<ProtectedRoute requiredRole={cliente} ><ProfileClient /></ProtectedRoute>} />
+
+      <Route path="/ServicesTable" element={<ProtectedRoute requiredRole={admin} ><ServicesTable /></ProtectedRoute>} />
+      <Route path="/ProductsTable" element={<ProtectedRoute requiredRole={admin} ><ProductsTable /></ProtectedRoute>} />
+      <Route path="/UsersTable" element={<ProtectedRoute requiredRole={admin} ><UsersTable /></ProtectedRoute>} />
+      <Route path="/TasksAdminData" element={<ProtectedRoute requiredRole={admin} ><TasksAdminData /></ProtectedRoute>} />
+      <Route path="/EventsAdminData" element={<ProtectedRoute requiredRole={admin} ><EventsAdminData /></ProtectedRoute>} /> 
       <Route path='/NotAuthorized'element={<NotAuthorized />} />
 
 
@@ -85,9 +93,6 @@ function Routing() {
       <Route path="/Contact" element={<Contact />} />
       <Route path="/Servicios" element={<Servicios />} />
       <Route path="/About" element={<AboutUs />} />
-      <Route path="/Formularios" element={<Formularios />} />
-      <Route path='/Tasks' element={<ProtectedRoute component={Tasks} />} />
-      <Route path="/Events" element={<ProtectedRoute component={Events} />} />
 
       <Route path="/Store" element={<VirtualStore />} />
       
@@ -97,16 +102,9 @@ function Routing() {
       <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
       <Route path="/ArticleColor" element={<ArticleColor />} />
 
-
-      <Route path="/ServicesTable" element={<ServicesTable component={ServicesTable} />} />
-      <Route path="/ProductsTable" element={<ProtectedRoute component={ProductsTable} />} />
-      <Route path="/UsersTable" element={<ProtectedRoute component={UsersTable} />} />
-      <Route path="/TasksAdminData" element={<ProtectedRoute component={TasksAdminData} />} />
-      <Route path="/EventsAdminData" element={<ProtectedRoute component={EventsAdminData} />} />
-      <Route path="/PaypalForm" element={<ProtectedRoute component={PaypalForm} />} />
-      <Route path='/Carrito' element={<ProtectedRoute component={Carrito} />} />
-
-      <Route path="/ProfileClient" element={<ProtectedRoute component={ProfileClient} />} />
+      <Route path="/PaypalForm" element={<PaypalForm />} />
+      <Route path='/Carrito' element={<Carrito />} />
+      <Route path="/ArticleCloset" element={<ArticleCloset />}/>
 
     </Routes>
    </Router>
@@ -117,50 +115,3 @@ function Routing() {
 export default Routing
 
 
-/*
-<Route path="/ProfileClient" element={<ProtectedRoute requiredRole={cliente} ><ProfileClient /></ProtectedRoute>} />
-<Route path="/Dashboard" element={<ProtectedRoute requiredRole={admin} ><DashBoard /></ProtectedRoute>} />
-<Router>
-  <ScrollToTop />
-  <Routes>
-    <Route path="/Register" element={<Register />} />
-    <Route path="/RegisterCliente" element={<RegisterCliente />} />
-    <Route path="/Login" element={<Login />} />
-    <Route path="/" element={<Home />} />
-    <Route path="/Contact" element={<Contact />} />
-    <Route path="/Servicios" element={<Servicios />} />
-    <Route path="/About" element={<AboutUs />} />
-    <Route path="/Formularios" element={<Formularios />} />
-    <Route path="/ServiciosAdmi" element={<ServiciosAdmi />} />
-    <Route path="/DashBoard" element={<DashBoard />} />
-    <Route path="/Tasks" element={<Tasks />} />
-    <Route path="/Events" element={<Events />} />
-    <Route path="/Calendar" element={<Calendar />} />
-    <Route path="/Products" element={<Products />} />
-    <Route path="/Users" element={<Users />} />
-    <Route path="/Settings" element={<Settings />} />
-    <Route path="/Documentation" element={<Documentation />} />
-    <Route path="/EventosTareas" element={<EventosTareas />} />
-    <Route path="/Store" element={<VirtualStore />} />
-    <Route path="/ServicesData" element={<ServicesData />} />
-    <Route path="/NotAuthorized" element={<NotAuthorized />} />
-
-    <Route path="/Blog" element={<Blog />} />
-    <Route path="/Article10Tips" element={<Article10Tips />} />
-    <Route path="/ArticleGarden" element={<ArticleGarden />} />
-    <Route path="/ArticlePreventive" element={<ArticlePreventive />} />
-    <Route path="/ArticleColor" element={<ArticleColor />} />
-    <Route path="/ArticleCloset" element={<ArticleCloset />} />
-
-    <Route path="/ServicesTable" element={<ServicesTable />} />
-    <Route path="/ProductsTable" element={<ProductsTable />} />
-    <Route path="/UsersTable" element={<UsersTable />} />
-    <Route path="/TasksAdminData" element={<TasksAdminData />} />
-    <Route path="/EventsAdminData" element={<EventsAdminData />} />
-    <Route path="/PaypalForm" element={<PaypalForm />} />
-    <Route path="/Carrito" element={<Carrito />} />
-
-    <Route path="/ProfileClient" element={<ProfileClient />} />
-  </Routes>
-</Router>
-   */

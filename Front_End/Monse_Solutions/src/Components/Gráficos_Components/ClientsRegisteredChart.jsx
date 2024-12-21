@@ -27,6 +27,7 @@ export default function ClientsRegisteredChart(){
           
           //Extraen el mes del formato ISO
           const monthName = new Date(client.date_joined).toLocaleString('default', {month: 'long'});
+
           //Incrementales de la cantidad de clientes por mes
           if (monthCounts[monthName]){
             monthCounts[monthName] ++;
@@ -42,12 +43,11 @@ export default function ClientsRegisteredChart(){
       //Actualizan las variables
       setMeses(sortedMonths);
       setClientes(counts);
-
     }
     getClientRegistration();
     }, []);
 
-
+    //Los datos presentes en la grafica para su visualización
   const midata = {
     labels: meses,
     datasets: [
@@ -63,6 +63,8 @@ export default function ClientsRegisteredChart(){
       }
     ]
   };
+
+  //Configuración de la grafica
   const misoptions = {
     responsive: true,
     plugins: {
@@ -77,5 +79,6 @@ export default function ClientsRegisteredChart(){
     }
   };
 
+  //Llamado del componente de la grafica
   return <Line data={midata} options= {misoptions}/>
 };

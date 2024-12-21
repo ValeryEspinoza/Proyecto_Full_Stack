@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../Styles/Pages_Styles/Servicios.css";
 import OpenGet from "../../Services/Get/OpenGet";
 import IconSearch from "../../Img/Components_Img/icon_buscar2.png"
+import { Link } from "react-router-dom";
 
 const ServiciosComponent = () => {
   const [services, setServices] = useState([]);
@@ -89,9 +90,15 @@ const ServiciosComponent = () => {
                       className="servicio-img"
                     />
                   </div>
+                  
                 )}
                 <h2 className="servicio-title">{service.service}</h2>
                 <p className="servicio-description">{service.description}</p>
+                <button className="button-content">      
+                        <Link to="/Contact" className="button-Services">
+                             <span className="span-services">Get a Quote</span>
+                         </Link>
+                </button>
               </div>
             ))
           ) : (

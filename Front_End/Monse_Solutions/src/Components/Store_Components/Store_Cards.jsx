@@ -5,7 +5,7 @@ import GetData from '../../Services/Get/GetData';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import IconSearch from "../../Img/Components_Img/icon_buscar2.png";
-import OpenGet from '../../Services/Get/OpenGet';
+
 
 function Store() {
   // Hooks
@@ -19,9 +19,10 @@ function Store() {
   const navigate = useNavigate();
 
   // Fetch products from the API
+  // Fetch products from the API
   useEffect(() => {
     async function getStoreProducts() {
-      const products = await OpenGet('products');      
+      const products = await GetData('products');
       setStoreProducts(products);
     }
     getStoreProducts();
@@ -30,12 +31,10 @@ function Store() {
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
 
-  
   // Filtrar productos en base al input de busqueda
-  const filteredProducts = storeProducts.filter((product) =>
+  const filteredProducts = storeProducts.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  
 
 
   // Orden de los productos mediante los botones
@@ -139,15 +138,14 @@ const navegacion = () => {
           <div className="card" key={product.id}>
             <img src={product.imagen_url} alt={product.name} className="card-img-top" />
                 <div className='card-body'>
-                    <h3 className="card-title">{product.name}</h3>
-                    <p className="card-text">{product.description}</p>               
+                    <h3 className="card-title">{product.name}</h3>              
                 </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">Precio: ${product.price}</li>
             </ul>
         <div className='card-body'>
-        <button onClick={() => setActiveProduct(product)}>Más Información</button>
-        <button onClick={() => carritoVirtual(product)}>Añadir al Carrito</button>
+        <button onClick={() => setActiveProduct(product)} className='btn-shop'>Más Información</button>
+        <button onClick={() => carritoVirtual(product)} className='btn-shop'>Añadir al Carrito</button>
 
 {/* Funcionalidad del modal*/}
         {activeProduct && activeProduct.id === product.id && (
@@ -161,8 +159,8 @@ const navegacion = () => {
                     <p>{activeProduct.description}</p>
                 </div>
                 <div className="modal-footer">
-                    <button type="button"  onClick={() => setActiveProduct(null)}>Cerrar</button>
-                    <button type="button" onClick={carritoVirtual}>Añadir al carrito</button>
+                    <button type="button"  onClick={() => setActiveProduct(null)} className='btn-shop'>Cerrar</button>
+                    <button type="button" onClick={carritoVirtual} className='btn-shop'>Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -174,7 +172,7 @@ const navegacion = () => {
       </div>
 </div>
 </div>
-
+<ToastContainer/>
 </div>
 );
 }
