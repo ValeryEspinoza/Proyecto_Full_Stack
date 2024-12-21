@@ -5,7 +5,7 @@ async function PostUser (newUser) {
  
         console.log(newUser);
         
-        const response = await fetch(`http://192.168.1.87:8000/api/register/`, {
+        const response = await fetch(`http://192.168.88.198:8000/api/register/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json' 

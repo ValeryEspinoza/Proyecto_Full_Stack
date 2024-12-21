@@ -4,7 +4,7 @@ async function DeleteData(EndPoint, id) {
        
         let token = localStorage.getItem('accessToken');
         
-        const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/${id}/`, {
+        const response = await fetch(`http://192.168.88.198:8000/api/${EndPoint}/${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

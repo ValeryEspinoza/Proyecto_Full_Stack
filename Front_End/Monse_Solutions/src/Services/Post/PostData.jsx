@@ -2,7 +2,7 @@ const postData = async (EndPoint, data) => {
   try {
     const token = localStorage.getItem('accessToken');
     
-    const response = await fetch(`http://192.168.1.87:8000/api/${EndPoint}/`, {
+    const response = await fetch(`http://192.168.88.198:8000/api/${EndPoint}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

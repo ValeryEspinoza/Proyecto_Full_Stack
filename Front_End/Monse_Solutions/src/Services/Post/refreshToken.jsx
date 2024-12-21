@@ -6,7 +6,7 @@ const refreshToken = async () => {
     if (refresh) {
         console.log(refresh);
         
-        const response = await fetch('http://192.168.1.87:8000/api/token/refresh/', {
+        const response = await fetch('http://192.168.88.198:8000/api/token/refresh/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ refresh }),

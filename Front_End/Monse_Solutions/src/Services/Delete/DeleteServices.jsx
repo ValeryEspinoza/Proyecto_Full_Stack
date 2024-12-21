@@ -2,7 +2,7 @@
 async function DeleteServices(id) {
     try {
         let token = localStorage.getItem('accessToken');
-        const response = await fetch(`http://192.168.1.87/api/Services/${id}`, {
+        const response = await fetch(`http://192.168.88.198/api/Services/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

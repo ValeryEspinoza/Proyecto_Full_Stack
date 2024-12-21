@@ -6,7 +6,7 @@ try {
     
 
     // Construye la URL con el ID
-    const url = `http://192.168.1.87:8000/api/${endpoint}/${id}/`;
+    const url = `http://192.168.88.198:8000/api/${endpoint}/${id}/`;
     
     // Realiza la solicitud PUT
     const respuesta = await fetch(url, {

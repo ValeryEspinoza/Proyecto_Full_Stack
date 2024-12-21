@@ -419,7 +419,7 @@ class sub_categories_productsDetail(generics.RetrieveUpdateDestroyAPIView):
 class productsListCreate(generics.ListCreateAPIView):
     queryset = products.objects.all()
     serializer_class = productsSerializer
-    permission_classes = [IsAdministrador]
+    permission_classes = [AllowAny]
 
 class productsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = products.objects.all()

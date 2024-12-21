@@ -5,6 +5,7 @@ import GetData from '../../Services/Get/GetData';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import IconSearch from "../../Img/Components_Img/icon_buscar2.png";
+import OpenGet from '../../Services/Get/OpenGet';
 
 
 function Store() {
@@ -22,7 +23,7 @@ function Store() {
   // Fetch products from the API
   useEffect(() => {
     async function getStoreProducts() {
-      const products = await GetData('products');
+      const products = await OpenGet('products');
       setStoreProducts(products);
     }
     getStoreProducts();

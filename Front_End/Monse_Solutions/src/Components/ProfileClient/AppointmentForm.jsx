@@ -26,11 +26,11 @@ const AppointmentForm = ({ clientId, onAppointmentAdded }) => {
       ...appointmentData,
       date: date,
     });
-  };
+  }; 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://192.168.1.87:8000/api/appointments/', {
+    fetch('http://192.168.88.198:8000/api/appointments/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

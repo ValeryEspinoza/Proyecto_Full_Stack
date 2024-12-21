@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     setAuthToken(response)
 
 
-    const userResponse = await fetch('http://192.168.1.87:8000/api/user/profile/', {
+    const userResponse = await fetch('http://192.168.88.198:8000/api/user/profile/', {
       headers: {
         Authorization: `Bearer ${response.access}`, 
       },

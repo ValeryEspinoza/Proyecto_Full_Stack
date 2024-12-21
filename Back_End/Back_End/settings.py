@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dvn4_%k2zs-(#as$j+ml&zl=0@_l_wp_gdcv39##)_3_mn&jew
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://localhost:', '192.168.1.87']
+ALLOWED_HOSTS = ['http://localhost:', '192.168.88.198']
 
 
 # Application definition
@@ -73,12 +73,12 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-'http://localhost:5173', 'http://192.168.1.87',
+'http://localhost:5173', 'http://192.168.88.198',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",  # Cambia esto por el dominio de tu frontend
-    'https://192.168.1.87',
+    'https://192.168.88.198',
 ]
 
 
